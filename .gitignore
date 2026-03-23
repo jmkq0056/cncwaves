@@ -47,6 +47,20 @@ coverage/
 .nyc_output/
 htmlcov/
 
+# Vercel
+.vercel/
+
+# Next.js
+.next/
+
+# Scraper outputs (root-level only)
+/assets/
+*.xlsx
+products.json
+
+# Keep app public assets
+!app/public/assets/
+
 # Misc
 .cache/
 tmp/
