@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 
 type Product = {
   _id: string;
@@ -12,13 +12,81 @@ type Product = {
   image: string;
 };
 
-const emptyForm = { code: "", name: "", brand: "", category: "", unit: "", image: "" };
+const emptyForm = { name: "", brand: "", category: "", unit: "", image: "" };
 
-/** If starts with http → use as-is (cloudinary), else → local /assets/ fallback */
 function imgSrc(image: string) {
   if (!image) return "";
   if (image.startsWith("http")) return image;
   return `/assets/${image}`;
+}
+
+/** Combobox: dropdown of existing options + type to create new */
+function ComboInput({
+  label,
+  value,
+  onChange,
+  options,
+  placeholder,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+  placeholder?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const [filter, setFilter] = useState("");
+  const ref = useRef<HTMLDivElement>(null);
+
+  const filtered = useMemo(() => {
+    if (!filter) return options;
+    const q = filter.toLowerCase();
+    return options.filter((o) => o.toLowerCase().includes(q));
+  }, [options, filter]);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <input
+        value={value}
+        onChange={(e) => {
+          onChange(e.target.value);
+          setFilter(e.target.value);
+          setOpen(true);
+        }}
+        onFocus={() => { setFilter(value); setOpen(true); }}
+        placeholder={placeholder || `Select or type new ${label.toLowerCase()}`}
+        className="w-full px-3 py-2 border rounded text-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
+      />
+      {open && filtered.length > 0 && (
+        <div className="absolute z-50 left-0 right-0 mt-1 bg-white border rounded shadow-lg max-h-40 overflow-auto">
+          {filtered.map((opt) => (
+            <button
+              key={opt}
+              type="button"
+              onClick={() => {
+                onChange(opt);
+                setOpen(false);
+              }}
+              className={`block w-full text-left px-3 py-1.5 text-sm hover:bg-blue-50 ${
+                opt === value ? "bg-blue-50 font-medium" : ""
+              }`}
+            >
+              {opt}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function ProductsPage() {
@@ -36,6 +104,20 @@ export default function ProductsPage() {
     loadProducts();
   }, []);
 
+  // Extract unique values for dropdowns
+  const existingBrands = useMemo(
+    () => [...new Set(products.map((p) => p.brand).filter(Boolean))].sort(),
+    [products]
+  );
+  const existingCategories = useMemo(
+    () => [...new Set(products.map((p) => p.category).filter(Boolean))].sort(),
+    [products]
+  );
+  const existingUnits = useMemo(
+    () => [...new Set(products.map((p) => p.unit).filter(Boolean))].sort(),
+    [products]
+  );
+
   async function loadProducts() {
     setLoading(true);
     const res = await fetch("/api/products");
@@ -46,7 +128,6 @@ export default function ProductsPage() {
   function handleEdit(product: Product) {
     setEditId(product._id);
     setForm({
-      code: product.code,
       name: product.name,
       brand: product.brand,
       category: product.category,
@@ -67,13 +148,10 @@ export default function ProductsPage() {
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
-
     setUploading(true);
     setError("");
-
     const formData = new FormData();
     formData.append("file", file);
-
     try {
       const res = await fetch("/api/upload", { method: "POST", body: formData });
       const data = await res.json();
@@ -83,7 +161,7 @@ export default function ProductsPage() {
         setError(data.error || "Upload failed");
       }
     } catch {
-      setError("Upload failed — check connection");
+      setError("Upload failed");
     }
     setUploading(false);
   }
@@ -173,9 +251,7 @@ export default function ProductsPage() {
                   {p.image ? (
                     <img src={imgSrc(p.image)} alt="" className="w-10 h-10 object-contain" />
                   ) : (
-                    <div className="w-10 h-10 bg-gray-200 rounded flex items-center justify-center text-gray-400 text-xs">
-                      --
-                    </div>
+                    <div className="w-10 h-10 bg-gray-200 rounded flex items-center justify-center text-gray-400 text-xs">--</div>
                   )}
                 </td>
                 <td className="px-4 py-2 font-mono">{p.code}</td>
@@ -184,18 +260,8 @@ export default function ProductsPage() {
                 <td className="px-4 py-2">{p.category}</td>
                 <td className="px-4 py-2">{p.unit}</td>
                 <td className="px-4 py-2 text-right">
-                  <button
-                    onClick={() => handleEdit(p)}
-                    className="px-2 py-1 bg-yellow-400 text-white rounded text-xs hover:bg-yellow-500 mr-1"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(p._id)}
-                    className="px-2 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600"
-                  >
-                    Delete
-                  </button>
+                  <button onClick={() => handleEdit(p)} className="px-2 py-1 bg-yellow-400 text-white rounded text-xs hover:bg-yellow-500 mr-1">Edit</button>
+                  <button onClick={() => handleDelete(p._id)} className="px-2 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600">Delete</button>
                 </td>
               </tr>
             ))}
@@ -214,62 +280,61 @@ export default function ProductsPage() {
             </h2>
 
             <div className="space-y-3">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Code *</label>
-                <input
-                  value={form.code}
-                  onChange={(e) => setForm({ ...form, code: e.target.value })}
-                  className="w-full px-3 py-2 border rounded text-sm"
-                  disabled={!!editId}
-                />
-              </div>
+              {/* Code: auto-generated for new, shown read-only for edit */}
+              {editId && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Code</label>
+                  <div className="px-3 py-2 bg-gray-100 border rounded text-sm text-gray-500 font-mono">
+                    {products.find((p) => p._id === editId)?.code || ""}
+                  </div>
+                </div>
+              )}
+              {!editId && (
+                <p className="text-xs text-gray-400 bg-gray-50 px-3 py-2 rounded">
+                  Code will be auto-generated
+                </p>
+              )}
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Name *</label>
                 <input
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full px-3 py-2 border rounded text-sm"
+                  className="w-full px-3 py-2 border rounded text-sm focus:outline-none focus:ring-1 focus:ring-blue-400"
+                  placeholder="Product name"
                 />
               </div>
+
               <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Brand</label>
-                  <input
-                    value={form.brand}
-                    onChange={(e) => setForm({ ...form, brand: e.target.value })}
-                    className="w-full px-3 py-2 border rounded text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                  <input
-                    value={form.category}
-                    onChange={(e) => setForm({ ...form, category: e.target.value })}
-                    className="w-full px-3 py-2 border rounded text-sm"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Unit</label>
-                <input
-                  value={form.unit}
-                  onChange={(e) => setForm({ ...form, unit: e.target.value })}
-                  className="w-full px-3 py-2 border rounded text-sm"
+                <ComboInput
+                  label="Brand"
+                  value={form.brand}
+                  onChange={(v) => setForm({ ...form, brand: v })}
+                  options={existingBrands}
+                />
+                <ComboInput
+                  label="Category"
+                  value={form.category}
+                  onChange={(v) => setForm({ ...form, category: v })}
+                  options={existingCategories}
                 />
               </div>
+
+              <ComboInput
+                label="Unit"
+                value={form.unit}
+                onChange={(v) => setForm({ ...form, unit: v })}
+                options={existingUnits}
+                placeholder="e.g. Box 100 Pc, 1 kg, 500g"
+              />
 
               {/* Image upload */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Product Image</label>
                 <div className="flex items-start gap-3">
-                  {/* Preview */}
                   <div className="w-20 h-20 border rounded bg-gray-50 flex items-center justify-center flex-shrink-0 overflow-hidden">
                     {form.image ? (
-                      <img
-                        src={imgSrc(form.image)}
-                        alt="Preview"
-                        className="w-full h-full object-contain"
-                      />
+                      <img src={imgSrc(form.image)} alt="Preview" className="w-full h-full object-contain" />
                     ) : (
                       <span className="text-gray-300 text-xs">No image</span>
                     )}
@@ -282,13 +347,7 @@ export default function ProductsPage() {
                           : "border-gray-300 hover:border-blue-400 text-gray-500 hover:text-blue-500"
                       }`}
                     >
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="hidden"
-                        disabled={uploading}
-                      />
+                      <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" disabled={uploading} />
                       {uploading ? (
                         <span className="text-sm flex items-center justify-center gap-2">
                           <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -302,11 +361,7 @@ export default function ProductsPage() {
                       )}
                     </label>
                     {form.image && (
-                      <button
-                        type="button"
-                        onClick={() => setForm({ ...form, image: "" })}
-                        className="text-xs text-red-500 hover:text-red-700 mt-1"
-                      >
+                      <button type="button" onClick={() => setForm({ ...form, image: "" })} className="text-xs text-red-500 hover:text-red-700 mt-1">
                         Remove image
                       </button>
                     )}
@@ -318,15 +373,10 @@ export default function ProductsPage() {
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
 
             <div className="flex gap-2 mt-4">
-              <button
-                onClick={() => setShowForm(false)}
-                className="flex-1 py-2 bg-gray-200 rounded text-sm hover:bg-gray-300"
-              >
-                Cancel
-              </button>
+              <button onClick={() => setShowForm(false)} className="flex-1 py-2 bg-gray-200 rounded text-sm hover:bg-gray-300">Cancel</button>
               <button
                 onClick={handleSave}
-                disabled={saving || uploading || !form.code || !form.name}
+                disabled={saving || uploading || !form.name}
                 className="flex-1 py-2 bg-blue-500 text-white rounded text-sm hover:bg-blue-600 disabled:opacity-50"
               >
                 {saving ? "Saving..." : "Save"}

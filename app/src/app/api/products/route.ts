@@ -10,16 +10,29 @@ export async function GET() {
   return NextResponse.json(products);
 }
 
+async function generateCode(): Promise<string> {
+  // Generate 8-digit numeric code, ensure unique
+  for (let i = 0; i < 10; i++) {
+    const code = String(Math.floor(10000000 + Math.random() * 90000000));
+    const exists = await Product.findOne({ code });
+    if (!exists) return code;
+  }
+  // Fallback: timestamp-based
+  return String(Date.now()).slice(-8);
+}
+
 export async function POST(req: NextRequest) {
   await requireAuth();
   await connectDB();
 
   const body = await req.json();
-  const { code, name, brand, category, unit, image } = body;
+  const { name, brand, category, unit, image } = body;
 
-  if (!code || !name) {
-    return NextResponse.json({ error: "Code and name are required" }, { status: 400 });
+  if (!name) {
+    return NextResponse.json({ error: "Name is required" }, { status: 400 });
   }
+
+  const code = body.code || await generateCode();
 
   const existing = await Product.findOne({ code });
   if (existing) {
