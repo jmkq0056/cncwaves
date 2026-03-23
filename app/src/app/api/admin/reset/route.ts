@@ -7,15 +7,14 @@ import Vacation from "@/lib/models/Vacation";
 import AdminSession from "@/lib/models/AdminSession";
 import Setting from "@/lib/models/Setting";
 
-const DANGER_RESET_CODE = process.env.DANGER_RESET_CODE;
-
 export async function POST(req: NextRequest) {
   await requireAuth();
   await connectDB();
 
   const { code } = await req.json();
+  const DANGER_RESET_CODE = process.env.DANGER_RESET_CODE;
 
-  if (!code || code !== DANGER_RESET_CODE) {
+  if (!DANGER_RESET_CODE || !code || code !== DANGER_RESET_CODE) {
     return NextResponse.json({ error: "Invalid reset code" }, { status: 403 });
   }
 
