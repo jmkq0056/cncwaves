@@ -173,7 +173,7 @@ export default function DeliveryPage() {
         </div>
 
         {/* Cart table header */}
-        <div className="grid grid-cols-[32px_1fr_50px_60px_24px] px-3 py-2 bg-blue-500 text-white text-xs font-bold items-center">
+        <div className="grid grid-cols-[32px_1fr_50px_60px_24px] px-3 py-2 bg-brand text-white text-xs font-bold items-center">
           <span></span>
           <span>Product</span>
           <span className="text-center">Qty</span>
@@ -272,7 +272,7 @@ export default function DeliveryPage() {
             <button
               onClick={handleSave}
               disabled={saving || cart.length === 0}
-              className="py-3 bg-green-500 text-white text-sm font-medium hover:bg-green-600 disabled:opacity-50"
+              className="py-3 bg-cnc-green text-white text-sm font-medium hover:bg-cnc-green/90 disabled:opacity-50"
             >
               {saving ? "Saving..." : "Save Delivery"}
             </button>
@@ -305,11 +305,11 @@ export default function DeliveryPage() {
                   key={product._id}
                   onClick={() => addToCart(product)}
                   className={`relative flex flex-col items-center p-3 bg-white rounded border hover:shadow-lg transition-all text-center ${
-                    inCart ? "border-blue-400 ring-1 ring-blue-300" : "border-gray-200"
+                    inCart ? "border-brand ring-1 ring-brand-300" : "border-gray-200"
                   }`}
                 >
                   {inCart && (
-                    <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                    <span className="absolute -top-2 -right-2 bg-brand text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
                       {inCart.quantity}
                     </span>
                   )}

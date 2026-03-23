@@ -91,7 +91,7 @@ export default function FormPage() {
           <div className="flex gap-3 justify-center">
             <button
               onClick={() => { setSubmitted(false); setValues({}); }}
-              className="px-4 py-2 bg-blue-500 text-white rounded text-sm hover:bg-blue-600"
+              className="px-4 py-2 bg-brand text-white rounded text-sm hover:bg-brand-700"
             >
               Submit Another
             </button>
@@ -109,7 +109,7 @@ export default function FormPage() {
       <div className="max-w-lg mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-6">
-          <Link href="/forms" className="text-blue-500 text-sm hover:text-blue-700 mb-2 inline-block">
+          <Link href="/forms" className="text-brand text-sm hover:text-brand-700 mb-2 inline-block">
             &larr; All Forms
           </Link>
           <h1 className="text-xl font-bold text-gray-800">{formDef.title}</h1>
@@ -180,7 +180,7 @@ export default function FormPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 font-medium text-sm"
+            className="w-full py-2.5 bg-brand text-white rounded-lg hover:bg-brand-700 disabled:opacity-50 font-medium text-sm"
           >
             {submitting ? "Submitting..." : "Submit"}
           </button>
