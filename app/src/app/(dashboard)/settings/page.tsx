@@ -10,6 +10,10 @@ export default function SettingsPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState("");
+  const [seeding, setSeeding] = useState(false);
+  const [resetCode, setResetCode] = useState("");
+  const [resetting, setResetting] = useState(false);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   useEffect(() => {
     fetch("/api/settings")
@@ -165,10 +169,105 @@ export default function SettingsPage() {
       <button
         onClick={handleSave}
         disabled={saving}
-        className="px-6 py-2 bg-blue-500 text-white rounded text-sm hover:bg-blue-600 disabled:opacity-50 font-medium"
+        className="px-6 py-2 bg-brand text-white rounded text-sm hover:bg-brand-700 disabled:opacity-50 font-medium"
       >
         {saving ? "Saving..." : "Save Settings"}
       </button>
+
+      {/* Developer Tools */}
+      <div className="bg-white rounded-lg shadow p-6 mt-8 border-t-4 border-gray-300">
+        <h2 className="font-medium text-gray-700 mb-4 flex items-center gap-2">
+          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17l-5.1-5.1m0 0L11.42 4.97m-5.1 5.1h12.76" />
+          </svg>
+          Developer Tools
+        </h2>
+
+        <div className="space-y-4">
+          {/* Seed test data */}
+          <div>
+            <p className="text-sm font-medium text-gray-700">Seed Test Data</p>
+            <p className="text-xs text-gray-400 mb-2">
+              Generates ~50 fake form submissions and vacation requests for testing stats and dashboard.
+            </p>
+            <button
+              onClick={async () => {
+                setSeeding(true);
+                setMsg("");
+                const res = await fetch("/api/admin/seed", { method: "POST" });
+                const data = await res.json();
+                setMsg(data.message || "Seeded!");
+                setSeeding(false);
+              }}
+              disabled={seeding}
+              className="px-4 py-2 bg-cnc-green text-white rounded text-sm hover:bg-cnc-green/90 disabled:opacity-50 font-medium"
+            >
+              {seeding ? "Seeding..." : "Seed Test Data"}
+            </button>
+          </div>
+
+          {/* Reset database */}
+          <div className="pt-4 border-t">
+            <p className="text-sm font-medium text-red-600">Reset Database</p>
+            <p className="text-xs text-gray-400 mb-2">
+              Deletes ALL submissions, deliveries, vacations, and sessions. Products and users are preserved. This cannot be undone.
+            </p>
+            {!showResetConfirm ? (
+              <button
+                onClick={() => setShowResetConfirm(true)}
+                className="px-4 py-2 bg-red-100 text-red-600 rounded text-sm hover:bg-red-200 font-medium"
+              >
+                Reset Database...
+              </button>
+            ) : (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <p className="text-sm text-red-700 font-medium mb-2">
+                  Type the reset code to confirm:
+                </p>
+                <input
+                  type="text"
+                  value={resetCode}
+                  onChange={(e) => setResetCode(e.target.value)}
+                  placeholder="Enter reset code"
+                  className="w-full px-3 py-2 border border-red-300 rounded text-sm mb-2 focus:outline-none focus:ring-1 focus:ring-red-400 font-mono"
+                />
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => { setShowResetConfirm(false); setResetCode(""); }}
+                    className="px-3 py-1.5 bg-gray-200 rounded text-sm hover:bg-gray-300"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={async () => {
+                      setResetting(true);
+                      setMsg("");
+                      const res = await fetch("/api/admin/reset", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ code: resetCode }),
+                      });
+                      const data = await res.json();
+                      if (res.ok) {
+                        setMsg(`Reset complete: ${JSON.stringify(data.deleted)}`);
+                        setShowResetConfirm(false);
+                        setResetCode("");
+                      } else {
+                        setMsg(data.error || "Reset failed");
+                      }
+                      setResetting(false);
+                    }}
+                    disabled={resetting || !resetCode}
+                    className="px-3 py-1.5 bg-red-600 text-white rounded text-sm hover:bg-red-700 disabled:opacity-50 font-medium"
+                  >
+                    {resetting ? "Resetting..." : "Confirm Reset"}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
