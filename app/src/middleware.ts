@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const publicPaths = ["/login", "/api/auth/login", "/forms", "/api/forms", "/api/vacations", "/api/upload"];
+const publicPaths = ["/login", "/api/auth/login", "/forms", "/api/forms", "/api/vacations", "/api/upload", "/d/", "/api/deliveries/by-token/"];
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -11,7 +11,8 @@ export function middleware(req: NextRequest) {
     publicPaths.some((p) => pathname.startsWith(p)) ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/assets") ||
-    pathname.includes(".")
+    pathname.includes(".") ||
+    (pathname.includes("/deliveries/") && pathname.endsWith("/pick"))
   ) {
     return NextResponse.next();
   }

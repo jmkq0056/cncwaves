@@ -13,10 +13,13 @@ type DeliveryItem = {
 type Delivery = {
   _id: string;
   reference: string;
+  shareToken: string;
   items: DeliveryItem[];
   status: string;
   createdBy: string;
   createdAt: string;
+  emailSent: boolean;
+  emailError: string;
 };
 
 export default function DeliveriesPage() {

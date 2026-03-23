@@ -133,7 +133,12 @@ export default function DeliveryPage() {
 
     if (res.ok) {
       const data = await res.json();
-      setMsg(`Saved! Reference: ${data.reference}`);
+      const emailNote = data.emailSent
+        ? " - Email sent"
+        : data.emailError
+        ? ` - Email failed: ${data.emailError}`
+        : "";
+      setMsg(`Saved! ${data.reference}${emailNote}`);
       setCart([]);
       setVisitedCategories(new Set());
     } else {
