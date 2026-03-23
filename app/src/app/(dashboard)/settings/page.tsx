@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function SettingsPage() {
   const [recipientEmail, setRecipientEmail] = useState("");
+  const [adminPasscode, setAdminPasscode] = useState("");
   const [showSubCategories, setShowSubCategories] = useState(true);
   const [showBrands, setShowBrands] = useState(true);
   const [loading, setLoading] = useState(true);
@@ -15,6 +16,7 @@ export default function SettingsPage() {
       .then((r) => r.json())
       .then((data) => {
         setRecipientEmail(data.recipient_email || "");
+        setAdminPasscode(data.admin_passcode || "2670");
         setShowSubCategories(data.show_subcategories !== "false");
         setShowBrands(data.show_brands !== "false");
         setLoading(false);
@@ -30,6 +32,7 @@ export default function SettingsPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         recipient_email: recipientEmail,
+        admin_passcode: adminPasscode,
         show_subcategories: showSubCategories ? "true" : "false",
         show_brands: showBrands ? "true" : "false",
       }),
@@ -47,6 +50,28 @@ export default function SettingsPage() {
   return (
     <div className="p-6 max-w-lg">
       <h1 className="text-xl font-bold text-gray-800 mb-6">Settings</h1>
+
+      {/* Admin Passcode */}
+      <div className="bg-white rounded-lg shadow p-6 mb-6">
+        <h2 className="font-medium text-gray-700 mb-4 flex items-center gap-2">
+          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+          </svg>
+          Admin Passcode
+        </h2>
+        <p className="text-xs text-gray-400 mb-2">
+          Required to access Dashboard, Vacations, Submissions, and Settings. Valid for 2 hours per session.
+        </p>
+        <input
+          type="text"
+          inputMode="numeric"
+          value={adminPasscode}
+          onChange={(e) => setAdminPasscode(e.target.value.replace(/[^0-9]/g, ""))}
+          placeholder="e.g. 2670"
+          maxLength={10}
+          className="w-full px-3 py-2 border rounded text-sm tracking-widest focus:outline-none focus:ring-2 focus:ring-brand"
+        />
+      </div>
 
       {/* Email Settings */}
       <div className="bg-white rounded-lg shadow p-6 mb-6">

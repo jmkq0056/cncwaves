@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import AdminGate from "./AdminGate";
 
 const navItems = [
   {
@@ -91,18 +92,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       <aside
-        className={`bg-cnc-dark text-white flex flex-col transition-all duration-200 ${
+        className={`bg-[#1e293b] text-white flex flex-col transition-all duration-200 ${
           collapsed ? "w-[60px]" : "w-56"
         }`}
       >
         {/* Logo */}
-        <div className="flex items-center justify-between px-4 h-14 border-b border-gray-700/50">
+        <div className="flex items-center justify-between px-4 h-14 border-b border-white/10">
           {!collapsed && (
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded bg-brand flex items-center justify-center">
-                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                </svg>
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-full bg-brand flex items-center justify-center shadow-sm">
+                <span className="text-white font-black text-[10px] tracking-wide">CNC</span>
               </div>
               <span className="font-bold text-sm tracking-wide">CNC Manager</span>
             </div>
@@ -129,7 +128,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 className={`flex items-center gap-3 px-4 py-2.5 mx-2 my-0.5 rounded-md text-sm transition-colors ${
                   active
                     ? "bg-brand/90 text-white"
-                    : "text-gray-400 hover:bg-gray-800 hover:text-gray-200"
+                    : "text-gray-400 hover:bg-white/10 hover:text-gray-200"
                 }`}
               >
                 <span className="flex-shrink-0">{item.icon}</span>
@@ -140,7 +139,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </nav>
 
         {/* Logout */}
-        <div className="px-2 pb-4 pt-2 border-t border-gray-700/50">
+        <div className="px-2 pb-4 pt-2 border-t border-white/10">
           <button
             onClick={handleLogout}
             title={collapsed ? "Log out" : undefined}
@@ -155,7 +154,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-auto bg-gray-50">{children}</main>
+      <main className="flex-1 overflow-auto bg-gray-50">
+        <AdminGate pathname={pathname}>{children}</AdminGate>
+      </main>
     </div>
   );
 }
