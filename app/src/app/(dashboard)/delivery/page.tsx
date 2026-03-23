@@ -23,11 +23,21 @@ export default function DeliveryPage() {
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState("");
   const [visitedCategories, setVisitedCategories] = useState<Set<string>>(new Set());
+  const [showSubCategories, setShowSubCategories] = useState(true);
+  const [showBrands, setShowBrands] = useState(true);
 
   useEffect(() => {
     fetch("/api/products")
       .then((r) => r.json())
       .then(setProducts)
+      .catch(() => {});
+    // Load settings
+    fetch("/api/settings")
+      .then((r) => r.json())
+      .then((data) => {
+        setShowSubCategories(data.show_subcategories !== "false");
+        setShowBrands(data.show_brands !== "false");
+      })
       .catch(() => {});
   }, []);
 
@@ -40,7 +50,6 @@ export default function DeliveryPage() {
     [products]
   );
 
-  // Track visited categories when a filter is selected
   function selectFilter(type: "category" | "subcategory" | "brand", value: string) {
     setActiveFilter(value);
     setFilterType(type);
@@ -127,18 +136,23 @@ export default function DeliveryPage() {
     setSaving(false);
   }
 
-  // Flyout panel content
   const flyoutOptions = filterType === "brand" ? brands : categories;
+
+  // Categories tab color: red border if not all visited, green if all visited, blue bg when active
+  const catTabBg = filterType === "category"
+    ? "bg-blue-600"
+    : allCategoriesVisited
+      ? "bg-green-500 hover:bg-green-600"
+      : "bg-red-500 hover:bg-red-600";
 
   return (
     <div className="flex h-full relative overflow-hidden">
-      {/* ===== LEFT PANEL - Cart (30% width like Sanitos) ===== */}
+      {/* ===== LEFT PANEL ===== */}
       <div className="w-[30%] min-w-[320px] max-w-[440px] bg-white border-r flex flex-col flex-shrink-0">
         {/* Header */}
         <div className="p-3 border-b">
           <div className="flex items-center justify-between mb-2">
             <span className="font-semibold text-gray-700">CNC Stock</span>
-            {/* Category progress indicator */}
             <span className="text-xs text-gray-400">
               {visitedCategories.size}/{categories.length} categories
             </span>
@@ -153,14 +167,15 @@ export default function DeliveryPage() {
         </div>
 
         {/* Cart table header */}
-        <div className="grid grid-cols-[1fr_50px_50px_24px] px-3 py-2 bg-blue-500 text-white text-xs font-bold">
+        <div className="grid grid-cols-[32px_1fr_50px_60px_24px] px-3 py-2 bg-blue-500 text-white text-xs font-bold items-center">
+          <span></span>
           <span>Product</span>
           <span className="text-center">Qty</span>
           <span className="text-center">Unit</span>
           <span></span>
         </div>
 
-        {/* Cart items - scrollable */}
+        {/* Cart items */}
         <div className="flex-1 overflow-auto">
           {cart.length === 0 && (
             <p className="text-gray-400 text-sm text-center mt-10">
@@ -170,9 +185,21 @@ export default function DeliveryPage() {
           {cart.map((item) => (
             <div
               key={item._id}
-              className="grid grid-cols-[1fr_50px_50px_24px] items-center px-3 py-2 border-b text-xs hover:bg-red-50"
+              className="grid grid-cols-[32px_1fr_50px_60px_24px] items-center px-3 py-1.5 border-b text-xs hover:bg-red-50"
             >
-              <div className="truncate pr-1">
+              {/* Tiny image */}
+              <div className="w-7 h-7 flex-shrink-0 rounded overflow-hidden bg-gray-100 flex items-center justify-center">
+                {item.image ? (
+                  <img
+                    src={`/assets/${item.image}`}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-gray-300 text-[8px]">--</span>
+                )}
+              </div>
+              <div className="truncate pr-1 pl-1">
                 <span className="font-medium">{item.code} - {item.name}</span>
               </div>
               <input
@@ -182,7 +209,7 @@ export default function DeliveryPage() {
                 onChange={(e) => updateQty(item._id, parseInt(e.target.value) || 0)}
                 className="w-12 px-1 py-0.5 border rounded text-center text-xs"
               />
-              <span className="text-gray-500 text-center truncate">{item.unit}</span>
+              <span className="text-gray-500 text-center truncate text-[10px]">{item.unit}</span>
               <button
                 onClick={() => removeItem(item._id)}
                 className="text-red-400 hover:text-red-600 font-bold text-sm"
@@ -202,7 +229,6 @@ export default function DeliveryPage() {
             </span>
           </div>
 
-          {/* Category progress bar */}
           {categories.length > 0 && (
             <div className="px-3 pb-2">
               <div className="flex gap-1 flex-wrap">
@@ -248,14 +274,12 @@ export default function DeliveryPage() {
         </div>
       </div>
 
-      {/* ===== RIGHT PANEL - Product grid ===== */}
+      {/* ===== RIGHT PANEL ===== */}
       <div className="flex-1 min-w-0 flex flex-col relative overflow-hidden">
         {/* Active filter indicator */}
         {activeFilter !== "all" && filterType && (
           <div className="px-4 py-2 bg-blue-50 border-b flex items-center justify-between">
-            <span className="text-sm text-blue-700 font-medium">
-              {activeFilter}
-            </span>
+            <span className="text-sm text-blue-700 font-medium">{activeFilter}</span>
             <button
               onClick={() => { setActiveFilter("all"); setFilterType(null); }}
               className="text-xs text-blue-500 hover:text-blue-700"
@@ -265,7 +289,7 @@ export default function DeliveryPage() {
           </div>
         )}
 
-        {/* Product grid - large cards like Sanitos */}
+        {/* Product grid */}
         <div className="flex-1 overflow-auto p-4 pr-12">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
             {filtered.map((product) => {
@@ -288,7 +312,7 @@ export default function DeliveryPage() {
                       <img
                         src={`/assets/${product.image}`}
                         alt={product.name}
-                        className="max-w-full max-h-full object-contain"
+                        className="w-full h-full object-contain"
                       />
                     ) : (
                       <div className="w-16 h-16 bg-gray-100 rounded flex items-center justify-center text-gray-300">
@@ -307,51 +331,56 @@ export default function DeliveryPage() {
           </div>
         </div>
 
-        {/* ===== RIGHT EDGE - Vertical filter tabs (like Sanitos) ===== */}
+        {/* ===== RIGHT EDGE - Vertical filter tabs ===== */}
         <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col gap-0 z-20">
+          {/* Categories - red when incomplete, green when done, blue when active */}
           <button
             onClick={() => {
               if (filterType === "category") { setFilterType(null); }
               else { setFilterType("category"); }
             }}
-            className={`py-6 px-1.5 text-white text-xs font-bold writing-vertical rounded-l cursor-pointer ${
-              filterType === "category" ? "bg-blue-600" : "bg-blue-400 hover:bg-blue-500"
-            }`}
+            className={`py-6 px-1.5 text-white text-xs font-bold rounded-l cursor-pointer ${catTabBg}`}
             style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
           >
             Categories
           </button>
-          <button
-            onClick={() => {
-              if (filterType === "subcategory") { setFilterType(null); }
-              else { setFilterType("subcategory"); }
-            }}
-            className={`py-6 px-1.5 text-white text-xs font-bold cursor-pointer ${
-              filterType === "subcategory" ? "bg-orange-500" : "bg-orange-400 hover:bg-orange-500"
-            }`}
-            style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
-          >
-            Sub Categories
-          </button>
-          <button
-            onClick={() => {
-              if (filterType === "brand") { setFilterType(null); }
-              else { setFilterType("brand"); }
-            }}
-            className={`py-6 px-1.5 text-white text-xs font-bold rounded-l cursor-pointer ${
-              filterType === "brand" ? "bg-green-600" : "bg-green-500 hover:bg-green-600"
-            }`}
-            style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
-          >
-            Brands
-          </button>
+          {showSubCategories && (
+            <button
+              onClick={() => {
+                if (filterType === "subcategory") { setFilterType(null); }
+                else { setFilterType("subcategory"); }
+              }}
+              className={`py-6 px-1.5 text-white text-xs font-bold cursor-pointer ${
+                filterType === "subcategory" ? "bg-blue-600" : "bg-orange-400 hover:bg-orange-500"
+              }`}
+              style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
+            >
+              Sub Categories
+            </button>
+          )}
+          {showBrands && (
+            <button
+              onClick={() => {
+                if (filterType === "brand") { setFilterType(null); }
+                else { setFilterType("brand"); }
+              }}
+              className={`py-6 px-1.5 text-white text-xs font-bold rounded-l cursor-pointer ${
+                filterType === "brand" ? "bg-blue-600" : "bg-green-500 hover:bg-green-600"
+              }`}
+              style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
+            >
+              Brands
+            </button>
+          )}
         </div>
 
-        {/* ===== FLYOUT PANEL - Shows when a filter tab is active ===== */}
+        {/* ===== FLYOUT PANEL ===== */}
         {filterType && (
           <div className="absolute right-8 top-0 bottom-0 w-64 bg-white border-l shadow-xl z-10 overflow-auto">
             <div className="p-3 border-b bg-gray-50 flex items-center justify-between">
-              <span className="font-semibold text-sm text-gray-700 capitalize">{filterType === "subcategory" ? "Sub Categories" : filterType === "brand" ? "Brands" : "Categories"}</span>
+              <span className="font-semibold text-sm text-gray-700 capitalize">
+                {filterType === "subcategory" ? "Sub Categories" : filterType === "brand" ? "Brands" : "Categories"}
+              </span>
               <button onClick={() => { setFilterType(null); setActiveFilter("all"); }} className="text-gray-400 hover:text-gray-600 text-lg">x</button>
             </div>
             <div className="p-2 grid grid-cols-2 gap-2">
@@ -367,7 +396,6 @@ export default function DeliveryPage() {
                         : "border-gray-200 bg-white"
                     }`}
                   >
-                    {/* Visited dot */}
                     {filterType === "category" && (
                       <span
                         className={`absolute top-1 right-1 w-2.5 h-2.5 rounded-full ${
