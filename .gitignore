@@ -53,6 +53,9 @@ htmlcov/
 # Next.js
 .next/
 
+# Reference images
+/forms/
+
 # Scraper outputs (root-level only)
 /assets/
 *.xlsx
