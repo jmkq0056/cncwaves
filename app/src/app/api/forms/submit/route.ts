@@ -1,16 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import { connectDB } from "@/lib/db";
 import { getFormBySlug } from "@/lib/form-definitions";
 import Submission from "@/lib/models/Submission";
+import Setting from "@/lib/models/Setting";
 
-// Sanitize: strip HTML tags, trim, limit length
 function sanitize(value: unknown): string {
   if (value === null || value === undefined) return "";
   const str = String(value).trim();
-  // Strip HTML tags
-  const clean = str.replace(/<[^>]*>/g, "");
-  // Limit to 5000 chars
-  return clean.slice(0, 5000);
+  return str.replace(/<[^>]*>/g, "").slice(0, 5000);
 }
 
 export async function POST(req: NextRequest) {
@@ -26,20 +24,19 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unknown form" }, { status: 400 });
   }
 
-  // Validate required fields and sanitize all values
+  // Validate required fields and sanitize
   const sanitized: Record<string, string> = {};
   for (const field of formDef.fields) {
     const raw = data[field.name];
-    const value = sanitize(raw);
+    const value = field.type === "file" ? (raw || "") : sanitize(raw);
 
-    if (field.required && !value) {
+    if (field.required && !value && field.type !== "checkbox") {
       return NextResponse.json(
         { error: `${field.label} is required` },
         { status: 400 }
       );
     }
 
-    // Validate select fields
     if (field.type === "select" && value && field.options) {
       if (!field.options.includes(value)) {
         return NextResponse.json(
@@ -49,12 +46,8 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Validate email
     if (field.type === "email" && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-      return NextResponse.json(
-        { error: `Invalid email address` },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     }
 
     sanitized[field.name] = value;
@@ -67,6 +60,60 @@ export async function POST(req: NextRequest) {
     formTitle: formDef.title,
     data: sanitized,
   });
+
+  // Send email notification
+  try {
+    const emailSetting = await Setting.findOne({ key: "recipient_email" }).lean() as any;
+    const recipientEmail = emailSetting?.value;
+    if (recipientEmail) {
+      const baseUrl = req.headers.get("origin") || req.headers.get("host") || "";
+      const viewUrl = `${baseUrl.startsWith("http") ? baseUrl : "https://" + baseUrl}/submissions?view=${submission._id}`;
+
+      const fieldRows = formDef.fields
+        .map((f) => {
+          const val = sanitized[f.name];
+          if (!val) return "";
+          const display = f.type === "file" && val.startsWith("http")
+            ? `<a href="${val}" style="color:#f17d00;">View file</a>`
+            : val;
+          return `<tr><td style="padding:6px 10px;border-bottom:1px solid #eee;color:#666;font-size:13px;">${f.label}</td><td style="padding:6px 10px;border-bottom:1px solid #eee;font-size:13px;">${display}</td></tr>`;
+        })
+        .filter(Boolean)
+        .join("");
+
+      const html = `
+        <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;">
+          <div style="background:#f17d00;color:#fff;padding:12px 16px;border-radius:8px 8px 0 0;">
+            <h2 style="margin:0;font-size:16px;">New Submission: ${formDef.title}</h2>
+          </div>
+          <div style="border:1px solid #eee;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;">
+            <table style="width:100%;border-collapse:collapse;">${fieldRows}</table>
+            <div style="padding:12px 16px;">
+              <a href="${viewUrl}" style="display:inline-block;background:#f17d00;color:#fff;text-decoration:none;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:bold;">View Submission</a>
+            </div>
+          </div>
+          <p style="text-align:center;color:#999;font-size:11px;margin-top:12px;">CNC Stock</p>
+        </div>
+      `;
+
+      const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: Number(process.env.SMTP_PORT),
+        secure: process.env.SMTP_SECURE === "true",
+        auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD },
+      });
+
+      await transporter.sendMail({
+        from: `"${process.env.EMAIL_FROM_NAME}" <${process.env.EMAIL_FROM_ADDRESS}>`,
+        to: recipientEmail,
+        subject: `New: ${formDef.title} - CNC Stock`,
+        html,
+      });
+    }
+  } catch (err) {
+    console.error("Email notification failed:", err);
+    // Don't fail the submission if email fails
+  }
 
   return NextResponse.json({ success: true, id: submission._id }, { status: 201 });
 }

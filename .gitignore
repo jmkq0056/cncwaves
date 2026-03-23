@@ -53,8 +53,10 @@ htmlcov/
 # Next.js
 .next/
 
-# Reference images
+# Reference images & binaries
 /forms/
+*.apk
+*.xlsx
 
 # Scraper outputs (root-level only)
 /assets/
