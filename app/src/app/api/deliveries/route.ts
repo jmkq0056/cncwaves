@@ -4,6 +4,7 @@ import { connectDB } from "@/lib/db";
 import { requireAuth } from "@/lib/auth";
 import Delivery from "@/lib/models/Delivery";
 import Setting from "@/lib/models/Setting";
+import { generatePackingListPDF } from "@/lib/generate-pdf";
 
 function generateRef() {
   const now = new Date();
@@ -11,41 +12,6 @@ function generateRef() {
   const m = String(now.getMonth() + 1).padStart(2, "0");
   const rand = String(Math.floor(Math.random() * 10000)).padStart(4, "0");
   return `DEL${y}/${m}/${rand}`;
-}
-
-function buildPdfHtml(delivery: any, pickUrl: string) {
-  const rows = delivery.items
-    .map((item: any) =>
-      `<tr>
-        <td style="padding:8px;border:1px solid #ddd;">${item.code} - ${item.name}</td>
-        <td style="padding:8px;border:1px solid #ddd;text-align:center;">${item.quantity} ${item.unit || ""}</td>
-        <td style="padding:8px;border:1px solid #ddd;text-align:center;">☐</td>
-      </tr>`
-    )
-    .join("");
-
-  return `
-    <html><body style="font-family:Arial,sans-serif;padding:20px;">
-      <h2 style="color:#f17d00;">PACKING LIST</h2>
-      <p><strong>Reference:</strong> ${delivery.reference}</p>
-      <p><strong>Date:</strong> ${new Date(delivery.createdAt).toLocaleString("da-DK", { timeZone: "Europe/Copenhagen" })}</p>
-      <p><strong>Created by:</strong> ${delivery.createdBy}</p>
-      <table style="width:100%;border-collapse:collapse;margin-top:15px;">
-        <thead>
-          <tr style="background:#f17d00;color:#fff;">
-            <th style="padding:10px;border:1px solid #ddd;text-align:left;">Item</th>
-            <th style="padding:10px;border:1px solid #ddd;text-align:center;">Qty</th>
-            <th style="padding:10px;border:1px solid #ddd;text-align:center;width:60px;">Pick</th>
-          </tr>
-        </thead>
-        <tbody>${rows}</tbody>
-      </table>
-      <p style="margin-top:20px;font-size:12px;color:#888;">
-        Online pick list: <a href="${pickUrl}">${pickUrl}</a>
-      </p>
-      <p style="font-size:11px;color:#aaa;">CNC Manager</p>
-    </body></html>
-  `;
 }
 
 export async function GET() {
@@ -64,7 +30,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "At least one item is required" }, { status: 400 });
   }
 
-  // Add default status to each item
   const itemsWithStatus = items.map((item: any) => ({
     ...item,
     status: "pending",
@@ -87,35 +52,24 @@ export async function POST(req: NextRequest) {
     if (recipientEmail) {
       const baseUrl = req.headers.get("origin") || `https://${req.headers.get("host")}`;
       const pickUrl = `${baseUrl}/d/${delivery.shareToken}`;
-      const pdfHtml = buildPdfHtml(delivery, pickUrl);
 
-      const itemList = delivery.items
-        .map((item: any) =>
-          `<tr>
-            <td style="padding:6px 10px;border-bottom:1px solid #eee;font-size:13px;">${item.code} - ${item.name}</td>
-            <td style="padding:6px 10px;border-bottom:1px solid #eee;text-align:center;font-size:13px;">${item.quantity} ${item.unit || ""}</td>
-          </tr>`
-        )
-        .join("");
+      // Generate PDF
+      const pdfBuffer = generatePackingListPDF(delivery, pickUrl);
 
       const html = `
-        <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;">
-          <div style="background:#f17d00;color:#fff;padding:12px 16px;border-radius:8px 8px 0 0;">
+        <div style="font-family:Arial,sans-serif;max-width:450px;margin:0 auto;">
+          <div style="background:#f17d00;color:#fff;padding:14px 18px;border-radius:10px 10px 0 0;">
             <h2 style="margin:0;font-size:16px;">New Delivery: ${delivery.reference}</h2>
           </div>
-          <div style="border:1px solid #eee;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;">
-            <div style="padding:10px 16px;font-size:12px;color:#666;">
-              ${delivery.items.length} items - ${delivery.createdBy}
-            </div>
-            <table style="width:100%;border-collapse:collapse;">${itemList}</table>
-            <div style="padding:16px;text-align:center;">
-              <a href="${pickUrl}" style="display:inline-block;background:#f17d00;color:#fff;text-decoration:none;padding:12px 30px;border-radius:8px;font-size:14px;font-weight:bold;">
-                Open Pick List
-              </a>
-              <p style="margin-top:8px;font-size:11px;color:#999;">Share this link with the driver</p>
-            </div>
+          <div style="border:1px solid #eee;border-top:none;border-radius:0 0 10px 10px;padding:20px;text-align:center;">
+            <p style="color:#555;font-size:13px;margin:0 0 4px;">${delivery.items.length} items - ${delivery.createdBy}</p>
+            <p style="color:#999;font-size:11px;margin:0 0 20px;">${new Date(delivery.createdAt).toLocaleString("da-DK", { timeZone: "Europe/Copenhagen" })}</p>
+            <a href="${pickUrl}" style="display:inline-block;background:#f17d00;color:#fff;text-decoration:none;padding:14px 40px;border-radius:8px;font-size:15px;font-weight:bold;">
+              Open Pick List
+            </a>
+            <p style="margin-top:14px;font-size:11px;color:#aaa;">Share this link with the driver. PDF packing list attached.</p>
           </div>
-          <p style="text-align:center;color:#999;font-size:10px;margin-top:10px;">CNC Manager</p>
+          <p style="text-align:center;color:#ccc;font-size:9px;margin-top:10px;">CNC Manager</p>
         </div>
       `;
 
@@ -132,9 +86,9 @@ export async function POST(req: NextRequest) {
         subject: `Delivery ${delivery.reference} - ${delivery.items.length} items`,
         html,
         attachments: [{
-          filename: `packing-list-${delivery.reference.replace(/\//g, "-")}.html`,
-          content: pdfHtml,
-          contentType: "text/html",
+          filename: `packing-list-${delivery.reference.replace(/\//g, "-")}.pdf`,
+          content: pdfBuffer,
+          contentType: "application/pdf",
         }],
       });
 
@@ -145,7 +99,6 @@ export async function POST(req: NextRequest) {
     console.error("Delivery email failed:", err);
   }
 
-  // Update email status
   delivery.emailSent = emailSent;
   delivery.emailError = emailError;
   await delivery.save();
