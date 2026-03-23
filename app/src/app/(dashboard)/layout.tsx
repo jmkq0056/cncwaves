@@ -73,7 +73,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       <aside
-        className={`bg-gray-900 text-white flex flex-col transition-all duration-200 ${
+        className={`bg-cnc-dark text-white flex flex-col transition-all duration-200 ${
           collapsed ? "w-[60px]" : "w-56"
         }`}
       >
@@ -81,7 +81,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <div className="flex items-center justify-between px-4 h-14 border-b border-gray-700/50">
           {!collapsed && (
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded bg-blue-500 flex items-center justify-center">
+              <div className="w-7 h-7 rounded bg-brand flex items-center justify-center">
                 <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                 </svg>
@@ -110,7 +110,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 title={collapsed ? item.label : undefined}
                 className={`flex items-center gap-3 px-4 py-2.5 mx-2 my-0.5 rounded-md text-sm transition-colors ${
                   active
-                    ? "bg-blue-600/90 text-white"
+                    ? "bg-brand/90 text-white"
                     : "text-gray-400 hover:bg-gray-800 hover:text-gray-200"
                 }`}
               >
