@@ -1,10 +1,11 @@
+import dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import * as fs from "fs";
 import * as path from "path";
 
-const MONGO_URI =
-  "mongodb+srv://jawa0056:4yuc4PVaUKPh9cHx@cluster0.54zxry3.mongodb.net/CNCtest?retryWrites=true&w=majority";
+const MONGO_URI = process.env.MONGO_URI!;
 
 // Inline schemas so we don't need Next.js module resolution
 const UserSchema = new mongoose.Schema({
