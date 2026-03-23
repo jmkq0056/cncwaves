@@ -2,6 +2,12 @@
 
 import { useEffect, useState, useMemo } from "react";
 
+function imgSrc(image: string) {
+  if (!image) return "";
+  if (image.startsWith("http")) return image;
+  return `/assets/${image}`;
+}
+
 type Product = {
   _id: string;
   code: string;
@@ -191,7 +197,7 @@ export default function DeliveryPage() {
               <div className="w-7 h-7 flex-shrink-0 rounded overflow-hidden bg-gray-100 flex items-center justify-center">
                 {item.image ? (
                   <img
-                    src={`/assets/${item.image}`}
+                    src={imgSrc(item.image)}
                     alt=""
                     className="w-full h-full object-cover"
                   />
@@ -310,7 +316,7 @@ export default function DeliveryPage() {
                   <div className="w-20 h-20 flex items-center justify-center mb-2">
                     {product.image ? (
                       <img
-                        src={`/assets/${product.image}`}
+                        src={imgSrc(product.image)}
                         alt={product.name}
                         className="w-full h-full object-contain"
                       />
