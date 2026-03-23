@@ -76,6 +76,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const pathname = usePathname();
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     fetch("/api/auth/me").then((r) => {
@@ -88,75 +89,112 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     router.push("/login");
   }
 
+  const sidebarContent = (
+    <>
+      <div className="flex items-center justify-between px-4 h-14 border-b border-white/10">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-full bg-brand flex items-center justify-center shadow-sm">
+            <span className="text-white font-black text-[10px] tracking-wide">CNC</span>
+          </div>
+          {!collapsed && <span className="font-bold text-sm tracking-wide">CNC Manager</span>}
+        </div>
+        {/* Desktop collapse */}
+        <button
+          onClick={() => setCollapsed(!collapsed)}
+          className="hidden md:block text-gray-500 hover:text-white transition-colors"
+        >
+          <svg className={`w-4 h-4 transition-transform ${collapsed ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        {/* Mobile close */}
+        <button onClick={() => setMobileOpen(false)} className="md:hidden text-gray-500 hover:text-white">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <nav className="flex-1 py-2">
+        {navItems.map((item) => {
+          const active = pathname === item.href;
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setMobileOpen(false)}
+              title={collapsed ? item.label : undefined}
+              className={`flex items-center gap-3 px-4 py-2.5 mx-2 my-0.5 rounded-md text-sm transition-colors ${
+                active
+                  ? "bg-brand/90 text-white"
+                  : "text-gray-400 hover:bg-white/10 hover:text-gray-200"
+              }`}
+            >
+              <span className="flex-shrink-0">{item.icon}</span>
+              {(!collapsed || mobileOpen) && <span>{item.label}</span>}
+            </Link>
+          );
+        })}
+      </nav>
+      <div className="px-2 pb-4 pt-2 border-t border-white/10">
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 px-4 py-2.5 w-full rounded-md text-sm text-gray-400 hover:bg-white/10 hover:text-red-400 transition-colors"
+        >
+          <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+          </svg>
+          {(!collapsed || mobileOpen) && <span>Log out</span>}
+        </button>
+      </div>
+    </>
+  );
+
   return (
     <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
+      {/* Mobile overlay */}
+      {mobileOpen && (
+        <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={() => setMobileOpen(false)} />
+      )}
+
+      {/* Sidebar - desktop */}
       <aside
-        className={`bg-[#1e293b] text-white flex flex-col transition-all duration-200 ${
+        className={`hidden md:flex bg-[#1e293b] text-white flex-col transition-all duration-200 ${
           collapsed ? "w-[60px]" : "w-56"
         }`}
       >
-        {/* Logo */}
-        <div className="flex items-center justify-between px-4 h-14 border-b border-white/10">
-          {!collapsed && (
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-brand flex items-center justify-center shadow-sm">
-                <span className="text-white font-black text-[10px] tracking-wide">CNC</span>
-              </div>
-              <span className="font-bold text-sm tracking-wide">CNC Manager</span>
-            </div>
-          )}
-          <button
-            onClick={() => setCollapsed(!collapsed)}
-            className="text-gray-500 hover:text-white transition-colors"
-          >
-            <svg className={`w-4 h-4 transition-transform ${collapsed ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-          </button>
-        </div>
+        {sidebarContent}
+      </aside>
 
-        {/* Nav */}
-        <nav className="flex-1 py-2">
-          {navItems.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                title={collapsed ? item.label : undefined}
-                className={`flex items-center gap-3 px-4 py-2.5 mx-2 my-0.5 rounded-md text-sm transition-colors ${
-                  active
-                    ? "bg-brand/90 text-white"
-                    : "text-gray-400 hover:bg-white/10 hover:text-gray-200"
-                }`}
-              >
-                <span className="flex-shrink-0">{item.icon}</span>
-                {!collapsed && <span>{item.label}</span>}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Logout */}
-        <div className="px-2 pb-4 pt-2 border-t border-white/10">
-          <button
-            onClick={handleLogout}
-            title={collapsed ? "Log out" : undefined}
-            className="flex items-center gap-3 px-4 py-2.5 w-full rounded-md text-sm text-gray-400 hover:bg-gray-800 hover:text-red-400 transition-colors"
-          >
-            <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
-            </svg>
-            {!collapsed && <span>Log out</span>}
-          </button>
-        </div>
+      {/* Sidebar - mobile drawer */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#1e293b] text-white flex flex-col transform transition-transform duration-200 md:hidden ${
+          mobileOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        {sidebarContent}
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-auto bg-gray-50">
-        <AdminGate pathname={pathname}>{children}</AdminGate>
-      </main>
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Mobile top bar */}
+        <div className="md:hidden flex items-center h-12 px-3 bg-[#1e293b] border-b border-white/10">
+          <button onClick={() => setMobileOpen(true)} className="text-white p-1">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </button>
+          <div className="flex items-center gap-2 ml-3">
+            <div className="w-6 h-6 rounded-full bg-brand flex items-center justify-center">
+              <span className="text-white font-black text-[7px]">CNC</span>
+            </div>
+            <span className="text-white text-sm font-semibold">CNC Manager</span>
+          </div>
+        </div>
+
+        <main className="flex-1 overflow-auto bg-gray-50">
+          <AdminGate pathname={pathname}>{children}</AdminGate>
+        </main>
+      </div>
     </div>
   );
 }

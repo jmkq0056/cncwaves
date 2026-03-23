@@ -34,17 +34,16 @@ export function sanitizeName(value: unknown): string {
   return titleCase(s).slice(0, 100);
 }
 
-// Sanitize a quantity field — extract number, ensure non-negative, max 99999
+// Sanitize a quantity field — must be a valid non-negative number
 export function sanitizeQty(value: unknown): string {
-  if (value === null || value === undefined) return "0";
+  if (value === null || value === undefined) return "";
   const s = String(value).trim();
-  // Extract first number (int or float)
-  const match = s.match(/-?\d+(\.\d+)?/);
-  if (!match) return "0";
-  let num = parseFloat(match[0]);
-  if (isNaN(num) || num < 0) num = 0;
-  if (num > 99999) num = 99999;
-  // Return as integer string if whole number, else 1 decimal
+  if (!s) return "";
+  // Must be a valid number
+  const num = parseFloat(s);
+  if (isNaN(num)) return "";
+  if (num < 0) return "0";
+  if (num > 99999) return "99999";
   return Number.isInteger(num) ? String(num) : num.toFixed(1);
 }
 
@@ -85,14 +84,26 @@ export function sanitizeSelect(value: unknown, options: string[]): string {
   return "";
 }
 
-// Sanitize datetime — ensure valid ISO-ish format
+// Sanitize datetime — store as Copenhagen timezone ISO string
 export function sanitizeDatetime(value: unknown): string {
   if (value === null || value === undefined) return "";
   const s = String(value).trim();
-  // Try parsing
+  if (!s) return "";
+  // Input from datetime-local is like "2026-03-23T20:15"
+  // Treat it as Copenhagen time by appending +01:00 (CET) or +02:00 (CEST)
+  // For simplicity, store the local time string + timezone label
   const d = new Date(s);
   if (isNaN(d.getTime())) return "";
-  return d.toISOString();
+  // Format as readable Copenhagen time
+  try {
+    return d.toLocaleString("da-DK", {
+      timeZone: "Europe/Copenhagen",
+      year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit",
+    });
+  } catch {
+    return d.toISOString();
+  }
 }
 
 // Sanitize date only
