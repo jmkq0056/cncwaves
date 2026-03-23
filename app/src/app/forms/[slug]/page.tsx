@@ -32,23 +32,35 @@ function copenhagenNow(): string {
 
 /** Validate a single field, return error message or empty string */
 function validateField(field: FormField, value: string): string {
-  if (field.required && !value.trim()) {
+  const trimmed = value.trim();
+
+  // Required check
+  if (field.required && !trimmed) {
     return `${field.label} is required`;
   }
 
-  if (field.type === "email" && value) {
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Invalid email address";
-  }
-
-  if (field.type === "tel" && value) {
-    const digits = value.replace(/[^\d+]/g, "");
-    if (digits.length < 6) return "Phone number too short";
-  }
-
-  if (isQtyField(field.name) && value) {
-    const num = Number(value);
-    if (isNaN(num)) return "Must be a number";
+  // Number fields (type=number or qty field names)
+  if ((field.type === "number" || isQtyField(field.name)) && trimmed) {
+    const num = Number(trimmed);
+    if (isNaN(num)) return "Must be a valid number";
     if (num < 0) return "Cannot be negative";
+    if (num > 99999) return "Value too large";
+  }
+
+  // Required number must have a value
+  if ((field.type === "number" || isQtyField(field.name)) && field.required) {
+    if (!trimmed) return `${field.label} is required`;
+    const num = Number(trimmed);
+    if (isNaN(num)) return "Must be a valid number";
+  }
+
+  if (field.type === "email" && trimmed) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) return "Invalid email address";
+  }
+
+  if (field.type === "tel" && trimmed) {
+    const digits = trimmed.replace(/[^\d+]/g, "");
+    if (digits.length < 6) return "Phone number too short";
   }
 
   if ((field.type === "datetime" || field.type === "date") && field.required && !value) {
@@ -240,7 +252,7 @@ export default function FormPage() {
         <form onSubmit={handleSubmit} noValidate className="bg-white rounded-lg shadow p-4 sm:p-5 space-y-4">
           {formDef.fields.map((field) => {
             const hasError = !!fieldErrors[field.name];
-            const isQty = isQtyField(field.name);
+            const isQty = isQtyField(field.name) || field.type === "number";
             const borderClass = hasError ? "border-red-400 ring-1 ring-red-200" : "border-gray-300";
 
             return (
