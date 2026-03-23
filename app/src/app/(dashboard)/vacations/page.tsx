@@ -9,9 +9,15 @@ type VacationRecord = {
   weeks: Record<string, string>;
 };
 
+type Selection = { employee: string; week: number };
+type UndoAction = { employee: string; weeks: Record<string, string> }[];
+
 export default function VacationsPage() {
   const [records, setRecords] = useState<VacationRecord[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selected, setSelected] = useState<Selection[]>([]);
+  const [applying, setApplying] = useState(false);
+  const [undo, setUndo] = useState<UndoAction | null>(null);
   const year = new Date().getFullYear();
 
   useEffect(() => { loadData(); }, []);
@@ -23,22 +29,70 @@ export default function VacationsPage() {
     setLoading(false);
   }
 
-  async function toggleWeek(employeeName: string, week: number, currentStatus: string) {
-    // Cycle: requested -> approved -> "" (clear)
-    let newStatus = "";
-    if (currentStatus === "requested") newStatus = "approved";
-    else if (currentStatus === "approved") newStatus = "";
-    else newStatus = "approved";
-
-    await fetch("/api/vacations", {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        employeeName,
-        year,
-        weeks: { [String(week)]: newStatus },
-      }),
+  function toggleSelect(employee: string, week: number) {
+    setSelected((prev) => {
+      const exists = prev.find((s) => s.employee === employee && s.week === week);
+      if (exists) return prev.filter((s) => !(s.employee === employee && s.week === week));
+      return [...prev, { employee, week }];
     });
+  }
+
+  function isSelected(employee: string, week: number) {
+    return selected.some((s) => s.employee === employee && s.week === week);
+  }
+
+  async function applyAction(action: "approved" | "requested" | "") {
+    if (selected.length === 0) return;
+    setApplying(true);
+
+    // Save current state for undo
+    const undoData: UndoAction = [];
+    const grouped: Record<string, Record<string, string>> = {};
+
+    for (const sel of selected) {
+      if (!grouped[sel.employee]) grouped[sel.employee] = {};
+      // Save old value for undo
+      const record = records.find((r) => r.employeeName === sel.employee);
+      const oldVal = record?.weeks[String(sel.week)] || "";
+
+      const existing = undoData.find((u) => u.employee === sel.employee);
+      if (existing) {
+        existing.weeks[String(sel.week)] = oldVal;
+      } else {
+        undoData.push({ employee: sel.employee, weeks: { [String(sel.week)]: oldVal } });
+      }
+
+      grouped[sel.employee][String(sel.week)] = action;
+    }
+
+    // Apply all changes
+    for (const [employee, weeks] of Object.entries(grouped)) {
+      await fetch("/api/vacations", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ employeeName: employee, year, weeks }),
+      });
+    }
+
+    setUndo(undoData);
+    setSelected([]);
+    await loadData();
+    setApplying(false);
+
+    // Auto-hide undo after 8 seconds
+    setTimeout(() => setUndo(null), 8000);
+  }
+
+  async function handleUndo() {
+    if (!undo) return;
+    for (const item of undo) {
+      await fetch("/api/vacations", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ employeeName: item.employee, year, weeks: item.weeks }),
+      });
+    }
+    setUndo(null);
     loadData();
   }
 
@@ -59,7 +113,7 @@ export default function VacationsPage() {
         </div>
       </div>
 
-      <p className="text-xs text-gray-400 mb-4">Click a yellow cell to approve, click green to revoke. Employees request via the public form.</p>
+      <p className="text-xs text-gray-400 mb-4">Click cells to select, then choose an action below.</p>
 
       <div className="bg-white rounded-lg shadow overflow-auto">
         {loading ? (
@@ -83,18 +137,21 @@ export default function VacationsPage() {
                   {Array.from({ length: 53 }, (_, i) => {
                     const week = i + 1;
                     const status = r.weeks[String(week)] || "";
+                    const sel = isSelected(r.employeeName, week);
                     return (
                       <td key={week} className="px-0 py-0 text-center border-r border-gray-100">
                         <button
-                          onClick={() => toggleWeek(r.employeeName, week, status)}
-                          className={`w-full h-7 transition-colors ${
-                            status === "approved"
+                          onClick={() => toggleSelect(r.employeeName, week)}
+                          className={`w-full h-7 transition-all ${
+                            sel
+                              ? "ring-2 ring-brand ring-inset bg-brand/20"
+                              : status === "approved"
                               ? "bg-green-400 hover:bg-green-500"
                               : status === "requested"
                               ? "bg-yellow-300 hover:bg-yellow-400"
                               : "hover:bg-gray-100"
                           }`}
-                          title={`Week ${week}: ${status || "empty"}`}
+                          title={`Week ${week}: ${status || "empty"}${sel ? " (selected)" : ""}`}
                         />
                       </td>
                     );
@@ -105,6 +162,62 @@ export default function VacationsPage() {
           </table>
         )}
       </div>
+
+      {/* Action bar — shows when cells are selected */}
+      {selected.length > 0 && (
+        <div className="sticky bottom-4 mt-4 bg-white rounded-xl shadow-xl border p-3 flex items-center justify-between gap-3 z-20">
+          <span className="text-sm font-medium text-gray-700">
+            {selected.length} week{selected.length > 1 ? "s" : ""} selected
+          </span>
+          <div className="flex gap-2">
+            <button
+              onClick={() => applyAction("approved")}
+              disabled={applying}
+              className="px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 disabled:opacity-50"
+            >
+              Approve
+            </button>
+            <button
+              onClick={() => applyAction("requested")}
+              disabled={applying}
+              className="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-lg text-sm font-medium hover:bg-yellow-500 disabled:opacity-50"
+            >
+              Requested
+            </button>
+            <button
+              onClick={() => applyAction("")}
+              disabled={applying}
+              className="px-4 py-2 bg-gray-200 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-300 disabled:opacity-50"
+            >
+              Clear
+            </button>
+            <button
+              onClick={() => setSelected([])}
+              className="px-3 py-2 text-gray-400 text-sm hover:text-gray-600"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Undo toast */}
+      {undo && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gray-800 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 z-50">
+          <span className="text-sm">Action applied</span>
+          <button
+            onClick={handleUndo}
+            className="px-3 py-1 bg-white text-gray-800 rounded-lg text-sm font-bold hover:bg-gray-100"
+          >
+            Undo
+          </button>
+          <button onClick={() => setUndo(null)} className="text-gray-400 hover:text-white ml-1">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      )}
     </div>
   );
 }
