@@ -131,7 +131,7 @@ export default function QRPrintPage() {
         </div>
 
         <p className="text-center text-[9px] text-gray-400 mt-4">
-          CNC Stock - Scan QR code to open form
+          CNC Manager - Scan QR code to open form
         </p>
       </div>
     </div>

@@ -158,7 +158,7 @@ export default function DeliveryPage() {
         {/* Header */}
         <div className="p-3 border-b">
           <div className="flex items-center justify-between mb-2">
-            <span className="font-semibold text-gray-700">CNC Stock</span>
+            <span className="font-semibold text-gray-700">CNC Manager</span>
             <span className="text-xs text-gray-400">
               {visitedCategories.size}/{categories.length} categories
             </span>

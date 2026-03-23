@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
               <a href="${viewUrl}" style="display:inline-block;background:#f17d00;color:#fff;text-decoration:none;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:bold;">View Submission</a>
             </div>
           </div>
-          <p style="text-align:center;color:#999;font-size:11px;margin-top:12px;">CNC Stock</p>
+          <p style="text-align:center;color:#999;font-size:11px;margin-top:12px;">CNC Manager</p>
         </div>`;
 
       const transporter = nodemailer.createTransport({
@@ -97,7 +97,7 @@ export async function POST(req: NextRequest) {
       await transporter.sendMail({
         from: `"${process.env.EMAIL_FROM_NAME}" <${process.env.EMAIL_FROM_ADDRESS}>`,
         to: recipientEmail,
-        subject: `New: ${formDef.title} - CNC Stock`,
+        subject: `New: ${formDef.title} - CNC Manager`,
         html,
       });
     }

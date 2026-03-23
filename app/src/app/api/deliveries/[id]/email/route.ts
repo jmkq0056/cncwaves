@@ -47,7 +47,7 @@ export async function POST(_req: NextRequest, { params }: { params: Promise<{ id
         </thead>
         <tbody>${itemRows}</tbody>
       </table>
-      <p style="margin-top:20px;color:#888;font-size:12px;">Sent from CNC Stock</p>
+      <p style="margin-top:20px;color:#888;font-size:12px;">Sent from CNC Manager</p>
     </div>
   `;
 

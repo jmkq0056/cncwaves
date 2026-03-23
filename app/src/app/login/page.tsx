@@ -32,24 +32,28 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cnc-dark">
-      {/* Subtle background pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900 via-cnc-dark to-black" />
 
       <div className="relative z-10 w-full max-w-sm px-4">
-        {/* Logo */}
+        {/* Animated CNC Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-brand mb-4 shadow-lg shadow-brand/30">
-            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-            </svg>
+          <div className="inline-block relative">
+            {/* Outer spinning ring */}
+            <div className="w-20 h-20 rounded-full border-[3px] border-brand/30 border-t-brand animate-spin absolute inset-0" />
+            {/* Inner pulse */}
+            <div className="w-20 h-20 rounded-full bg-brand/10 animate-pulse absolute inset-0" />
+            {/* Logo circle */}
+            <div className="relative w-20 h-20 rounded-full bg-brand flex items-center justify-center shadow-lg shadow-brand/40">
+              <span className="text-white font-black text-xl tracking-wider">CNC</span>
+            </div>
           </div>
-          <h1 className="text-2xl font-bold text-white tracking-tight">CNC Stock</h1>
+          <h1 className="text-2xl font-bold text-white tracking-tight mt-5">CNC Manager</h1>
           <p className="text-gray-500 text-sm mt-1">Sign in to your account</p>
         </div>
 
-        {/* Card */}
+        {/* Login form */}
         <div className="bg-white rounded-xl shadow-2xl p-6">
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} autoComplete="on" className="space-y-4">
             <div>
               <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1.5">
                 Email
@@ -62,6 +66,8 @@ export default function LoginPage() {
                 </span>
                 <input
                   type="email"
+                  name="email"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
@@ -83,6 +89,8 @@ export default function LoginPage() {
                 </span>
                 <input
                   type="password"
+                  name="password"
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
@@ -120,6 +128,8 @@ export default function LoginPage() {
             </button>
           </form>
         </div>
+
+        <p className="text-center text-gray-600 text-[10px] mt-6">CNC Manager v1.0</p>
       </div>
     </div>
   );
