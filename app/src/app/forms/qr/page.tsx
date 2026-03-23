@@ -1,11 +1,59 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import QRCode from "qrcode";
 
 type QRItem = { title: string; url: string };
 
 const DRIVER_APK_URL = "https://github.com/jmkq0056/cncwaves/releases/download/driver-app-v1/driver.apk";
+
+/** Generate QR code with "CNC" text overlay in the center */
+async function generateQRWithLogo(url: string): Promise<string> {
+  // Generate base QR with high error correction (allows 30% obstruction)
+  const qrDataUrl = await QRCode.toDataURL(url, {
+    width: 300,
+    margin: 1,
+    errorCorrectionLevel: "H",
+    color: { dark: "#000000", light: "#ffffff" },
+  });
+
+  // Draw on canvas with CNC overlay
+  return new Promise((resolve) => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 300;
+    canvas.height = 300;
+    const ctx = canvas.getContext("2d")!;
+
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0);
+
+      // White circle background in center
+      const cx = 150, cy = 150, r = 32;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+
+      // Orange border
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.strokeStyle = "#f17d00";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // "CNC" text
+      ctx.fillStyle = "#f17d00";
+      ctx.font = "bold 18px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("CNC", cx, cy);
+
+      resolve(canvas.toDataURL());
+    };
+    img.src = qrDataUrl;
+  });
+}
 
 export default function QRPrintPage() {
   const [items, setItems] = useState<QRItem[]>([]);
@@ -13,18 +61,13 @@ export default function QRPrintPage() {
 
   useEffect(() => {
     const base = window.location.origin;
-
-    // Build full list matching the physical QR sheet layout
     import("@/lib/form-definitions").then(({ FORM_DEFINITIONS }) => {
       const formItems: QRItem[] = FORM_DEFINITIONS.map((f) => ({
         title: f.title,
         url: `${base}/forms/${f.slug}`,
       }));
-
-      // Add vacation schedule and driver app
       formItems.push({ title: "Vacation Schedule", url: `${base}/forms/vacation` });
       formItems.push({ title: "Android Driver App", url: DRIVER_APK_URL });
-
       setItems(formItems);
     });
   }, []);
@@ -34,11 +77,7 @@ export default function QRPrintPage() {
     async function generateAll() {
       const codes: Record<string, string> = {};
       for (const item of items) {
-        codes[item.title] = await QRCode.toDataURL(item.url, {
-          width: 150,
-          margin: 1,
-          color: { dark: "#000000", light: "#ffffff" },
-        });
+        codes[item.title] = await generateQRWithLogo(item.url);
       }
       setQrCodes(codes);
     }

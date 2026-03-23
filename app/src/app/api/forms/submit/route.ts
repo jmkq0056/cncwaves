@@ -2,14 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { connectDB } from "@/lib/db";
 import { getFormBySlug } from "@/lib/form-definitions";
+import { sanitizeField } from "@/lib/sanitize";
 import Submission from "@/lib/models/Submission";
 import Setting from "@/lib/models/Setting";
-
-function sanitize(value: unknown): string {
-  if (value === null || value === undefined) return "";
-  const str = String(value).trim();
-  return str.replace(/<[^>]*>/g, "").slice(0, 5000);
-}
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -24,11 +19,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unknown form" }, { status: 400 });
   }
 
-  // Validate required fields and sanitize
   const sanitized: Record<string, string> = {};
   for (const field of formDef.fields) {
     const raw = data[field.name];
-    const value = field.type === "file" ? (raw || "") : sanitize(raw);
+    const value = sanitizeField(field.name, field.type, raw, field.options);
 
     if (field.required && !value && field.type !== "checkbox") {
       return NextResponse.json(
@@ -37,17 +31,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (field.type === "select" && value && field.options) {
-      if (!field.options.includes(value)) {
-        return NextResponse.json(
-          { error: `Invalid value for ${field.label}` },
-          { status: 400 }
-        );
-      }
-    }
-
     if (field.type === "email" && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
+    }
+
+    if (field.type === "select" && field.required && !value) {
+      return NextResponse.json(
+        { error: `Please select a valid option for ${field.label}` },
+        { status: 400 }
+      );
     }
 
     sanitized[field.name] = value;
@@ -61,7 +53,7 @@ export async function POST(req: NextRequest) {
     data: sanitized,
   });
 
-  // Send email notification
+  // Email notification
   try {
     const emailSetting = await Setting.findOne({ key: "recipient_email" }).lean() as any;
     const recipientEmail = emailSetting?.value;
@@ -84,7 +76,7 @@ export async function POST(req: NextRequest) {
       const html = `
         <div style="font-family:Arial,sans-serif;max-width:500px;margin:0 auto;">
           <div style="background:#f17d00;color:#fff;padding:12px 16px;border-radius:8px 8px 0 0;">
-            <h2 style="margin:0;font-size:16px;">New Submission: ${formDef.title}</h2>
+            <h2 style="margin:0;font-size:16px;">New: ${formDef.title}</h2>
           </div>
           <div style="border:1px solid #eee;border-top:none;border-radius:0 0 8px 8px;overflow:hidden;">
             <table style="width:100%;border-collapse:collapse;">${fieldRows}</table>
@@ -93,8 +85,7 @@ export async function POST(req: NextRequest) {
             </div>
           </div>
           <p style="text-align:center;color:#999;font-size:11px;margin-top:12px;">CNC Stock</p>
-        </div>
-      `;
+        </div>`;
 
       const transporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST,
@@ -112,7 +103,6 @@ export async function POST(req: NextRequest) {
     }
   } catch (err) {
     console.error("Email notification failed:", err);
-    // Don't fail the submission if email fails
   }
 
   return NextResponse.json({ success: true, id: submission._id }, { status: 201 });
