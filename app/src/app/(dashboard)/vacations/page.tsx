@@ -45,13 +45,11 @@ export default function VacationsPage() {
     if (selected.length === 0) return;
     setApplying(true);
 
-    // Save current state for undo
     const undoData: UndoAction = [];
     const grouped: Record<string, Record<string, string>> = {};
 
     for (const sel of selected) {
       if (!grouped[sel.employee]) grouped[sel.employee] = {};
-      // Save old value for undo
       const record = records.find((r) => r.employeeName === sel.employee);
       const oldVal = record?.weeks[String(sel.week)] || "";
 
@@ -65,7 +63,6 @@ export default function VacationsPage() {
       grouped[sel.employee][String(sel.week)] = action;
     }
 
-    // Apply all changes
     for (const [employee, weeks] of Object.entries(grouped)) {
       await fetch("/api/vacations", {
         method: "PUT",
@@ -79,7 +76,6 @@ export default function VacationsPage() {
     await loadData();
     setApplying(false);
 
-    // Auto-hide undo after 8 seconds
     setTimeout(() => setUndo(null), 8000);
   }
 
@@ -100,8 +96,8 @@ export default function VacationsPage() {
   const totalApproved = records.reduce((s, r) => s + Object.values(r.weeks).filter((v) => v === "approved").length, 0);
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-4">
+    <div className="p-4 md:p-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
         <h1 className="text-xl font-bold text-gray-800">Vacation Schedule {year}</h1>
         <div className="flex gap-4 text-sm">
           <span className="flex items-center gap-1">
@@ -115,7 +111,8 @@ export default function VacationsPage() {
 
       <p className="text-xs text-gray-400 mb-4">Click cells to select, then choose an action below.</p>
 
-      <div className="bg-white rounded-lg shadow overflow-auto">
+      {/* Desktop: Table grid */}
+      <div className="hidden md:block bg-white rounded-lg shadow-sm border border-gray-100 overflow-auto">
         {loading ? (
           <p className="p-8 text-center text-gray-400">Loading...</p>
         ) : records.length === 0 ? (
@@ -144,7 +141,7 @@ export default function VacationsPage() {
                           onClick={() => toggleSelect(r.employeeName, week)}
                           className={`w-full h-7 transition-all ${
                             sel
-                              ? "ring-2 ring-brand ring-inset bg-brand/20"
+                              ? "ring-2 ring-gray-700 ring-inset bg-gray-200"
                               : status === "approved"
                               ? "bg-green-400 hover:bg-green-500"
                               : status === "requested"
@@ -163,31 +160,80 @@ export default function VacationsPage() {
         )}
       </div>
 
-      {/* Action bar — shows when cells are selected */}
+      {/* Mobile: Employee cards with week grid */}
+      <div className="md:hidden space-y-3">
+        {loading && <p className="text-center py-8 text-gray-400">Loading...</p>}
+        {!loading && records.length === 0 && <p className="text-center py-8 text-gray-400">No vacation requests yet</p>}
+        {records.map((r) => {
+          const approvedWeeks = Object.entries(r.weeks).filter(([, v]) => v === "approved").map(([k]) => k);
+          const requestedWeeks = Object.entries(r.weeks).filter(([, v]) => v === "requested").map(([k]) => k);
+          return (
+            <div key={r._id} className="bg-white rounded-lg shadow-sm border border-gray-100 p-3">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-medium text-sm">{r.employeeName}</h3>
+                <div className="flex gap-2 text-[10px] text-gray-400">
+                  {approvedWeeks.length > 0 && <span className="text-green-600">{approvedWeeks.length} approved</span>}
+                  {requestedWeeks.length > 0 && <span className="text-yellow-600">{requestedWeeks.length} requested</span>}
+                </div>
+              </div>
+              {/* Compact week grid */}
+              <div className="grid grid-cols-[repeat(27,1fr)] gap-px">
+                {Array.from({ length: 53 }, (_, i) => {
+                  const week = i + 1;
+                  const status = r.weeks[String(week)] || "";
+                  const sel = isSelected(r.employeeName, week);
+                  return (
+                    <button
+                      key={week}
+                      onClick={() => toggleSelect(r.employeeName, week)}
+                      className={`aspect-square rounded-[2px] text-[6px] transition-all ${
+                        sel
+                          ? "ring-1 ring-gray-700 bg-gray-200"
+                          : status === "approved"
+                          ? "bg-green-400"
+                          : status === "requested"
+                          ? "bg-yellow-300"
+                          : "bg-gray-100"
+                      }`}
+                      title={`Week ${week}: ${status || "empty"}`}
+                    />
+                  );
+                })}
+              </div>
+              <div className="flex justify-between mt-1.5">
+                <span className="text-[8px] text-gray-400">W1</span>
+                <span className="text-[8px] text-gray-400">W53</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Action bar */}
       {selected.length > 0 && (
-        <div className="sticky bottom-4 mt-4 bg-white rounded-xl shadow-xl border p-3 flex items-center justify-between gap-3 z-20">
+        <div className="sticky bottom-4 mt-4 bg-white rounded-xl shadow-xl border p-3 flex flex-col sm:flex-row items-center justify-between gap-3 z-20">
           <span className="text-sm font-medium text-gray-700">
             {selected.length} week{selected.length > 1 ? "s" : ""} selected
           </span>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap justify-center">
             <button
               onClick={() => applyAction("approved")}
               disabled={applying}
-              className="px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 disabled:opacity-50"
+              className="px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 disabled:opacity-50 transition-colors"
             >
               Approve
             </button>
             <button
               onClick={() => applyAction("requested")}
               disabled={applying}
-              className="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-lg text-sm font-medium hover:bg-yellow-500 disabled:opacity-50"
+              className="px-4 py-2 bg-yellow-400 text-yellow-900 rounded-lg text-sm font-medium hover:bg-yellow-500 disabled:opacity-50 transition-colors"
             >
               Requested
             </button>
             <button
               onClick={() => applyAction("")}
               disabled={applying}
-              className="px-4 py-2 bg-gray-200 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-300 disabled:opacity-50"
+              className="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg text-sm font-medium hover:bg-gray-200 disabled:opacity-50 transition-colors"
             >
               Clear
             </button>

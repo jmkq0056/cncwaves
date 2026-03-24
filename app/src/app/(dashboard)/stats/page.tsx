@@ -22,10 +22,10 @@ type Stats = {
 
 function StatCard({ label, value, sub, color }: { label: string; value: string | number; sub?: string; color?: string }) {
   return (
-    <div className="bg-white rounded-lg shadow p-4">
-      <p className={`text-2xl font-bold ${color || "text-gray-800"}`}>{value}</p>
-      <p className="text-xs text-gray-500">{label}</p>
-      {sub && <p className="text-[10px] text-gray-400 mt-0.5">{sub}</p>}
+    <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-3 md:p-4">
+      <p className={`text-xl md:text-2xl font-bold ${color || "text-gray-800"}`}>{value}</p>
+      <p className="text-[10px] md:text-xs text-gray-500">{label}</p>
+      {sub && <p className="text-[9px] md:text-[10px] text-gray-400 mt-0.5">{sub}</p>}
     </div>
   );
 }
@@ -45,7 +45,7 @@ export default function StatsPage() {
   if (loading) return <div className="p-6 text-gray-400">Loading stats...</div>;
   if (!stats) return <div className="p-6 text-gray-400">Failed to load</div>;
 
-  const { overview, perFormStats, compliance, dailyActivity, imageTimeline, dailyItemsTrend, leftoversTrend } = stats;
+  const { overview, perFormStats, compliance, dailyActivity, imageTimeline, leftoversTrend } = stats;
 
   const monthChange = overview.lastMonthCount > 0
     ? Math.round(((overview.thisMonthCount - overview.lastMonthCount) / overview.lastMonthCount) * 100)
@@ -57,7 +57,6 @@ export default function StatsPage() {
     ? imageTimeline
     : imageTimeline.filter((i) => i.formSlug === imageFilter);
 
-  // Group images by date
   const imagesByDate: Record<string, typeof imageTimeline> = {};
   for (const img of filteredImages) {
     const date = new Date(img.date).toLocaleDateString("da-DK");
@@ -66,13 +65,13 @@ export default function StatsPage() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6">
       <h1 className="text-xl font-bold text-gray-800">Dashboard</h1>
 
       {/* Overview cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2 md:gap-3">
         <StatCard label="Total Submissions" value={overview.totalSubmissions} />
-        <StatCard label="This Week" value={overview.thisWeekCount} color="text-brand" />
+        <StatCard label="This Week" value={overview.thisWeekCount} color="text-gray-700" />
         <StatCard
           label="This Month"
           value={overview.thisMonthCount}
@@ -84,7 +83,7 @@ export default function StatsPage() {
           color={overview.complaintsThisWeek > overview.complaintsLastWeek ? "text-red-600" : "text-green-600"}
           sub={`Last week: ${overview.complaintsLastWeek}`}
         />
-        <StatCard label="Reviews (Month)" value={overview.reviewsThisMonth} color="text-cnc-green" />
+        <StatCard label="Reviews (Month)" value={overview.reviewsThisMonth} color="text-green-600" />
         {compliance.map((c) => (
           <StatCard
             key={c.slug}
@@ -97,13 +96,13 @@ export default function StatsPage() {
       </div>
 
       {/* Daily activity bar chart */}
-      <div className="bg-white rounded-lg shadow p-4">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4">
         <h2 className="font-medium text-sm text-gray-700 mb-3">Daily Activity (Last 30 days)</h2>
-        <div className="flex items-end gap-[2px] h-24">
+        <div className="flex items-end gap-[2px] h-20 md:h-24">
           {dailyActivity.map((d) => (
             <div
               key={d._id}
-              className="flex-1 bg-brand/80 hover:bg-brand rounded-t transition-colors"
+              className="flex-1 bg-gray-300 hover:bg-gray-500 rounded-t transition-colors"
               style={{ height: `${(d.count / maxDaily) * 100}%`, minHeight: d.count > 0 ? "4px" : "0" }}
               title={`${d._id}: ${d.count} submissions`}
             />
@@ -115,9 +114,9 @@ export default function StatsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         {/* Per-form breakdown */}
-        <div className="bg-white rounded-lg shadow">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-100">
           <div className="px-4 py-3 border-b">
             <h2 className="font-medium text-sm text-gray-700">Submissions by Form</h2>
           </div>
@@ -130,7 +129,7 @@ export default function StatsPage() {
                     <p className="text-sm font-medium text-gray-700 truncate">{s.title}</p>
                     <div className="w-full bg-gray-100 rounded-full h-1.5 mt-1">
                       <div
-                        className="bg-brand h-1.5 rounded-full"
+                        className="bg-gray-400 h-1.5 rounded-full"
                         style={{ width: `${(s.count / maxCount) * 100}%` }}
                       />
                     </div>
@@ -147,7 +146,7 @@ export default function StatsPage() {
 
         {/* Leftovers trend */}
         {leftoversTrend.length > 0 && (
-          <div className="bg-white rounded-lg shadow p-4">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4">
             <h2 className="font-medium text-sm text-gray-700 mb-3">Leftover Food Trend</h2>
             <div className="space-y-2">
               {leftoversTrend.map((s: any, i: number) => {
@@ -159,12 +158,12 @@ export default function StatsPage() {
                 const time = new Date(s.createdAt).toLocaleTimeString("da-DK", { hour: "2-digit", minute: "2-digit" });
                 return (
                   <div key={i} className="flex items-center gap-2 text-xs">
-                    <span className="text-gray-400 w-16">{date}</span>
+                    <span className="text-gray-400 w-16 hidden sm:inline">{date}</span>
                     <span className="text-gray-400 w-10">{time}</span>
                     <div className="flex-1 flex gap-1 items-center">
-                      <div className="bg-red-400 h-3 rounded" style={{ width: `${Math.min(strips * 3, 100)}%` }} title={`Strips: ${strips}`} />
-                      <div className="bg-orange-400 h-3 rounded" style={{ width: `${Math.min(hotwings * 3, 100)}%` }} title={`Hotwings: ${hotwings}`} />
-                      <div className="bg-yellow-400 h-3 rounded" style={{ width: `${Math.min(drumstick * 3, 100)}%` }} title={`Drumstick: ${drumstick}`} />
+                      <div className="bg-gray-400 h-3 rounded" style={{ width: `${Math.min(strips * 3, 100)}%` }} title={`Strips: ${strips}`} />
+                      <div className="bg-gray-300 h-3 rounded" style={{ width: `${Math.min(hotwings * 3, 100)}%` }} title={`Hotwings: ${hotwings}`} />
+                      <div className="bg-gray-200 h-3 rounded" style={{ width: `${Math.min(drumstick * 3, 100)}%` }} title={`Drumstick: ${drumstick}`} />
                     </div>
                     <span className="text-gray-600 font-medium w-8 text-right">{total}</span>
                   </div>
@@ -172,25 +171,25 @@ export default function StatsPage() {
               })}
             </div>
             <div className="flex gap-4 mt-2 text-[10px] text-gray-400">
-              <span className="flex items-center gap-1"><span className="w-2 h-2 bg-red-400 rounded" />Strips</span>
-              <span className="flex items-center gap-1"><span className="w-2 h-2 bg-orange-400 rounded" />Hotwings</span>
-              <span className="flex items-center gap-1"><span className="w-2 h-2 bg-yellow-400 rounded" />Drumstick</span>
+              <span className="flex items-center gap-1"><span className="w-2 h-2 bg-gray-400 rounded" />Strips</span>
+              <span className="flex items-center gap-1"><span className="w-2 h-2 bg-gray-300 rounded" />Hotwings</span>
+              <span className="flex items-center gap-1"><span className="w-2 h-2 bg-gray-200 rounded" />Drumstick</span>
             </div>
           </div>
         )}
       </div>
 
       {/* Image Timeline */}
-      <div className="bg-white rounded-lg shadow">
-        <div className="px-4 py-3 border-b flex items-center justify-between">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-100">
+        <div className="px-4 py-3 border-b flex flex-col sm:flex-row sm:items-center gap-2 sm:justify-between">
           <h2 className="font-medium text-sm text-gray-700">Photo Timeline</h2>
-          <div className="flex gap-1">
+          <div className="flex gap-1 flex-wrap">
             {["all", "cleaning-report", "filter-change", "leftover-food", "machine-parts-changes"].map((f) => (
               <button
                 key={f}
                 onClick={() => setImageFilter(f)}
-                className={`px-2 py-1 text-[10px] rounded ${
-                  imageFilter === f ? "bg-brand text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                className={`px-2 py-1 text-[10px] rounded transition-colors ${
+                  imageFilter === f ? "bg-gray-700 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"
                 }`}
               >
                 {f === "all" ? "All" : f.split("-").map((w) => w[0].toUpperCase() + w.slice(1)).join(" ")}
@@ -214,7 +213,7 @@ export default function StatsPage() {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group relative aspect-square rounded-lg overflow-hidden border hover:border-brand"
+                        className="group relative aspect-square rounded-lg overflow-hidden border hover:border-gray-400"
                       >
                         <img src={url} alt="" className="w-full h-full object-cover" />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors flex items-end">

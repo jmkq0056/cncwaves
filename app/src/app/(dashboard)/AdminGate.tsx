@@ -70,13 +70,12 @@ export default function AdminGate({
     );
   }
 
-  // Passcode prompt
   return (
-    <div className="flex items-center justify-center h-full">
+    <div className="flex items-center justify-center h-full px-4">
       <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-xs">
         <div className="text-center mb-5">
-          <div className="w-12 h-12 rounded-full bg-brand/10 flex items-center justify-center mx-auto mb-3">
-            <svg className="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+          <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-3">
+            <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
             </svg>
           </div>
@@ -94,7 +93,7 @@ export default function AdminGate({
             onChange={(e) => setPasscode(e.target.value)}
             placeholder="Passcode"
             autoFocus
-            className="w-full px-4 py-3 text-center text-lg tracking-[0.5em] border rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent"
+            className="w-full px-4 py-3 text-center text-lg tracking-[0.5em] border rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
           />
 
           {error && (
@@ -104,7 +103,7 @@ export default function AdminGate({
           <button
             type="submit"
             disabled={submitting || !passcode}
-            className="w-full mt-3 py-2.5 bg-brand text-white rounded-lg hover:bg-brand-700 disabled:opacity-50 font-medium text-sm"
+            className="w-full mt-3 py-2.5 bg-gray-700 text-white rounded-lg hover:bg-gray-800 disabled:opacity-50 font-medium text-sm transition-colors"
           >
             {submitting ? "Verifying..." : "Unlock"}
           </button>

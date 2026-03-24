@@ -84,6 +84,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     });
   }, [router]);
 
+  // Close mobile nav on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
   async function handleLogout() {
     await fetch("/api/auth/logout", { method: "POST" });
     router.push("/login");
@@ -98,7 +103,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </div>
           {!collapsed && <span className="font-bold text-sm tracking-wide">CNC Manager</span>}
         </div>
-        {/* Desktop collapse */}
         <button
           onClick={() => setCollapsed(!collapsed)}
           className="hidden md:block text-gray-500 hover:text-white transition-colors"
@@ -107,14 +111,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
         </button>
-        {/* Mobile close */}
         <button onClick={() => setMobileOpen(false)} className="md:hidden text-gray-500 hover:text-white">
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
-      <nav className="flex-1 py-2">
+      <nav className="flex-1 py-2 overflow-auto">
         {navItems.map((item) => {
           const active = pathname === item.href;
           return (
@@ -125,7 +128,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               title={collapsed ? item.label : undefined}
               className={`flex items-center gap-3 px-4 py-2.5 mx-2 my-0.5 rounded-md text-sm transition-colors ${
                 active
-                  ? "bg-brand/90 text-white"
+                  ? "bg-white/15 text-white"
                   : "text-gray-400 hover:bg-white/10 hover:text-gray-200"
               }`}
             >
@@ -158,7 +161,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       {/* Sidebar - desktop */}
       <aside
-        className={`hidden md:flex bg-[#1e293b] text-white flex-col transition-all duration-200 ${
+        className={`hidden md:flex bg-[#1e293b] text-white flex-col transition-all duration-200 flex-shrink-0 ${
           collapsed ? "w-[60px]" : "w-56"
         }`}
       >
@@ -175,9 +178,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden min-w-0">
         {/* Mobile top bar */}
-        <div className="md:hidden flex items-center h-12 px-3 bg-[#1e293b] border-b border-white/10">
+        <div className="md:hidden flex items-center h-12 px-3 bg-[#1e293b] border-b border-white/10 flex-shrink-0 safe-area-top">
           <button onClick={() => setMobileOpen(true)} className="text-white p-1">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -189,6 +192,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </div>
             <span className="text-white text-sm font-semibold">CNC Manager</span>
           </div>
+          {/* Current page indicator */}
+          <span className="ml-auto text-xs text-gray-400">
+            {navItems.find((n) => pathname === n.href)?.label || ""}
+          </span>
         </div>
 
         <main className="flex-1 overflow-auto bg-gray-50">

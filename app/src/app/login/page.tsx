@@ -31,18 +31,15 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cnc-dark">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900 via-cnc-dark to-black" />
+    <div className="min-h-screen flex items-center justify-center bg-[#1e293b] px-4">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-700 via-[#1e293b] to-black" />
 
-      <div className="relative z-10 w-full max-w-sm px-4">
-        {/* Animated CNC Logo */}
+      <div className="relative z-10 w-full max-w-sm">
+        {/* Logo */}
         <div className="text-center mb-8">
           <div className="inline-block relative">
-            {/* Outer spinning ring */}
             <div className="w-20 h-20 rounded-full border-[3px] border-brand/30 border-t-brand animate-spin absolute inset-0" />
-            {/* Inner pulse */}
             <div className="w-20 h-20 rounded-full bg-brand/10 animate-pulse absolute inset-0" />
-            {/* Logo circle */}
             <div className="relative w-20 h-20 rounded-full bg-brand flex items-center justify-center shadow-lg shadow-brand/40">
               <span className="text-white font-black text-xl tracking-wider">CNC</span>
             </div>
@@ -70,7 +67,7 @@ export default function LoginPage() {
                   autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+                  className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition"
                   placeholder="you@company.com"
                   required
                 />
@@ -93,7 +90,7 @@ export default function LoginPage() {
                   autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+                  className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent transition"
                   placeholder="Enter your password"
                   required
                 />
@@ -112,7 +109,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2.5 bg-brand text-white rounded-lg hover:bg-brand-700 disabled:opacity-50 font-medium text-sm transition-colors shadow-sm"
+              className="w-full py-2.5 bg-gray-700 text-white rounded-lg hover:bg-gray-800 disabled:opacity-50 font-medium text-sm transition-colors shadow-sm"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
