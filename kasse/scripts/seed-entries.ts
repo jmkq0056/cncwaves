@@ -111,7 +111,7 @@ async function main() {
       {
         date,
         restaurant: "cnc",
-        employeeName: row["Navn"] ? String(row["Navn"]) : "",
+        employeeName: row["Navn"] && String(row["Navn"]) !== "0" ? String(row["Navn"]) : "Owner",
         denominations,
         purchases: num(row["Varekøb, kontantehævningerh"]),
         onlineSales: num(row["Online"]),
