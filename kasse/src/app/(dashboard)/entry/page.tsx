@@ -303,6 +303,12 @@ function EntryForm() {
                 </button>
               ))}
             </div>
+
+            {/* None — skip with 0 */}
+            <button onClick={() => { numSet(0); next(); }}
+              className="mt-4 w-full max-w-[260px] py-3 bg-gray-100 text-gray-500 rounded-xl text-sm font-semibold active:bg-gray-200">
+              None — skip
+            </button>
           </div>
         )}
 
