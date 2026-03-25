@@ -49,6 +49,73 @@ export default function EntryPage() {
   );
 }
 
+/* ---------- helpers for client-side warnings ---------- */
+function getReviewWarnings(form: FormData, isEdit: boolean): string[] {
+  const w: string[] = [];
+
+  // Denomination warnings
+  for (const d of DENOMINATIONS) {
+    const count = form.denominations[d.key] || 0;
+    if (count > 200) {
+      w.push(`${d.label} x ${count} seems very high — please double-check.`);
+    }
+  }
+
+  const totalSales = computeTotalSales(form);
+  const coinTotal = computeCoinTotal(form.denominations);
+  const hasDenomData = Object.values(form.denominations).some((v) => v > 0);
+
+  if (totalSales > 100_000) {
+    w.push(`Total sales are ${formatDKK(totalSales)} — that is unusually high.`);
+  }
+
+  if (totalSales === 0 && hasDenomData) {
+    w.push("Sales are 0 but cash was counted — did you forget to enter sales?");
+  }
+
+  const today = toDateStr(new Date());
+  if (form.date === today && form.morningCash === 0) {
+    w.push("Morning cash is 0 for today — is that correct?");
+  }
+
+  if (form.eveningCash === 0 && (hasDenomData || totalSales > 0 || form.morningCash > 0)) {
+    w.push("Evening cash is 0 but other fields have data — did you forget?");
+  }
+
+  if (isEdit) {
+    w.push("You are editing an existing entry — the previous version will be backed up.");
+  }
+
+  return w;
+}
+
+function getDateError(dateStr: string): string | null {
+  if (!dateStr) return null;
+  const d = new Date(dateStr + "T12:00:00");
+  if (isNaN(d.getTime())) return "This is not a valid date.";
+  const now = new Date();
+  const tomorrow = new Date(now);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  if (dateStr > toDateStr(tomorrow)) return "You cannot pick a future date.";
+  return null;
+}
+
+function getDateWarning(dateStr: string): string | null {
+  if (!dateStr) return null;
+  const d = new Date(dateStr + "T12:00:00");
+  const now = new Date();
+  const thirtyDaysAgo = new Date(now);
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+  if (d < thirtyDaysAgo) return "This date is more than 30 days ago — are you sure?";
+  return null;
+}
+
+/** Should the numpad value show in warning color? */
+function isNumpadWarning(denomInfo: (typeof DENOMINATIONS)[number] | null | undefined, value: number): boolean {
+  if (denomInfo) return value > 200;
+  return value > 100_000;
+}
+
 function EntryForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -60,6 +127,7 @@ function EntryForm() {
   const [isEdit, setIsEdit] = useState(false);
   const [missingDays, setMissingDays] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [serverWarnings, setServerWarnings] = useState<string[]>([]);
   const navRef = useRef<HTMLDivElement>(null);
 
   const step = STEPS[idx];
@@ -105,6 +173,13 @@ function EntryForm() {
   const totalSales = useMemo(() => computeTotalSales(form), [form.posCash, form.posCard, form.kioskSales, form.onlineSales]);
   const discrepancy = form.eveningCash - form.morningCash;
 
+  // Date step validation
+  const dateError = step.id === "date" ? getDateError(form.date) : null;
+  const dateWarning = step.id === "date" ? getDateWarning(form.date) : null;
+
+  // Review step warnings
+  const reviewWarnings = step.id === "review" ? getReviewWarnings(form, isEdit) : [];
+
   function setD(key: string, val: number) { setForm((f) => ({ ...f, denominations: { ...f.denominations, [key]: Math.max(0, val) } })); }
   function setF(key: keyof FormData, val: any) { setForm((f) => ({ ...f, [key]: val })); }
   const next = useCallback(() => { setIdx((i) => Math.min(i + 1, STEPS.length - 1)); setMenuOpen(false); }, []);
@@ -121,11 +196,31 @@ function EntryForm() {
   }
 
   async function handleSave() {
-    setSaving(true); setError("");
-    const res = await fetch("/api/entries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
-    if (res.ok) setSaved(true);
-    else { const d = await res.json(); setError(d.error || "Failed"); }
+    setSaving(true); setError(""); setServerWarnings([]);
+    try {
+      const res = await fetch("/api/entries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(form) });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.warnings && data.warnings.length > 0) {
+          setServerWarnings(data.warnings);
+          // Show warnings but still mark as saved
+          alert("Saved, but please note:\n\n" + data.warnings.join("\n"));
+        }
+        setSaved(true);
+      } else {
+        const d = await res.json();
+        setError(d.error || "Failed");
+      }
+    } catch {
+      setError("Network error — please try again.");
+    }
     setSaving(false);
+  }
+
+  /** Block Next on date step if date is invalid (future) */
+  function handleNext() {
+    if (step.id === "date" && dateError) return; // blocked
+    next();
   }
 
   if (saved) return (
@@ -135,7 +230,7 @@ function EntryForm() {
       </div>
       <p className="text-lg font-bold text-gray-800 mb-1">Done</p>
       <p className="text-sm text-gray-400 mb-8">{form.date} saved</p>
-      <button onClick={() => { setForm({ ...EMPTY, date: toDateStr(new Date()) }); setIdx(0); setSaved(false); setIsEdit(false); }} className="w-full max-w-xs py-3.5 bg-brand text-white rounded-xl text-sm font-bold mb-3">Add Another Day</button>
+      <button onClick={() => { setForm({ ...EMPTY, date: toDateStr(new Date()) }); setIdx(0); setSaved(false); setIsEdit(false); setServerWarnings([]); }} className="w-full max-w-xs py-3.5 bg-brand text-white rounded-xl text-sm font-bold mb-3">Add Another Day</button>
       <button onClick={() => router.push("/")} className="w-full max-w-xs py-3.5 bg-gray-100 text-gray-600 rounded-xl text-sm font-medium">Back to Overview</button>
     </div>
   );
@@ -144,13 +239,15 @@ function EntryForm() {
   // For numpad: get/set the current numeric value
   const isNumpad = denomInfo || ["posCash", "posCard", "kioskSales", "onlineSales", "purchases", "morningCash", "eveningCash"].includes(step.id);
   const numVal = denomInfo ? (form.denominations[denomInfo.key] || 0) : ((form as any)[step.id] || 0);
+  const numWarn = isNumpad ? isNumpadWarning(denomInfo ?? null, numVal) : false;
+
   function numSet(v: number) {
     if (denomInfo) setD(denomInfo.key, v);
     else setF(step.id as keyof FormData, v);
   }
   function numpadPress(key: string) {
     if (key === "C") { numSet(0); return; }
-    if (key === "←") { numSet(Math.floor(numVal / 10)); return; }
+    if (key === "\u2190") { numSet(Math.floor(numVal / 10)); return; }
     const digit = parseInt(key);
     if (isNaN(digit)) return;
     numSet(numVal * 10 + digit);
@@ -240,6 +337,16 @@ function EntryForm() {
             <p className="text-sm text-gray-500 mb-4">What day is this for?</p>
             <input type="date" value={form.date} onChange={(e) => setF("date", e.target.value)}
               className="w-full px-4 py-5 border-2 border-brand-200 rounded-2xl text-center text-xl font-bold focus:outline-none focus:border-brand bg-white" />
+            {dateError && (
+              <div className="mt-3 px-4 py-2.5 bg-red-50 border border-red-200 rounded-xl">
+                <p className="text-sm text-red-600 font-medium">{dateError}</p>
+              </div>
+            )}
+            {!dateError && dateWarning && (
+              <div className="mt-3 px-4 py-2.5 bg-amber-50 border border-amber-200 rounded-xl">
+                <p className="text-sm text-amber-700 font-medium">{dateWarning}</p>
+              </div>
+            )}
           </div>
         )}
 
@@ -281,23 +388,28 @@ function EntryForm() {
               </p>
             )}
 
-            {/* Display */}
+            {/* Display — orange/warning color when over threshold */}
             <div className="mb-1">
-              <span className="text-5xl font-black text-gray-800">{numVal || "0"}</span>
+              <span className={`text-5xl font-black ${numWarn ? "text-amber-500" : "text-gray-800"}`}>{numVal || "0"}</span>
               {!denomInfo && <span className="text-xl text-gray-300 ml-1">kr</span>}
             </div>
             {denomInfo && numVal > 0 && <p className="text-sm text-brand font-semibold mb-1">= {formatDKK(numVal * denomInfo.multiplier)}</p>}
+            {numWarn && (
+              <p className="text-xs text-amber-600 font-medium mb-1">
+                {denomInfo ? `${numVal} bills/coins seems high — double-check` : "That is an unusually large amount"}
+              </p>
+            )}
 
             {/* On-screen numpad */}
             <div className="grid grid-cols-3 gap-2 w-full max-w-[260px] mt-4">
-              {["1","2","3","4","5","6","7","8","9","C","0","←"].map((k) => (
+              {["1","2","3","4","5","6","7","8","9","C","0","\u2190"].map((k) => (
                 <button key={k} onClick={() => numpadPress(k)}
                   className={`h-14 rounded-xl text-xl font-bold flex items-center justify-center select-none transition-colors ${
                     k === "C" ? "bg-gray-100 text-gray-500 active:bg-gray-200"
-                    : k === "←" ? "bg-gray-100 text-gray-500 active:bg-gray-200"
+                    : k === "\u2190" ? "bg-gray-100 text-gray-500 active:bg-gray-200"
                     : "bg-brand-50 text-brand-700 active:bg-brand-100"
                   }`}>
-                  {k === "←" ? (
+                  {k === "\u2190" ? (
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25m-2.58 4.92l-6.374-6.375a1.125 1.125 0 010-1.59L9.42 4.83c.21-.211.497-.33.795-.33H19.5a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25h-9.284c-.298 0-.585-.119-.795-.33z" /></svg>
                   ) : k}
                 </button>
@@ -316,6 +428,19 @@ function EntryForm() {
         {step.id === "review" && (
           <div className="w-full max-w-sm -mt-8">
             <p className="text-sm text-gray-500 text-center mb-5">Everything look right?</p>
+
+            {/* Client-side warnings */}
+            {reviewWarnings.length > 0 && (
+              <div className="mb-4 rounded-xl border border-amber-200 bg-amber-50 p-3 space-y-1.5">
+                {reviewWarnings.map((w, i) => (
+                  <div key={i} className="flex items-start gap-2">
+                    <svg className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                    <p className="text-xs text-amber-700">{w}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+
             <div className="rounded-2xl border divide-y text-sm overflow-hidden">
               <button onClick={() => goStep(0)} className="w-full px-4 py-3.5 flex justify-between items-center hover:bg-brand-50">
                 <span className="text-gray-400 text-xs">Day</span>
@@ -323,7 +448,7 @@ function EntryForm() {
               </button>
               <button onClick={() => goStep(1)} className="w-full px-4 py-3.5 flex justify-between items-center hover:bg-brand-50">
                 <span className="text-gray-400 text-xs">Counted by</span>
-                <span className="font-medium text-gray-700">{form.employeeName || "—"}</span>
+                <span className="font-medium text-gray-700">{form.employeeName || "\u2014"}</span>
               </button>
               <button onClick={() => goStep(2)} className="w-full px-4 py-3.5 flex justify-between items-center hover:bg-brand-50">
                 <span className="text-gray-400 text-xs">Cash counted</span>
@@ -377,7 +502,14 @@ function EntryForm() {
               {saving ? "Saving..." : isEdit ? "Update" : "Save"}
             </button>
           ) : (
-            <button onClick={next} className="flex-1 py-3.5 bg-brand text-white rounded-xl text-sm font-bold">Next</button>
+            <button onClick={handleNext} disabled={step.id === "date" && !!dateError}
+              className={`flex-1 py-3.5 rounded-xl text-sm font-bold ${
+                step.id === "date" && dateError
+                  ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  : "bg-brand text-white"
+              }`}>
+              Next
+            </button>
           )}
         </div>
       </div>
