@@ -347,55 +347,67 @@ export default function DeliveryPage() {
       {/* ===== CATEGORY OVERLAY (shared mobile + desktop) ===== */}
       {mobileFilterOpen && (
         <div className="fixed inset-0 z-50">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setMobileFilterOpen(false)} />
-          <div className="absolute inset-x-0 bottom-0 md:inset-0 md:flex md:items-center md:justify-center">
-            <div className="bg-white rounded-t-2xl md:rounded-2xl max-h-[80vh] md:max-h-[70vh] md:w-[500px] md:max-w-[90vw] flex flex-col shadow-2xl overflow-hidden">
+          <div className="absolute inset-0 bg-black/50" onClick={() => { setMobileFilterOpen(false); setCategorySearch(""); }} />
+          <div className="absolute inset-x-0 bottom-0 md:inset-4 md:flex md:items-stretch md:justify-center">
+            <div className="bg-white rounded-t-2xl md:rounded-2xl max-h-[85vh] md:max-h-full md:w-[700px] md:max-w-full flex flex-col shadow-2xl overflow-hidden">
               {/* Handle (mobile only) */}
               <div className="md:hidden flex justify-center pt-2 pb-1">
                 <div className="w-10 h-1 bg-gray-300 rounded-full" />
               </div>
 
               {/* Header */}
-              <div className="flex items-center justify-between px-4 py-3 border-b">
+              <div className="flex items-center justify-between px-5 py-4 border-b bg-gray-50">
                 <div className="flex items-center gap-3">
-                  <h2 className="font-bold text-gray-800 text-sm">Category</h2>
+                  <h2 className="font-bold text-gray-800">Select Category</h2>
                   {categories.length > 0 && (
-                    <span className="text-[10px] text-gray-400">
-                      {visitedCategories.size}/{categories.length} visited
+                    <span className="text-xs text-gray-400 bg-white px-2 py-0.5 rounded-full border">
+                      {visitedCategories.size}/{categories.length}
                     </span>
                   )}
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   {activeFilter !== "all" && (
                     <button
                       onClick={() => { setActiveFilter("all"); setFilterType(null); }}
-                      className="text-xs text-gray-400 hover:text-gray-600 underline"
+                      className="text-xs text-gray-500 hover:text-gray-700 bg-white px-3 py-1.5 rounded-lg border hover:border-gray-300 transition-colors"
                     >
-                      Clear
+                      Clear filter
                     </button>
                   )}
-                  <button onClick={() => setMobileFilterOpen(false)} className="p-1 text-gray-400 hover:text-gray-600">
+                  <button onClick={() => { setMobileFilterOpen(false); setCategorySearch(""); }} className="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-200 rounded-lg transition-colors">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                   </button>
                 </div>
               </div>
 
+              {/* Search bar */}
+              <div className="px-5 py-3 border-b">
+                <input
+                  type="text"
+                  placeholder="Search categories..."
+                  value={categorySearch}
+                  onChange={(e) => setCategorySearch(e.target.value)}
+                  autoFocus
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-gray-300 bg-gray-50"
+                />
+              </div>
+
               {/* Filter type tabs */}
               {(showSubCategories || showBrands) && (
-                <div className="flex border-b">
+                <div className="flex border-b bg-white">
                   <button
-                    onClick={() => setFilterType("category")}
-                    className={`flex-1 py-2.5 text-xs font-medium text-center transition-colors ${
-                      filterType === "category" || !filterType ? "bg-gray-700 text-white" : "text-gray-600 hover:bg-gray-50"
+                    onClick={() => { setFilterType("category"); setCategorySearch(""); }}
+                    className={`flex-1 py-3 text-xs font-semibold text-center transition-colors border-b-2 ${
+                      filterType === "category" || !filterType ? "border-gray-700 text-gray-800 bg-white" : "border-transparent text-gray-400 hover:text-gray-600"
                     }`}
                   >
                     Categories
                   </button>
                   {showSubCategories && (
                     <button
-                      onClick={() => setFilterType("subcategory")}
-                      className={`flex-1 py-2.5 text-xs font-medium text-center transition-colors ${
-                        filterType === "subcategory" ? "bg-gray-700 text-white" : "text-gray-600 hover:bg-gray-50"
+                      onClick={() => { setFilterType("subcategory"); setCategorySearch(""); }}
+                      className={`flex-1 py-3 text-xs font-semibold text-center transition-colors border-b-2 ${
+                        filterType === "subcategory" ? "border-gray-700 text-gray-800 bg-white" : "border-transparent text-gray-400 hover:text-gray-600"
                       }`}
                     >
                       Sub Categories
@@ -403,9 +415,9 @@ export default function DeliveryPage() {
                   )}
                   {showBrands && (
                     <button
-                      onClick={() => setFilterType("brand")}
-                      className={`flex-1 py-2.5 text-xs font-medium text-center transition-colors ${
-                        filterType === "brand" ? "bg-gray-700 text-white" : "text-gray-600 hover:bg-gray-50"
+                      onClick={() => { setFilterType("brand"); setCategorySearch(""); }}
+                      className={`flex-1 py-3 text-xs font-semibold text-center transition-colors border-b-2 ${
+                        filterType === "brand" ? "border-gray-700 text-gray-800 bg-white" : "border-transparent text-gray-400 hover:text-gray-600"
                       }`}
                     >
                       Brands
@@ -415,29 +427,36 @@ export default function DeliveryPage() {
               )}
 
               {/* Category grid */}
-              <div className="flex-1 overflow-auto p-3">
-                <div className="grid grid-cols-3 gap-1.5">
-                  {(filterType === "brand" ? brands : categories).map((opt) => {
+              <div className="flex-1 overflow-auto p-4 bg-gray-50">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                  {(filterType === "brand" ? brands : categories)
+                    .filter((opt) => !categorySearch || opt.toLowerCase().includes(categorySearch.toLowerCase()))
+                    .map((opt) => {
                     const currentType = filterType || "category";
                     const isActive = activeFilter === opt && (filterType || "category") === currentType;
                     const isVisited = currentType === "category" && visitedCategories.has(opt);
                     return (
                       <button
                         key={opt}
-                        onClick={() => selectFilter(currentType, opt)}
-                        className={`relative py-3 px-2 text-xs font-medium rounded-lg text-center transition-colors ${
+                        onClick={() => { selectFilter(currentType, opt); setCategorySearch(""); }}
+                        className={`relative py-4 px-3 text-sm font-medium rounded-xl text-center transition-all border ${
                           isActive
-                            ? "bg-gray-700 text-white"
-                            : "bg-gray-50 text-gray-700 hover:bg-gray-100 active:bg-gray-200"
+                            ? "bg-gray-700 text-white border-gray-700 shadow-md"
+                            : "bg-white text-gray-700 border-gray-200 hover:border-gray-300 hover:shadow-sm active:bg-gray-100"
                         }`}
                       >
                         {isVisited && !isActive && (
-                          <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-green-500" />
+                          <span className="absolute top-2 right-2 w-2.5 h-2.5 rounded-full bg-green-500 ring-2 ring-white" />
                         )}
                         {opt}
                       </button>
                     );
                   })}
+                  {(filterType === "brand" ? brands : categories)
+                    .filter((opt) => !categorySearch || opt.toLowerCase().includes(categorySearch.toLowerCase()))
+                    .length === 0 && (
+                    <p className="col-span-full text-center text-sm text-gray-400 py-8">No matches</p>
+                  )}
                 </div>
               </div>
             </div>
