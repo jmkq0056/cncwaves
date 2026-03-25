@@ -257,13 +257,13 @@ function ItemRow({
       </button>
 
       {/* Qty block */}
-      <div className={`flex-shrink-0 w-14 h-14 rounded-xl flex flex-col items-center justify-center ${
-        isCancelled ? "bg-gray-100" : "bg-amber-50 border-2 border-amber-300"
+      <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex flex-col items-center justify-center ${
+        isCancelled ? "bg-gray-100" : "bg-gray-100 border border-gray-300"
       }`}>
-        <span className={`text-lg font-black leading-none ${isCancelled ? "text-gray-400" : "text-amber-700"}`}>
+        <span className={`text-lg font-black leading-none ${isCancelled ? "text-gray-400" : "text-gray-700"}`}>
           {item.quantity}
         </span>
-        <span className={`text-[9px] font-medium uppercase leading-tight mt-0.5 ${isCancelled ? "text-gray-400" : "text-amber-600"}`}>
+        <span className={`text-[8px] font-medium uppercase leading-tight mt-0.5 max-w-[44px] truncate text-center ${isCancelled ? "text-gray-400" : "text-gray-400"}`}>
           {item.unit}
         </span>
       </div>
