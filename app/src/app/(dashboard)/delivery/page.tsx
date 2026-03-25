@@ -444,18 +444,21 @@ export default function DeliveryPage() {
         </div>
       )}
 
-      {/* ===== DESKTOP VERTICAL CATEGORY TAB ===== */}
-      <button
-        onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-        className="hidden md:flex flex-col items-center justify-center w-8 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 border-r border-gray-200 cursor-pointer flex-shrink-0 transition-colors"
-      >
-        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest" style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}>
-          Category
-        </span>
-      </button>
-
       {/* ===== RIGHT PANEL (Products) ===== */}
       <div className="flex-1 min-w-0 flex flex-col relative overflow-hidden">
+        {/* ===== DESKTOP VERTICAL CATEGORY TAB (right edge, overlay) ===== */}
+        <button
+          onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
+          className={`hidden md:flex items-center justify-center absolute right-0 top-1/3 z-20 w-10 h-28 rounded-l-xl shadow-lg cursor-pointer transition-all ${
+            activeFilter !== "all"
+              ? "bg-gray-700 hover:bg-gray-800 text-white"
+              : "bg-gray-700/80 hover:bg-gray-700 text-white"
+          }`}
+        >
+          <span className="text-[11px] font-bold uppercase tracking-wider" style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}>
+            Category
+          </span>
+        </button>
         {/* ===== DESKTOP ACTIVE CATEGORY BAR ===== */}
         <div className="hidden md:flex items-center gap-3 px-4 py-2 border-b bg-white flex-shrink-0">
           {activeFilter !== "all" && filterType ? (
