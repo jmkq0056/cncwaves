@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 
 function imgSrc(image: string) {
   if (!image) return "";
@@ -33,6 +33,44 @@ export default function DeliveryPage() {
   const [showBrands, setShowBrands] = useState(true);
   const [mobileCartOpen, setMobileCartOpen] = useState(false);
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+  const cartLoaded = useRef(false);
+
+  // Restore cart from localStorage on mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("draft_cart");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) setCart(parsed);
+      }
+      const savedVisited = localStorage.getItem("draft_visited");
+      if (savedVisited) {
+        const parsed = JSON.parse(savedVisited);
+        if (Array.isArray(parsed)) setVisitedCategories(new Set(parsed));
+      }
+    } catch {}
+    cartLoaded.current = true;
+  }, []);
+
+  // Auto-save cart to localStorage on change
+  useEffect(() => {
+    if (!cartLoaded.current) return;
+    if (cart.length > 0) {
+      localStorage.setItem("draft_cart", JSON.stringify(cart));
+    } else {
+      localStorage.removeItem("draft_cart");
+    }
+  }, [cart]);
+
+  // Auto-save visited categories
+  useEffect(() => {
+    if (!cartLoaded.current) return;
+    if (visitedCategories.size > 0) {
+      localStorage.setItem("draft_visited", JSON.stringify([...visitedCategories]));
+    } else {
+      localStorage.removeItem("draft_visited");
+    }
+  }, [visitedCategories]);
 
   useEffect(() => {
     fetch("/api/products")
@@ -58,10 +96,15 @@ export default function DeliveryPage() {
   );
 
   function selectFilter(type: "category" | "subcategory" | "brand", value: string) {
-    setActiveFilter(value);
-    setFilterType(type);
-    if (type === "category" && value !== "all") {
-      setVisitedCategories((prev) => new Set([...prev, value]));
+    if (activeFilter === value && filterType === type) {
+      setActiveFilter("all");
+      setFilterType(null);
+    } else {
+      setActiveFilter(value);
+      setFilterType(type);
+      if (type === "category" && value !== "all") {
+        setVisitedCategories((prev) => new Set([...prev, value]));
+      }
     }
     setMobileFilterOpen(false);
   }
@@ -143,6 +186,8 @@ export default function DeliveryPage() {
       setMsg(`Saved! ${data.reference}${emailNote}`);
       setCart([]);
       setVisitedCategories(new Set());
+      localStorage.removeItem("draft_cart");
+      localStorage.removeItem("draft_visited");
       setMobileCartOpen(false);
     } else {
       setMsg("Failed to save delivery");
@@ -150,14 +195,8 @@ export default function DeliveryPage() {
     setSaving(false);
   }
 
-  const flyoutOptions = filterType === "brand" ? brands : categories;
   const totalItems = cart.reduce((s, c) => s + c.quantity, 0);
-
-  const catTabBg = filterType === "category"
-    ? "bg-gray-700"
-    : allCategoriesVisited
-      ? "bg-gray-600 hover:bg-gray-700"
-      : "bg-gray-500 hover:bg-gray-600";
+  const filterOptions = filterType === "brand" ? brands : categories;
 
   return (
     <div className="flex h-full relative overflow-hidden">
@@ -264,7 +303,7 @@ export default function DeliveryPage() {
 
           <div className="grid grid-cols-2 gap-0">
             <button
-              onClick={() => { setCart([]); setMsg(""); setVisitedCategories(new Set()); }}
+              onClick={() => { setCart([]); setMsg(""); setVisitedCategories(new Set()); localStorage.removeItem("draft_cart"); localStorage.removeItem("draft_visited"); }}
               className="py-3 bg-gray-200 text-gray-700 text-sm font-medium hover:bg-gray-300 transition-colors"
             >
               Clear
@@ -394,21 +433,83 @@ export default function DeliveryPage() {
 
       {/* ===== RIGHT PANEL (Products) ===== */}
       <div className="flex-1 min-w-0 flex flex-col relative overflow-hidden">
-        {/* Desktop active filter indicator */}
-        {activeFilter !== "all" && filterType && (
-          <div className="hidden md:flex px-4 py-2 bg-gray-50 border-b items-center justify-between">
-            <span className="text-sm text-gray-700 font-medium">{activeFilter}</span>
+        {/* ===== DESKTOP INLINE FILTER STRIP ===== */}
+        <div className="hidden md:block border-b bg-white flex-shrink-0">
+          {/* Filter type tabs */}
+          <div className="flex items-center gap-0 border-b">
             <button
-              onClick={() => { setActiveFilter("all"); setFilterType(null); }}
-              className="text-xs text-gray-500 hover:text-gray-700"
+              onClick={() => { setFilterType(filterType === "category" ? null : "category"); if (filterType !== "category") { setActiveFilter("all"); } }}
+              className={`px-4 py-2 text-xs font-bold transition-colors border-b-2 ${
+                filterType === "category" ? "border-gray-700 text-gray-800" : "border-transparent text-gray-400 hover:text-gray-600"
+              }`}
             >
-              Show All
+              Categories
+              {!allCategoriesVisited && categories.length > 0 && (
+                <span className="ml-1.5 text-[10px] text-gray-400 font-normal">{visitedCategories.size}/{categories.length}</span>
+              )}
+              {allCategoriesVisited && (
+                <span className="ml-1.5 text-green-500">&#10003;</span>
+              )}
             </button>
+            {showSubCategories && (
+              <button
+                onClick={() => { setFilterType(filterType === "subcategory" ? null : "subcategory"); if (filterType !== "subcategory") { setActiveFilter("all"); } }}
+                className={`px-4 py-2 text-xs font-bold transition-colors border-b-2 ${
+                  filterType === "subcategory" ? "border-gray-700 text-gray-800" : "border-transparent text-gray-400 hover:text-gray-600"
+                }`}
+              >
+                Sub Categories
+              </button>
+            )}
+            {showBrands && (
+              <button
+                onClick={() => { setFilterType(filterType === "brand" ? null : "brand"); if (filterType !== "brand") { setActiveFilter("all"); } }}
+                className={`px-4 py-2 text-xs font-bold transition-colors border-b-2 ${
+                  filterType === "brand" ? "border-gray-700 text-gray-800" : "border-transparent text-gray-400 hover:text-gray-600"
+                }`}
+              >
+                Brands
+              </button>
+            )}
+            {activeFilter !== "all" && (
+              <button
+                onClick={() => { setActiveFilter("all"); setFilterType(null); }}
+                className="ml-auto mr-3 text-[10px] text-gray-400 hover:text-gray-600 underline"
+              >
+                Clear filter
+              </button>
+            )}
           </div>
-        )}
+
+          {/* Scrollable pill strip */}
+          {filterType && (
+            <div className="flex gap-1.5 px-3 py-2 overflow-x-auto">
+              {filterOptions.map((opt) => {
+                const isActive = activeFilter === opt;
+                const isVisited = filterType === "category" && visitedCategories.has(opt);
+                return (
+                  <button
+                    key={opt}
+                    onClick={() => selectFilter(filterType, opt)}
+                    className={`relative flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition-colors ${
+                      isActive
+                        ? "bg-gray-700 text-white"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                  >
+                    {isVisited && !isActive && (
+                      <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-green-500" />
+                    )}
+                    {opt}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
 
         {/* Product grid */}
-        <div className="flex-1 overflow-auto p-3 md:p-4 md:pr-12 pt-[110px] md:pt-4 pb-20 md:pb-4">
+        <div className="flex-1 overflow-auto p-3 md:p-4 pt-[110px] md:pt-4 pb-20 md:pb-4">
           {msg && (
             <div className={`md:hidden mb-3 p-2 rounded-lg text-xs text-center ${msg.includes("Saved") ? "bg-green-50 text-green-700" : "bg-red-50 text-red-600"}`}>
               {msg}
@@ -453,92 +554,6 @@ export default function DeliveryPage() {
             })}
           </div>
         </div>
-
-        {/* ===== DESKTOP RIGHT EDGE - Vertical filter tabs ===== */}
-        <div className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 flex-col gap-0 z-20">
-          <button
-            onClick={() => {
-              if (filterType === "category") { setFilterType(null); }
-              else { setFilterType("category"); }
-            }}
-            className={`py-6 px-1.5 text-white text-xs font-bold rounded-l cursor-pointer transition-colors ${catTabBg}`}
-            style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
-          >
-            Categories
-          </button>
-          {showSubCategories && (
-            <button
-              onClick={() => {
-                if (filterType === "subcategory") { setFilterType(null); }
-                else { setFilterType("subcategory"); }
-              }}
-              className={`py-6 px-1.5 text-white text-xs font-bold cursor-pointer transition-colors ${
-                filterType === "subcategory" ? "bg-gray-700" : "bg-gray-400 hover:bg-gray-500"
-              }`}
-              style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
-            >
-              Sub Categories
-            </button>
-          )}
-          {showBrands && (
-            <button
-              onClick={() => {
-                if (filterType === "brand") { setFilterType(null); }
-                else { setFilterType("brand"); }
-              }}
-              className={`py-6 px-1.5 text-white text-xs font-bold rounded-l cursor-pointer transition-colors ${
-                filterType === "brand" ? "bg-gray-700" : "bg-gray-500 hover:bg-gray-600"
-              }`}
-              style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
-            >
-              Brands
-            </button>
-          )}
-        </div>
-
-        {/* ===== DESKTOP FLYOUT PANEL ===== */}
-        {filterType && (
-          <div className="hidden md:block absolute right-8 top-0 bottom-0 w-64 bg-white border-l shadow-xl z-10 overflow-auto">
-            <div className="p-3 border-b bg-gray-50 flex items-center justify-between">
-              <span className="font-semibold text-sm text-gray-700 capitalize">
-                {filterType === "subcategory" ? "Sub Categories" : filterType === "brand" ? "Brands" : "Categories"}
-              </span>
-              <button onClick={() => { setFilterType(null); setActiveFilter("all"); }} className="text-gray-400 hover:text-gray-600 text-lg">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-              </button>
-            </div>
-            <div className="p-2 grid grid-cols-2 gap-2">
-              {flyoutOptions.map((opt) => {
-                const isVisited = filterType === "category" && visitedCategories.has(opt);
-                return (
-                  <button
-                    key={opt}
-                    onClick={() => selectFilter(filterType, opt)}
-                    className={`relative flex flex-col items-center p-3 border rounded text-center hover:shadow transition-all ${
-                      activeFilter === opt
-                        ? "border-gray-400 bg-gray-50"
-                        : "border-gray-200 bg-white"
-                    }`}
-                  >
-                    {filterType === "category" && (
-                      <span
-                        className={`absolute top-1 right-1 w-2.5 h-2.5 rounded-full ${
-                          isVisited ? "bg-green-500" : "bg-gray-300"
-                        }`}
-                      />
-                    )}
-                    <div className="w-12 h-12 bg-gray-100 rounded flex items-center justify-center text-gray-400 mb-1">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <span className="text-[10px] font-bold uppercase leading-tight">{opt}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        )}
       </div>
 
       {/* ===== MOBILE FLOATING CART BUTTON ===== */}
@@ -655,7 +670,7 @@ export default function DeliveryPage() {
             {/* Actions */}
             <div className="grid grid-cols-2 gap-0 border-t safe-area-bottom">
               <button
-                onClick={() => { setCart([]); setMsg(""); setVisitedCategories(new Set()); }}
+                onClick={() => { setCart([]); setMsg(""); setVisitedCategories(new Set()); localStorage.removeItem("draft_cart"); localStorage.removeItem("draft_visited"); }}
                 className="py-4 bg-gray-100 text-gray-700 text-sm font-medium hover:bg-gray-200 transition-colors"
               >
                 Clear Cart

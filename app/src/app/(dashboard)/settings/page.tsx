@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 
 export default function SettingsPage() {
-  const [recipientEmail, setRecipientEmail] = useState("");
+  const [recipientEmails, setRecipientEmails] = useState<string[]>([]);
+  const [newEmail, setNewEmail] = useState("");
   const [adminPasscode, setAdminPasscode] = useState("");
   const [showSubCategories, setShowSubCategories] = useState(true);
   const [showBrands, setShowBrands] = useState(true);
@@ -19,7 +20,8 @@ export default function SettingsPage() {
     fetch("/api/settings")
       .then((r) => r.json())
       .then((data) => {
-        setRecipientEmail(data.recipient_email || "");
+        const emails = (data.recipient_email || "").split(",").map((e: string) => e.trim()).filter(Boolean);
+        setRecipientEmails(emails);
         setAdminPasscode(data.admin_passcode || "2670");
         setShowSubCategories(data.show_subcategories !== "false");
         setShowBrands(data.show_brands !== "false");
@@ -35,7 +37,7 @@ export default function SettingsPage() {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        recipient_email: recipientEmail,
+        recipient_email: recipientEmails.join(","),
         admin_passcode: adminPasscode,
         show_subcategories: showSubCategories ? "true" : "false",
         show_brands: showBrands ? "true" : "false",
@@ -88,18 +90,63 @@ export default function SettingsPage() {
 
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600 mb-1">
-            Recipient Email
+            Recipient Emails
           </label>
           <p className="text-xs text-gray-400 mb-2">
-            Packing lists will be sent to this email address.
+            Packing lists will be sent to these email addresses.
           </p>
-          <input
-            type="email"
-            value={recipientEmail}
-            onChange={(e) => setRecipientEmail(e.target.value)}
-            placeholder="e.g. info@example.com"
-            className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-gray-400"
-          />
+
+          {/* Email chips */}
+          {recipientEmails.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-2">
+              {recipientEmails.map((email, i) => (
+                <span key={i} className="inline-flex items-center gap-1 px-2.5 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
+                  {email}
+                  <button
+                    type="button"
+                    onClick={() => setRecipientEmails(recipientEmails.filter((_, j) => j !== i))}
+                    className="w-4 h-4 flex items-center justify-center rounded-full hover:bg-gray-300 text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                  </button>
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Add email input */}
+          <div className="flex gap-2">
+            <input
+              type="email"
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  const trimmed = newEmail.trim();
+                  if (trimmed && trimmed.includes("@") && !recipientEmails.includes(trimmed)) {
+                    setRecipientEmails([...recipientEmails, trimmed]);
+                    setNewEmail("");
+                  }
+                }
+              }}
+              placeholder="e.g. info@example.com"
+              className="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-gray-400"
+            />
+            <button
+              type="button"
+              onClick={() => {
+                const trimmed = newEmail.trim();
+                if (trimmed && trimmed.includes("@") && !recipientEmails.includes(trimmed)) {
+                  setRecipientEmails([...recipientEmails, trimmed]);
+                  setNewEmail("");
+                }
+              }}
+              className="px-3 py-2 bg-gray-700 text-white rounded-lg text-sm hover:bg-gray-800 transition-colors font-bold"
+            >
+              +
+            </button>
+          </div>
         </div>
       </div>
 
