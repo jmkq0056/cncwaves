@@ -444,28 +444,32 @@ export default function DeliveryPage() {
         </div>
       )}
 
+      {/* ===== DESKTOP VERTICAL CATEGORY TAB ===== */}
+      <button
+        onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
+        className="hidden md:flex flex-col items-center justify-center w-8 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 border-r border-gray-200 cursor-pointer flex-shrink-0 transition-colors"
+      >
+        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest" style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}>
+          Category
+        </span>
+      </button>
+
       {/* ===== RIGHT PANEL (Products) ===== */}
       <div className="flex-1 min-w-0 flex flex-col relative overflow-hidden">
-        {/* ===== DESKTOP HEADER BAR ===== */}
-        <div className="hidden md:flex items-center gap-3 px-4 py-2.5 border-b bg-white flex-shrink-0">
-          <button
-            onClick={() => setMobileFilterOpen(!mobileFilterOpen)}
-            className={`px-3 py-2 rounded-lg border text-xs font-medium transition-colors flex items-center gap-1.5 ${
-              activeFilter !== "all" ? "bg-gray-700 text-white border-gray-700" : "bg-white text-gray-600 border-gray-200 hover:bg-gray-50"
-            }`}
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
-            </svg>
-            {activeFilter !== "all" ? activeFilter : "Category"}
-          </button>
-          {activeFilter !== "all" && (
-            <button
-              onClick={() => { setActiveFilter("all"); setFilterType(null); }}
-              className="text-xs text-gray-400 hover:text-gray-600 underline"
-            >
-              Clear
-            </button>
+        {/* ===== DESKTOP ACTIVE CATEGORY BAR ===== */}
+        <div className="hidden md:flex items-center gap-3 px-4 py-2 border-b bg-white flex-shrink-0">
+          {activeFilter !== "all" && filterType ? (
+            <>
+              <span className="text-xs font-semibold text-gray-700 bg-gray-100 px-3 py-1.5 rounded-full">{activeFilter}</span>
+              <button
+                onClick={() => { setActiveFilter("all"); setFilterType(null); }}
+                className="text-xs text-gray-400 hover:text-gray-600 underline"
+              >
+                Clear
+              </button>
+            </>
+          ) : (
+            <span className="text-xs text-gray-400">{categories.length} categories &middot; {filtered.length} products</span>
           )}
           {categories.length > 0 && !allCategoriesVisited && (
             <div className="flex items-center gap-1.5 ml-auto">
