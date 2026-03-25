@@ -33,6 +33,7 @@ export default function DeliveryPage() {
   const [showBrands, setShowBrands] = useState(true);
   const [mobileCartOpen, setMobileCartOpen] = useState(false);
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+  const [categorySearch, setCategorySearch] = useState("");
   const cartLoaded = useRef(false);
 
   // Restore cart from localStorage on mount
