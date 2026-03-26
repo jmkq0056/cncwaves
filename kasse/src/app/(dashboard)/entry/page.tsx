@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useMemo, Suspense, useRef, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { DENOMINATIONS, computeCoinTotal, computeTotalSales, formatDKK, toDateStr } from "@/lib/denominations";
+import { DENOMINATIONS, computeCoinTotal, computeTotalSales, formatDKK, toDateStr, todayCPH } from "@/lib/denominations";
 
 type FormData = {
   date: string;
@@ -18,7 +18,7 @@ type FormData = {
 };
 
 const EMPTY: FormData = {
-  date: toDateStr(new Date()),
+  date: todayCPH(),
   employeeName: "Owner",
   denominations: Object.fromEntries(DENOMINATIONS.map((d) => [d.key, 0])),
   purchases: 0, onlineSales: 0, posCash: 0, posCard: 0, kioskSales: 0,
@@ -125,9 +125,12 @@ function EntryForm() {
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState("");
   const [isEdit, setIsEdit] = useState(false);
-  const [missingDays, setMissingDays] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [serverWarnings, setServerWarnings] = useState<string[]>([]);
+  const [rangeFrom, setRangeFrom] = useState<string>(""); // auto-detected start of range
+  const [rangeTo, setRangeTo] = useState<string>(""); // auto-detected end (today)
+  const [rangeDays, setRangeDays] = useState(1);
+  const [singleDayMode, setSingleDayMode] = useState(false); // true when coming from history with ?date=
   const navRef = useRef<HTMLDivElement>(null);
 
   const step = STEPS[idx];
@@ -140,8 +143,15 @@ function EntryForm() {
   }, [group]);
 
   useEffect(() => {
+    const today = todayCPH();
     const dp = searchParams.get("date");
+
     if (dp) {
+      // Coming from history — single day mode, editable
+      setSingleDayMode(true);
+      setRangeFrom(dp);
+      setRangeTo(dp);
+      setRangeDays(1);
       setForm((f) => ({ ...f, date: dp }));
       fetch(`/api/entries/${dp}`)
         .then((r) => r.ok ? r.json() : null)
@@ -151,21 +161,44 @@ function EntryForm() {
             setIsEdit(true);
           }
         }).catch(() => {});
+      return;
     }
+
+    // Auto-detect range: day after last entry → today
     fetch("/api/entries?from=2020-01-01&to=2099-01-01")
       .then((r) => r.json())
       .then((entries: any[]) => {
-        if (!entries.length) return;
-        const last = entries[0]?.date;
-        if (!last) return;
-        const today = toDateStr(new Date());
-        if (last >= today) return;
-        const m: string[] = [];
-        const c = new Date(last + "T12:00:00");
-        c.setDate(c.getDate() + 1);
-        const end = new Date(today + "T12:00:00");
-        while (c <= end) { m.push(toDateStr(c)); c.setDate(c.getDate() + 1); }
-        setMissingDays(m);
+        if (!entries.length) {
+          setRangeFrom(today);
+          setRangeTo(today);
+          setRangeDays(1);
+          return;
+        }
+        const lastEntryDate = entries[0]?.date;
+        if (!lastEntryDate || lastEntryDate >= today) {
+          // Already filled today — editing today
+          setRangeFrom(today);
+          setRangeTo(today);
+          setRangeDays(1);
+          setIsEdit(true);
+          fetch(`/api/entries/${today}`)
+            .then((r) => r.ok ? r.json() : null)
+            .then((d) => {
+              if (d && !d.error) {
+                setForm({ date: d.date, employeeName: d.employeeName || "Owner", denominations: d.denominations || EMPTY.denominations, purchases: d.purchases || 0, onlineSales: d.onlineSales || 0, posCash: d.posCash || 0, posCard: d.posCard || 0, kioskSales: d.kioskSales || 0, morningCash: d.morningCash || 0, eveningCash: d.eveningCash || 0 });
+              }
+            }).catch(() => {});
+          return;
+        }
+        // Range: day after last entry → today
+        const dayAfter = new Date(lastEntryDate + "T12:00:00");
+        dayAfter.setDate(dayAfter.getDate() + 1);
+        const fromStr = toDateStr(dayAfter);
+        const days = Math.round((new Date(today + "T12:00:00").getTime() - dayAfter.getTime()) / 86400000) + 1;
+        setRangeFrom(fromStr);
+        setRangeTo(today);
+        setRangeDays(Math.max(1, days));
+        setForm((f) => ({ ...f, date: today })); // save under today's date
       }).catch(() => {});
   }, [searchParams]);
 
@@ -229,7 +262,7 @@ function EntryForm() {
         <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
       </div>
       <p className="text-lg font-bold text-gray-800 mb-1">Done</p>
-      <p className="text-sm text-gray-400 mb-8">{form.date} saved</p>
+      <p className="text-sm text-gray-800 mb-8">{rangeDays > 1 && !singleDayMode ? `${rangeFrom} — ${rangeTo} (${rangeDays} days)` : form.date} saved</p>
       <button onClick={() => { setForm({ ...EMPTY, date: toDateStr(new Date()) }); setIdx(0); setSaved(false); setIsEdit(false); setServerWarnings([]); }} className="w-full max-w-xs py-3.5 bg-brand text-white rounded-xl text-sm font-bold mb-3">Add Another Day</button>
       <button onClick={() => router.push("/")} className="w-full max-w-xs py-3.5 bg-gray-100 text-gray-600 rounded-xl text-sm font-medium">Back to Overview</button>
     </div>
@@ -313,38 +346,38 @@ function EntryForm() {
         <div className="h-0.5 bg-brand-50"><div className="h-full bg-brand transition-all" style={{ width: `${((idx + 1) / STEPS.length) * 100}%` }} /></div>
       </div>
 
-      {/* Missing days */}
-      {step.id === "date" && missingDays.length > 0 && (
-        <div className="px-5 pt-4">
-          <p className="text-xs text-gray-500 mb-2">{missingDays.length} day{missingDays.length > 1 && "s"} not filled:</p>
-          <div className="flex gap-2 flex-wrap">
-            {missingDays.slice(0, 5).map((d) => (
-              <button key={d} onClick={() => setF("date", d)} className={`text-xs px-3 py-1.5 rounded-lg font-medium ${form.date === d ? "bg-brand text-white" : "bg-brand-50 text-brand"}`}>
-                {new Date(d + "T12:00:00").toLocaleDateString("da-DK", { day: "numeric", month: "short" })}
-              </button>
-            ))}
-            {missingDays.length > 5 && <span className="text-xs text-gray-400 self-center">+{missingDays.length - 5}</span>}
-          </div>
-        </div>
-      )}
-
       {/* === MAIN CONTENT === */}
       <div className="flex-1 flex flex-col items-center justify-center px-6 min-h-0">
 
         {step.id === "date" && (
           <div className="w-full max-w-sm text-center">
-            <p className="text-sm text-gray-500 mb-4">What day is this for?</p>
-            <input type="date" value={form.date} onChange={(e) => setF("date", e.target.value)}
-              className="w-full px-4 py-5 border-2 border-brand-200 rounded-2xl text-center text-xl font-bold focus:outline-none focus:border-brand bg-white" />
-            {dateError && (
-              <div className="mt-3 px-4 py-2.5 bg-red-50 border border-red-200 rounded-xl">
-                <p className="text-sm text-red-600 font-medium">{dateError}</p>
-              </div>
-            )}
-            {!dateError && dateWarning && (
-              <div className="mt-3 px-4 py-2.5 bg-amber-50 border border-amber-200 rounded-xl">
-                <p className="text-sm text-amber-700 font-medium">{dateWarning}</p>
-              </div>
+            {singleDayMode ? (
+              <>
+                <p className="text-sm text-gray-800 mb-2">Filling in for</p>
+                <p className="text-2xl font-black text-brand">
+                  {new Date(form.date + "T12:00:00").toLocaleDateString("da-DK", { weekday: "long", day: "numeric", month: "long" })}
+                </p>
+                {isEdit && <p className="text-xs text-brand-400 mt-2">Editing existing entry</p>}
+              </>
+            ) : rangeDays > 1 ? (
+              <>
+                <p className="text-sm text-gray-800 mb-2">This entry covers</p>
+                <div className="bg-brand-50 border border-brand-200 rounded-2xl px-5 py-5 mb-3">
+                  <p className="text-xl font-black text-brand">
+                    {new Date(rangeFrom + "T12:00:00").toLocaleDateString("da-DK", { day: "numeric", month: "short" })} — {new Date(rangeTo + "T12:00:00").toLocaleDateString("da-DK", { day: "numeric", month: "short" })}
+                  </p>
+                  <p className="text-sm text-brand-600 font-semibold mt-1">{rangeDays} days</p>
+                </div>
+                <p className="text-xs text-gray-800">Numbers you enter will be saved for this range</p>
+              </>
+            ) : (
+              <>
+                <p className="text-sm text-gray-800 mb-2">Filling in for today</p>
+                <p className="text-2xl font-black text-brand">
+                  {new Date(rangeTo + "T12:00:00").toLocaleDateString("da-DK", { weekday: "long", day: "numeric", month: "long" })}
+                </p>
+                {isEdit && <p className="text-xs text-brand-400 mt-2">Updating today&apos;s entry</p>}
+              </>
             )}
           </div>
         )}
@@ -449,8 +482,17 @@ function EntryForm() {
               <div className="px-5 py-4">
                 {/* Date & employee */}
                 <div className="text-center mb-4 pb-3" style={{ borderBottom: "1px dashed #e5e7eb" }}>
-                  <p className="text-lg font-bold text-gray-800">{new Date(form.date + "T12:00:00").toLocaleDateString("da-DK", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</p>
-                  <p className="text-xs text-gray-400 mt-1">Counted by: <span className="text-gray-600 font-medium">{form.employeeName || "—"}</span></p>
+                  {rangeDays > 1 && !singleDayMode ? (
+                    <>
+                      <p className="text-lg font-bold text-gray-800">
+                        {new Date(rangeFrom + "T12:00:00").toLocaleDateString("da-DK", { day: "numeric", month: "long" })} — {new Date(rangeTo + "T12:00:00").toLocaleDateString("da-DK", { day: "numeric", month: "long", year: "numeric" })}
+                      </p>
+                      <p className="text-xs text-brand font-semibold mt-0.5">{rangeDays} days</p>
+                    </>
+                  ) : (
+                    <p className="text-lg font-bold text-gray-800">{new Date(form.date + "T12:00:00").toLocaleDateString("da-DK", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</p>
+                  )}
+                  <p className="text-xs text-gray-800 mt-1">Counted by: <span className="font-medium">{form.employeeName || "—"}</span></p>
                 </div>
 
                 {/* Cash count section */}

@@ -25,7 +25,11 @@ export function formatDKK(amount: number): string {
 }
 
 export function toDateStr(d: Date): string {
-  return d.toISOString().slice(0, 10);
+  return d.toLocaleDateString("sv-SE", { timeZone: "Europe/Copenhagen" }); // YYYY-MM-DD
+}
+
+export function todayCPH(): string {
+  return new Date().toLocaleDateString("sv-SE", { timeZone: "Europe/Copenhagen" });
 }
 
 export function getMissingDays(entries: { date: string }[], from: string, to: string): string[] {
