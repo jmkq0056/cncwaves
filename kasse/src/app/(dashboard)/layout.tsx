@@ -156,11 +156,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             <div className="w-6 h-6 rounded-full bg-brand flex items-center justify-center">
               <span className="text-white font-black text-[6px]">KR</span>
             </div>
-            <span className="text-white text-sm font-semibold">Kasseopg&oslash;relse</span>
+            <span className="text-white text-sm font-bold">
+              {navItems.find((n) => pathname === n.href)?.label || "Kasse"}
+            </span>
           </div>
-          <span className="ml-auto text-xs text-gray-400">
-            {navItems.find((n) => pathname === n.href)?.label || ""}
-          </span>
         </div>
 
         <main className="flex-1 overflow-auto bg-gray-50">
