@@ -70,7 +70,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="flex items-center justify-between px-4 h-14 border-b border-white/10">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-full bg-brand flex items-center justify-center shadow-sm">
-            <span className="text-white font-black text-[9px] tracking-wide">KR</span>
+            <span className="text-white font-black text-[8px] tracking-wide">CNC</span>
           </div>
           {!collapsed && <span className="font-bold text-sm tracking-wide">Kasseopg&oslash;relse</span>}
         </div>
@@ -154,7 +154,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </button>
           <div className="flex items-center gap-2 ml-3">
             <div className="w-6 h-6 rounded-full bg-brand flex items-center justify-center">
-              <span className="text-white font-black text-[6px]">KR</span>
+              <span className="text-white font-black text-[5px]">CNC</span>
             </div>
             <span className="text-white text-sm font-bold">
               {navItems.find((n) => pathname === n.href)?.label || "Kasse"}

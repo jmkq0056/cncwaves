@@ -41,7 +41,7 @@ export default function LoginPage() {
             <div className="w-20 h-20 rounded-full border-[3px] border-brand/30 border-t-brand animate-spin absolute inset-0" />
             <div className="w-20 h-20 rounded-full bg-brand/10 animate-pulse absolute inset-0" />
             <div className="relative w-20 h-20 rounded-full bg-brand flex items-center justify-center shadow-lg shadow-brand/40">
-              <span className="text-white font-black text-lg tracking-wider">KR</span>
+              <span className="text-white font-black text-sm tracking-wider">CNC</span>
             </div>
           </div>
           <h1 className="text-2xl font-bold text-white tracking-tight mt-5">Kasseopg&oslash;relse</h1>
