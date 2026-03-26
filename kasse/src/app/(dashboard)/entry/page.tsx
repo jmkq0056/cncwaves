@@ -255,67 +255,63 @@ function EntryForm() {
 
   return (
     <div className="flex flex-col h-full bg-white">
-      {/* Group tabs */}
+      {/* Top bar — current section + menu */}
       <div className="flex-shrink-0">
-        <div ref={navRef} className="flex overflow-x-auto bg-white" style={{ scrollbarWidth: "none" }}>
-          {GROUPS.map((g) => {
-            const stepsInG = STEPS.filter((s) => s.group === g);
-            const filled = stepsInG.filter((s) => stepHasData(s)).length;
-            const total = stepsInG.length;
-            const allDone = filled === total && g !== "Done";
-            return (
-              <button key={g} data-g={g} onClick={() => goGroup(g)}
-                className={`flex-shrink-0 px-4 py-3 text-xs font-semibold transition-colors flex items-center gap-1.5 ${
-                  group === g ? "text-brand" : allDone ? "text-brand-400" : "text-gray-400"
-                }`}>
-                {g}
-                {g !== "Done" && <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold ${
-                  allDone ? "bg-brand text-white" : group === g ? "bg-brand-50 text-brand" : "bg-gray-100 text-gray-400"
-                }`}>{filled}/{total}</span>}
-              </button>
-            );
-          })}
-          <button onClick={() => setMenuOpen(!menuOpen)} className="flex-shrink-0 ml-auto px-3 py-3 text-gray-400">
+        <div className="flex items-center justify-between px-4 py-2.5 bg-white border-b">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-bold text-brand">{group}</span>
+            <span className="text-[10px] text-gray-800 font-medium">{step.label}</span>
+          </div>
+          <button onClick={() => setMenuOpen(!menuOpen)} className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-brand-50 text-brand text-xs font-semibold">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+            {idx + 1}/{STEPS.length}
           </button>
         </div>
 
-        {/* Step menu */}
+        {/* Full step menu */}
         {menuOpen && (
-          <div className="absolute left-0 right-0 top-[42px] z-50 bg-white border-b shadow-lg max-h-[70vh] overflow-auto">
-            {GROUPS.filter((g) => g !== "Done").map((g) => (
-              <div key={g}>
-                <div className="px-4 py-2 bg-brand-50 border-b"><span className="text-xs font-bold text-brand">{g}</span></div>
-                <div className="divide-y divide-gray-50">
-                  {STEPS.filter((s) => s.group === g).map((s) => {
-                    const si = STEPS.indexOf(s);
-                    const filled = stepHasData(s);
-                    const cur = si === idx;
-                    return (
-                      <button key={s.id} onClick={() => goStep(si)} className={`w-full flex items-center gap-3 px-4 py-2.5 text-left ${cur ? "bg-brand-50" : "hover:bg-gray-50"}`}>
-                        <span className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${filled ? "bg-brand" : cur ? "bg-brand/30" : "bg-gray-200"}`}>
-                          {filled && <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>}
-                        </span>
-                        <span className={`text-sm ${cur ? "font-bold text-gray-800" : filled ? "text-gray-600" : "text-gray-400"}`}>{s.label}</span>
-                        {filled && s.id.startsWith("d-") && <span className="ml-auto text-xs text-gray-400">{form.denominations[s.id.slice(2)]}</span>}
-                        {filled && !s.id.startsWith("d-") && !["date", "employee", "review"].includes(s.id) && <span className="ml-auto text-xs text-gray-400">{formatDKK((form as any)[s.id])}</span>}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-            <button onClick={() => goStep(STEPS.length - 1)} className="w-full flex items-center gap-3 px-4 py-3 text-left bg-gray-50 border-t">
-              <span className="w-5 h-5 rounded-full bg-gray-700 flex-shrink-0" />
-              <span className="text-sm font-bold text-gray-700">Go to Summary</span>
-            </button>
-          </div>
+          <>
+            <div className="fixed inset-0 z-40 bg-black/20" onClick={() => setMenuOpen(false)} />
+            <div className="absolute left-0 right-0 z-50 bg-white border-b shadow-xl max-h-[75vh] overflow-auto rounded-b-2xl">
+              {GROUPS.filter((g) => g !== "Done").map((g) => {
+                const stepsInG = STEPS.filter((s) => s.group === g);
+                const filled = stepsInG.filter((s) => stepHasData(s)).length;
+                return (
+                  <div key={g}>
+                    <div className="px-4 py-2 bg-brand-50 border-b flex items-center justify-between">
+                      <span className="text-xs font-bold text-brand">{g}</span>
+                      <span className="text-[10px] font-bold text-brand">{filled}/{stepsInG.length}</span>
+                    </div>
+                    <div className="divide-y divide-gray-50">
+                      {stepsInG.map((s) => {
+                        const si = STEPS.indexOf(s);
+                        const isFilled = stepHasData(s);
+                        const cur = si === idx;
+                        return (
+                          <button key={s.id} onClick={() => goStep(si)} className={`w-full flex items-center gap-3 px-4 py-2.5 text-left ${cur ? "bg-brand-50" : ""}`}>
+                            <span className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${isFilled ? "bg-brand" : cur ? "bg-brand/30" : "bg-gray-200"}`}>
+                              {isFilled && <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>}
+                            </span>
+                            <span className={`text-sm ${cur ? "font-bold" : ""} ${isFilled ? "text-gray-900" : "text-gray-800"}`}>{s.label}</span>
+                            {isFilled && s.id.startsWith("d-") && <span className="ml-auto text-xs text-gray-800">{form.denominations[s.id.slice(2)]}</span>}
+                            {isFilled && !s.id.startsWith("d-") && !["date", "employee", "review"].includes(s.id) && <span className="ml-auto text-xs text-gray-800">{formatDKK((form as any)[s.id])}</span>}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+              <button onClick={() => goStep(STEPS.length - 1)} className="w-full flex items-center gap-3 px-4 py-3 text-left border-t">
+                <span className="w-5 h-5 rounded-full bg-brand flex-shrink-0" />
+                <span className="text-sm font-bold text-gray-900">Go to Summary</span>
+              </button>
+            </div>
+          </>
         )}
 
-        <div className="h-0.5 bg-gray-100"><div className="h-full bg-brand transition-all" style={{ width: `${((idx + 1) / STEPS.length) * 100}%` }} /></div>
+        <div className="h-0.5 bg-brand-50"><div className="h-full bg-brand transition-all" style={{ width: `${((idx + 1) / STEPS.length) * 100}%` }} /></div>
       </div>
-
-      {menuOpen && <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />}
 
       {/* Missing days */}
       {step.id === "date" && missingDays.length > 0 && (
