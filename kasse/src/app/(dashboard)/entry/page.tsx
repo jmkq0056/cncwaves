@@ -257,22 +257,25 @@ function EntryForm() {
     <div className="flex flex-col h-full bg-white">
       {/* Group tabs */}
       <div className="flex-shrink-0">
-        <div ref={navRef} className="flex border-b overflow-x-auto" style={{ scrollbarWidth: "none" }}>
+        <div ref={navRef} className="flex overflow-x-auto bg-white" style={{ scrollbarWidth: "none" }}>
           {GROUPS.map((g) => {
             const stepsInG = STEPS.filter((s) => s.group === g);
             const filled = stepsInG.filter((s) => stepHasData(s)).length;
             const total = stepsInG.length;
+            const allDone = filled === total && g !== "Done";
             return (
               <button key={g} data-g={g} onClick={() => goGroup(g)}
-                className={`flex-shrink-0 px-4 py-2.5 text-xs font-semibold border-b-2 transition-colors flex items-center gap-1.5 ${
-                  group === g ? "border-brand text-brand" : "border-transparent text-gray-300"
+                className={`flex-shrink-0 px-4 py-3 text-xs font-semibold transition-colors flex items-center gap-1.5 ${
+                  group === g ? "text-brand" : allDone ? "text-brand-400" : "text-gray-400"
                 }`}>
                 {g}
-                {g !== "Done" && <span className={`text-[9px] font-normal ${group === g ? "text-brand-400" : "text-gray-300"}`}>{filled}/{total}</span>}
+                {g !== "Done" && <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold ${
+                  allDone ? "bg-brand text-white" : group === g ? "bg-brand-50 text-brand" : "bg-gray-100 text-gray-400"
+                }`}>{filled}/{total}</span>}
               </button>
             );
           })}
-          <button onClick={() => setMenuOpen(!menuOpen)} className="flex-shrink-0 ml-auto px-3 py-2.5 text-gray-400 border-b-2 border-transparent">
+          <button onClick={() => setMenuOpen(!menuOpen)} className="flex-shrink-0 ml-auto px-3 py-3 text-gray-400">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
           </button>
         </div>
@@ -309,7 +312,7 @@ function EntryForm() {
           </div>
         )}
 
-        <div className="h-1 bg-brand" style={{ width: `${((idx + 1) / STEPS.length) * 100}%`, transition: "width 0.2s" }} />
+        <div className="h-0.5 bg-gray-100"><div className="h-full bg-brand transition-all" style={{ width: `${((idx + 1) / STEPS.length) * 100}%` }} /></div>
       </div>
 
       {menuOpen && <div className="fixed inset-0 z-40" onClick={() => setMenuOpen(false)} />}
@@ -440,7 +443,7 @@ function EntryForm() {
             )}
 
             {/* Receipt */}
-            <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden" style={{ fontFamily: "'Courier New', Courier, monospace" }}>
+            <div className="bg-orange-50/40 border border-brand-100 rounded-2xl shadow-sm overflow-hidden" style={{ fontFamily: "'Courier New', Courier, monospace" }}>
               {/* Header */}
               <div className="bg-brand px-5 py-4 text-center">
                 <p className="text-white font-bold text-sm tracking-widest uppercase">CNC Cashbook</p>
@@ -462,7 +465,7 @@ function EntryForm() {
                       const cnt = form.denominations[d.key];
                       return (
                         <div key={d.key} className="flex justify-between text-xs">
-                          <span className="text-gray-500">{d.label} x {cnt}</span>
+                          <span className="text-gray-600">{d.label} x {cnt}</span>
                           <span className="text-gray-700 font-medium">{formatDKK(cnt * d.multiplier)}</span>
                         </div>
                       );
@@ -488,7 +491,7 @@ function EntryForm() {
                     { label: "Purchases", val: form.purchases },
                   ] as const).map((ch) => (
                     <div key={ch.label} className="flex justify-between text-xs mb-0.5">
-                      <span className="text-gray-500">{ch.label}</span>
+                      <span className="text-gray-600">{ch.label}</span>
                       <span className={`font-medium ${ch.val > 0 ? "text-gray-700" : "text-gray-300"}`}>{ch.val > 0 ? formatDKK(ch.val) : "—"}</span>
                     </div>
                   ))}
@@ -518,7 +521,7 @@ function EntryForm() {
 
               {/* Footer */}
               <div className="px-5 py-3 text-center" style={{ borderTop: "1px dashed #e5e7eb" }}>
-                <p className="text-[10px] text-gray-300 tracking-wider">TAP ANY SECTION TO EDIT</p>
+                <p className="text-[10px] text-brand-300 tracking-wider">TAP ANY SECTION TO EDIT</p>
               </div>
             </div>
             {error && <p className="text-sm text-red-400 mt-3 text-center">{error}</p>}
