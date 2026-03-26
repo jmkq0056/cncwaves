@@ -116,6 +116,27 @@ function isNumpadWarning(denomInfo: (typeof DENOMINATIONS)[number] | null | unde
   return value > 100_000;
 }
 
+const DRAFT_KEY = "kasse_draft";
+const DRAFT_TTL = 2 * 60 * 60 * 1000; // 2 hours
+
+function saveDraft(form: FormData, idx: number, rangeFrom: string, rangeTo: string, rangeDays: number, singleDayMode: boolean) {
+  try {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify({ form, idx, rangeFrom, rangeTo, rangeDays, singleDayMode, ts: Date.now() }));
+  } catch {}
+}
+
+function loadDraft(): { form: FormData; idx: number; rangeFrom: string; rangeTo: string; rangeDays: number; singleDayMode: boolean } | null {
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return null;
+    const d = JSON.parse(raw);
+    if (Date.now() - d.ts > DRAFT_TTL) { localStorage.removeItem(DRAFT_KEY); return null; }
+    return d;
+  } catch { return null; }
+}
+
+function clearDraft() { try { localStorage.removeItem(DRAFT_KEY); } catch {} }
+
 function EntryForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -132,7 +153,9 @@ function EntryForm() {
   const [rangeDays, setRangeDays] = useState(1);
   const [ready, setReady] = useState(false);
   const [singleDayMode, setSingleDayMode] = useState(false);
-  const [returnIdx, setReturnIdx] = useState<number | null>(null); // where to go back from summary
+  const [returnIdx, setReturnIdx] = useState<number | null>(null);
+  const [showResume, setShowResume] = useState(false);
+  const draftLoaded = useRef(false);
   const navRef = useRef<HTMLDivElement>(null);
 
   const step = STEPS[idx];
@@ -144,9 +167,34 @@ function EntryForm() {
     if (el) el.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   }, [group]);
 
+  // Auto-save draft on every change
+  useEffect(() => {
+    if (!draftLoaded.current || !ready) return;
+    saveDraft(form, idx, rangeFrom, rangeTo, rangeDays, singleDayMode);
+  }, [form, idx, rangeFrom, rangeTo, rangeDays, singleDayMode, ready]);
+
   useEffect(() => {
     const today = todayCPH();
     const dp = searchParams.get("date");
+
+    // Check for existing draft (only when no ?date= param)
+    if (!dp) {
+      const draft = loadDraft();
+      if (draft && draft.form && draft.idx > 0) {
+        // Has a draft with progress — offer to resume
+        setForm(draft.form);
+        setIdx(draft.idx);
+        setRangeFrom(draft.rangeFrom);
+        setRangeTo(draft.rangeTo);
+        setRangeDays(draft.rangeDays);
+        setSingleDayMode(draft.singleDayMode);
+        setShowResume(true);
+        setReady(true);
+        draftLoaded.current = true;
+        return;
+      }
+    }
+    draftLoaded.current = true;
 
     if (dp) {
       setSingleDayMode(true);
@@ -235,9 +283,9 @@ function EntryForm() {
         const data = await res.json();
         if (data.warnings && data.warnings.length > 0) {
           setServerWarnings(data.warnings);
-          // Show warnings but still mark as saved
           alert("Saved, but please note:\n\n" + data.warnings.join("\n"));
         }
+        clearDraft();
         setSaved(true);
       } else {
         const d = await res.json();
@@ -261,6 +309,26 @@ function EntryForm() {
     </div>
   );
 
+  // Resume prompt
+  if (showResume) return (
+    <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center">
+      <div className="w-14 h-14 bg-brand-50 rounded-full flex items-center justify-center mb-5">
+        <svg className="w-7 h-7 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      </div>
+      <p className="text-lg font-bold text-gray-800 mb-1">You have an unfinished entry</p>
+      <p className="text-sm text-gray-800 mb-1">
+        {rangeDays > 1 ? `${rangeFrom} — ${rangeTo}` : form.date}
+      </p>
+      <p className="text-xs text-gray-800 mb-8">Step {idx + 1} of {STEPS.length} — {STEPS[idx].label}</p>
+      <button onClick={() => setShowResume(false)} className="w-full max-w-xs py-3.5 bg-brand text-white rounded-xl text-sm font-bold mb-3">
+        Continue where I left off
+      </button>
+      <button onClick={() => { clearDraft(); setForm({ ...EMPTY, date: todayCPH() }); setIdx(0); setShowResume(false); setReady(false); window.location.reload(); }} className="w-full max-w-xs py-3.5 bg-gray-100 text-gray-600 rounded-xl text-sm font-medium">
+        Start over
+      </button>
+    </div>
+  );
+
   if (saved) return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center">
       <div className="w-16 h-16 bg-brand rounded-full flex items-center justify-center mb-5">
@@ -268,7 +336,7 @@ function EntryForm() {
       </div>
       <p className="text-lg font-bold text-gray-800 mb-1">Done</p>
       <p className="text-sm text-gray-800 mb-8">{rangeDays > 1 && !singleDayMode ? `${rangeFrom} — ${rangeTo} (${rangeDays} days)` : form.date} saved</p>
-      <button onClick={() => { setForm({ ...EMPTY, date: toDateStr(new Date()) }); setIdx(0); setSaved(false); setIsEdit(false); setServerWarnings([]); }} className="w-full max-w-xs py-3.5 bg-brand text-white rounded-xl text-sm font-bold mb-3">Add Another Day</button>
+      <button onClick={() => { clearDraft(); setForm({ ...EMPTY, date: todayCPH() }); setIdx(0); setSaved(false); setIsEdit(false); setServerWarnings([]); }} className="w-full max-w-xs py-3.5 bg-brand text-white rounded-xl text-sm font-bold mb-3">Add Another Day</button>
       <button onClick={() => router.push("/")} className="w-full max-w-xs py-3.5 bg-gray-100 text-gray-600 rounded-xl text-sm font-medium">Back to Overview</button>
     </div>
   );
