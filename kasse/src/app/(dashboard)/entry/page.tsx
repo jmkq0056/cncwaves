@@ -127,10 +127,11 @@ function EntryForm() {
   const [isEdit, setIsEdit] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [serverWarnings, setServerWarnings] = useState<string[]>([]);
-  const [rangeFrom, setRangeFrom] = useState<string>(""); // auto-detected start of range
-  const [rangeTo, setRangeTo] = useState<string>(""); // auto-detected end (today)
+  const [rangeFrom, setRangeFrom] = useState("");
+  const [rangeTo, setRangeTo] = useState("");
   const [rangeDays, setRangeDays] = useState(1);
-  const [singleDayMode, setSingleDayMode] = useState(false); // true when coming from history with ?date=
+  const [ready, setReady] = useState(false);
+  const [singleDayMode, setSingleDayMode] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
   const step = STEPS[idx];
@@ -147,7 +148,6 @@ function EntryForm() {
     const dp = searchParams.get("date");
 
     if (dp) {
-      // Coming from history — single day mode, editable
       setSingleDayMode(true);
       setRangeFrom(dp);
       setRangeTo(dp);
@@ -160,46 +160,40 @@ function EntryForm() {
             setForm({ date: d.date, employeeName: d.employeeName || "Owner", denominations: d.denominations || EMPTY.denominations, purchases: d.purchases || 0, onlineSales: d.onlineSales || 0, posCash: d.posCash || 0, posCard: d.posCard || 0, kioskSales: d.kioskSales || 0, morningCash: d.morningCash || 0, eveningCash: d.eveningCash || 0 });
             setIsEdit(true);
           }
-        }).catch(() => {});
+        }).catch(() => {})
+        .finally(() => setReady(true));
       return;
     }
 
-    // Auto-detect range: day after last entry → today
     fetch("/api/entries?from=2020-01-01&to=2099-01-01")
       .then((r) => r.json())
-      .then((entries: any[]) => {
+      .then(async (entries: any[]) => {
         if (!entries.length) {
-          setRangeFrom(today);
-          setRangeTo(today);
-          setRangeDays(1);
+          setRangeFrom(today); setRangeTo(today); setRangeDays(1);
           return;
         }
         const lastEntryDate = entries[0]?.date;
         if (!lastEntryDate || lastEntryDate >= today) {
-          // Already filled today — editing today
-          setRangeFrom(today);
-          setRangeTo(today);
-          setRangeDays(1);
-          setIsEdit(true);
-          fetch(`/api/entries/${today}`)
-            .then((r) => r.ok ? r.json() : null)
-            .then((d) => {
+          setRangeFrom(today); setRangeTo(today); setRangeDays(1); setIsEdit(true);
+          try {
+            const r = await fetch(`/api/entries/${today}`);
+            if (r.ok) {
+              const d = await r.json();
               if (d && !d.error) {
                 setForm({ date: d.date, employeeName: d.employeeName || "Owner", denominations: d.denominations || EMPTY.denominations, purchases: d.purchases || 0, onlineSales: d.onlineSales || 0, posCash: d.posCash || 0, posCard: d.posCard || 0, kioskSales: d.kioskSales || 0, morningCash: d.morningCash || 0, eveningCash: d.eveningCash || 0 });
               }
-            }).catch(() => {});
+            }
+          } catch {}
           return;
         }
-        // Range: day after last entry → today
         const dayAfter = new Date(lastEntryDate + "T12:00:00");
         dayAfter.setDate(dayAfter.getDate() + 1);
         const fromStr = toDateStr(dayAfter);
         const days = Math.round((new Date(today + "T12:00:00").getTime() - dayAfter.getTime()) / 86400000) + 1;
-        setRangeFrom(fromStr);
-        setRangeTo(today);
-        setRangeDays(Math.max(1, days));
-        setForm((f) => ({ ...f, date: today })); // save under today's date
-      }).catch(() => {});
+        setRangeFrom(fromStr); setRangeTo(today); setRangeDays(Math.max(1, days));
+        setForm((f) => ({ ...f, date: today }));
+      }).catch(() => {})
+      .finally(() => setReady(true));
   }, [searchParams]);
 
   const coinTotal = useMemo(() => computeCoinTotal(form.denominations), [form.denominations]);
@@ -255,6 +249,12 @@ function EntryForm() {
     if (step.id === "date" && dateError) return; // blocked
     next();
   }
+
+  if (!ready) return (
+    <div className="flex items-center justify-center h-full">
+      <div className="w-8 h-8 border-3 border-brand/30 border-t-brand rounded-full animate-spin" />
+    </div>
+  );
 
   if (saved) return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center">
