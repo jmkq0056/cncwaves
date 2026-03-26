@@ -424,12 +424,10 @@ function EntryForm() {
           </div>
         )}
 
-        {/* REVIEW */}
+        {/* REVIEW — receipt style */}
         {step.id === "review" && (
-          <div className="w-full max-w-sm -mt-8">
-            <p className="text-sm text-gray-500 text-center mb-5">Everything look right?</p>
-
-            {/* Client-side warnings */}
+          <div className="w-full max-w-sm overflow-auto -mt-4" style={{ maxHeight: "calc(100vh - 200px)" }}>
+            {/* Warnings */}
             {reviewWarnings.length > 0 && (
               <div className="mb-4 rounded-xl border border-amber-200 bg-amber-50 p-3 space-y-1.5">
                 {reviewWarnings.map((w, i) => (
@@ -441,38 +439,87 @@ function EntryForm() {
               </div>
             )}
 
-            <div className="rounded-2xl border divide-y text-sm overflow-hidden">
-              <button onClick={() => goStep(0)} className="w-full px-4 py-3.5 flex justify-between items-center hover:bg-brand-50">
-                <span className="text-gray-400 text-xs">Day</span>
-                <span className="font-bold text-gray-700">{form.date}</span>
-              </button>
-              <button onClick={() => goStep(1)} className="w-full px-4 py-3.5 flex justify-between items-center hover:bg-brand-50">
-                <span className="text-gray-400 text-xs">Counted by</span>
-                <span className="font-medium text-gray-700">{form.employeeName || "\u2014"}</span>
-              </button>
-              <button onClick={() => goStep(2)} className="w-full px-4 py-3.5 flex justify-between items-center hover:bg-brand-50">
-                <span className="text-gray-400 text-xs">Cash counted</span>
-                <span className="font-bold text-brand">{formatDKK(coinTotal)}</span>
-              </button>
-              <button onClick={() => goGroup("Sales")} className="w-full px-4 py-3.5 hover:bg-brand-50">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-gray-400 text-xs">Sales total</span>
-                  <span className="font-bold text-brand">{formatDKK(totalSales)}</span>
+            {/* Receipt */}
+            <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden" style={{ fontFamily: "'Courier New', Courier, monospace" }}>
+              {/* Header */}
+              <div className="bg-brand px-5 py-4 text-center">
+                <p className="text-white font-bold text-sm tracking-widest uppercase">CNC Cashbook</p>
+                <p className="text-white/70 text-xs mt-0.5">Daily Register Statement</p>
+              </div>
+
+              <div className="px-5 py-4">
+                {/* Date & employee */}
+                <div className="text-center mb-4 pb-3" style={{ borderBottom: "1px dashed #e5e7eb" }}>
+                  <p className="text-lg font-bold text-gray-800">{new Date(form.date + "T12:00:00").toLocaleDateString("da-DK", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}</p>
+                  <p className="text-xs text-gray-400 mt-1">Counted by: <span className="text-gray-600 font-medium">{form.employeeName || "—"}</span></p>
                 </div>
-                <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-[11px] text-gray-400">
-                  <span>POS Cash: <b className="text-gray-600">{formatDKK(form.posCash)}</b></span>
-                  <span>POS Card: <b className="text-gray-600">{formatDKK(form.posCard)}</b></span>
-                  <span>KIOSK: <b className="text-gray-600">{formatDKK(form.kioskSales)}</b></span>
-                  <span>Online: <b className="text-gray-600">{formatDKK(form.onlineSales)}</b></span>
-                </div>
-              </button>
-              <button onClick={() => goGroup("Register")} className="w-full px-4 py-3.5 hover:bg-brand-50">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-gray-400 text-xs">Register</span>
-                  <span className="font-semibold text-gray-600">{discrepancy >= 0 ? "+" : ""}{formatDKK(discrepancy)}</span>
-                </div>
-                <div className="text-[11px] text-gray-400">Morning {formatDKK(form.morningCash)} / Evening {formatDKK(form.eveningCash)}</div>
-              </button>
+
+                {/* Cash count section */}
+                <button onClick={() => goStep(2)} className="w-full text-left mb-3 active:bg-brand-50 rounded-lg -mx-1 px-1">
+                  <p className="text-[10px] text-brand font-bold uppercase tracking-wider mb-1.5">Cash in Register</p>
+                  <div className="space-y-0.5">
+                    {DENOMINATIONS.filter((d) => (form.denominations[d.key] || 0) > 0).map((d) => {
+                      const cnt = form.denominations[d.key];
+                      return (
+                        <div key={d.key} className="flex justify-between text-xs">
+                          <span className="text-gray-500">{d.label} x {cnt}</span>
+                          <span className="text-gray-700 font-medium">{formatDKK(cnt * d.multiplier)}</span>
+                        </div>
+                      );
+                    })}
+                    {Object.values(form.denominations).every((v) => !v) && (
+                      <p className="text-xs text-gray-300 italic">No cash counted</p>
+                    )}
+                  </div>
+                  <div className="flex justify-between mt-2 pt-1.5 text-sm font-bold" style={{ borderTop: "1px dashed #e5e7eb" }}>
+                    <span className="text-gray-600">Cash Total</span>
+                    <span className="text-brand">{formatDKK(coinTotal)}</span>
+                  </div>
+                </button>
+
+                {/* Sales section */}
+                <button onClick={() => goGroup("Sales")} className="w-full text-left mb-3 active:bg-brand-50 rounded-lg -mx-1 px-1">
+                  <p className="text-[10px] text-brand font-bold uppercase tracking-wider mb-1.5">Sales</p>
+                  {([
+                    { label: "POS Cash", val: form.posCash },
+                    { label: "POS Card", val: form.posCard },
+                    { label: "KIOSK", val: form.kioskSales },
+                    { label: "Online", val: form.onlineSales },
+                    { label: "Purchases", val: form.purchases },
+                  ] as const).map((ch) => (
+                    <div key={ch.label} className="flex justify-between text-xs mb-0.5">
+                      <span className="text-gray-500">{ch.label}</span>
+                      <span className={`font-medium ${ch.val > 0 ? "text-gray-700" : "text-gray-300"}`}>{ch.val > 0 ? formatDKK(ch.val) : "—"}</span>
+                    </div>
+                  ))}
+                  <div className="flex justify-between mt-2 pt-1.5 text-sm font-bold" style={{ borderTop: "1px dashed #e5e7eb" }}>
+                    <span className="text-gray-600">Sales Total</span>
+                    <span className="text-brand">{formatDKK(totalSales)}</span>
+                  </div>
+                </button>
+
+                {/* Register section */}
+                <button onClick={() => goGroup("Register")} className="w-full text-left mb-1 active:bg-brand-50 rounded-lg -mx-1 px-1">
+                  <p className="text-[10px] text-brand font-bold uppercase tracking-wider mb-1.5">Register</p>
+                  <div className="flex justify-between text-xs mb-0.5">
+                    <span className="text-gray-500">Morning</span>
+                    <span className="text-gray-700 font-medium">{form.morningCash > 0 ? formatDKK(form.morningCash) : "—"}</span>
+                  </div>
+                  <div className="flex justify-between text-xs mb-0.5">
+                    <span className="text-gray-500">Evening</span>
+                    <span className="text-gray-700 font-medium">{form.eveningCash > 0 ? formatDKK(form.eveningCash) : "—"}</span>
+                  </div>
+                  <div className="flex justify-between mt-2 pt-1.5 text-sm font-bold" style={{ borderTop: "1px dashed #e5e7eb" }}>
+                    <span className="text-gray-600">Difference</span>
+                    <span className={discrepancy >= 0 ? "text-gray-700" : "text-red-500"}>{discrepancy >= 0 ? "+" : ""}{formatDKK(discrepancy)}</span>
+                  </div>
+                </button>
+              </div>
+
+              {/* Footer */}
+              <div className="px-5 py-3 text-center" style={{ borderTop: "1px dashed #e5e7eb" }}>
+                <p className="text-[10px] text-gray-300 tracking-wider">TAP ANY SECTION TO EDIT</p>
+              </div>
             </div>
             {error && <p className="text-sm text-red-400 mt-3 text-center">{error}</p>}
           </div>
