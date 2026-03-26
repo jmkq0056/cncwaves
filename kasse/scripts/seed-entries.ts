@@ -95,7 +95,8 @@ async function main() {
 
   for (const row of rows) {
     const date = parseDate(row["Dato"]);
-    if (!date || date.startsWith("1970")) {
+    const today = new Date().toLocaleDateString("sv-SE", { timeZone: "Europe/Copenhagen" });
+    if (!date || date.startsWith("1970") || date > today) {
       skipped++;
       continue;
     }
