@@ -16,48 +16,38 @@ type Entry = {
   eveningCash: number;
 };
 
-// Build a timeline: entries + gap markers interleaved
-type TimelineItem =
-  | { type: "entry"; entry: Entry }
-  | { type: "gap"; from: string; to: string; count: number };
+// An entry that covers a range of days (its date + any gap days before the next entry)
+type RangedEntry = Entry & { coversFrom: string; coversTo: string; daysCovered: number };
 
-function buildTimeline(entries: Entry[]): TimelineItem[] {
+function buildRangedEntries(entries: Entry[]): RangedEntry[] {
   if (entries.length === 0) return [];
   const sorted = [...entries].sort((a, b) => (b.date > a.date ? 1 : -1)); // newest first
-  const items: TimelineItem[] = [];
+  const result: RangedEntry[] = [];
 
   for (let i = 0; i < sorted.length; i++) {
-    items.push({ type: "entry", entry: sorted[i] });
-
+    const e = sorted[i];
+    // This entry's range: from the day after the previous (older) entry up to this entry's date
+    let coversFrom = e.date;
     if (i < sorted.length - 1) {
-      const current = new Date(sorted[i].date + "T12:00:00");
-      const next = new Date(sorted[i + 1].date + "T12:00:00");
-      const diffDays = Math.round((current.getTime() - next.getTime()) / 86400000) - 1;
-      if (diffDays > 0) {
-        // Gap between these two entries
-        const gapFrom = new Date(next);
-        gapFrom.setDate(gapFrom.getDate() + 1);
-        const gapTo = new Date(current);
-        gapTo.setDate(gapTo.getDate() - 1);
-        items.push({
-          type: "gap",
-          from: toDateStr(gapFrom),
-          to: toDateStr(gapTo),
-          count: diffDays,
-        });
+      const olderEntry = sorted[i + 1];
+      const olderDate = new Date(olderEntry.date + "T12:00:00");
+      const dayAfterOlder = new Date(olderDate);
+      dayAfterOlder.setDate(dayAfterOlder.getDate() + 1);
+      const dayAfterStr = toDateStr(dayAfterOlder);
+      if (dayAfterStr < e.date) {
+        coversFrom = dayAfterStr;
       }
     }
+    const daysCovered = Math.round(
+      (new Date(e.date + "T12:00:00").getTime() - new Date(coversFrom + "T12:00:00").getTime()) / 86400000
+    ) + 1;
+    result.push({ ...e, coversFrom, coversTo: e.date, daysCovered });
   }
-  return items;
+  return result;
 }
 
-function formatRange(from: string, to: string, count: number): string {
-  const opts: Intl.DateTimeFormatOptions = { day: "numeric", month: "short" };
-  const f = new Date(from + "T12:00:00").toLocaleDateString("da-DK", opts);
-  if (count === 1) return f;
-  const t = new Date(to + "T12:00:00").toLocaleDateString("da-DK", opts);
-  return `${f} — ${t}`;
-}
+const fmtDate = (d: string) => new Date(d + "T12:00:00").toLocaleDateString("da-DK", { weekday: "short", day: "numeric", month: "short" });
+const fmtShort = (d: string) => new Date(d + "T12:00:00").toLocaleDateString("da-DK", { day: "numeric", month: "short" });
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -95,7 +85,7 @@ export default function DashboardPage() {
   const last7 = entries.slice(0, 7);
   const weekTotal = last7.reduce((s, e) => s + computeTotalSales(e), 0);
   const weekAvg = last7.length > 0 ? Math.round(weekTotal / last7.length) : 0;
-  const timeline = buildTimeline(entries.slice(0, 20));
+  const ranged = buildRangedEntries(entries.slice(0, 20));
 
   return (
     <div className="p-4 md:p-6 max-w-2xl mx-auto">
@@ -171,47 +161,39 @@ export default function DashboardPage() {
         </div>
       )}
 
-      {/* Timeline — entries with gap markers */}
+      {/* Recent — entries shown as date ranges */}
       <div className="bg-white rounded-xl border border-gray-100">
         <div className="px-4 py-3 border-b">
           <p className="text-[10px] text-gray-800 uppercase font-semibold tracking-wide">Recent</p>
         </div>
-        {timeline.length === 0 ? (
+        {ranged.length === 0 ? (
           <p className="text-gray-800 text-sm text-center py-8">No entries yet</p>
         ) : (
           <div>
-            {timeline.map((item, i) => {
-              if (item.type === "gap") {
-                return (
-                  <button
-                    key={`gap-${item.from}`}
-                    onClick={() => router.push(`/entry?date=${item.from}`)}
-                    className="w-full flex items-center gap-3 px-4 py-2 bg-brand-50/50 border-y border-brand-100 text-left"
-                  >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-100 flex items-center justify-center">
-                      <span className="text-brand text-xs font-black">{item.count}</span>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-brand">
-                        {item.count === 1 ? "1 missing day" : `${item.count} missing days`}
-                      </p>
-                      <p className="text-[10px] text-brand-400">{formatRange(item.from, item.to, item.count)}</p>
-                    </div>
-                    <span className="ml-auto text-brand text-xs font-medium">Fill in</span>
-                  </button>
-                );
-              }
-              const e = item.entry;
+            {ranged.map((e) => {
               const total = computeTotalSales(e);
+              const isRange = e.daysCovered > 1;
               return (
                 <button key={e._id} onClick={() => router.push(`/entry?date=${e.date}`)} className="w-full flex items-center justify-between px-4 py-3 border-b border-gray-50 text-left">
                   <div>
-                    <p className="text-sm font-medium text-gray-800">
-                      {new Date(e.date + "T12:00:00").toLocaleDateString("da-DK", { weekday: "short", day: "numeric", month: "short" })}
-                    </p>
-                    <p className="text-[10px] text-gray-800">{e.employeeName || "—"}</p>
+                    {isRange ? (
+                      <>
+                        <p className="text-sm font-medium text-gray-800">
+                          {fmtShort(e.coversFrom)} — {fmtShort(e.coversTo)}
+                        </p>
+                        <p className="text-[10px] text-brand font-medium">{e.daysCovered} days</p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-sm font-medium text-gray-800">{fmtDate(e.date)}</p>
+                        <p className="text-[10px] text-gray-800">{e.employeeName || "—"}</p>
+                      </>
+                    )}
                   </div>
-                  <p className="text-sm font-bold text-gray-800">{formatDKK(total)}</p>
+                  <div className="text-right">
+                    <p className="text-sm font-bold text-gray-800">{formatDKK(total)}</p>
+                    {isRange && <p className="text-[10px] text-gray-800">{formatDKK(Math.round(total / e.daysCovered))}/day</p>}
+                  </div>
                 </button>
               );
             })}
