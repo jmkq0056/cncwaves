@@ -1,0 +1,187 @@
+{
+  "name": "Cold Drinks",
+  "slug": "cold-drinks",
+  "sort_order": 11,
+  "items": [
+    {
+      "name": "Pepsi",
+      "description": "Pepsi",
+      "price": 27.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752626/cnc-menu/cold-drinks/pepsi.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Pepsi Large",
+      "description": "Pepsi Large",
+      "price": 32.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752627/cnc-menu/cold-drinks/pepsi-large.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Pepsi Max",
+      "description": "Pepsi Max",
+      "price": 27.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752628/cnc-menu/cold-drinks/pepsi-max.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Pepsi Max Large",
+      "description": "Pepsi Max Large",
+      "price": 32.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752629/cnc-menu/cold-drinks/pepsi-max-large.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Faxe Kondi",
+      "description": "Faxe Kondi",
+      "price": 27.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752630/cnc-menu/cold-drinks/faxe-kondi.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Faxe Kondi  Large",
+      "description": "Faxe Kondi  Large",
+      "price": 32.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752631/cnc-menu/cold-drinks/faxe-kondi-large.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Faxe Kondi Zero",
+      "description": "Faxe Kondi Zero",
+      "price": 27.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752632/cnc-menu/cold-drinks/faxe-kondi-zero.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Faxe Kondi Zero Large",
+      "description": "Faxe Kondi Zero Large",
+      "price": 32.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752633/cnc-menu/cold-drinks/faxe-kondi-zero-large.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Faxe Kondi Appelsin",
+      "description": "Faxe Kondi Appelsin",
+      "price": 27.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752634/cnc-menu/cold-drinks/faxe-kondi-appelsin.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Faxe Kondi Appelsin Large",
+      "description": "Faxe Kondi Appelsin Large",
+      "price": 32.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752635/cnc-menu/cold-drinks/faxe-kondi-appelsin-large.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Mirinda lemon",
+      "description": "Mirinda lemon",
+      "price": 27.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752636/cnc-menu/cold-drinks/mirinda-lemon.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Mirinda lemon Large",
+      "description": "Mirinda lemon Large",
+      "price": 32.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752637/cnc-menu/cold-drinks/mirinda-lemon-large.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Kildevand 0.5l",
+      "description": "Kildevand 0.5l",
+      "price": 19.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752638/cnc-menu/cold-drinks/kildevand-0-5l.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Danskvand 0.5l",
+      "description": "Danskvand 0.5l",
+      "price": 25.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752638/cnc-menu/cold-drinks/danskvand-0-5l.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Faxe Kondi 1.5l",
+      "description": "Faxe Kondi 1.5l",
+      "price": 38.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752639/cnc-menu/cold-drinks/faxe-kondi-1-5l.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Pepsi Max 1.5l",
+      "description": "Pepsi Max 1.5l",
+      "price": 38.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752640/cnc-menu/cold-drinks/pepsi-max-1-5l.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Red Bull",
+      "description": "Red Bull",
+      "price": 29.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/d81640b6-1aa5-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752640/cnc-menu/cold-drinks/red-bull.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Capri-Sun",
+      "description": "Capri-Sun",
+      "price": 15.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752641/cnc-menu/cold-drinks/capri-sun.png",
+      "variants": [],
+      "addons": []
+    }
+  ]
+}

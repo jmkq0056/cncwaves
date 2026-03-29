@@ -1,0 +1,117 @@
+{
+  "name": "Beef Burger",
+  "slug": "beef-burger",
+  "sort_order": 1,
+  "items": [
+    {
+      "name": "O'ring Cheese Burger",
+      "description": "Oksebøf, cheddar, iceberg, onion rings, algérienne, brioche burgerbolle",
+      "price": 47.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/f71d38cd-25f2-11f0-82c8-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752451/cnc-menu/beef-burger/o-ring-cheese-burger.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "O'ring Cheese Burger Meal",
+      "description": "Oksebøf 56g, cheddar, iceberg, onion rings, algérienne, brioche burgerbolle\nPomfritter og sodavand",
+      "price": 74.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/a65d1b4d-1aa5-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752453/cnc-menu/beef-burger/o-ring-cheese-burger-meal.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Double Cheese Menu",
+      "description": "Dobbelt oksebøf, dobbelt cheddar, tomat, iceberg, biggy dressing",
+      "price": 77.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/dc482157-410c-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752454/cnc-menu/beef-burger/double-cheese-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Triple Cheese Burger Menu",
+      "description": "Tredobbelt oksebøf, tredobbelt cheddar, tomat, iceberg, biggy dressing",
+      "price": 84.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/34689dab-410d-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752456/cnc-menu/beef-burger/triple-cheese-burger-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Grand Beef Menu",
+      "description": "Stor oksebøf, dobbelt cheddar, tomat, iceberg, biggy dressing, brioche burgerbolle\nPomfritter og sodavand",
+      "price": 79.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/7b61b3c8-1aa5-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752458/cnc-menu/beef-burger/grand-beef-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Mega Beef Parmesan Menu",
+      "description": "Stor oksebøf, parmesan ost, tomat, iceberg, jalapeños, biggy dressing, brioche burgerbolle\nPomfritter og sodavand",
+      "price": 89.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/55e35137-1aa5-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752459/cnc-menu/beef-burger/mega-beef-parmesan-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Cheese Burger",
+      "description": "Oksebøf, cheddar, iceberg, mayonnaise, ketchup",
+      "price": 29.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/452c3965-33de-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752461/cnc-menu/beef-burger/cheese-burger.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Double Cheese",
+      "description": "Dobbelt oksebøf, dobbelt cheddar, tomat, iceberg, biggy dressing",
+      "price": 47.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/30953f82-33e1-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752463/cnc-menu/beef-burger/double-cheese.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Triple Cheese Burger",
+      "description": "Tredobbelt oksebøf, tredobbelt cheddar, tomat, iceberg, biggy dressing",
+      "price": 54.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/abc853b3-33e1-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752464/cnc-menu/beef-burger/triple-cheese-burger.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Grand Beef",
+      "description": "Stor oksebøf 113g, dobbelt cheddar, tomat, iceberg, biggy dressing, brioche burgerbolle",
+      "price": 54.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/31a4fa1f-1aa8-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752466/cnc-menu/beef-burger/grand-beef.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Mega Beef Parmesan",
+      "description": "Stor oksebøf 113g, parmesan ost, tomat, iceberg, jalapeños, biggy dressing, brioche burgerbolle",
+      "price": 64.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/16a2d611-1aa8-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752468/cnc-menu/beef-burger/mega-beef-parmesan.png",
+      "variants": [],
+      "addons": []
+    }
+  ]
+}

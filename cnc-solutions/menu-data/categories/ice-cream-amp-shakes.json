@@ -1,0 +1,67 @@
+{
+  "name": "Ice Cream & Shakes",
+  "slug": "ice-cream-amp-shakes",
+  "sort_order": 10,
+  "items": [
+    {
+      "name": "SUNDAE - Karamel Toffee",
+      "description": "SUNDAE - Karamel Toffee",
+      "price": 29.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/bd13c6f1-93d9-11ef-a967-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752620/cnc-menu/ice-cream-amp-shakes/sundae-karamel-toffee.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "SUNDAE - Jordbær",
+      "description": "SUNDAE - Jordbær",
+      "price": 29.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/4b311825-93d9-11ef-a967-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752621/cnc-menu/ice-cream-amp-shakes/sundae-jordbaer.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "SUNDAE - Chokolade",
+      "description": "SUNDAE - Chokolade",
+      "price": 29.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/42438547-93d9-11ef-a967-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752622/cnc-menu/ice-cream-amp-shakes/sundae-chokolade.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "SUNDAE - Vanilje",
+      "description": "SUNDAE - Vanilje",
+      "price": 29.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/3039c276-93d9-11ef-a967-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752623/cnc-menu/ice-cream-amp-shakes/sundae-vanilje.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "SUNDAE - Oreo",
+      "description": "SUNDAE - Oreo",
+      "price": 29.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/26c40977-93d9-11ef-a967-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752624/cnc-menu/ice-cream-amp-shakes/sundae-oreo.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "SUNDAE - Smartis",
+      "description": "SUNDAE - Smartis",
+      "price": 29.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/39862163-93d9-11ef-a967-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752625/cnc-menu/ice-cream-amp-shakes/sundae-smartis.png",
+      "variants": [],
+      "addons": []
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "name": "Vegi's & Salad",
+  "slug": "vegi-s-amp-salad",
+  "sort_order": 3,
+  "items": [
+    {
+      "name": "Veggie Salad",
+      "description": "Iceberg, tomat, fetaost, gulerod, jalapeños, rødløg, rucola, grøn oliven",
+      "price": 69.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/9628a1fc-33e4-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752512/cnc-menu/vegi-s-amp-salad/veggie-salad.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Strips Salad",
+      "description": "Frisk paneret kyllingefilet, iceberg, tomat, fetaost, gulerod, jalapeños, grøn oliven",
+      "price": 79.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/e0766e60-33f2-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752513/cnc-menu/vegi-s-amp-salad/chicken-strips-salad.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Tikka Salad",
+      "description": "Grillet tandoorimarineret kyllingefilet, iceberg, tomat, fetaost, gulerod, jalapeños, grøn oliven",
+      "price": 79.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/75ca058e-33f2-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752514/cnc-menu/vegi-s-amp-salad/chicken-tikka-salad.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Corn",
+      "description": "Corn",
+      "price": 20.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/08aa2e05-1aa9-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752515/cnc-menu/vegi-s-amp-salad/corn.png",
+      "variants": [],
+      "addons": []
+    }
+  ]
+}

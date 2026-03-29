@@ -1,0 +1,1589 @@
+{
+  "restaurant": {
+    "name": "Chicken N Chicken",
+    "address": "Over Bølgen 3, st. 1, 2670 Greve",
+    "phone": "+4550507179",
+    "cvr": "36019336",
+    "scraped_at": "2026-03-29T02:50:42.044725+00:00",
+    "source": "yammi.dk/chickennchickenwaves"
+  },
+  "categories": [
+    {
+      "name": "Beef Burger",
+      "slug": "beef-burger",
+      "sort_order": 1,
+      "items": [
+        {
+          "name": "O'ring Cheese Burger",
+          "description": "Oksebøf, cheddar, iceberg, onion rings, algérienne, brioche burgerbolle",
+          "price": 47.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/f71d38cd-25f2-11f0-82c8-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752451/cnc-menu/beef-burger/o-ring-cheese-burger.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "O'ring Cheese Burger Meal",
+          "description": "Oksebøf 56g, cheddar, iceberg, onion rings, algérienne, brioche burgerbolle\nPomfritter og sodavand",
+          "price": 74.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/a65d1b4d-1aa5-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752453/cnc-menu/beef-burger/o-ring-cheese-burger-meal.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Double Cheese Menu",
+          "description": "Dobbelt oksebøf, dobbelt cheddar, tomat, iceberg, biggy dressing",
+          "price": 77.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/dc482157-410c-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752454/cnc-menu/beef-burger/double-cheese-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Triple Cheese Burger Menu",
+          "description": "Tredobbelt oksebøf, tredobbelt cheddar, tomat, iceberg, biggy dressing",
+          "price": 84.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/34689dab-410d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752456/cnc-menu/beef-burger/triple-cheese-burger-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Grand Beef Menu",
+          "description": "Stor oksebøf, dobbelt cheddar, tomat, iceberg, biggy dressing, brioche burgerbolle\nPomfritter og sodavand",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/7b61b3c8-1aa5-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752458/cnc-menu/beef-burger/grand-beef-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Mega Beef Parmesan Menu",
+          "description": "Stor oksebøf, parmesan ost, tomat, iceberg, jalapeños, biggy dressing, brioche burgerbolle\nPomfritter og sodavand",
+          "price": 89.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/55e35137-1aa5-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752459/cnc-menu/beef-burger/mega-beef-parmesan-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Cheese Burger",
+          "description": "Oksebøf, cheddar, iceberg, mayonnaise, ketchup",
+          "price": 29.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/452c3965-33de-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752461/cnc-menu/beef-burger/cheese-burger.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Double Cheese",
+          "description": "Dobbelt oksebøf, dobbelt cheddar, tomat, iceberg, biggy dressing",
+          "price": 47.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/30953f82-33e1-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752463/cnc-menu/beef-burger/double-cheese.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Triple Cheese Burger",
+          "description": "Tredobbelt oksebøf, tredobbelt cheddar, tomat, iceberg, biggy dressing",
+          "price": 54.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/abc853b3-33e1-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752464/cnc-menu/beef-burger/triple-cheese-burger.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Grand Beef",
+          "description": "Stor oksebøf 113g, dobbelt cheddar, tomat, iceberg, biggy dressing, brioche burgerbolle",
+          "price": 54.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/31a4fa1f-1aa8-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752466/cnc-menu/beef-burger/grand-beef.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Mega Beef Parmesan",
+          "description": "Stor oksebøf 113g, parmesan ost, tomat, iceberg, jalapeños, biggy dressing, brioche burgerbolle",
+          "price": 64.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/16a2d611-1aa8-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752468/cnc-menu/beef-burger/mega-beef-parmesan.png",
+          "variants": [],
+          "addons": []
+        }
+      ]
+    },
+    {
+      "name": "Chicken & Fish Burgers",
+      "slug": "chicken-amp-fish-burgers",
+      "sort_order": 2,
+      "items": [
+        {
+          "name": "Chuckle Chickpea",
+          "description": "Vegetarbøf, tomat, iceberg, tahini dressing, brioche burgerbolle",
+          "price": 54.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/4a2f0510-25f4-11f0-82c8-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752469/cnc-menu/chicken-amp-fish-burgers/chuckle-chickpea.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chuckle Chickpea Menu",
+          "description": "Vegetarbøf, tomat, iceberg, tahini dressing, brioche burgerbolle",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/276d414a-25f4-11f0-82c8-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752470/cnc-menu/chicken-amp-fish-burgers/chuckle-chickpea-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Royal Menu",
+          "description": "Frisk paneret kyllingefilet, cheddar, hash brown kartoffel, iceberg, mayonnaise",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/82bdb72f-410f-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752474/cnc-menu/chicken-amp-fish-burgers/chicken-royal-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Special Menu",
+          "description": "Frisk paneret kyllingefilet, iceberg, mayonnaise",
+          "price": 77.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/fe75fcfa-410f-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752476/cnc-menu/chicken-amp-fish-burgers/chicken-special-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Naan Grill Tikka Menu",
+          "description": "Grillet tandoorimarineret kyllingefilet, grillet løg, tomat, iceberg, algérienne dressing",
+          "price": 94.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/133ce5a9-4111-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752483/cnc-menu/chicken-amp-fish-burgers/naan-grill-tikka-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Big Chicken Menu",
+          "description": "Grillet citronmarineret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise, sesam bolle\nPomfritter og sodavand",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/2f2d1b81-1aa5-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752484/cnc-menu/chicken-amp-fish-burgers/big-chicken-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Tikka Burger Menu",
+          "description": "Grillet tandoorimarineret kyllingefilet, cheddar, iceberg, mayonnaise",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/90daf7c1-4110-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752486/cnc-menu/chicken-amp-fish-burgers/tikka-burger-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Texas Crispy Chicken Menu",
+          "description": "Frisk paneret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise",
+          "price": 89.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/92b64d1f-1aa4-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752488/cnc-menu/chicken-amp-fish-burgers/texas-crispy-chicken-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Tikka Baguette Menu",
+          "description": "Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise",
+          "price": 89.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/6468c8ad-4111-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752489/cnc-menu/chicken-amp-fish-burgers/tikka-baguette-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Baguette Menu",
+          "description": "Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise",
+          "price": 89.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/3dfd8bd3-4111-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752492/cnc-menu/chicken-amp-fish-burgers/chicken-baguette-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Mega Chicken Parmesan Menu",
+          "description": "<span title=\"Grillet citronmarineret kyllingefilet, parmesan ost, tomat, iceberg, jalapeños, mayonnaise, brioche burgerbolle\nPomfritter og sodavand\">Grillet citronmarineret kyllingefilet, parmesan ost, tomat, iceberg, jalapeños, mayonnaise, brioche burgerbolle\nPomfritter og s...</span>",
+          "price": 89.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/c5ec528e-1aa4-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752494/cnc-menu/chicken-amp-fish-burgers/mega-chicken-parmesan-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Fishy De Fish Menu",
+          "description": "Frisk paneret fiskefilet, cheddar, iceberg, fiske dressing",
+          "price": 78.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/b260216c-4111-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752495/cnc-menu/chicken-amp-fish-burgers/fishy-de-fish-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Royal",
+          "description": "Frisk paneret kyllingefilet, cheddar, hash brown kartoffel, iceberg, mayonnaise",
+          "price": 49.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/6e8f0952-33e2-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752496/cnc-menu/chicken-amp-fish-burgers/chicken-royal.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Special",
+          "description": "Frisk paneret kyllingefilet, iceberg, mayonnaise",
+          "price": 47.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/e233bbab-33e2-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752500/cnc-menu/chicken-amp-fish-burgers/chicken-special.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Naan Grill Tikka",
+          "description": "Grillet tandoorimarineret kyllingefilet, grillet løg, tomat, iceberg, algérienne dressing",
+          "price": 64.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/b0e34505-33e3-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752501/cnc-menu/chicken-amp-fish-burgers/naan-grill-tikka.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Big Chicken",
+          "description": "Grillet citronmarineret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise, sesam bolle",
+          "price": 54.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/f4674d2a-1aa7-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752502/cnc-menu/chicken-amp-fish-burgers/big-chicken.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Tikka Burger",
+          "description": "Grillet tandoorimarineret kyllingefilet, cheddar, iceberg, mayonnaise",
+          "price": 54.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/4f8cf2f3-33e3-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752503/cnc-menu/chicken-amp-fish-burgers/tikka-burger.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Texas Crispy Chicken",
+          "description": "Frisk paneret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise",
+          "price": 59.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/9d761a61-1aa7-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752505/cnc-menu/chicken-amp-fish-burgers/texas-crispy-chicken.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Tikka Baguette",
+          "description": "Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise",
+          "price": 59.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/f90d6f17-33e3-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752506/cnc-menu/chicken-amp-fish-burgers/tikka-baguette.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Baguette",
+          "description": "Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise",
+          "price": 59.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/d5ce83ef-33e3-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752507/cnc-menu/chicken-amp-fish-burgers/chicken-baguette.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Mega Chicken Parmesan",
+          "description": "Grillet citronmarineret kyllingefilet, parmesan ost, tomat, iceberg, jalapeños, mayonnaise, brioche burgerbolle",
+          "price": 64.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/d60ba424-1aa7-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752509/cnc-menu/chicken-amp-fish-burgers/mega-chicken-parmesan.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Fishy De Fish",
+          "description": "Frisk paneret fiskefilet, cheddar, iceberg, fiske dressing",
+          "price": 48.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/5c0690d2-33e4-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752510/cnc-menu/chicken-amp-fish-burgers/fishy-de-fish.png",
+          "variants": [],
+          "addons": []
+        }
+      ]
+    },
+    {
+      "name": "Vegi's & Salad",
+      "slug": "vegi-s-amp-salad",
+      "sort_order": 3,
+      "items": [
+        {
+          "name": "Veggie Salad",
+          "description": "Iceberg, tomat, fetaost, gulerod, jalapeños, rødløg, rucola, grøn oliven",
+          "price": 69.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/9628a1fc-33e4-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752512/cnc-menu/vegi-s-amp-salad/veggie-salad.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Strips Salad",
+          "description": "Frisk paneret kyllingefilet, iceberg, tomat, fetaost, gulerod, jalapeños, grøn oliven",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/e0766e60-33f2-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752513/cnc-menu/vegi-s-amp-salad/chicken-strips-salad.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Tikka Salad",
+          "description": "Grillet tandoorimarineret kyllingefilet, iceberg, tomat, fetaost, gulerod, jalapeños, grøn oliven",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/75ca058e-33f2-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752514/cnc-menu/vegi-s-amp-salad/chicken-tikka-salad.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Corn",
+          "description": "Corn",
+          "price": 20.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/08aa2e05-1aa9-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752515/cnc-menu/vegi-s-amp-salad/corn.png",
+          "variants": [],
+          "addons": []
+        }
+      ]
+    },
+    {
+      "name": "Wraps & Tacos",
+      "slug": "wraps-amp-tacos",
+      "sort_order": 4,
+      "items": [
+        {
+          "name": "Taco M Menu",
+          "description": "Pålæg, fromage smørrelse, pomfritter\n1 stk. pålæg efter eget valg. inkl. pomfritter + sodavand",
+          "price": 89.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/f5d66e14-1aa4-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752516/cnc-menu/wraps-amp-tacos/taco-m-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Taco L Menu",
+          "description": "Pålæg, fromage smørrelse, pomfritter\n2 stk. pålæg efter eget valg. inkl. pomfritter + sodavand",
+          "price": 99.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/f5d66e14-1aa4-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752517/cnc-menu/wraps-amp-tacos/taco-l-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Taco XL Menu",
+          "description": "Pålæg, fromage smørrelse, pomfritter\n3 stk. pålæg efter eget valg. inkl. pomfritter + sodavand",
+          "price": 109.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/f5d66e14-1aa4-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752518/cnc-menu/wraps-amp-tacos/taco-xl-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Fillet Wrap Menu",
+          "description": "Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/d3ef41cc-4123-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752519/cnc-menu/wraps-amp-tacos/chicken-fillet-wrap-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Tikka Wrap Menu",
+          "description": "Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/05f3a7fb-4124-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752520/cnc-menu/wraps-amp-tacos/chicken-tikka-wrap-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Kebab Wrap Menu",
+          "description": "Kyllinge shawarma, løg, tomat, iceberg, kebab dressing",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/2b8cb8aa-4124-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752522/cnc-menu/wraps-amp-tacos/kebab-wrap-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Taco M",
+          "description": "",
+          "price": 59.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/7265988a-1aa6-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752523/cnc-menu/wraps-amp-tacos/taco-m.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Taco L",
+          "description": "",
+          "price": 69.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/7265988a-1aa6-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752524/cnc-menu/wraps-amp-tacos/taco-l.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Taco XL",
+          "description": "",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/7265988a-1aa6-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752524/cnc-menu/wraps-amp-tacos/taco-xl.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Fillet Wrap",
+          "description": "Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise",
+          "price": 59.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/2d9f31e0-33f3-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752526/cnc-menu/wraps-amp-tacos/chicken-fillet-wrap.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chicken Tikka Wrap",
+          "description": "Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise",
+          "price": 59.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/b960545e-33f3-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752527/cnc-menu/wraps-amp-tacos/chicken-tikka-wrap.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Kebab Wrap",
+          "description": "Kyllinge shawarma, løg, tomat, iceberg, kebab dressing",
+          "price": 59.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/86dcf2c4-33f3-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752528/cnc-menu/wraps-amp-tacos/kebab-wrap.png",
+          "variants": [],
+          "addons": []
+        }
+      ]
+    },
+    {
+      "name": "Family & Social Bucket",
+      "slug": "family-amp-social-bucket",
+      "sort_order": 5,
+      "items": [
+        {
+          "name": "Family 1",
+          "description": "10 stk. Drumsticks",
+          "price": 249.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/b7a5db3a-36f3-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752530/cnc-menu/family-amp-social-bucket/family-1.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Family 2",
+          "description": "6 stk. Drumsticks + 12 stk. Hot Spicy Wings",
+          "price": 259.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/08c4c7dc-36f4-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752531/cnc-menu/family-amp-social-bucket/family-2.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Family 3",
+          "description": "4 stk. Drumsticks + 16 stk. Hot Spicy Wings + 10 stk. Chicken Strips",
+          "price": 269.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/b29632a2-36f4-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752532/cnc-menu/family-amp-social-bucket/family-3.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Family 4",
+          "description": "24 stk. Hot Spicy Wings",
+          "price": 229.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/e7552286-36f4-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752533/cnc-menu/family-amp-social-bucket/family-4.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Family 5",
+          "description": "15 stk. Chicken Strips + 22 stk. Hot Spicy Wings",
+          "price": 299.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/bd82a30f-36f5-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752535/cnc-menu/family-amp-social-bucket/family-5.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Family 6",
+          "description": "22 stk. Chicken Strips",
+          "price": 229.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/e47b5968-36f5-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752536/cnc-menu/family-amp-social-bucket/family-6.png",
+          "variants": [],
+          "addons": []
+        }
+      ]
+    },
+    {
+      "name": "Chicken N Chicken",
+      "slug": "chicken-n-chicken",
+      "sort_order": 6,
+      "items": [
+        {
+          "name": "2 stk. Chicken Drumstick Menu",
+          "description": "<span title=\"Kyllingestykker håndpaneret i den unikke &quot;Chicken n Chicken&quot; panering.\nVores kyllingestykker er håndpanerede med vores blanding af 9 krydderier\">Kyllingestykker håndpaneret i den unikke \"Chicken n Chicken\" panering.\nVores kyllingestykker er håndpanerede med vores blanding...</span>",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/e208e3de-4125-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752537/cnc-menu/chicken-n-chicken/2-stk-chicken-drumstick-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "3 stk. Chicken Drumsticks Menu",
+          "description": "<span title=\"Kyllingestykker håndpaneret i den unikke &quot;Chicken n Chicken&quot; panering.\nVores kyllingestykker er håndpanerede med vores blanding af 9 krydderier\">Kyllingestykker håndpaneret i den unikke \"Chicken n Chicken\" panering.\nVores kyllingestykker er håndpanerede med vores blanding...</span>",
+          "price": 95.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/0edf600d-4126-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752539/cnc-menu/chicken-n-chicken/3-stk-chicken-drumsticks-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "8 stk. Hot Spicy Wings Menu",
+          "description": "Kyllingevinger, som er marineret i en krydret chili-marinade.",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/a6f39364-4128-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752540/cnc-menu/chicken-n-chicken/8-stk-hot-spicy-wings-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "12 stk. Hot Spicy Wings Menu",
+          "description": "Kyllingevinger, som er marineret i en krydret chili-marinade.",
+          "price": 112.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/d42623b4-4128-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752541/cnc-menu/chicken-n-chicken/12-stk-hot-spicy-wings-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "6 stk. Chicken Strips Menu",
+          "description": "Kyllingefileter, håndpaneret i \"Chicken N Chicken\" paneringen",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/084a6fdf-4129-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752542/cnc-menu/chicken-n-chicken/6-stk-chicken-strips-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "6 stk. Chicken Tikka Menu",
+          "description": "Kyllingefileter, håndpaneret i \"Chicken N Chicken\" paneringen",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/2b9321a8-4129-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752544/cnc-menu/chicken-n-chicken/6-stk-chicken-tikka-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "6 stk. Chicken Nuggets Menu",
+          "description": "Gyldne og sprøde nuggets er perfekte til både børn og voksne",
+          "price": 64.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/a63c6785-412b-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752545/cnc-menu/chicken-n-chicken/6-stk-chicken-nuggets-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "10 stk. Chicken Nuggets Menu",
+          "description": "Gyldne og sprøde nuggets er perfekte til både børn og voksne",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/d8c88eb6-412b-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752546/cnc-menu/chicken-n-chicken/10-stk-chicken-nuggets-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "15 stk. Chicken Nuggets Menu",
+          "description": "Gyldne og sprøde nuggets er perfekte til både børn og voksne",
+          "price": 102.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/d8c88eb6-412b-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752547/cnc-menu/chicken-n-chicken/15-stk-chicken-nuggets-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "20 stk. Chicken Nuggets Menu",
+          "description": "Gyldne og sprøde nuggets er perfekte til både børn og voksne",
+          "price": 119.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/d8c88eb6-412b-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752548/cnc-menu/chicken-n-chicken/20-stk-chicken-nuggets-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "12 stk. Chicken Pop Corn Menu",
+          "description": "",
+          "price": 89.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/626c848f-412c-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752549/cnc-menu/chicken-n-chicken/12-stk-chicken-pop-corn-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "20 stk. Chicken Pop Corn Menu",
+          "description": "",
+          "price": 109.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/626c848f-412c-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752550/cnc-menu/chicken-n-chicken/20-stk-chicken-pop-corn-menu.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "1 stk. Chicken Drumstick",
+          "description": "",
+          "price": 24.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/034839f5-340a-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752551/cnc-menu/chicken-n-chicken/1-stk-chicken-drumstick.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "2 stk. Chicken Drumsticks",
+          "description": "",
+          "price": 42.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/fe58139c-340a-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752552/cnc-menu/chicken-n-chicken/2-stk-chicken-drumsticks.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "3 stk. Chicken Drumsticks",
+          "description": "",
+          "price": 59.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/47592a84-340c-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752553/cnc-menu/chicken-n-chicken/3-stk-chicken-drumsticks.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "4 stk. Chicken Drumsticks",
+          "description": "",
+          "price": 77.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/660cd021-340c-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752554/cnc-menu/chicken-n-chicken/4-stk-chicken-drumsticks.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "5 stk. Chicken Drumsticks",
+          "description": "",
+          "price": 89.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/7b919b89-340c-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752556/cnc-menu/chicken-n-chicken/5-stk-chicken-drumsticks.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "6 stk. Chicken Drumsticks",
+          "description": "",
+          "price": 109.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/906b24e8-340c-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752557/cnc-menu/chicken-n-chicken/6-stk-chicken-drumsticks.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "8 stk. Hot Spicy Wings",
+          "description": "",
+          "price": 52.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/d6882d7f-340c-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752559/cnc-menu/chicken-n-chicken/8-stk-hot-spicy-wings.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "12 stk. Hot Spicy Wings",
+          "description": "",
+          "price": 82.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/08d6f5d8-340d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752560/cnc-menu/chicken-n-chicken/12-stk-hot-spicy-wings.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "17 stk. Hot Spicy Wings",
+          "description": "",
+          "price": 112.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/2b719b39-340d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752561/cnc-menu/chicken-n-chicken/17-stk-hot-spicy-wings.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "22 stk. Hot Spicy Wings",
+          "description": "",
+          "price": 142.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/47efb9a6-340d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752563/cnc-menu/chicken-n-chicken/22-stk-hot-spicy-wings.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "6 stk. Chicken Strips",
+          "description": "",
+          "price": 52.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/78a67aa7-340d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752564/cnc-menu/chicken-n-chicken/6-stk-chicken-strips.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "10 stk. Chicken Strips",
+          "description": "",
+          "price": 89.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/92617a9b-340d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752565/cnc-menu/chicken-n-chicken/10-stk-chicken-strips.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "6 stk. Chicken Tikka",
+          "description": "",
+          "price": 59.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/b4fe2e79-340d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752566/cnc-menu/chicken-n-chicken/6-stk-chicken-tikka.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "6 stk. Chicken Nuggets",
+          "description": "",
+          "price": 34.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/047b878b-340e-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752567/cnc-menu/chicken-n-chicken/6-stk-chicken-nuggets.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "10 stk. Chicken Nuggets",
+          "description": "",
+          "price": 49.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/047b878b-340e-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752568/cnc-menu/chicken-n-chicken/10-stk-chicken-nuggets.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "15 stk. Chicken Nuggets",
+          "description": "",
+          "price": 72.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/047b878b-340e-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752569/cnc-menu/chicken-n-chicken/15-stk-chicken-nuggets.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "20 stk. Chicken Nuggets",
+          "description": "",
+          "price": 94.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/047b878b-340e-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752570/cnc-menu/chicken-n-chicken/20-stk-chicken-nuggets.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "6 stk. Chicken Pop Corn",
+          "description": "",
+          "price": 39.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/1c78ed8d-36ee-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752571/cnc-menu/chicken-n-chicken/6-stk-chicken-pop-corn.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "12 stk. Chicken Pop Corn",
+          "description": "",
+          "price": 59.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/1c78ed8d-36ee-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752572/cnc-menu/chicken-n-chicken/12-stk-chicken-pop-corn.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "20 stk. Chicken Pop Corn",
+          "description": "",
+          "price": 79.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/1c78ed8d-36ee-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752573/cnc-menu/chicken-n-chicken/20-stk-chicken-pop-corn.png",
+          "variants": [],
+          "addons": []
+        }
+      ]
+    },
+    {
+      "name": "Kids Meal",
+      "slug": "kids-meal",
+      "sort_order": 7,
+      "items": [
+        {
+          "name": "Kids Meal 1 - Hamburger",
+          "description": "Hamburger indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets",
+          "price": 45.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/089aa43b-446e-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752575/cnc-menu/kids-meal/kids-meal-1-hamburger.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Kids Meal 2 - Chicken Strips 2 Stk.",
+          "description": "Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets",
+          "price": 45.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/92580f44-93da-11ef-a967-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752576/cnc-menu/kids-meal/kids-meal-2-chicken-strips-2-stk.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Kids Meal 3 - 5 stk. Chicken Pop Corn",
+          "description": "Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets",
+          "price": 45.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/eff79655-446d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752577/cnc-menu/kids-meal/kids-meal-3-5-stk-chicken-pop-corn.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Kids Meal 4 - 4 stk. Chicken Nuggets",
+          "description": "Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets",
+          "price": 45.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/db9574b5-446d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752578/cnc-menu/kids-meal/kids-meal-4-4-stk-chicken-nuggets.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Kids Meal 5 - 1 stk. Drumstick",
+          "description": "Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets",
+          "price": 45.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/c85cc163-446d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752580/cnc-menu/kids-meal/kids-meal-5-1-stk-drumstick.png",
+          "variants": [],
+          "addons": []
+        }
+      ]
+    },
+    {
+      "name": "Sides & Dips",
+      "slug": "sides-amp-dips",
+      "sort_order": 8,
+      "items": [
+        {
+          "name": "Pommes Frites (medium)",
+          "description": "Pommes Frites (medium)",
+          "price": 27.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/b1fb9f22-36fa-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752581/cnc-menu/sides-amp-dips/pommes-frites-medium.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Pommes Frites (large)",
+          "description": "Pommes Frites (large)",
+          "price": 32.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/2cb57aef-36fb-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752582/cnc-menu/sides-amp-dips/pommes-frites-large.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Potatoes Wedges",
+          "description": "Potatoes Wedges",
+          "price": 33.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/619bcb7f-3702-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752583/cnc-menu/sides-amp-dips/potatoes-wedges.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Frites Spirales",
+          "description": "Frites Spirales",
+          "price": 33.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/b7a5a7e0-3703-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752584/cnc-menu/sides-amp-dips/frites-spirales.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Frites Dippers",
+          "description": "Frites Dippers",
+          "price": 33.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/f3131843-3703-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752585/cnc-menu/sides-amp-dips/frites-dippers.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "6 Onion Rings",
+          "description": "6 Onion Rings",
+          "price": 33.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/18cfc77a-3704-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752588/cnc-menu/sides-amp-dips/6-onion-rings.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "10 Chili Cheese Nuggets",
+          "description": "10 Chili Cheese Nuggets",
+          "price": 34.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/5f67d407-3704-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752589/cnc-menu/sides-amp-dips/10-chili-cheese-nuggets.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "6 Mozzarella Sticks",
+          "description": "6 Mozzarella Sticks",
+          "price": 34.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/a8d3027a-3704-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752590/cnc-menu/sides-amp-dips/6-mozzarella-sticks.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "12 Cream Cheese Nuggets",
+          "description": "12 Cream Cheese Nuggets",
+          "price": 34.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/5ec3b1d2-3d7f-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752592/cnc-menu/sides-amp-dips/12-cream-cheese-nuggets.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Ketchup 25g",
+          "description": "",
+          "price": 6.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/9fdc5911-4129-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752593/cnc-menu/sides-amp-dips/ketchup-25g.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Mayonnaise 25g",
+          "description": "",
+          "price": 6.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/b2123eb5-4129-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752594/cnc-menu/sides-amp-dips/mayonnaise-25g.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Barbecue 25g",
+          "description": "",
+          "price": 6.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/c32d34bc-4129-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752595/cnc-menu/sides-amp-dips/barbecue-25g.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Honey Mustard 25g",
+          "description": "",
+          "price": 6.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/d04af4e2-4129-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752596/cnc-menu/sides-amp-dips/honey-mustard-25g.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Sweet & Sour 25g",
+          "description": "",
+          "price": 6.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/dd51bc8f-4129-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752597/cnc-menu/sides-amp-dips/sweet-sour-25g.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Pomfrit Sauce 25g",
+          "description": "",
+          "price": 6.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/55874d50-1aa4-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752599/cnc-menu/sides-amp-dips/pomfrit-sauce-25g.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Curry Mango 25g",
+          "description": "",
+          "price": 6.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/f5de1a7f-4129-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752600/cnc-menu/sides-amp-dips/curry-mango-25g.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Peri Peri 30ml",
+          "description": "",
+          "price": 6.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/5922e0f5-412a-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752601/cnc-menu/sides-amp-dips/peri-peri-30ml.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Algérienne 10g",
+          "description": "",
+          "price": 4.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/31c6bfce-412a-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752602/cnc-menu/sides-amp-dips/algerienne-10g.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Biggy Burger 10g",
+          "description": "",
+          "price": 4.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/3d669439-412a-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752604/cnc-menu/sides-amp-dips/biggy-burger-10g.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Ketchup 10g",
+          "description": "",
+          "price": 4.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/65d0407a-412a-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752606/cnc-menu/sides-amp-dips/ketchup-10g.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Mayonnaise 10g",
+          "description": "",
+          "price": 4.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/70970412-412a-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752607/cnc-menu/sides-amp-dips/mayonnaise-10g.png",
+          "variants": [],
+          "addons": []
+        }
+      ]
+    },
+    {
+      "name": "Coffee & Cake",
+      "slug": "coffee-amp-cake",
+      "sort_order": 9,
+      "items": [
+        {
+          "name": "Americano",
+          "description": "Americano",
+          "price": 20.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/a0425b05-370b-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752608/cnc-menu/coffee-amp-cake/americano.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Tea",
+          "description": "Tea",
+          "price": 20.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/18169663-370c-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752608/cnc-menu/coffee-amp-cake/tea.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Cappuccino",
+          "description": "Cappuccino",
+          "price": 25.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/3f49f1c6-370c-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752609/cnc-menu/coffee-amp-cake/cappuccino.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Caffe latte",
+          "description": "Caffe latte",
+          "price": 25.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/6bfb00d0-370c-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752610/cnc-menu/coffee-amp-cake/caffe-latte.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Varm kakao",
+          "description": "Varm kakao",
+          "price": 25.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/83679a14-93d9-11ef-a967-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752611/cnc-menu/coffee-amp-cake/varm-kakao.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Flat white",
+          "description": "Flat white",
+          "price": 25.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/250ae310-370d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752612/cnc-menu/coffee-amp-cake/flat-white.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Cortador",
+          "description": "Cortador",
+          "price": 25.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/591ad095-370d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752612/cnc-menu/coffee-amp-cake/cortador.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Is latte - Vanilla",
+          "description": "Is latte - Vanilla",
+          "price": 32.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/771ebab8-370d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752613/cnc-menu/coffee-amp-cake/is-latte-vanilla.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Is latte - Caramel",
+          "description": "",
+          "price": 32.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/771ebab8-370d-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752614/cnc-menu/coffee-amp-cake/is-latte-caramel.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Espresso dobbelt",
+          "description": "Espresso dobbelt",
+          "price": 20.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/e3d96d8e-370b-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752615/cnc-menu/coffee-amp-cake/espresso-dobbelt.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Tiramisu - Chocolate",
+          "description": "Tiramisu - Chocolate",
+          "price": 29.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/136ef9ee-4134-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752617/cnc-menu/coffee-amp-cake/tiramisu-chocolate.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Tiramisu - Caramel",
+          "description": "Tiramisu - Caramel",
+          "price": 29.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/3a7a0396-4134-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752618/cnc-menu/coffee-amp-cake/tiramisu-caramel.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Chocolate Muffin",
+          "description": "Chocolate muffin",
+          "price": 19.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/26020232-4134-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752619/cnc-menu/coffee-amp-cake/chocolate-muffin.png",
+          "variants": [],
+          "addons": []
+        }
+      ]
+    },
+    {
+      "name": "Ice Cream & Shakes",
+      "slug": "ice-cream-amp-shakes",
+      "sort_order": 10,
+      "items": [
+        {
+          "name": "SUNDAE - Karamel Toffee",
+          "description": "SUNDAE - Karamel Toffee",
+          "price": 29.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/bd13c6f1-93d9-11ef-a967-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752620/cnc-menu/ice-cream-amp-shakes/sundae-karamel-toffee.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "SUNDAE - Jordbær",
+          "description": "SUNDAE - Jordbær",
+          "price": 29.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/4b311825-93d9-11ef-a967-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752621/cnc-menu/ice-cream-amp-shakes/sundae-jordbaer.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "SUNDAE - Chokolade",
+          "description": "SUNDAE - Chokolade",
+          "price": 29.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/42438547-93d9-11ef-a967-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752622/cnc-menu/ice-cream-amp-shakes/sundae-chokolade.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "SUNDAE - Vanilje",
+          "description": "SUNDAE - Vanilje",
+          "price": 29.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/3039c276-93d9-11ef-a967-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752623/cnc-menu/ice-cream-amp-shakes/sundae-vanilje.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "SUNDAE - Oreo",
+          "description": "SUNDAE - Oreo",
+          "price": 29.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/26c40977-93d9-11ef-a967-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752624/cnc-menu/ice-cream-amp-shakes/sundae-oreo.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "SUNDAE - Smartis",
+          "description": "SUNDAE - Smartis",
+          "price": 29.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/39862163-93d9-11ef-a967-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752625/cnc-menu/ice-cream-amp-shakes/sundae-smartis.png",
+          "variants": [],
+          "addons": []
+        }
+      ]
+    },
+    {
+      "name": "Cold Drinks",
+      "slug": "cold-drinks",
+      "sort_order": 11,
+      "items": [
+        {
+          "name": "Pepsi",
+          "description": "Pepsi",
+          "price": 27.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752626/cnc-menu/cold-drinks/pepsi.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Pepsi Large",
+          "description": "Pepsi Large",
+          "price": 32.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752627/cnc-menu/cold-drinks/pepsi-large.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Pepsi Max",
+          "description": "Pepsi Max",
+          "price": 27.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752628/cnc-menu/cold-drinks/pepsi-max.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Pepsi Max Large",
+          "description": "Pepsi Max Large",
+          "price": 32.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752629/cnc-menu/cold-drinks/pepsi-max-large.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Faxe Kondi",
+          "description": "Faxe Kondi",
+          "price": 27.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752630/cnc-menu/cold-drinks/faxe-kondi.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Faxe Kondi  Large",
+          "description": "Faxe Kondi  Large",
+          "price": 32.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752631/cnc-menu/cold-drinks/faxe-kondi-large.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Faxe Kondi Zero",
+          "description": "Faxe Kondi Zero",
+          "price": 27.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752632/cnc-menu/cold-drinks/faxe-kondi-zero.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Faxe Kondi Zero Large",
+          "description": "Faxe Kondi Zero Large",
+          "price": 32.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752633/cnc-menu/cold-drinks/faxe-kondi-zero-large.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Faxe Kondi Appelsin",
+          "description": "Faxe Kondi Appelsin",
+          "price": 27.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752634/cnc-menu/cold-drinks/faxe-kondi-appelsin.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Faxe Kondi Appelsin Large",
+          "description": "Faxe Kondi Appelsin Large",
+          "price": 32.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752635/cnc-menu/cold-drinks/faxe-kondi-appelsin-large.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Mirinda lemon",
+          "description": "Mirinda lemon",
+          "price": 27.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752636/cnc-menu/cold-drinks/mirinda-lemon.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Mirinda lemon Large",
+          "description": "Mirinda lemon Large",
+          "price": 32.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752637/cnc-menu/cold-drinks/mirinda-lemon-large.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Kildevand 0.5l",
+          "description": "Kildevand 0.5l",
+          "price": 19.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752638/cnc-menu/cold-drinks/kildevand-0-5l.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Danskvand 0.5l",
+          "description": "Danskvand 0.5l",
+          "price": 25.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752638/cnc-menu/cold-drinks/danskvand-0-5l.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Faxe Kondi 1.5l",
+          "description": "Faxe Kondi 1.5l",
+          "price": 38.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752639/cnc-menu/cold-drinks/faxe-kondi-1-5l.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Pepsi Max 1.5l",
+          "description": "Pepsi Max 1.5l",
+          "price": 38.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752640/cnc-menu/cold-drinks/pepsi-max-1-5l.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Red Bull",
+          "description": "Red Bull",
+          "price": 29.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/d81640b6-1aa5-11f0-ac39-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752640/cnc-menu/cold-drinks/red-bull.png",
+          "variants": [],
+          "addons": []
+        },
+        {
+          "name": "Capri-Sun",
+          "description": "Capri-Sun",
+          "price": 15.0,
+          "currency": "DKK",
+          "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png",
+          "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752641/cnc-menu/cold-drinks/capri-sun.png",
+          "variants": [],
+          "addons": []
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "name": "Sides & Dips",
+  "slug": "sides-amp-dips",
+  "sort_order": 8,
+  "items": [
+    {
+      "name": "Pommes Frites (medium)",
+      "description": "Pommes Frites (medium)",
+      "price": 27.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/b1fb9f22-36fa-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752581/cnc-menu/sides-amp-dips/pommes-frites-medium.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Pommes Frites (large)",
+      "description": "Pommes Frites (large)",
+      "price": 32.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/2cb57aef-36fb-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752582/cnc-menu/sides-amp-dips/pommes-frites-large.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Potatoes Wedges",
+      "description": "Potatoes Wedges",
+      "price": 33.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/619bcb7f-3702-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752583/cnc-menu/sides-amp-dips/potatoes-wedges.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Frites Spirales",
+      "description": "Frites Spirales",
+      "price": 33.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/b7a5a7e0-3703-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752584/cnc-menu/sides-amp-dips/frites-spirales.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Frites Dippers",
+      "description": "Frites Dippers",
+      "price": 33.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/f3131843-3703-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752585/cnc-menu/sides-amp-dips/frites-dippers.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "6 Onion Rings",
+      "description": "6 Onion Rings",
+      "price": 33.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/18cfc77a-3704-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752588/cnc-menu/sides-amp-dips/6-onion-rings.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "10 Chili Cheese Nuggets",
+      "description": "10 Chili Cheese Nuggets",
+      "price": 34.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/5f67d407-3704-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752589/cnc-menu/sides-amp-dips/10-chili-cheese-nuggets.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "6 Mozzarella Sticks",
+      "description": "6 Mozzarella Sticks",
+      "price": 34.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/a8d3027a-3704-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752590/cnc-menu/sides-amp-dips/6-mozzarella-sticks.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "12 Cream Cheese Nuggets",
+      "description": "12 Cream Cheese Nuggets",
+      "price": 34.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/5ec3b1d2-3d7f-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752592/cnc-menu/sides-amp-dips/12-cream-cheese-nuggets.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Ketchup 25g",
+      "description": "",
+      "price": 6.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/9fdc5911-4129-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752593/cnc-menu/sides-amp-dips/ketchup-25g.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Mayonnaise 25g",
+      "description": "",
+      "price": 6.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/b2123eb5-4129-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752594/cnc-menu/sides-amp-dips/mayonnaise-25g.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Barbecue 25g",
+      "description": "",
+      "price": 6.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/c32d34bc-4129-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752595/cnc-menu/sides-amp-dips/barbecue-25g.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Honey Mustard 25g",
+      "description": "",
+      "price": 6.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/d04af4e2-4129-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752596/cnc-menu/sides-amp-dips/honey-mustard-25g.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Sweet & Sour 25g",
+      "description": "",
+      "price": 6.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/dd51bc8f-4129-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752597/cnc-menu/sides-amp-dips/sweet-sour-25g.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Pomfrit Sauce 25g",
+      "description": "",
+      "price": 6.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/55874d50-1aa4-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752599/cnc-menu/sides-amp-dips/pomfrit-sauce-25g.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Curry Mango 25g",
+      "description": "",
+      "price": 6.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/f5de1a7f-4129-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752600/cnc-menu/sides-amp-dips/curry-mango-25g.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Peri Peri 30ml",
+      "description": "",
+      "price": 6.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/5922e0f5-412a-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752601/cnc-menu/sides-amp-dips/peri-peri-30ml.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Algérienne 10g",
+      "description": "",
+      "price": 4.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/31c6bfce-412a-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752602/cnc-menu/sides-amp-dips/algerienne-10g.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Biggy Burger 10g",
+      "description": "",
+      "price": 4.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/3d669439-412a-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752604/cnc-menu/sides-amp-dips/biggy-burger-10g.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Ketchup 10g",
+      "description": "",
+      "price": 4.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/65d0407a-412a-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752606/cnc-menu/sides-amp-dips/ketchup-10g.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Mayonnaise 10g",
+      "description": "",
+      "price": 4.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/70970412-412a-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752607/cnc-menu/sides-amp-dips/mayonnaise-10g.png",
+      "variants": [],
+      "addons": []
+    }
+  ]
+}

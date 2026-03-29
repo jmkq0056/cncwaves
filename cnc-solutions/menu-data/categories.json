@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Beef Burger",
+    "slug": "beef-burger",
+    "item_count": 11
+  },
+  {
+    "name": "Chicken & Fish Burgers",
+    "slug": "chicken-amp-fish-burgers",
+    "item_count": 22
+  },
+  {
+    "name": "Vegi's & Salad",
+    "slug": "vegi-s-amp-salad",
+    "item_count": 4
+  },
+  {
+    "name": "Wraps & Tacos",
+    "slug": "wraps-amp-tacos",
+    "item_count": 12
+  },
+  {
+    "name": "Family & Social Bucket",
+    "slug": "family-amp-social-bucket",
+    "item_count": 6
+  },
+  {
+    "name": "Chicken N Chicken",
+    "slug": "chicken-n-chicken",
+    "item_count": 32
+  },
+  {
+    "name": "Kids Meal",
+    "slug": "kids-meal",
+    "item_count": 5
+  },
+  {
+    "name": "Sides & Dips",
+    "slug": "sides-amp-dips",
+    "item_count": 21
+  },
+  {
+    "name": "Coffee & Cake",
+    "slug": "coffee-amp-cake",
+    "item_count": 13
+  },
+  {
+    "name": "Ice Cream & Shakes",
+    "slug": "ice-cream-amp-shakes",
+    "item_count": 6
+  },
+  {
+    "name": "Cold Drinks",
+    "slug": "cold-drinks",
+    "item_count": 18
+  }
+]

@@ -1,0 +1,57 @@
+{
+  "name": "Kids Meal",
+  "slug": "kids-meal",
+  "sort_order": 7,
+  "items": [
+    {
+      "name": "Kids Meal 1 - Hamburger",
+      "description": "Hamburger indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets",
+      "price": 45.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/089aa43b-446e-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752575/cnc-menu/kids-meal/kids-meal-1-hamburger.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Kids Meal 2 - Chicken Strips 2 Stk.",
+      "description": "Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets",
+      "price": 45.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/92580f44-93da-11ef-a967-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752576/cnc-menu/kids-meal/kids-meal-2-chicken-strips-2-stk.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Kids Meal 3 - 5 stk. Chicken Pop Corn",
+      "description": "Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets",
+      "price": 45.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/eff79655-446d-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752577/cnc-menu/kids-meal/kids-meal-3-5-stk-chicken-pop-corn.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Kids Meal 4 - 4 stk. Chicken Nuggets",
+      "description": "Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets",
+      "price": 45.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/db9574b5-446d-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752578/cnc-menu/kids-meal/kids-meal-4-4-stk-chicken-nuggets.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Kids Meal 5 - 1 stk. Drumstick",
+      "description": "Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets",
+      "price": 45.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/c85cc163-446d-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752580/cnc-menu/kids-meal/kids-meal-5-1-stk-drumstick.png",
+      "variants": [],
+      "addons": []
+    }
+  ]
+}

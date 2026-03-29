@@ -1,0 +1,67 @@
+{
+  "name": "Family & Social Bucket",
+  "slug": "family-amp-social-bucket",
+  "sort_order": 5,
+  "items": [
+    {
+      "name": "Family 1",
+      "description": "10 stk. Drumsticks",
+      "price": 249.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/b7a5db3a-36f3-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752530/cnc-menu/family-amp-social-bucket/family-1.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Family 2",
+      "description": "6 stk. Drumsticks + 12 stk. Hot Spicy Wings",
+      "price": 259.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/08c4c7dc-36f4-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752531/cnc-menu/family-amp-social-bucket/family-2.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Family 3",
+      "description": "4 stk. Drumsticks + 16 stk. Hot Spicy Wings + 10 stk. Chicken Strips",
+      "price": 269.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/b29632a2-36f4-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752532/cnc-menu/family-amp-social-bucket/family-3.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Family 4",
+      "description": "24 stk. Hot Spicy Wings",
+      "price": 229.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/e7552286-36f4-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752533/cnc-menu/family-amp-social-bucket/family-4.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Family 5",
+      "description": "15 stk. Chicken Strips + 22 stk. Hot Spicy Wings",
+      "price": 299.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/bd82a30f-36f5-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752535/cnc-menu/family-amp-social-bucket/family-5.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Family 6",
+      "description": "22 stk. Chicken Strips",
+      "price": 229.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/e47b5968-36f5-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752536/cnc-menu/family-amp-social-bucket/family-6.png",
+      "variants": [],
+      "addons": []
+    }
+  ]
+}

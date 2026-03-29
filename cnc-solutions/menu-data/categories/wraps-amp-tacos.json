@@ -1,0 +1,127 @@
+{
+  "name": "Wraps & Tacos",
+  "slug": "wraps-amp-tacos",
+  "sort_order": 4,
+  "items": [
+    {
+      "name": "Taco M Menu",
+      "description": "Pålæg, fromage smørrelse, pomfritter\n1 stk. pålæg efter eget valg. inkl. pomfritter + sodavand",
+      "price": 89.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/f5d66e14-1aa4-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752516/cnc-menu/wraps-amp-tacos/taco-m-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Taco L Menu",
+      "description": "Pålæg, fromage smørrelse, pomfritter\n2 stk. pålæg efter eget valg. inkl. pomfritter + sodavand",
+      "price": 99.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/f5d66e14-1aa4-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752517/cnc-menu/wraps-amp-tacos/taco-l-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Taco XL Menu",
+      "description": "Pålæg, fromage smørrelse, pomfritter\n3 stk. pålæg efter eget valg. inkl. pomfritter + sodavand",
+      "price": 109.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/f5d66e14-1aa4-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752518/cnc-menu/wraps-amp-tacos/taco-xl-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Fillet Wrap Menu",
+      "description": "Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise",
+      "price": 79.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/d3ef41cc-4123-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752519/cnc-menu/wraps-amp-tacos/chicken-fillet-wrap-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Tikka Wrap Menu",
+      "description": "Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise",
+      "price": 79.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/05f3a7fb-4124-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752520/cnc-menu/wraps-amp-tacos/chicken-tikka-wrap-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Kebab Wrap Menu",
+      "description": "Kyllinge shawarma, løg, tomat, iceberg, kebab dressing",
+      "price": 79.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/2b8cb8aa-4124-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752522/cnc-menu/wraps-amp-tacos/kebab-wrap-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Taco M",
+      "description": "",
+      "price": 59.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/7265988a-1aa6-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752523/cnc-menu/wraps-amp-tacos/taco-m.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Taco L",
+      "description": "",
+      "price": 69.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/7265988a-1aa6-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752524/cnc-menu/wraps-amp-tacos/taco-l.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Taco XL",
+      "description": "",
+      "price": 79.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/7265988a-1aa6-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752524/cnc-menu/wraps-amp-tacos/taco-xl.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Fillet Wrap",
+      "description": "Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise",
+      "price": 59.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/2d9f31e0-33f3-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752526/cnc-menu/wraps-amp-tacos/chicken-fillet-wrap.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Tikka Wrap",
+      "description": "Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise",
+      "price": 59.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/b960545e-33f3-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752527/cnc-menu/wraps-amp-tacos/chicken-tikka-wrap.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Kebab Wrap",
+      "description": "Kyllinge shawarma, løg, tomat, iceberg, kebab dressing",
+      "price": 59.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/86dcf2c4-33f3-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752528/cnc-menu/wraps-amp-tacos/kebab-wrap.png",
+      "variants": [],
+      "addons": []
+    }
+  ]
+}

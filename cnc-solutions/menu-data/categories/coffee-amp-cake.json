@@ -1,0 +1,137 @@
+{
+  "name": "Coffee & Cake",
+  "slug": "coffee-amp-cake",
+  "sort_order": 9,
+  "items": [
+    {
+      "name": "Americano",
+      "description": "Americano",
+      "price": 20.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/a0425b05-370b-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752608/cnc-menu/coffee-amp-cake/americano.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Tea",
+      "description": "Tea",
+      "price": 20.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/18169663-370c-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752608/cnc-menu/coffee-amp-cake/tea.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Cappuccino",
+      "description": "Cappuccino",
+      "price": 25.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/3f49f1c6-370c-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752609/cnc-menu/coffee-amp-cake/cappuccino.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Caffe latte",
+      "description": "Caffe latte",
+      "price": 25.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/6bfb00d0-370c-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752610/cnc-menu/coffee-amp-cake/caffe-latte.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Varm kakao",
+      "description": "Varm kakao",
+      "price": 25.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/83679a14-93d9-11ef-a967-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752611/cnc-menu/coffee-amp-cake/varm-kakao.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Flat white",
+      "description": "Flat white",
+      "price": 25.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/250ae310-370d-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752612/cnc-menu/coffee-amp-cake/flat-white.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Cortador",
+      "description": "Cortador",
+      "price": 25.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/591ad095-370d-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752612/cnc-menu/coffee-amp-cake/cortador.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Is latte - Vanilla",
+      "description": "Is latte - Vanilla",
+      "price": 32.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/771ebab8-370d-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752613/cnc-menu/coffee-amp-cake/is-latte-vanilla.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Is latte - Caramel",
+      "description": "",
+      "price": 32.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/771ebab8-370d-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752614/cnc-menu/coffee-amp-cake/is-latte-caramel.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Espresso dobbelt",
+      "description": "Espresso dobbelt",
+      "price": 20.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/e3d96d8e-370b-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752615/cnc-menu/coffee-amp-cake/espresso-dobbelt.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Tiramisu - Chocolate",
+      "description": "Tiramisu - Chocolate",
+      "price": 29.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/136ef9ee-4134-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752617/cnc-menu/coffee-amp-cake/tiramisu-chocolate.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Tiramisu - Caramel",
+      "description": "Tiramisu - Caramel",
+      "price": 29.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/3a7a0396-4134-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752618/cnc-menu/coffee-amp-cake/tiramisu-caramel.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chocolate Muffin",
+      "description": "Chocolate muffin",
+      "price": 19.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/26020232-4134-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752619/cnc-menu/coffee-amp-cake/chocolate-muffin.png",
+      "variants": [],
+      "addons": []
+    }
+  ]
+}

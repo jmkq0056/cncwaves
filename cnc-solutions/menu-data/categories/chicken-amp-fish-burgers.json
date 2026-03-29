@@ -1,0 +1,227 @@
+{
+  "name": "Chicken & Fish Burgers",
+  "slug": "chicken-amp-fish-burgers",
+  "sort_order": 2,
+  "items": [
+    {
+      "name": "Chuckle Chickpea",
+      "description": "Vegetarbøf, tomat, iceberg, tahini dressing, brioche burgerbolle",
+      "price": 54.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/4a2f0510-25f4-11f0-82c8-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752469/cnc-menu/chicken-amp-fish-burgers/chuckle-chickpea.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chuckle Chickpea Menu",
+      "description": "Vegetarbøf, tomat, iceberg, tahini dressing, brioche burgerbolle",
+      "price": 79.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/276d414a-25f4-11f0-82c8-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752470/cnc-menu/chicken-amp-fish-burgers/chuckle-chickpea-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Royal Menu",
+      "description": "Frisk paneret kyllingefilet, cheddar, hash brown kartoffel, iceberg, mayonnaise",
+      "price": 79.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/82bdb72f-410f-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752474/cnc-menu/chicken-amp-fish-burgers/chicken-royal-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Special Menu",
+      "description": "Frisk paneret kyllingefilet, iceberg, mayonnaise",
+      "price": 77.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/fe75fcfa-410f-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752476/cnc-menu/chicken-amp-fish-burgers/chicken-special-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Naan Grill Tikka Menu",
+      "description": "Grillet tandoorimarineret kyllingefilet, grillet løg, tomat, iceberg, algérienne dressing",
+      "price": 94.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/133ce5a9-4111-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752483/cnc-menu/chicken-amp-fish-burgers/naan-grill-tikka-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Big Chicken Menu",
+      "description": "Grillet citronmarineret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise, sesam bolle\nPomfritter og sodavand",
+      "price": 79.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/2f2d1b81-1aa5-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752484/cnc-menu/chicken-amp-fish-burgers/big-chicken-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Tikka Burger Menu",
+      "description": "Grillet tandoorimarineret kyllingefilet, cheddar, iceberg, mayonnaise",
+      "price": 79.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/90daf7c1-4110-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752486/cnc-menu/chicken-amp-fish-burgers/tikka-burger-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Texas Crispy Chicken Menu",
+      "description": "Frisk paneret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise",
+      "price": 89.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/92b64d1f-1aa4-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752488/cnc-menu/chicken-amp-fish-burgers/texas-crispy-chicken-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Tikka Baguette Menu",
+      "description": "Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise",
+      "price": 89.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/6468c8ad-4111-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752489/cnc-menu/chicken-amp-fish-burgers/tikka-baguette-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Baguette Menu",
+      "description": "Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise",
+      "price": 89.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/3dfd8bd3-4111-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752492/cnc-menu/chicken-amp-fish-burgers/chicken-baguette-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Mega Chicken Parmesan Menu",
+      "description": "<span title=\"Grillet citronmarineret kyllingefilet, parmesan ost, tomat, iceberg, jalapeños, mayonnaise, brioche burgerbolle\nPomfritter og sodavand\">Grillet citronmarineret kyllingefilet, parmesan ost, tomat, iceberg, jalapeños, mayonnaise, brioche burgerbolle\nPomfritter og s...</span>",
+      "price": 89.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/c5ec528e-1aa4-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752494/cnc-menu/chicken-amp-fish-burgers/mega-chicken-parmesan-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Fishy De Fish Menu",
+      "description": "Frisk paneret fiskefilet, cheddar, iceberg, fiske dressing",
+      "price": 78.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/b260216c-4111-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752495/cnc-menu/chicken-amp-fish-burgers/fishy-de-fish-menu.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Royal",
+      "description": "Frisk paneret kyllingefilet, cheddar, hash brown kartoffel, iceberg, mayonnaise",
+      "price": 49.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/6e8f0952-33e2-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752496/cnc-menu/chicken-amp-fish-burgers/chicken-royal.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Special",
+      "description": "Frisk paneret kyllingefilet, iceberg, mayonnaise",
+      "price": 47.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/e233bbab-33e2-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752500/cnc-menu/chicken-amp-fish-burgers/chicken-special.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Naan Grill Tikka",
+      "description": "Grillet tandoorimarineret kyllingefilet, grillet løg, tomat, iceberg, algérienne dressing",
+      "price": 64.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/b0e34505-33e3-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752501/cnc-menu/chicken-amp-fish-burgers/naan-grill-tikka.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Big Chicken",
+      "description": "Grillet citronmarineret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise, sesam bolle",
+      "price": 54.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/f4674d2a-1aa7-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752502/cnc-menu/chicken-amp-fish-burgers/big-chicken.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Tikka Burger",
+      "description": "Grillet tandoorimarineret kyllingefilet, cheddar, iceberg, mayonnaise",
+      "price": 54.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/4f8cf2f3-33e3-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752503/cnc-menu/chicken-amp-fish-burgers/tikka-burger.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Texas Crispy Chicken",
+      "description": "Frisk paneret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise",
+      "price": 59.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/9d761a61-1aa7-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752505/cnc-menu/chicken-amp-fish-burgers/texas-crispy-chicken.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Tikka Baguette",
+      "description": "Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise",
+      "price": 59.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/f90d6f17-33e3-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752506/cnc-menu/chicken-amp-fish-burgers/tikka-baguette.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Chicken Baguette",
+      "description": "Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise",
+      "price": 59.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/d5ce83ef-33e3-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752507/cnc-menu/chicken-amp-fish-burgers/chicken-baguette.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Mega Chicken Parmesan",
+      "description": "Grillet citronmarineret kyllingefilet, parmesan ost, tomat, iceberg, jalapeños, mayonnaise, brioche burgerbolle",
+      "price": 64.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/d60ba424-1aa7-11f0-ac39-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752509/cnc-menu/chicken-amp-fish-burgers/mega-chicken-parmesan.png",
+      "variants": [],
+      "addons": []
+    },
+    {
+      "name": "Fishy De Fish",
+      "description": "Frisk paneret fiskefilet, cheddar, iceberg, fiske dressing",
+      "price": 48.0,
+      "currency": "DKK",
+      "image_original": "http://www.yammi.dk/upload/3/5c0690d2-33e4-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752510/cnc-menu/chicken-amp-fish-burgers/fishy-de-fish.png",
+      "variants": [],
+      "addons": []
+    }
+  ]
+}
