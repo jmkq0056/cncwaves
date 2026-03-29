@@ -11,7 +11,144 @@
       "image_original": "http://www.yammi.dk/upload/3/b7a5db3a-36f3-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752530/cnc-menu/family-amp-social-bucket/family-1.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Size",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Large Upgrade",
+              "description": "",
+              "price": 30.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Drink",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Family 2",
@@ -21,7 +158,144 @@
       "image_original": "http://www.yammi.dk/upload/3/08c4c7dc-36f4-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752531/cnc-menu/family-amp-social-bucket/family-2.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Size",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Large Upgrade",
+              "description": "",
+              "price": 30.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Drink",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Family 3",
@@ -31,7 +305,144 @@
       "image_original": "http://www.yammi.dk/upload/3/b29632a2-36f4-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752532/cnc-menu/family-amp-social-bucket/family-3.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Size",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Large Upgrade",
+              "description": "",
+              "price": 30.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Drink",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Family 4",
@@ -41,7 +452,144 @@
       "image_original": "http://www.yammi.dk/upload/3/e7552286-36f4-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752533/cnc-menu/family-amp-social-bucket/family-4.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Size",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Large Upgrade",
+              "description": "",
+              "price": 30.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Drink",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Family 5",
@@ -51,7 +599,144 @@
       "image_original": "http://www.yammi.dk/upload/3/bd82a30f-36f5-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752535/cnc-menu/family-amp-social-bucket/family-5.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Size",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Large Upgrade",
+              "description": "",
+              "price": 30.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Drink",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Family 6",
@@ -61,7 +746,144 @@
       "image_original": "http://www.yammi.dk/upload/3/e47b5968-36f5-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752536/cnc-menu/family-amp-social-bucket/family-6.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Size",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Large Upgrade",
+              "description": "",
+              "price": 30.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Family Drink",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     }
   ]
 }

@@ -11,7 +11,239 @@
       "image_original": "http://www.yammi.dk/upload/3/b1fb9f22-36fa-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752581/cnc-menu/sides-amp-dips/pommes-frites-medium.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Drikkevarer",
+          "description": "Vælg mellem en række forskellige drikkevarer til din mad",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Red Bull",
+              "description": "Energi drink",
+              "price": 29.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.4l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 1.5 l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 1.5l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Danskvand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kildevand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Capri-Sun",
+              "description": "Juice",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Pommes Frites (large)",
@@ -21,7 +253,239 @@
       "image_original": "http://www.yammi.dk/upload/3/2cb57aef-36fb-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752582/cnc-menu/sides-amp-dips/pommes-frites-large.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Drikkevarer",
+          "description": "Vælg mellem en række forskellige drikkevarer til din mad",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Red Bull",
+              "description": "Energi drink",
+              "price": 29.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.4l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 1.5 l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 1.5l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Danskvand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kildevand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Capri-Sun",
+              "description": "Juice",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Potatoes Wedges",
@@ -31,7 +495,239 @@
       "image_original": "http://www.yammi.dk/upload/3/619bcb7f-3702-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752583/cnc-menu/sides-amp-dips/potatoes-wedges.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Drikkevarer",
+          "description": "Vælg mellem en række forskellige drikkevarer til din mad",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Red Bull",
+              "description": "Energi drink",
+              "price": 29.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.4l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 1.5 l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 1.5l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Danskvand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kildevand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Capri-Sun",
+              "description": "Juice",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Frites Spirales",
@@ -41,7 +737,239 @@
       "image_original": "http://www.yammi.dk/upload/3/b7a5a7e0-3703-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752584/cnc-menu/sides-amp-dips/frites-spirales.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Drikkevarer",
+          "description": "Vælg mellem en række forskellige drikkevarer til din mad",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Red Bull",
+              "description": "Energi drink",
+              "price": 29.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.4l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 1.5 l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 1.5l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Danskvand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kildevand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Capri-Sun",
+              "description": "Juice",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Frites Dippers",
@@ -51,7 +979,239 @@
       "image_original": "http://www.yammi.dk/upload/3/f3131843-3703-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752585/cnc-menu/sides-amp-dips/frites-dippers.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Drikkevarer",
+          "description": "Vælg mellem en række forskellige drikkevarer til din mad",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Red Bull",
+              "description": "Energi drink",
+              "price": 29.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.4l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 1.5 l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 1.5l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Danskvand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kildevand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Capri-Sun",
+              "description": "Juice",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "6 Onion Rings",
@@ -71,7 +1231,239 @@
       "image_original": "http://www.yammi.dk/upload/3/5f67d407-3704-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752589/cnc-menu/sides-amp-dips/10-chili-cheese-nuggets.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Drikkevarer",
+          "description": "Vælg mellem en række forskellige drikkevarer til din mad",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Red Bull",
+              "description": "Energi drink",
+              "price": 29.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.4l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 1.5 l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 1.5l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Danskvand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kildevand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Capri-Sun",
+              "description": "Juice",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "6 Mozzarella Sticks",
@@ -91,7 +1483,239 @@
       "image_original": "http://www.yammi.dk/upload/3/5ec3b1d2-3d7f-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752592/cnc-menu/sides-amp-dips/12-cream-cheese-nuggets.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Drikkevarer",
+          "description": "Vælg mellem en række forskellige drikkevarer til din mad",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Red Bull",
+              "description": "Energi drink",
+              "price": 29.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.4l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.4 l",
+              "description": "Sodavand",
+              "price": 27.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon 0.5 l",
+              "description": "Sodavand",
+              "price": 32.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max 1.5 l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi 1.5l",
+              "description": "Sodavand",
+              "price": 38.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Danskvand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kildevand 0.5l",
+              "description": "Vand",
+              "price": 28.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Capri-Sun",
+              "description": "Juice",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Ketchup 25g",
@@ -101,7 +1725,8 @@
       "image_original": "http://www.yammi.dk/upload/3/9fdc5911-4129-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752593/cnc-menu/sides-amp-dips/ketchup-25g.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Mayonnaise 25g",
@@ -111,7 +1736,8 @@
       "image_original": "http://www.yammi.dk/upload/3/b2123eb5-4129-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752594/cnc-menu/sides-amp-dips/mayonnaise-25g.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Barbecue 25g",
@@ -121,7 +1747,8 @@
       "image_original": "http://www.yammi.dk/upload/3/c32d34bc-4129-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752595/cnc-menu/sides-amp-dips/barbecue-25g.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Honey Mustard 25g",
@@ -131,7 +1758,8 @@
       "image_original": "http://www.yammi.dk/upload/3/d04af4e2-4129-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752596/cnc-menu/sides-amp-dips/honey-mustard-25g.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Sweet & Sour 25g",
@@ -141,7 +1769,8 @@
       "image_original": "http://www.yammi.dk/upload/3/dd51bc8f-4129-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752597/cnc-menu/sides-amp-dips/sweet-sour-25g.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Pomfrit Sauce 25g",
@@ -151,7 +1780,8 @@
       "image_original": "http://www.yammi.dk/upload/3/55874d50-1aa4-11f0-ac39-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752599/cnc-menu/sides-amp-dips/pomfrit-sauce-25g.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Curry Mango 25g",
@@ -161,7 +1791,8 @@
       "image_original": "http://www.yammi.dk/upload/3/f5de1a7f-4129-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752600/cnc-menu/sides-amp-dips/curry-mango-25g.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Peri Peri 30ml",
@@ -171,7 +1802,8 @@
       "image_original": "http://www.yammi.dk/upload/3/5922e0f5-412a-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752601/cnc-menu/sides-amp-dips/peri-peri-30ml.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Algérienne 10g",
@@ -181,7 +1813,8 @@
       "image_original": "http://www.yammi.dk/upload/3/31c6bfce-412a-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752602/cnc-menu/sides-amp-dips/algerienne-10g.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Biggy Burger 10g",
@@ -191,7 +1824,8 @@
       "image_original": "http://www.yammi.dk/upload/3/3d669439-412a-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752604/cnc-menu/sides-amp-dips/biggy-burger-10g.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Ketchup 10g",
@@ -201,7 +1835,8 @@
       "image_original": "http://www.yammi.dk/upload/3/65d0407a-412a-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752606/cnc-menu/sides-amp-dips/ketchup-10g.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Mayonnaise 10g",
@@ -211,7 +1846,8 @@
       "image_original": "http://www.yammi.dk/upload/3/70970412-412a-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752607/cnc-menu/sides-amp-dips/mayonnaise-10g.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     }
   ]
 }

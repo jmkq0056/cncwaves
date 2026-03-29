@@ -11,7 +11,82 @@
       "image_original": "http://www.yammi.dk/upload/3/bd13c6f1-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752620/cnc-menu/ice-cream-amp-shakes/sundae-karamel-toffee.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Extras icecream",
+          "description": "",
+          "selection": "custom",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Ekstra - Monin Chocolate",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Karamel Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Vanilje Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Pumpkin Spice",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Tivoli Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Smarties Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Oreo Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Flødeskum",
+              "description": "",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Kinder Maxi",
+              "description": "Chokolade",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "SUNDAE - Jordbær",
@@ -21,7 +96,82 @@
       "image_original": "http://www.yammi.dk/upload/3/4b311825-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752621/cnc-menu/ice-cream-amp-shakes/sundae-jordbaer.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Extras icecream",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Ekstra - Monin Chocolate",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Karamel Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Vanilje Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Pumpkin Spice",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Tivoli Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Smarties Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Oreo Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Flødeskum",
+              "description": "",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Kinder Maxi",
+              "description": "Chokolade",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "SUNDAE - Chokolade",
@@ -31,7 +181,82 @@
       "image_original": "http://www.yammi.dk/upload/3/42438547-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752622/cnc-menu/ice-cream-amp-shakes/sundae-chokolade.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Extras icecream",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Ekstra - Monin Chocolate",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Karamel Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Vanilje Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Pumpkin Spice",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Tivoli Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Smarties Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Oreo Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Flødeskum",
+              "description": "",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Kinder Maxi",
+              "description": "Chokolade",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "SUNDAE - Vanilje",
@@ -41,7 +266,82 @@
       "image_original": "http://www.yammi.dk/upload/3/3039c276-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752623/cnc-menu/ice-cream-amp-shakes/sundae-vanilje.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Extras icecream",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Ekstra - Monin Chocolate",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Karamel Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Vanilje Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Pumpkin Spice",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Tivoli Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Smarties Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Oreo Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Flødeskum",
+              "description": "",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Kinder Maxi",
+              "description": "Chokolade",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "SUNDAE - Oreo",
@@ -51,7 +351,82 @@
       "image_original": "http://www.yammi.dk/upload/3/26c40977-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752624/cnc-menu/ice-cream-amp-shakes/sundae-oreo.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Extras icecream",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Ekstra - Monin Chocolate",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Karamel Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Vanilje Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Pumpkin Spice",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Tivoli Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Smarties Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Oreo Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Flødeskum",
+              "description": "",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Kinder Maxi",
+              "description": "Chokolade",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "SUNDAE - Smartis",
@@ -61,7 +436,82 @@
       "image_original": "http://www.yammi.dk/upload/3/39862163-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752625/cnc-menu/ice-cream-amp-shakes/sundae-smartis.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Extras icecream",
+          "description": "",
+          "selection": "custom",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Ekstra - Monin Chocolate",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Karamel Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Vanilje Sukkerfri",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Monin Pumpkin Spice",
+              "description": "Sirup",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Tivoli Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Smarties Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Oreo Drys",
+              "description": "Drys",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Flødeskum",
+              "description": "",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ekstra - Kinder Maxi",
+              "description": "Chokolade",
+              "price": 6.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     }
   ]
 }

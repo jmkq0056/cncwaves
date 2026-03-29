@@ -11,7 +11,322 @@
       "image_original": "http://www.yammi.dk/upload/3/f5d66e14-1aa4-11f0-ac39-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752516/cnc-menu/wraps-amp-tacos/taco-m-menu.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Taco pålæg",
+          "description": "Vælg mellem adskillige pålæg til dine tacos",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Taco dressing",
+          "description": "Vælg en dressing for dine tacos",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Algérienne",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Marocaine",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pitta Kebab",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Curry Mango",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Menu Drinks",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Pepsi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Taco L Menu",
@@ -21,7 +336,322 @@
       "image_original": "http://www.yammi.dk/upload/3/f5d66e14-1aa4-11f0-ac39-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752517/cnc-menu/wraps-amp-tacos/taco-l-menu.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Taco pålæg",
+          "description": "Vælg mellem adskillige pålæg til dine tacos",
+          "selection": "custom",
+          "min": 0,
+          "max": 2,
+          "required": true,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Taco dressing",
+          "description": "Vælg en dressing for dine tacos",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Algérienne",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Marocaine",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pitta Kebab",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Curry Mango",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Menu Drinks",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Pepsi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Taco XL Menu",
@@ -31,7 +661,322 @@
       "image_original": "http://www.yammi.dk/upload/3/f5d66e14-1aa4-11f0-ac39-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752518/cnc-menu/wraps-amp-tacos/taco-xl-menu.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Taco pålæg",
+          "description": "Vælg mellem adskillige pålæg til dine tacos",
+          "selection": "custom",
+          "min": 0,
+          "max": 3,
+          "required": true,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Taco dressing",
+          "description": "Vælg en dressing for dine tacos",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Algérienne",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Marocaine",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pitta Kebab",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Curry Mango",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Menu Drinks",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Pepsi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Chicken Fillet Wrap Menu",
@@ -41,7 +986,273 @@
       "image_original": "http://www.yammi.dk/upload/3/d3ef41cc-4123-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752519/cnc-menu/wraps-amp-tacos/chicken-fillet-wrap-menu.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Extras",
+          "description": "Vælg ekstra toppings, tilbehør eller dyppelse for en mere tilfredsstillende oplevelse",
+          "selection": "custom",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "Kød viklet rundt om ost/med ostefyld",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 10.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Size",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Large Upgrade",
+              "description": "",
+              "price": 10.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Menu Drinks",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Pepsi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Chicken Tikka Wrap Menu",
@@ -51,7 +1262,273 @@
       "image_original": "http://www.yammi.dk/upload/3/05f3a7fb-4124-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752520/cnc-menu/wraps-amp-tacos/chicken-tikka-wrap-menu.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Size",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Large Upgrade",
+              "description": "",
+              "price": 10.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Extras",
+          "description": "Vælg ekstra toppings, tilbehør eller dyppelse for en mere tilfredsstillende oplevelse",
+          "selection": "custom",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "Kød viklet rundt om ost/med ostefyld",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 10.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Menu Drinks",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Pepsi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Kebab Wrap Menu",
@@ -61,7 +1538,273 @@
       "image_original": "http://www.yammi.dk/upload/3/2b8cb8aa-4124-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752522/cnc-menu/wraps-amp-tacos/kebab-wrap-menu.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Size",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": false,
+          "options": [
+            {
+              "name": "Large Upgrade",
+              "description": "",
+              "price": 10.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Extras",
+          "description": "Vælg ekstra toppings, tilbehør eller dyppelse for en mere tilfredsstillende oplevelse",
+          "selection": "custom",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "Kød viklet rundt om ost/med ostefyld",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 10.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Dip",
+          "description": "Vælg din dip",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Curry Mango 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonnaise 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Sweet & Sour 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hvidløg 25g",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri 30ml",
+              "description": "Dyppelse/dressing",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Algérienne 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai 10g",
+              "description": "Dyppelse/dressing",
+              "price": 5.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mayonaise 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Ketchup 10g",
+              "description": "Dyppelse/dressing",
+              "price": 4.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Menu Drinks",
+          "description": "",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Pepsi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Pepsi Max",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Zero",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Faxe Kondi Appelsin",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Mirinda lemon",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Taco M",
@@ -71,7 +1814,176 @@
       "image_original": "http://www.yammi.dk/upload/3/7265988a-1aa6-11f0-ac39-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752523/cnc-menu/wraps-amp-tacos/taco-m.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Taco pålæg",
+          "description": "Vælg mellem adskillige pålæg til dine tacos",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Taco dressing",
+          "description": "Vælg en dressing for dine tacos",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Algérienne",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Marocaine",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pitta Kebab",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Curry Mango",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Taco L",
@@ -81,7 +1993,176 @@
       "image_original": "http://www.yammi.dk/upload/3/7265988a-1aa6-11f0-ac39-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752524/cnc-menu/wraps-amp-tacos/taco-l.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Taco pålæg",
+          "description": "Vælg mellem adskillige pålæg til dine tacos",
+          "selection": "multiple",
+          "min": 0,
+          "max": 2,
+          "required": true,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Taco dressing",
+          "description": "Vælg en dressing for dine tacos",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Algérienne",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Marocaine",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pitta Kebab",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Curry Mango",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Taco XL",
@@ -91,7 +2172,176 @@
       "image_original": "http://www.yammi.dk/upload/3/7265988a-1aa6-11f0-ac39-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752524/cnc-menu/wraps-amp-tacos/taco-xl.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Taco pålæg",
+          "description": "Vælg mellem adskillige pålæg til dine tacos",
+          "selection": "multiple",
+          "min": 0,
+          "max": 3,
+          "required": true,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        },
+        {
+          "name": "Taco dressing",
+          "description": "Vælg en dressing for dine tacos",
+          "selection": "one",
+          "min": 0,
+          "max": 0,
+          "required": true,
+          "options": [
+            {
+              "name": "Algérienne",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Biggy Burger",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Peri Peri",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Marocaine",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Pitta Kebab",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Curry Mango",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Barbecue",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            },
+            {
+              "name": "Samourai",
+              "description": "Dyppelse/dressing",
+              "price": 0.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Chicken Fillet Wrap",
@@ -101,7 +2351,110 @@
       "image_original": "http://www.yammi.dk/upload/3/2d9f31e0-33f3-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752526/cnc-menu/wraps-amp-tacos/chicken-fillet-wrap.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Extras",
+          "description": "Vælg ekstra toppings, tilbehør eller dyppelse for en mere tilfredsstillende oplevelse",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "Kød viklet rundt om ost/med ostefyld",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 10.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Chicken Tikka Wrap",
@@ -111,7 +2464,110 @@
       "image_original": "http://www.yammi.dk/upload/3/b960545e-33f3-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752527/cnc-menu/wraps-amp-tacos/chicken-tikka-wrap.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Extras",
+          "description": "Vælg ekstra toppings, tilbehør eller dyppelse for en mere tilfredsstillende oplevelse",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "Kød viklet rundt om ost/med ostefyld",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 10.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     },
     {
       "name": "Kebab Wrap",
@@ -121,7 +2577,110 @@
       "image_original": "http://www.yammi.dk/upload/3/86dcf2c4-33f3-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752528/cnc-menu/wraps-amp-tacos/kebab-wrap.png",
       "variants": [],
-      "addons": []
+      "addons": [
+        {
+          "name": "Extras",
+          "description": "Vælg ekstra toppings, tilbehør eller dyppelse for en mere tilfredsstillende oplevelse",
+          "selection": "multiple",
+          "min": 0,
+          "max": 20,
+          "required": false,
+          "options": [
+            {
+              "name": "Vegetarbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Oksekødsbøf",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Cordon Bleu",
+              "description": "Kød viklet rundt om ost/med ostefyld",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Karrykylling",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllinge nuggets",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingeinderfilet",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Tikka kylling",
+              "description": "Kylling marineret i tikka krydderier",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Kyllingekebab",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Hash Brown kartoffel",
+              "description": "",
+              "price": 15.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png"
+            },
+            {
+              "name": "Løg",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Tomat",
+              "description": "",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Iceberg",
+              "description": "Iceberg salat",
+              "price": 8.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg"
+            },
+            {
+              "name": "Cheddar",
+              "description": "Cheddar ost",
+              "price": 10.0,
+              "currency": "DKK",
+              "image_original": "http://www.yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png"
+            }
+          ]
+        }
+      ],
+      "allergens": []
     }
   ]
 }

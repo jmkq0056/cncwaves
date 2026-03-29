@@ -11,7 +11,8 @@
       "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752626/cnc-menu/cold-drinks/pepsi.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Pepsi Large",
@@ -21,7 +22,8 @@
       "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752627/cnc-menu/cold-drinks/pepsi-large.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Pepsi Max",
@@ -31,7 +33,8 @@
       "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752628/cnc-menu/cold-drinks/pepsi-max.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Pepsi Max Large",
@@ -41,7 +44,8 @@
       "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752629/cnc-menu/cold-drinks/pepsi-max-large.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Faxe Kondi",
@@ -51,7 +55,8 @@
       "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752630/cnc-menu/cold-drinks/faxe-kondi.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Faxe Kondi  Large",
@@ -61,7 +66,8 @@
       "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752631/cnc-menu/cold-drinks/faxe-kondi-large.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Faxe Kondi Zero",
@@ -71,7 +77,8 @@
       "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752632/cnc-menu/cold-drinks/faxe-kondi-zero.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Faxe Kondi Zero Large",
@@ -81,7 +88,8 @@
       "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752633/cnc-menu/cold-drinks/faxe-kondi-zero-large.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Faxe Kondi Appelsin",
@@ -91,7 +99,8 @@
       "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752634/cnc-menu/cold-drinks/faxe-kondi-appelsin.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Faxe Kondi Appelsin Large",
@@ -101,7 +110,8 @@
       "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752635/cnc-menu/cold-drinks/faxe-kondi-appelsin-large.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Mirinda lemon",
@@ -111,7 +121,8 @@
       "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752636/cnc-menu/cold-drinks/mirinda-lemon.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Mirinda lemon Large",
@@ -121,7 +132,8 @@
       "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752637/cnc-menu/cold-drinks/mirinda-lemon-large.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Kildevand 0.5l",
@@ -131,7 +143,8 @@
       "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752638/cnc-menu/cold-drinks/kildevand-0-5l.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Danskvand 0.5l",
@@ -141,7 +154,8 @@
       "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752638/cnc-menu/cold-drinks/danskvand-0-5l.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Faxe Kondi 1.5l",
@@ -151,7 +165,8 @@
       "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752639/cnc-menu/cold-drinks/faxe-kondi-1-5l.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Pepsi Max 1.5l",
@@ -161,7 +176,8 @@
       "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752640/cnc-menu/cold-drinks/pepsi-max-1-5l.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Red Bull",
@@ -171,7 +187,8 @@
       "image_original": "http://www.yammi.dk/upload/3/d81640b6-1aa5-11f0-ac39-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752640/cnc-menu/cold-drinks/red-bull.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     },
     {
       "name": "Capri-Sun",
@@ -181,7 +198,8 @@
       "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752641/cnc-menu/cold-drinks/capri-sun.png",
       "variants": [],
-      "addons": []
+      "addons": [],
+      "allergens": []
     }
   ]
 }
