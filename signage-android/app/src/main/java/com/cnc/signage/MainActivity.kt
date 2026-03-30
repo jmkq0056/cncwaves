@@ -168,7 +168,12 @@ class MainActivity : AppCompatActivity() {
     // === OVERLAY PERMISSION (needed for boot auto-launch on Android 10+) ===
     private fun requestOverlayPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+            val prefs = getSharedPreferences("cnc_signage", MODE_PRIVATE)
+            if (prefs.getBoolean("overlay_prompted", false)) return
+            prefs.edit().putBoolean("overlay_prompted", true).apply()
+
             try {
+                Config(this).setAdminNavigating(true)
                 systemDialogShowing = true
                 val intent = Intent(
                     Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -177,6 +182,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             } catch (e: Exception) {
                 systemDialogShowing = false
+                Config(this).setAdminNavigating(false)
                 Log.w("MainActivity", "Could not request overlay permission: ${e.message}")
             }
         }
