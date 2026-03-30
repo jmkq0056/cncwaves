@@ -29,6 +29,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
+import android.provider.Settings
 import java.io.File
 import java.util.Calendar
 import java.util.TimeZone
@@ -104,6 +106,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         requestDefaultLauncher()
+        requestOverlayPermission()
 
         SyncWorker.schedule(this)
         SyncWorker.triggerImmediate(this)
@@ -160,6 +163,23 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME)
         val resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
         return resolveInfo?.activityInfo?.packageName == packageName
+    }
+
+    // === OVERLAY PERMISSION (needed for boot auto-launch on Android 10+) ===
+    private fun requestOverlayPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
+            try {
+                systemDialogShowing = true
+                val intent = Intent(
+                    Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:$packageName")
+                )
+                startActivity(intent)
+            } catch (e: Exception) {
+                systemDialogShowing = false
+                Log.w("MainActivity", "Could not request overlay permission: ${e.message}")
+            }
+        }
     }
 
     // === BITMAP CACHE: pre-decode all images into memory ===
@@ -537,23 +557,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startPlaylistWatcher() {
-        val config = Config(this)
-        var lastHash = config.getPlaylistHash()
-        var watcherTick = 0
+        var lastHash = Config(this).getPlaylistHash()
+        var lastInterval = Config(this).getRotationInterval()
 
         watcherRunnable = object : Runnable {
             override fun run() {
                 if (isFinishing || isDestroyed) return
 
-                watcherTick++
+                // Sync with server every 30s
+                SyncWorker.triggerImmediate(this@MainActivity)
 
-                // Every 8th tick (~2 min), trigger a server sync
-                // WorkManager periodic minimum is 15 min, so this supplements it
-                if (watcherTick % 8 == 0) {
-                    SyncWorker.triggerImmediate(this@MainActivity)
-                }
+                val config = Config(this@MainActivity)
+                val currentHash = config.getPlaylistHash()
+                val currentInterval = config.getRotationInterval()
 
-                val currentHash = Config(this@MainActivity).getPlaylistHash()
+                // Detect image/playlist changes
                 if (currentHash != lastHash && currentHash.isNotEmpty()) {
                     lastHash = currentHash
                     currentIndex = 0
@@ -563,10 +581,18 @@ class MainActivity : AppCompatActivity() {
                     rotationRunnable?.let { handler.removeCallbacks(it) }
                     startRotation()
                 }
-                handler.postDelayed(this, 15000)
+
+                // Detect interval change (restart rotation with new timing)
+                if (currentInterval != lastInterval) {
+                    lastInterval = currentInterval
+                    rotationRunnable?.let { handler.removeCallbacks(it) }
+                    startRotation()
+                }
+
+                handler.postDelayed(this, 30000)
             }
         }
-        handler.postDelayed(watcherRunnable!!, 15000)
+        handler.postDelayed(watcherRunnable!!, 10000) // first check 10s after launch
     }
 
     // === SECRET ADMIN ACCESS ===
