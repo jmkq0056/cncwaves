@@ -13,6 +13,8 @@ export default function AdminLayout({
   const [error, setError] = useState("");
   const [loggingIn, setLoggingIn] = useState(false);
   const [loginDone, setLoginDone] = useState(false);
+  const [burstOn, setBurstOn] = useState<boolean | null>(null);
+  const [burstToggling, setBurstToggling] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -27,6 +29,14 @@ export default function AdminLayout({
       });
     return () => { cancelled = true; };
   }, []);
+
+  useEffect(() => {
+    if (authenticated) {
+      fetch("/api/admin/burst").then(r => r.ok ? r.json() : null).then(d => {
+        if (d) setBurstOn(d.enabled);
+      }).catch(() => {});
+    }
+  }, [authenticated]);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -137,6 +147,32 @@ export default function AdminLayout({
             >
               Menu
             </a>
+            {burstOn !== null && (
+              <button
+                onClick={async () => {
+                  setBurstToggling(true);
+                  try {
+                    const res = await fetch("/api/admin/burst", {
+                      method: "PUT",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ enabled: !burstOn }),
+                    });
+                    if (res.ok) {
+                      const d = await res.json();
+                      setBurstOn(d.enabled);
+                    }
+                  } catch {} finally { setBurstToggling(false); }
+                }}
+                disabled={burstToggling}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${
+                  burstOn
+                    ? "bg-orange-500/20 text-orange-400 hover:bg-red-500/20 hover:text-red-400"
+                    : "bg-gray-800 text-gray-500 hover:bg-orange-500/20 hover:text-orange-400"
+                }`}
+              >
+                {burstToggling ? "..." : burstOn ? "Burst ON" : "Burst OFF"}
+              </button>
+            )}
           </div>
         </div>
       </nav>
