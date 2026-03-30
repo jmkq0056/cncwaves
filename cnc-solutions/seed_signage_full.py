@@ -183,21 +183,19 @@ def main():
         screen_num = i + 1
         print(f"  Screen {screen_num}: {BURST_CONTENT[i]}...")
 
-        # Frame 1: just gradient (empty)
-        frame1 = create_burst_frame(i, show_content=False)
-        # Frame 2: gradient + content
-        frame2 = create_burst_frame(i, show_content=True)
+        # Static PNG — no animation, just the final look
+        frame = create_burst_frame(i, show_content=True)
 
-        gif_path = OUTPUT / f"burst_screen_{screen_num}.gif"
-        frame1.save(str(gif_path), save_all=True, append_images=[frame2],
-                    duration=800, loop=0)
+        png_path = OUTPUT / f"burst_screen_{screen_num}.png"
+        frame.save(str(png_path))
 
-        # Upload to Cloudinary
-        result = cloudinary.uploader.upload(str(gif_path),
+        # Upload to Cloudinary as PNG
+        result = cloudinary.uploader.upload(str(png_path),
             folder="cnc-signage",
             public_id=f"burst-screen-{screen_num}",
             overwrite=True,
             resource_type="image",
+            format="png",
         )
         burst_urls[screen_num] = {
             "url": result["secure_url"],
