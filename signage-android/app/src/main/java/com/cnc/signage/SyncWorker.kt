@@ -64,11 +64,14 @@ class SyncWorker(context: Context, params: WorkerParameters) : Worker(context, p
         val serverData = fetchWithRetry(endpoint) ?: return Result.retry()
 
         return try {
-            // Save schedule from server
-            val onTime = serverData.optString("screenOnTime", "")
-            val offTime = serverData.optString("screenOffTime", "")
-            config.setScreenOnTime(onTime)
-            config.setScreenOffTime(offTime)
+            // Always save config from server (schedule, interval)
+            config.setScreenOnTime(serverData.optString("screenOnTime", ""))
+            config.setScreenOffTime(serverData.optString("screenOffTime", ""))
+            val serverInterval = serverData.optLong("rotationInterval", 10000L)
+            if (serverInterval != config.getRotationInterval()) {
+                config.setRotationInterval(serverInterval)
+                Log.d(TAG, "Updated rotation interval to ${serverInterval}ms")
+            }
 
             val serverHash = serverData.optString("hash", "")
             val localHash = config.getPlaylistHash()
@@ -79,9 +82,9 @@ class SyncWorker(context: Context, params: WorkerParameters) : Worker(context, p
                 return Result.success()
             }
 
-            // Same hash = no changes
+            // Same hash = no changes to images
             if (serverHash == localHash) {
-                Log.d(TAG, "Hash unchanged, nothing to do")
+                Log.d(TAG, "Hash unchanged, config synced")
                 return Result.success()
             }
 

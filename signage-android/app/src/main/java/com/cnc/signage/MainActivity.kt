@@ -30,6 +30,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import android.net.Uri
+import android.os.PowerManager
 import android.provider.Settings
 import java.io.File
 import java.util.Calendar
@@ -92,6 +93,7 @@ class MainActivity : AppCompatActivity() {
             imageView.visibility = View.GONE
             imageViewNext.visibility = View.GONE
             loadingText.visibility = View.GONE
+            setScreenBrightness(0f)
         } else {
             val images = playlistManager.getImageFiles()
             if (images.isEmpty()) {
@@ -168,12 +170,9 @@ class MainActivity : AppCompatActivity() {
     // === OVERLAY PERMISSION (needed for boot auto-launch on Android 10+) ===
     private fun requestOverlayPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
-            val prefs = getSharedPreferences("cnc_signage", MODE_PRIVATE)
-            if (prefs.getBoolean("overlay_prompted", false)) return
-            prefs.edit().putBoolean("overlay_prompted", true).apply()
-
             try {
                 Config(this).setAdminNavigating(true)
+                dialogShowing = true
                 systemDialogShowing = true
                 val intent = Intent(
                     Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -181,6 +180,7 @@ class MainActivity : AppCompatActivity() {
                 )
                 startActivity(intent)
             } catch (e: Exception) {
+                dialogShowing = false
                 systemDialogShowing = false
                 Config(this).setAdminNavigating(false)
                 Log.w("MainActivity", "Could not request overlay permission: ${e.message}")
@@ -304,9 +304,9 @@ class MainActivity : AppCompatActivity() {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) {
             hideSystemUI()
-        } else if (!dialogShowing && !systemDialogShowing) {
+        } else if (!dialogShowing && !systemDialogShowing && !Config(this).isAdminNavigating()) {
             handler.postDelayed({
-                if (!isFinishing && !isDestroyed && !dialogShowing && !systemDialogShowing) {
+                if (!isFinishing && !isDestroyed && !dialogShowing && !systemDialogShowing && !Config(this).isAdminNavigating()) {
                     hideSystemUI()
                     bringToFront()
                 }
@@ -379,22 +379,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setScreenBrightness(brightness: Float) {
+        val lp = window.attributes
+        lp.screenBrightness = brightness
+        window.attributes = lp
+    }
+
     private fun startScheduleChecker() {
         scheduleRunnable = object : Runnable {
             override fun run() {
                 if (isFinishing || isDestroyed) return
                 val shouldBeOn = isWithinSchedule()
                 if (!shouldBeOn && !isScreenOff) {
-                    // Turn off: hide images, show black
+                    // Turn off: dim screen to minimum, hide content
                     isScreenOff = true
                     imageView.visibility = View.GONE
                     imageViewNext.visibility = View.GONE
                     loadingText.visibility = View.GONE
                     rotationRunnable?.let { handler.removeCallbacks(it) }
-                    Log.i("MainActivity", "Schedule: screen OFF")
+                    setScreenBrightness(0f)
+                    Log.i("MainActivity", "Schedule: screen OFF (dimmed)")
                 } else if (shouldBeOn && isScreenOff) {
-                    // Turn back on
+                    // Turn back on: restore brightness, show content
                     isScreenOff = false
+                    setScreenBrightness(-1f) // -1 = system default
                     imageView.visibility = View.VISIBLE
                     val images = playlistManager.getImageFiles()
                     if (images.isNotEmpty()) {
@@ -407,7 +415,7 @@ class MainActivity : AppCompatActivity() {
                 handler.postDelayed(this, 30000) // check every 30s
             }
         }
-        handler.postDelayed(scheduleRunnable!!, 5000) // first check after 5s
+        handler.postDelayed(scheduleRunnable!!, 5000)
     }
 
     // === IMAGE DISPLAY: uses bitmap cache, no disk I/O ===

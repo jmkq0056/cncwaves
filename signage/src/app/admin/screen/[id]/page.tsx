@@ -419,7 +419,9 @@ export default function EditScreen() {
           <div className="flex items-center gap-3 mt-2">
             <span className="text-xs text-gray-500">
               {screenOnTime && screenOffTime
-                ? `Active ${screenOnTime} — ${screenOffTime}`
+                ? screenOnTime <= screenOffTime
+                  ? `Screen on ${screenOnTime} — ${screenOffTime} (Copenhagen)`
+                  : `Screen on ${screenOnTime} — ${screenOffTime} next day (Copenhagen)`
                 : "Always on (no schedule)"}
             </span>
             {(screenOnTime || screenOffTime) && (
