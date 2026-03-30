@@ -26,6 +26,8 @@ export async function GET(
         name: screen.name,
         hash: "",
         rotationInterval: screen.rotationInterval,
+        screenOnTime: screen.screenOnTime || "",
+        screenOffTime: screen.screenOffTime || "",
         images: [],
       });
     }
@@ -35,6 +37,8 @@ export async function GET(
       name: screen.name,
       hash: screen.playlistHash,
       rotationInterval: screen.rotationInterval,
+      screenOnTime: screen.screenOnTime || "",
+      screenOffTime: screen.screenOffTime || "",
       images: screen.images.map((img: any) => ({
         filename: img.filename,
         url: img.url,

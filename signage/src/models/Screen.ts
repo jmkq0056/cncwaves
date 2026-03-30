@@ -19,6 +19,9 @@ const ScreenSchema = new mongoose.Schema(
     playlistHash: { type: String, default: "" },
     published: { type: Boolean, default: false },
     publishedAt: { type: Date, default: null },
+    // Schedule: HH:mm format, empty = always on
+    screenOnTime: { type: String, default: "" },
+    screenOffTime: { type: String, default: "" },
     // Remote control
     pendingCommand: { type: String, default: "" }, // "identify", "force-sync", "restart"
     // Device status (updated by heartbeat)

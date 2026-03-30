@@ -30,6 +30,8 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
+import java.util.Calendar
+import java.util.TimeZone
 
 class MainActivity : AppCompatActivity() {
     private lateinit var imageView: ImageView
@@ -42,6 +44,8 @@ class MainActivity : AppCompatActivity() {
     private var retryRunnable: Runnable? = null
     private var watcherRunnable: Runnable? = null
     private var immersiveRunnable: Runnable? = null
+    private var scheduleRunnable: Runnable? = null
+    private var isScreenOff = false
     private var tapCount = 0
     private var lastTapTime = 0L
     private var pauseRestartScheduled = false
@@ -79,16 +83,24 @@ class MainActivity : AppCompatActivity() {
         loadingText = findViewById(R.id.loadingText)
 
         playlistManager = PlaylistManager(this)
-        val images = playlistManager.getImageFiles()
 
-        if (images.isEmpty()) {
-            loadingText.visibility = View.VISIBLE
-            loadingText.text = "Connecting..."
-            startRetryLoop()
+        // Check schedule before showing anything
+        if (!isWithinSchedule()) {
+            isScreenOff = true
+            imageView.visibility = View.GONE
+            imageViewNext.visibility = View.GONE
+            loadingText.visibility = View.GONE
         } else {
-            preloadBitmaps(images)
-            showCurrentImage()
-            startRotation()
+            val images = playlistManager.getImageFiles()
+            if (images.isEmpty()) {
+                loadingText.visibility = View.VISIBLE
+                loadingText.text = "Connecting..."
+                startRetryLoop()
+            } else {
+                preloadBitmaps(images)
+                showCurrentImage()
+                startRotation()
+            }
         }
 
         requestDefaultLauncher()
@@ -97,6 +109,7 @@ class MainActivity : AppCompatActivity() {
         SyncWorker.triggerImmediate(this)
         startPlaylistWatcher()
         startImmersiveEnforcer()
+        startScheduleChecker()
 
         try {
             val intent = Intent(this, WatchdogService::class.java)
@@ -278,11 +291,12 @@ class MainActivity : AppCompatActivity() {
     // Don't restart while any dialog (PIN, system, launcher) is showing
     override fun onPause() {
         super.onPause()
-        if (!pauseRestartScheduled && !dialogShowing && !systemDialogShowing) {
+        val config = Config(this)
+        if (!pauseRestartScheduled && !dialogShowing && !systemDialogShowing && !config.isAdminNavigating()) {
             pauseRestartScheduled = true
             handler.postDelayed({
                 pauseRestartScheduled = false
-                if (!isFinishing && !isDestroyed && !dialogShowing && !systemDialogShowing) {
+                if (!isFinishing && !isDestroyed && !dialogShowing && !systemDialogShowing && !Config(this).isAdminNavigating()) {
                     val intent = Intent(this, MainActivity::class.java).apply {
                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
@@ -297,6 +311,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         pauseRestartScheduled = false
         systemDialogShowing = false
+        Config(this).setAdminNavigating(false)
         hideSystemUI()
     }
 
@@ -309,6 +324,64 @@ class MainActivity : AppCompatActivity() {
             }
         }
         handler.postDelayed(immersiveRunnable!!, 5000)
+    }
+
+    // === SCHEDULE: check if screen should be on/off (Copenhagen timezone) ===
+    private fun isWithinSchedule(): Boolean {
+        val config = Config(this)
+        val onTime = config.getScreenOnTime()
+        val offTime = config.getScreenOffTime()
+        if (onTime.isEmpty() || offTime.isEmpty()) return true // no schedule = always on
+
+        val tz = TimeZone.getTimeZone("Europe/Copenhagen")
+        val now = Calendar.getInstance(tz)
+        val currentMinutes = now.get(Calendar.HOUR_OF_DAY) * 60 + now.get(Calendar.MINUTE)
+
+        val onParts = onTime.split(":")
+        val offParts = offTime.split(":")
+        if (onParts.size != 2 || offParts.size != 2) return true
+
+        val onMinutes = onParts[0].toIntOrNull()?.times(60)?.plus(onParts[1].toIntOrNull() ?: 0) ?: return true
+        val offMinutes = offParts[0].toIntOrNull()?.times(60)?.plus(offParts[1].toIntOrNull() ?: 0) ?: return true
+
+        return if (onMinutes <= offMinutes) {
+            // Normal: e.g. 08:00 - 22:00
+            currentMinutes in onMinutes until offMinutes
+        } else {
+            // Overnight: e.g. 22:00 - 06:00 (ON outside the off window)
+            currentMinutes >= onMinutes || currentMinutes < offMinutes
+        }
+    }
+
+    private fun startScheduleChecker() {
+        scheduleRunnable = object : Runnable {
+            override fun run() {
+                if (isFinishing || isDestroyed) return
+                val shouldBeOn = isWithinSchedule()
+                if (!shouldBeOn && !isScreenOff) {
+                    // Turn off: hide images, show black
+                    isScreenOff = true
+                    imageView.visibility = View.GONE
+                    imageViewNext.visibility = View.GONE
+                    loadingText.visibility = View.GONE
+                    rotationRunnable?.let { handler.removeCallbacks(it) }
+                    Log.i("MainActivity", "Schedule: screen OFF")
+                } else if (shouldBeOn && isScreenOff) {
+                    // Turn back on
+                    isScreenOff = false
+                    imageView.visibility = View.VISIBLE
+                    val images = playlistManager.getImageFiles()
+                    if (images.isNotEmpty()) {
+                        preloadBitmaps(images)
+                        showCurrentImage()
+                        startRotation()
+                    }
+                    Log.i("MainActivity", "Schedule: screen ON")
+                }
+                handler.postDelayed(this, 30000) // check every 30s
+            }
+        }
+        handler.postDelayed(scheduleRunnable!!, 5000) // first check after 5s
     }
 
     // === IMAGE DISPLAY: uses bitmap cache, no disk I/O ===
@@ -577,10 +650,13 @@ class MainActivity : AppCompatActivity() {
             .setItems(options) { _, which ->
                 dialogShowing = false
                 when (which) {
-                    0 -> startActivity(Intent(this, SetupActivity::class.java))
-                    1 -> openSettings(android.provider.Settings.ACTION_WIFI_SETTINGS)
-                    2 -> openSettings("android.settings.ETHERNET_SETTINGS")
-                    3 -> openSettings(android.provider.Settings.ACTION_SETTINGS)
+                    0 -> {
+                        Config(this).setAdminNavigating(true)
+                        startActivity(Intent(this, SetupActivity::class.java))
+                    }
+                    1 -> { Config(this).setAdminNavigating(true); openSettings(android.provider.Settings.ACTION_WIFI_SETTINGS) }
+                    2 -> { Config(this).setAdminNavigating(true); openSettings("android.settings.ETHERNET_SETTINGS") }
+                    3 -> { Config(this).setAdminNavigating(true); openSettings(android.provider.Settings.ACTION_SETTINGS) }
                     4 -> {
                         SyncWorker.triggerImmediate(this)
                         Toast.makeText(this, "Sync triggered", Toast.LENGTH_SHORT).show()

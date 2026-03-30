@@ -30,19 +30,12 @@ class CNCSignageApp : Application() {
                 val pendingIntent = PendingIntent.getActivity(this, 0, restartIntent, flags)
                 val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    alarmManager.setExactAndAllowWhileIdle(
-                        AlarmManager.RTC_WAKEUP,
-                        System.currentTimeMillis() + 2000,
-                        pendingIntent
-                    )
-                } else {
-                    alarmManager.set(
-                        AlarmManager.RTC_WAKEUP,
-                        System.currentTimeMillis() + 2000,
-                        pendingIntent
-                    )
-                }
+                // Use inexact alarm — exact requires runtime permission on Android 12+
+                alarmManager.set(
+                    AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + 2000,
+                    pendingIntent
+                )
             } catch (e: Exception) {
                 Log.e("CNCSignage", "Failed to schedule restart alarm", e)
             }

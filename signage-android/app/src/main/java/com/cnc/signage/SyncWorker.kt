@@ -64,6 +64,12 @@ class SyncWorker(context: Context, params: WorkerParameters) : Worker(context, p
         val serverData = fetchWithRetry(endpoint) ?: return Result.retry()
 
         return try {
+            // Save schedule from server
+            val onTime = serverData.optString("screenOnTime", "")
+            val offTime = serverData.optString("screenOffTime", "")
+            config.setScreenOnTime(onTime)
+            config.setScreenOffTime(offTime)
+
             val serverHash = serverData.optString("hash", "")
             val localHash = config.getPlaylistHash()
 

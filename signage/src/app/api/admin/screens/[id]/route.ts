@@ -103,6 +103,8 @@ export async function PUT(
     if (body.rotationInterval !== undefined)
       update.rotationInterval = body.rotationInterval;
     if (body.images !== undefined) update.images = body.images;
+    if (body.screenOnTime !== undefined) update.screenOnTime = body.screenOnTime;
+    if (body.screenOffTime !== undefined) update.screenOffTime = body.screenOffTime;
 
     // Handle publish toggle
     if (body.published !== undefined) {

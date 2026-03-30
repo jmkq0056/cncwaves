@@ -24,4 +24,15 @@ class Config(private val context: Context) {
         prefs.edit().putLong("rotation_interval", interval).apply()
 
     fun getPin(): String = prefs.getString("pin", "1111") ?: "1111"
+
+    // Admin navigation: temporarily disable watchdog/kiosk lock
+    fun setAdminNavigating(active: Boolean) =
+        prefs.edit().putBoolean("admin_navigating", active).commit()
+    fun isAdminNavigating(): Boolean = prefs.getBoolean("admin_navigating", false)
+
+    // Schedule: on/off times (HH:mm format, empty = always on)
+    fun getScreenOnTime(): String = prefs.getString("screen_on_time", "") ?: ""
+    fun setScreenOnTime(time: String) = prefs.edit().putString("screen_on_time", time).commit()
+    fun getScreenOffTime(): String = prefs.getString("screen_off_time", "") ?: ""
+    fun setScreenOffTime(time: String) = prefs.edit().putString("screen_off_time", time).commit()
 }

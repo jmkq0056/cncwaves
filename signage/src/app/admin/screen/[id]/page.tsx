@@ -18,6 +18,8 @@ interface ScreenData {
   playlistHash: string;
   published: boolean;
   publishedAt: string | null;
+  screenOnTime: string;
+  screenOffTime: string;
 }
 
 interface LibraryImage {
@@ -42,6 +44,8 @@ export default function EditScreen() {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState("");
   const [saved, setSaved] = useState(false);
+  const [screenOnTime, setScreenOnTime] = useState("");
+  const [screenOffTime, setScreenOffTime] = useState("");
 
   // Library modal
   const [showLibrary, setShowLibrary] = useState(false);
@@ -72,6 +76,8 @@ export default function EditScreen() {
         setInterval(data.rotationInterval);
         setImages(data.images || []);
         setPublished(data.published || false);
+        setScreenOnTime(data.screenOnTime || "");
+        setScreenOffTime(data.screenOffTime || "");
       } catch (e: any) {
         setLoadError(e.message || "Failed to load screen");
       }
@@ -136,6 +142,8 @@ export default function EditScreen() {
           rotationInterval: interval,
           images: images.map((img, i) => ({ ...img, order: i + 1 })),
           published,
+          screenOnTime,
+          screenOffTime,
         }),
       });
       if (!res.ok) {
@@ -291,7 +299,9 @@ export default function EditScreen() {
     JSON.stringify(images.map((i) => i.cloudinaryPublicId)) !==
       JSON.stringify(
         (screen.images || []).map((i: any) => i.cloudinaryPublicId)
-      );
+      ) ||
+    screenOnTime !== (screen.screenOnTime || "") ||
+    screenOffTime !== (screen.screenOffTime || "");
 
   return (
     <div>
@@ -376,6 +386,51 @@ export default function EditScreen() {
                 </button>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Schedule */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold mb-3">Schedule</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm text-gray-400 mb-1">
+                Turn ON at
+              </label>
+              <input
+                type="time"
+                value={screenOnTime}
+                onChange={(e) => setScreenOnTime(e.target.value)}
+                className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white"
+              />
+            </div>
+            <div>
+              <label className="block text-sm text-gray-400 mb-1">
+                Turn OFF at
+              </label>
+              <input
+                type="time"
+                value={screenOffTime}
+                onChange={(e) => setScreenOffTime(e.target.value)}
+                className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white"
+              />
+            </div>
+          </div>
+          <div className="flex items-center gap-3 mt-2">
+            <span className="text-xs text-gray-500">
+              {screenOnTime && screenOffTime
+                ? `Active ${screenOnTime} — ${screenOffTime}`
+                : "Always on (no schedule)"}
+            </span>
+            {(screenOnTime || screenOffTime) && (
+              <button
+                type="button"
+                onClick={() => { setScreenOnTime(""); setScreenOffTime(""); }}
+                className="text-xs text-red-400 hover:text-red-300"
+              >
+                Clear schedule
+              </button>
+            )}
           </div>
         </div>
 
