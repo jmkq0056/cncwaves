@@ -1,6 +1,8 @@
 {
   "name": "Ice Cream & Shakes",
   "slug": "ice-cream-amp-shakes",
+  "description": "Velsmagende is og shakes",
+  "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
   "sort_order": 10,
   "items": [
     {
@@ -8,7 +10,7 @@
       "description": "SUNDAE - Karamel Toffee",
       "price": 29.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/bd13c6f1-93d9-11ef-a967-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/bd13c6f1-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752620/cnc-menu/ice-cream-amp-shakes/sundae-karamel-toffee.png",
       "variants": [],
       "addons": [
@@ -25,63 +27,72 @@
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             },
             {
               "name": "Ekstra - Tivoli Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874150/cnc-menu/ice-cream-amp-shakes/addons/ekstra-tivoli-drys.png"
             },
             {
               "name": "Ekstra - Smarties Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874151/cnc-menu/ice-cream-amp-shakes/addons/ekstra-smarties-drys.png"
             },
             {
               "name": "Ekstra - Oreo Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874152/cnc-menu/ice-cream-amp-shakes/addons/ekstra-oreo-drys.png"
             },
             {
               "name": "Ekstra - Flødeskum",
               "description": "",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874153/cnc-menu/ice-cream-amp-shakes/addons/ekstra-flodeskum.png"
             },
             {
               "name": "Ekstra - Kinder Maxi",
               "description": "Chokolade",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -93,7 +104,7 @@
       "description": "SUNDAE - Jordbær",
       "price": 29.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/4b311825-93d9-11ef-a967-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/4b311825-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752621/cnc-menu/ice-cream-amp-shakes/sundae-jordbaer.png",
       "variants": [],
       "addons": [
@@ -110,63 +121,72 @@
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             },
             {
               "name": "Ekstra - Tivoli Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874150/cnc-menu/ice-cream-amp-shakes/addons/ekstra-tivoli-drys.png"
             },
             {
               "name": "Ekstra - Smarties Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874151/cnc-menu/ice-cream-amp-shakes/addons/ekstra-smarties-drys.png"
             },
             {
               "name": "Ekstra - Oreo Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874152/cnc-menu/ice-cream-amp-shakes/addons/ekstra-oreo-drys.png"
             },
             {
               "name": "Ekstra - Flødeskum",
               "description": "",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874153/cnc-menu/ice-cream-amp-shakes/addons/ekstra-flodeskum.png"
             },
             {
               "name": "Ekstra - Kinder Maxi",
               "description": "Chokolade",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -178,7 +198,7 @@
       "description": "SUNDAE - Chokolade",
       "price": 29.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/42438547-93d9-11ef-a967-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/42438547-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752622/cnc-menu/ice-cream-amp-shakes/sundae-chokolade.png",
       "variants": [],
       "addons": [
@@ -195,63 +215,72 @@
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             },
             {
               "name": "Ekstra - Tivoli Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874150/cnc-menu/ice-cream-amp-shakes/addons/ekstra-tivoli-drys.png"
             },
             {
               "name": "Ekstra - Smarties Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874151/cnc-menu/ice-cream-amp-shakes/addons/ekstra-smarties-drys.png"
             },
             {
               "name": "Ekstra - Oreo Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874152/cnc-menu/ice-cream-amp-shakes/addons/ekstra-oreo-drys.png"
             },
             {
               "name": "Ekstra - Flødeskum",
               "description": "",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874153/cnc-menu/ice-cream-amp-shakes/addons/ekstra-flodeskum.png"
             },
             {
               "name": "Ekstra - Kinder Maxi",
               "description": "Chokolade",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -263,7 +292,7 @@
       "description": "SUNDAE - Vanilje",
       "price": 29.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/3039c276-93d9-11ef-a967-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/3039c276-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752623/cnc-menu/ice-cream-amp-shakes/sundae-vanilje.png",
       "variants": [],
       "addons": [
@@ -280,63 +309,72 @@
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             },
             {
               "name": "Ekstra - Tivoli Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874150/cnc-menu/ice-cream-amp-shakes/addons/ekstra-tivoli-drys.png"
             },
             {
               "name": "Ekstra - Smarties Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874151/cnc-menu/ice-cream-amp-shakes/addons/ekstra-smarties-drys.png"
             },
             {
               "name": "Ekstra - Oreo Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874152/cnc-menu/ice-cream-amp-shakes/addons/ekstra-oreo-drys.png"
             },
             {
               "name": "Ekstra - Flødeskum",
               "description": "",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874153/cnc-menu/ice-cream-amp-shakes/addons/ekstra-flodeskum.png"
             },
             {
               "name": "Ekstra - Kinder Maxi",
               "description": "Chokolade",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -348,7 +386,7 @@
       "description": "SUNDAE - Oreo",
       "price": 29.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/26c40977-93d9-11ef-a967-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/26c40977-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752624/cnc-menu/ice-cream-amp-shakes/sundae-oreo.png",
       "variants": [],
       "addons": [
@@ -365,63 +403,72 @@
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             },
             {
               "name": "Ekstra - Tivoli Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874150/cnc-menu/ice-cream-amp-shakes/addons/ekstra-tivoli-drys.png"
             },
             {
               "name": "Ekstra - Smarties Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874151/cnc-menu/ice-cream-amp-shakes/addons/ekstra-smarties-drys.png"
             },
             {
               "name": "Ekstra - Oreo Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874152/cnc-menu/ice-cream-amp-shakes/addons/ekstra-oreo-drys.png"
             },
             {
               "name": "Ekstra - Flødeskum",
               "description": "",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874153/cnc-menu/ice-cream-amp-shakes/addons/ekstra-flodeskum.png"
             },
             {
               "name": "Ekstra - Kinder Maxi",
               "description": "Chokolade",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -433,7 +480,7 @@
       "description": "SUNDAE - Smartis",
       "price": 29.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/39862163-93d9-11ef-a967-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/39862163-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752625/cnc-menu/ice-cream-amp-shakes/sundae-smartis.png",
       "variants": [],
       "addons": [
@@ -450,63 +497,72 @@
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             },
             {
               "name": "Ekstra - Tivoli Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f15edf76-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874150/cnc-menu/ice-cream-amp-shakes/addons/ekstra-tivoli-drys.png"
             },
             {
               "name": "Ekstra - Smarties Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/18657068-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874151/cnc-menu/ice-cream-amp-shakes/addons/ekstra-smarties-drys.png"
             },
             {
               "name": "Ekstra - Oreo Drys",
               "description": "Drys",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/33046ec4-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874152/cnc-menu/ice-cream-amp-shakes/addons/ekstra-oreo-drys.png"
             },
             {
               "name": "Ekstra - Flødeskum",
               "description": "",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/715447eb-370a-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874153/cnc-menu/ice-cream-amp-shakes/addons/ekstra-flodeskum.png"
             },
             {
               "name": "Ekstra - Kinder Maxi",
               "description": "Chokolade",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }

@@ -1,6 +1,8 @@
 {
   "name": "Vegi's & Salad",
   "slug": "vegi-s-amp-salad",
+  "description": "Dette er til alle vores kunder, der foretrækker et kødfrit måltid",
+  "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
   "sort_order": 3,
   "items": [
     {
@@ -8,7 +10,7 @@
       "description": "Iceberg, tomat, fetaost, gulerod, jalapeños, rødløg, rucola, grøn oliven",
       "price": 69.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/9628a1fc-33e4-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/9628a1fc-33e4-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752512/cnc-menu/vegi-s-amp-salad/veggie-salad.png",
       "variants": [],
       "addons": [
@@ -25,91 +27,104 @@
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774873999/cnc-menu/beef-burger/addons/vegetarbof.png"
             },
             {
               "name": "Oksekødsbøf",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874001/cnc-menu/beef-burger/addons/oksekodsbof.png"
             },
             {
               "name": "Cordon Bleu",
               "description": "Kød viklet rundt om ost/med ostefyld",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874002/cnc-menu/beef-burger/addons/cordon-bleu.png"
             },
             {
               "name": "Karrykylling",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874003/cnc-menu/beef-burger/addons/karrykylling.png"
             },
             {
               "name": "Kyllinge nuggets",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874004/cnc-menu/beef-burger/addons/kyllinge-nuggets.png"
             },
             {
               "name": "Kyllingeinderfilet",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874005/cnc-menu/beef-burger/addons/kyllingeinderfilet.png"
             },
             {
               "name": "Tikka kylling",
               "description": "Kylling marineret i tikka krydderier",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874006/cnc-menu/beef-burger/addons/tikka-kylling.png"
             },
             {
               "name": "Kyllingekebab",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874007/cnc-menu/beef-burger/addons/kyllingekebab.png"
             },
             {
               "name": "Hash Brown kartoffel",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874008/cnc-menu/beef-burger/addons/hash-brown-kartoffel.png"
             },
             {
               "name": "Løg",
               "description": "",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg"
+              "image_original": "https://yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874015/cnc-menu/beef-burger/addons/log.jpg"
             },
             {
               "name": "Tomat",
               "description": "",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg"
+              "image_original": "https://yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874017/cnc-menu/beef-burger/addons/tomat.jpg"
             },
             {
               "name": "Iceberg",
               "description": "Iceberg salat",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg"
+              "image_original": "https://yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874019/cnc-menu/beef-burger/addons/iceberg.jpg"
             },
             {
               "name": "Cheddar",
               "description": "Cheddar ost",
               "price": 10.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874020/cnc-menu/beef-burger/addons/cheddar.png"
             }
           ]
         },
@@ -126,126 +141,144 @@
               "description": "Energi drink",
               "price": 29.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874073/cnc-menu/vegi-s-amp-salad/addons/red-bull.png"
             },
             {
               "name": "Pepsi 0.4l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Pepsi Max 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Faxe Kondi 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Faxe Kondi Zero 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874073/cnc-menu/vegi-s-amp-salad/addons/faxe-kondi-zero-0-4-l.png"
             },
             {
               "name": "Faxe Kondi Appelsin 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Mirinda lemon 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874073/cnc-menu/vegi-s-amp-salad/addons/faxe-kondi-zero-0-4-l.png"
             },
             {
               "name": "Pepsi 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Pepsi Max 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Faxe Kondi 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Faxe Kondi Zero 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Faxe Kondi Appelsin 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Mirinda lemon 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Pepsi Max 1.5 l",
               "description": "Sodavand",
               "price": 38.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874074/cnc-menu/vegi-s-amp-salad/addons/pepsi-max-1-5-l.png"
             },
             {
               "name": "Faxe Kondi 1.5l",
               "description": "Sodavand",
               "price": 38.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874075/cnc-menu/vegi-s-amp-salad/addons/faxe-kondi-1-5l.png"
             },
             {
               "name": "Danskvand 0.5l",
               "description": "Vand",
               "price": 28.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874076/cnc-menu/vegi-s-amp-salad/addons/danskvand-0-5l.png"
             },
             {
               "name": "Kildevand 0.5l",
               "description": "Vand",
               "price": 28.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874076/cnc-menu/vegi-s-amp-salad/addons/kildevand-0-5l.png"
             },
             {
               "name": "Capri-Sun",
               "description": "Juice",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874078/cnc-menu/vegi-s-amp-salad/addons/capri-sun.png"
             }
           ]
         },
@@ -266,7 +299,7 @@
       "description": "Frisk paneret kyllingefilet, iceberg, tomat, fetaost, gulerod, jalapeños, grøn oliven",
       "price": 79.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/e0766e60-33f2-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/e0766e60-33f2-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752513/cnc-menu/vegi-s-amp-salad/chicken-strips-salad.png",
       "variants": [],
       "addons": [
@@ -283,91 +316,104 @@
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774873999/cnc-menu/beef-burger/addons/vegetarbof.png"
             },
             {
               "name": "Oksekødsbøf",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874001/cnc-menu/beef-burger/addons/oksekodsbof.png"
             },
             {
               "name": "Cordon Bleu",
               "description": "Kød viklet rundt om ost/med ostefyld",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874002/cnc-menu/beef-burger/addons/cordon-bleu.png"
             },
             {
               "name": "Karrykylling",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874003/cnc-menu/beef-burger/addons/karrykylling.png"
             },
             {
               "name": "Kyllinge nuggets",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874004/cnc-menu/beef-burger/addons/kyllinge-nuggets.png"
             },
             {
               "name": "Kyllingeinderfilet",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874005/cnc-menu/beef-burger/addons/kyllingeinderfilet.png"
             },
             {
               "name": "Tikka kylling",
               "description": "Kylling marineret i tikka krydderier",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874006/cnc-menu/beef-burger/addons/tikka-kylling.png"
             },
             {
               "name": "Kyllingekebab",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874007/cnc-menu/beef-burger/addons/kyllingekebab.png"
             },
             {
               "name": "Hash Brown kartoffel",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874008/cnc-menu/beef-burger/addons/hash-brown-kartoffel.png"
             },
             {
               "name": "Løg",
               "description": "",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg"
+              "image_original": "https://yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874015/cnc-menu/beef-burger/addons/log.jpg"
             },
             {
               "name": "Tomat",
               "description": "",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg"
+              "image_original": "https://yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874017/cnc-menu/beef-burger/addons/tomat.jpg"
             },
             {
               "name": "Iceberg",
               "description": "Iceberg salat",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg"
+              "image_original": "https://yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874019/cnc-menu/beef-burger/addons/iceberg.jpg"
             },
             {
               "name": "Cheddar",
               "description": "Cheddar ost",
               "price": 10.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874020/cnc-menu/beef-burger/addons/cheddar.png"
             }
           ]
         },
@@ -384,126 +430,144 @@
               "description": "Energi drink",
               "price": 29.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874073/cnc-menu/vegi-s-amp-salad/addons/red-bull.png"
             },
             {
               "name": "Pepsi 0.4l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Pepsi Max 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Faxe Kondi 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Faxe Kondi Zero 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874073/cnc-menu/vegi-s-amp-salad/addons/faxe-kondi-zero-0-4-l.png"
             },
             {
               "name": "Faxe Kondi Appelsin 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Mirinda lemon 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874073/cnc-menu/vegi-s-amp-salad/addons/faxe-kondi-zero-0-4-l.png"
             },
             {
               "name": "Pepsi 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Pepsi Max 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Faxe Kondi 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Faxe Kondi Zero 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Faxe Kondi Appelsin 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Mirinda lemon 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Pepsi Max 1.5 l",
               "description": "Sodavand",
               "price": 38.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874074/cnc-menu/vegi-s-amp-salad/addons/pepsi-max-1-5-l.png"
             },
             {
               "name": "Faxe Kondi 1.5l",
               "description": "Sodavand",
               "price": 38.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874075/cnc-menu/vegi-s-amp-salad/addons/faxe-kondi-1-5l.png"
             },
             {
               "name": "Danskvand 0.5l",
               "description": "Vand",
               "price": 28.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874076/cnc-menu/vegi-s-amp-salad/addons/danskvand-0-5l.png"
             },
             {
               "name": "Kildevand 0.5l",
               "description": "Vand",
               "price": 28.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874076/cnc-menu/vegi-s-amp-salad/addons/kildevand-0-5l.png"
             },
             {
               "name": "Capri-Sun",
               "description": "Juice",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874078/cnc-menu/vegi-s-amp-salad/addons/capri-sun.png"
             }
           ]
         },
@@ -524,7 +588,7 @@
       "description": "Grillet tandoorimarineret kyllingefilet, iceberg, tomat, fetaost, gulerod, jalapeños, grøn oliven",
       "price": 79.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/75ca058e-33f2-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/75ca058e-33f2-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752514/cnc-menu/vegi-s-amp-salad/chicken-tikka-salad.png",
       "variants": [],
       "addons": [
@@ -541,91 +605,104 @@
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1d9fd11f-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774873999/cnc-menu/beef-burger/addons/vegetarbof.png"
             },
             {
               "name": "Oksekødsbøf",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/878eda2d-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874001/cnc-menu/beef-burger/addons/oksekodsbof.png"
             },
             {
               "name": "Cordon Bleu",
               "description": "Kød viklet rundt om ost/med ostefyld",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/2bcbee22-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874002/cnc-menu/beef-burger/addons/cordon-bleu.png"
             },
             {
               "name": "Karrykylling",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/0c6f2619-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874003/cnc-menu/beef-burger/addons/karrykylling.png"
             },
             {
               "name": "Kyllinge nuggets",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/010c83cf-33e0-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874004/cnc-menu/beef-burger/addons/kyllinge-nuggets.png"
             },
             {
               "name": "Kyllingeinderfilet",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f680251f-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874005/cnc-menu/beef-burger/addons/kyllingeinderfilet.png"
             },
             {
               "name": "Tikka kylling",
               "description": "Kylling marineret i tikka krydderier",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e98fc9a0-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874006/cnc-menu/beef-burger/addons/tikka-kylling.png"
             },
             {
               "name": "Kyllingekebab",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/db2eeda0-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874007/cnc-menu/beef-burger/addons/kyllingekebab.png"
             },
             {
               "name": "Hash Brown kartoffel",
               "description": "",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/cfe5f839-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874008/cnc-menu/beef-burger/addons/hash-brown-kartoffel.png"
             },
             {
               "name": "Løg",
               "description": "",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg"
+              "image_original": "https://yammi.dk/upload/3/ba1cc03e-33df-11ef-b253-a8a1598235c6.jpg",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874015/cnc-menu/beef-burger/addons/log.jpg"
             },
             {
               "name": "Tomat",
               "description": "",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg"
+              "image_original": "https://yammi.dk/upload/3/ae774a71-33df-11ef-b253-a8a1598235c6.jpg",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874017/cnc-menu/beef-burger/addons/tomat.jpg"
             },
             {
               "name": "Iceberg",
               "description": "Iceberg salat",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg"
+              "image_original": "https://yammi.dk/upload/3/94254808-33df-11ef-b253-a8a1598235c6.jpg",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874019/cnc-menu/beef-burger/addons/iceberg.jpg"
             },
             {
               "name": "Cheddar",
               "description": "Cheddar ost",
               "price": 10.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/3fe98e6e-33df-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874020/cnc-menu/beef-burger/addons/cheddar.png"
             }
           ]
         },
@@ -642,126 +719,144 @@
               "description": "Energi drink",
               "price": 29.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/d8611b17-36ff-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874073/cnc-menu/vegi-s-amp-salad/addons/red-bull.png"
             },
             {
               "name": "Pepsi 0.4l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Pepsi Max 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Faxe Kondi 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Faxe Kondi Zero 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874073/cnc-menu/vegi-s-amp-salad/addons/faxe-kondi-zero-0-4-l.png"
             },
             {
               "name": "Faxe Kondi Appelsin 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e6384d40-36fb-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874039/cnc-menu/beef-burger/addons/faxe-kondi-zero.png"
             },
             {
               "name": "Mirinda lemon 0.4 l",
               "description": "Sodavand",
               "price": 27.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/101ebfdf-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874073/cnc-menu/vegi-s-amp-salad/addons/faxe-kondi-zero-0-4-l.png"
             },
             {
               "name": "Pepsi 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Pepsi Max 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Faxe Kondi 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Faxe Kondi Zero 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Faxe Kondi Appelsin 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Mirinda lemon 0.5 l",
               "description": "Sodavand",
               "price": 32.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/409340c7-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874037/cnc-menu/beef-burger/addons/pepsi.png"
             },
             {
               "name": "Pepsi Max 1.5 l",
               "description": "Sodavand",
               "price": 38.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/260bff4f-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874074/cnc-menu/vegi-s-amp-salad/addons/pepsi-max-1-5-l.png"
             },
             {
               "name": "Faxe Kondi 1.5l",
               "description": "Sodavand",
               "price": 38.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1b0fd626-3700-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874075/cnc-menu/vegi-s-amp-salad/addons/faxe-kondi-1-5l.png"
             },
             {
               "name": "Danskvand 0.5l",
               "description": "Vand",
               "price": 28.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f98d5800-36ff-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874076/cnc-menu/vegi-s-amp-salad/addons/danskvand-0-5l.png"
             },
             {
               "name": "Kildevand 0.5l",
               "description": "Vand",
               "price": 28.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e796869c-36ff-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874076/cnc-menu/vegi-s-amp-salad/addons/kildevand-0-5l.png"
             },
             {
               "name": "Capri-Sun",
               "description": "Juice",
               "price": 15.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/ee3a6c76-3701-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874078/cnc-menu/vegi-s-amp-salad/addons/capri-sun.png"
             }
           ]
         },
@@ -782,7 +877,7 @@
       "description": "Corn",
       "price": 20.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/08aa2e05-1aa9-11f0-ac39-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/08aa2e05-1aa9-11f0-ac39-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752515/cnc-menu/vegi-s-amp-salad/corn.png",
       "variants": [],
       "addons": [],

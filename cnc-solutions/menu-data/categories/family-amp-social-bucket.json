@@ -1,6 +1,8 @@
 {
   "name": "Family & Social Bucket",
   "slug": "family-amp-social-bucket",
+  "description": "Udforsk de mange friturestegte kyllingespande, vi tilbyder!",
+  "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
   "sort_order": 5,
   "items": [
     {
@@ -8,7 +10,7 @@
       "description": "10 stk. Drumsticks",
       "price": 249.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/b7a5db3a-36f3-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/b7a5db3a-36f3-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752530/cnc-menu/family-amp-social-bucket/family-1.png",
       "variants": [],
       "addons": [
@@ -25,84 +27,96 @@
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874023/cnc-menu/beef-burger/addons/curry-mango-25g.png"
             },
             {
               "name": "Mayonnaise 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874024/cnc-menu/beef-burger/addons/mayonnaise-25g.png"
             },
             {
               "name": "Ketchup 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874025/cnc-menu/beef-burger/addons/ketchup-25g.png"
             },
             {
               "name": "Barbecue 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874026/cnc-menu/beef-burger/addons/barbecue-25g.png"
             },
             {
               "name": "Sweet & Sour 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874027/cnc-menu/beef-burger/addons/sweet-sour-25g.png"
             },
             {
               "name": "Hvidløg 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874028/cnc-menu/beef-burger/addons/hvidlog-25g.png"
             },
             {
               "name": "Peri Peri 30ml",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874030/cnc-menu/beef-burger/addons/peri-peri-30ml.png"
             },
             {
               "name": "Algérienne 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874031/cnc-menu/beef-burger/addons/algerienne-10g.png"
             },
             {
               "name": "Biggy Burger 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874032/cnc-menu/beef-burger/addons/biggy-burger-10g.png"
             },
             {
               "name": "Samourai 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874033/cnc-menu/beef-burger/addons/samourai-10g.png"
             },
             {
               "name": "Mayonaise 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874035/cnc-menu/beef-burger/addons/mayonaise-10g.png"
             },
             {
               "name": "Ketchup 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874036/cnc-menu/beef-burger/addons/ketchup-10g.png"
             }
           ]
         },
@@ -119,7 +133,8 @@
               "description": "",
               "price": 30.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         },
@@ -136,14 +151,16 @@
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             },
             {
               "name": "Pepsi Max",
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -155,7 +172,7 @@
       "description": "6 stk. Drumsticks + 12 stk. Hot Spicy Wings",
       "price": 259.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/08c4c7dc-36f4-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/08c4c7dc-36f4-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752531/cnc-menu/family-amp-social-bucket/family-2.png",
       "variants": [],
       "addons": [
@@ -172,84 +189,96 @@
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874023/cnc-menu/beef-burger/addons/curry-mango-25g.png"
             },
             {
               "name": "Mayonnaise 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874024/cnc-menu/beef-burger/addons/mayonnaise-25g.png"
             },
             {
               "name": "Ketchup 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874025/cnc-menu/beef-burger/addons/ketchup-25g.png"
             },
             {
               "name": "Barbecue 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874026/cnc-menu/beef-burger/addons/barbecue-25g.png"
             },
             {
               "name": "Sweet & Sour 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874027/cnc-menu/beef-burger/addons/sweet-sour-25g.png"
             },
             {
               "name": "Hvidløg 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874028/cnc-menu/beef-burger/addons/hvidlog-25g.png"
             },
             {
               "name": "Peri Peri 30ml",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874030/cnc-menu/beef-burger/addons/peri-peri-30ml.png"
             },
             {
               "name": "Algérienne 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874031/cnc-menu/beef-burger/addons/algerienne-10g.png"
             },
             {
               "name": "Biggy Burger 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874032/cnc-menu/beef-burger/addons/biggy-burger-10g.png"
             },
             {
               "name": "Samourai 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874033/cnc-menu/beef-burger/addons/samourai-10g.png"
             },
             {
               "name": "Mayonaise 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874035/cnc-menu/beef-burger/addons/mayonaise-10g.png"
             },
             {
               "name": "Ketchup 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874036/cnc-menu/beef-burger/addons/ketchup-10g.png"
             }
           ]
         },
@@ -266,7 +295,8 @@
               "description": "",
               "price": 30.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         },
@@ -283,14 +313,16 @@
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             },
             {
               "name": "Pepsi Max",
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -302,7 +334,7 @@
       "description": "4 stk. Drumsticks + 16 stk. Hot Spicy Wings + 10 stk. Chicken Strips",
       "price": 269.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/b29632a2-36f4-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/b29632a2-36f4-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752532/cnc-menu/family-amp-social-bucket/family-3.png",
       "variants": [],
       "addons": [
@@ -319,84 +351,96 @@
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874023/cnc-menu/beef-burger/addons/curry-mango-25g.png"
             },
             {
               "name": "Mayonnaise 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874024/cnc-menu/beef-burger/addons/mayonnaise-25g.png"
             },
             {
               "name": "Ketchup 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874025/cnc-menu/beef-burger/addons/ketchup-25g.png"
             },
             {
               "name": "Barbecue 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874026/cnc-menu/beef-burger/addons/barbecue-25g.png"
             },
             {
               "name": "Sweet & Sour 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874027/cnc-menu/beef-burger/addons/sweet-sour-25g.png"
             },
             {
               "name": "Hvidløg 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874028/cnc-menu/beef-burger/addons/hvidlog-25g.png"
             },
             {
               "name": "Peri Peri 30ml",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874030/cnc-menu/beef-burger/addons/peri-peri-30ml.png"
             },
             {
               "name": "Algérienne 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874031/cnc-menu/beef-burger/addons/algerienne-10g.png"
             },
             {
               "name": "Biggy Burger 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874032/cnc-menu/beef-burger/addons/biggy-burger-10g.png"
             },
             {
               "name": "Samourai 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874033/cnc-menu/beef-burger/addons/samourai-10g.png"
             },
             {
               "name": "Mayonaise 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874035/cnc-menu/beef-burger/addons/mayonaise-10g.png"
             },
             {
               "name": "Ketchup 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874036/cnc-menu/beef-burger/addons/ketchup-10g.png"
             }
           ]
         },
@@ -413,7 +457,8 @@
               "description": "",
               "price": 30.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         },
@@ -430,14 +475,16 @@
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             },
             {
               "name": "Pepsi Max",
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -449,7 +496,7 @@
       "description": "24 stk. Hot Spicy Wings",
       "price": 229.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/e7552286-36f4-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/e7552286-36f4-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752533/cnc-menu/family-amp-social-bucket/family-4.png",
       "variants": [],
       "addons": [
@@ -466,84 +513,96 @@
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874023/cnc-menu/beef-burger/addons/curry-mango-25g.png"
             },
             {
               "name": "Mayonnaise 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874024/cnc-menu/beef-burger/addons/mayonnaise-25g.png"
             },
             {
               "name": "Ketchup 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874025/cnc-menu/beef-burger/addons/ketchup-25g.png"
             },
             {
               "name": "Barbecue 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874026/cnc-menu/beef-burger/addons/barbecue-25g.png"
             },
             {
               "name": "Sweet & Sour 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874027/cnc-menu/beef-burger/addons/sweet-sour-25g.png"
             },
             {
               "name": "Hvidløg 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874028/cnc-menu/beef-burger/addons/hvidlog-25g.png"
             },
             {
               "name": "Peri Peri 30ml",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874030/cnc-menu/beef-burger/addons/peri-peri-30ml.png"
             },
             {
               "name": "Algérienne 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874031/cnc-menu/beef-burger/addons/algerienne-10g.png"
             },
             {
               "name": "Biggy Burger 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874032/cnc-menu/beef-burger/addons/biggy-burger-10g.png"
             },
             {
               "name": "Samourai 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874033/cnc-menu/beef-burger/addons/samourai-10g.png"
             },
             {
               "name": "Mayonaise 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874035/cnc-menu/beef-burger/addons/mayonaise-10g.png"
             },
             {
               "name": "Ketchup 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874036/cnc-menu/beef-burger/addons/ketchup-10g.png"
             }
           ]
         },
@@ -560,7 +619,8 @@
               "description": "",
               "price": 30.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         },
@@ -577,14 +637,16 @@
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             },
             {
               "name": "Pepsi Max",
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -596,7 +658,7 @@
       "description": "15 stk. Chicken Strips + 22 stk. Hot Spicy Wings",
       "price": 299.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/bd82a30f-36f5-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/bd82a30f-36f5-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752535/cnc-menu/family-amp-social-bucket/family-5.png",
       "variants": [],
       "addons": [
@@ -613,84 +675,96 @@
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874023/cnc-menu/beef-burger/addons/curry-mango-25g.png"
             },
             {
               "name": "Mayonnaise 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874024/cnc-menu/beef-burger/addons/mayonnaise-25g.png"
             },
             {
               "name": "Ketchup 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874025/cnc-menu/beef-burger/addons/ketchup-25g.png"
             },
             {
               "name": "Barbecue 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874026/cnc-menu/beef-burger/addons/barbecue-25g.png"
             },
             {
               "name": "Sweet & Sour 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874027/cnc-menu/beef-burger/addons/sweet-sour-25g.png"
             },
             {
               "name": "Hvidløg 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874028/cnc-menu/beef-burger/addons/hvidlog-25g.png"
             },
             {
               "name": "Peri Peri 30ml",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874030/cnc-menu/beef-burger/addons/peri-peri-30ml.png"
             },
             {
               "name": "Algérienne 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874031/cnc-menu/beef-burger/addons/algerienne-10g.png"
             },
             {
               "name": "Biggy Burger 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874032/cnc-menu/beef-burger/addons/biggy-burger-10g.png"
             },
             {
               "name": "Samourai 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874033/cnc-menu/beef-burger/addons/samourai-10g.png"
             },
             {
               "name": "Mayonaise 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874035/cnc-menu/beef-burger/addons/mayonaise-10g.png"
             },
             {
               "name": "Ketchup 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874036/cnc-menu/beef-burger/addons/ketchup-10g.png"
             }
           ]
         },
@@ -707,7 +781,8 @@
               "description": "",
               "price": 30.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         },
@@ -724,14 +799,16 @@
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             },
             {
               "name": "Pepsi Max",
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -743,7 +820,7 @@
       "description": "22 stk. Chicken Strips",
       "price": 229.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/e47b5968-36f5-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/e47b5968-36f5-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752536/cnc-menu/family-amp-social-bucket/family-6.png",
       "variants": [],
       "addons": [
@@ -760,84 +837,96 @@
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/04affd4a-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874023/cnc-menu/beef-burger/addons/curry-mango-25g.png"
             },
             {
               "name": "Mayonnaise 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/3f51b970-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874024/cnc-menu/beef-burger/addons/mayonnaise-25g.png"
             },
             {
               "name": "Ketchup 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/4eb6e158-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874025/cnc-menu/beef-burger/addons/ketchup-25g.png"
             },
             {
               "name": "Barbecue 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/2c5c0bdd-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874026/cnc-menu/beef-burger/addons/barbecue-25g.png"
             },
             {
               "name": "Sweet & Sour 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/61d78662-3703-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874027/cnc-menu/beef-burger/addons/sweet-sour-25g.png"
             },
             {
               "name": "Hvidløg 25g",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/f4c6dff0-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874028/cnc-menu/beef-burger/addons/hvidlog-25g.png"
             },
             {
               "name": "Peri Peri 30ml",
               "description": "Dyppelse/dressing",
               "price": 8.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/a81a4f59-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874030/cnc-menu/beef-burger/addons/peri-peri-30ml.png"
             },
             {
               "name": "Algérienne 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/e532549c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874031/cnc-menu/beef-burger/addons/algerienne-10g.png"
             },
             {
               "name": "Biggy Burger 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c6723e5c-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874032/cnc-menu/beef-burger/addons/biggy-burger-10g.png"
             },
             {
               "name": "Samourai 10g",
               "description": "Dyppelse/dressing",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/b61d8a3d-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874033/cnc-menu/beef-burger/addons/samourai-10g.png"
             },
             {
               "name": "Mayonaise 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/8fd4c44b-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874035/cnc-menu/beef-burger/addons/mayonaise-10g.png"
             },
             {
               "name": "Ketchup 10g",
               "description": "Dyppelse/dressing",
               "price": 4.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/86e06990-3702-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874036/cnc-menu/beef-burger/addons/ketchup-10g.png"
             }
           ]
         },
@@ -854,7 +943,8 @@
               "description": "",
               "price": 30.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         },
@@ -871,14 +961,16 @@
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             },
             {
               "name": "Pepsi Max",
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }

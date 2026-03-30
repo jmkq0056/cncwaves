@@ -1,6 +1,8 @@
 {
   "name": "Coffee & Cake",
   "slug": "coffee-amp-cake",
+  "description": "Vi tilbyder et bredt udvalg af kaffe og kager",
+  "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
   "sort_order": 9,
   "items": [
     {
@@ -8,7 +10,7 @@
       "description": "Americano",
       "price": 20.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/a0425b05-370b-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/a0425b05-370b-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752608/cnc-menu/coffee-amp-cake/americano.png",
       "variants": [],
       "addons": [
@@ -25,35 +27,40 @@
               "description": "Kaffe",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ektra-ekstra-espresso-shot.png"
             },
             {
               "name": "Ekstra - Monin Chocolate",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             }
           ]
         },
@@ -70,7 +77,8 @@
               "description": "",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -82,7 +90,7 @@
       "description": "Tea",
       "price": 20.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/18169663-370c-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/18169663-370c-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752608/cnc-menu/coffee-amp-cake/tea.png",
       "variants": [],
       "addons": [
@@ -99,28 +107,32 @@
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             },
             {
               "name": "Pukka - Green Collection",
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             },
             {
               "name": "Pukka - Supreme Matcha Green",
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             },
             {
               "name": "Pukka - Winter Warmer",
               "description": "",
               "price": 0.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         },
@@ -137,7 +149,8 @@
               "description": "",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -149,7 +162,7 @@
       "description": "Cappuccino",
       "price": 25.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/3f49f1c6-370c-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/3f49f1c6-370c-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752609/cnc-menu/coffee-amp-cake/cappuccino.png",
       "variants": [],
       "addons": [
@@ -166,35 +179,40 @@
               "description": "Kaffe",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ektra-ekstra-espresso-shot.png"
             },
             {
               "name": "Ekstra - Monin Chocolate",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             }
           ]
         },
@@ -211,7 +229,8 @@
               "description": "",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -223,7 +242,7 @@
       "description": "Caffe latte",
       "price": 25.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/6bfb00d0-370c-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/6bfb00d0-370c-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752610/cnc-menu/coffee-amp-cake/caffe-latte.png",
       "variants": [],
       "addons": [
@@ -240,35 +259,40 @@
               "description": "Kaffe",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ektra-ekstra-espresso-shot.png"
             },
             {
               "name": "Ekstra - Monin Chocolate",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             }
           ]
         },
@@ -285,7 +309,8 @@
               "description": "",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -297,7 +322,7 @@
       "description": "Varm kakao",
       "price": 25.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/83679a14-93d9-11ef-a967-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/83679a14-93d9-11ef-a967-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752611/cnc-menu/coffee-amp-cake/varm-kakao.png",
       "variants": [],
       "addons": [
@@ -314,35 +339,40 @@
               "description": "Kaffe",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ektra-ekstra-espresso-shot.png"
             },
             {
               "name": "Ekstra - Monin Chocolate",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             }
           ]
         },
@@ -359,7 +389,8 @@
               "description": "",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -371,7 +402,7 @@
       "description": "Flat white",
       "price": 25.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/250ae310-370d-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/250ae310-370d-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752612/cnc-menu/coffee-amp-cake/flat-white.png",
       "variants": [],
       "addons": [
@@ -388,35 +419,40 @@
               "description": "Kaffe",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ektra-ekstra-espresso-shot.png"
             },
             {
               "name": "Ekstra - Monin Chocolate",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             }
           ]
         },
@@ -433,7 +469,8 @@
               "description": "",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -445,7 +482,7 @@
       "description": "Cortador",
       "price": 25.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/591ad095-370d-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/591ad095-370d-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752612/cnc-menu/coffee-amp-cake/cortador.png",
       "variants": [],
       "addons": [
@@ -462,35 +499,40 @@
               "description": "Kaffe",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ektra-ekstra-espresso-shot.png"
             },
             {
               "name": "Ekstra - Monin Chocolate",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             }
           ]
         },
@@ -507,7 +549,8 @@
               "description": "",
               "price": 5.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/all/9be3c0fa-9932-11ee-a9e6-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874022/cnc-menu/beef-burger/addons/large-upgrade.png"
             }
           ]
         }
@@ -519,7 +562,7 @@
       "description": "Is latte - Vanilla",
       "price": 32.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/771ebab8-370d-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/771ebab8-370d-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752613/cnc-menu/coffee-amp-cake/is-latte-vanilla.png",
       "variants": [],
       "addons": [
@@ -536,35 +579,40 @@
               "description": "Kaffe",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ektra-ekstra-espresso-shot.png"
             },
             {
               "name": "Ekstra - Monin Chocolate",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             }
           ]
         }
@@ -576,8 +624,8 @@
       "description": "",
       "price": 32.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/771ebab8-370d-11ef-b253-a8a1598235c6.png",
-      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752614/cnc-menu/coffee-amp-cake/is-latte-caramel.png",
+      "image_original": "https://yammi.dk/upload/3/771ebab8-370d-11ef-b253-a8a1598235c6.png",
+      "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752613/cnc-menu/coffee-amp-cake/is-latte-vanilla.png",
       "variants": [],
       "addons": [
         {
@@ -593,35 +641,40 @@
               "description": "Kaffe",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ektra-ekstra-espresso-shot.png"
             },
             {
               "name": "Ekstra - Monin Chocolate",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             }
           ]
         }
@@ -633,7 +686,7 @@
       "description": "Espresso dobbelt",
       "price": 20.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/e3d96d8e-370b-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/e3d96d8e-370b-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752615/cnc-menu/coffee-amp-cake/espresso-dobbelt.png",
       "variants": [],
       "addons": [
@@ -650,35 +703,40 @@
               "description": "Kaffe",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/1512c6ea-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ektra-ekstra-espresso-shot.png"
             },
             {
               "name": "Ekstra - Monin Chocolate",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/5bbf16f8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874136/cnc-menu/coffee-amp-cake/addons/ekstra-monin-chocolate.png"
             },
             {
               "name": "Ekstra - Monin Karamel Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/75587dd8-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874138/cnc-menu/coffee-amp-cake/addons/ekstra-monin-karamel-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Vanilje Sukkerfri",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/970b8dcc-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874139/cnc-menu/coffee-amp-cake/addons/ekstra-monin-vanilje-sukkerfri.png"
             },
             {
               "name": "Ekstra - Monin Pumpkin Spice",
               "description": "Sirup",
               "price": 6.0,
               "currency": "DKK",
-              "image_original": "http://www.yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png"
+              "image_original": "https://yammi.dk/upload/3/c844ce99-3709-11ef-b253-a8a1598235c6.png",
+              "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774874140/cnc-menu/coffee-amp-cake/addons/ekstra-monin-pumpkin-spice.png"
             }
           ]
         }
@@ -690,7 +748,7 @@
       "description": "Tiramisu - Chocolate",
       "price": 29.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/136ef9ee-4134-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/136ef9ee-4134-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752617/cnc-menu/coffee-amp-cake/tiramisu-chocolate.png",
       "variants": [],
       "addons": [],
@@ -701,7 +759,7 @@
       "description": "Tiramisu - Caramel",
       "price": 29.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/3a7a0396-4134-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/3a7a0396-4134-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752618/cnc-menu/coffee-amp-cake/tiramisu-caramel.png",
       "variants": [],
       "addons": [],
@@ -712,7 +770,7 @@
       "description": "Chocolate muffin",
       "price": 19.0,
       "currency": "DKK",
-      "image_original": "http://www.yammi.dk/upload/3/26020232-4134-11ef-b253-a8a1598235c6.png",
+      "image_original": "https://yammi.dk/upload/3/26020232-4134-11ef-b253-a8a1598235c6.png",
       "image_cloudinary": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774752619/cnc-menu/coffee-amp-cake/chocolate-muffin.png",
       "variants": [],
       "addons": [],
