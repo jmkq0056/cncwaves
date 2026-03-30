@@ -45,18 +45,26 @@ export default function ImageLibrary() {
     setUploading(true);
     setUploadError("");
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const res = await fetch("/api/admin/upload", {
-        method: "POST",
-        body: formData,
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Upload failed");
-      }
+      // Get signed params from server
+      const sigRes = await fetch("/api/admin/upload", { method: "POST" });
+      if (!sigRes.ok) throw new Error("Failed to get upload signature");
+      const sig = await sigRes.json();
+
+      // Upload directly to Cloudinary (bypasses Vercel 4.5MB limit)
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("api_key", sig.apiKey);
+      formData.append("timestamp", String(sig.timestamp));
+      formData.append("signature", sig.signature);
+      formData.append("folder", sig.folder);
+      formData.append("format", "png");
+
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/${sig.cloudName}/image/upload`,
+        { method: "POST", body: formData }
+      );
+      if (!res.ok) throw new Error("Upload to Cloudinary failed");
     } catch (e: any) {
       setUploadError(e.message || "Upload failed");
       setTimeout(() => setUploadError(""), 5000);
