@@ -20,6 +20,7 @@ interface ScreenData {
   publishedAt: string | null;
   screenOnTime: string;
   screenOffTime: string;
+  screenOffMode: string;
 }
 
 interface LibraryImage {
@@ -46,6 +47,7 @@ export default function EditScreen() {
   const [saved, setSaved] = useState(false);
   const [screenOnTime, setScreenOnTime] = useState("");
   const [screenOffTime, setScreenOffTime] = useState("");
+  const [screenOffMode, setScreenOffMode] = useState("dim");
 
   // Library modal
   const [showLibrary, setShowLibrary] = useState(false);
@@ -78,6 +80,7 @@ export default function EditScreen() {
         setPublished(data.published || false);
         setScreenOnTime(data.screenOnTime || "");
         setScreenOffTime(data.screenOffTime || "");
+        setScreenOffMode(data.screenOffMode || "dim");
       } catch (e: any) {
         setLoadError(e.message || "Failed to load screen");
       }
@@ -144,6 +147,7 @@ export default function EditScreen() {
           published,
           screenOnTime,
           screenOffTime,
+          screenOffMode,
         }),
       });
       if (!res.ok) {
@@ -301,7 +305,8 @@ export default function EditScreen() {
         (screen.images || []).map((i: any) => i.cloudinaryPublicId)
       ) ||
     screenOnTime !== (screen.screenOnTime || "") ||
-    screenOffTime !== (screen.screenOffTime || "");
+    screenOffTime !== (screen.screenOffTime || "") ||
+    screenOffMode !== (screen.screenOffMode || "dim");
 
   return (
     <div>
@@ -416,6 +421,21 @@ export default function EditScreen() {
               />
             </div>
           </div>
+          {screenOnTime && screenOffTime && (
+            <div className="mt-3">
+              <label className="block text-sm text-gray-400 mb-1">
+                When off
+              </label>
+              <select
+                value={screenOffMode}
+                onChange={(e) => setScreenOffMode(e.target.value)}
+                className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm"
+              >
+                <option value="dim">Dim screen (brightness 0)</option>
+                <option value="reboot">Reboot device</option>
+              </select>
+            </div>
+          )}
           <div className="flex items-center gap-3 mt-2">
             <span className="text-xs text-gray-500">
               {screenOnTime && screenOffTime

@@ -39,6 +39,7 @@ export async function GET(
       rotationInterval: screen.rotationInterval,
       screenOnTime: screen.screenOnTime || "",
       screenOffTime: screen.screenOffTime || "",
+      screenOffMode: screen.screenOffMode || "dim",
       images: screen.images.map((img: any) => ({
         filename: img.filename,
         url: img.url,

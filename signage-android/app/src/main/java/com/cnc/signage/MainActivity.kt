@@ -87,13 +87,14 @@ class MainActivity : AppCompatActivity() {
 
         playlistManager = PlaylistManager(this)
 
-        // Check schedule before showing anything
+        // Check schedule before showing anything (on boot after reboot, just dim)
         if (!isWithinSchedule()) {
             isScreenOff = true
             imageView.visibility = View.GONE
             imageViewNext.visibility = View.GONE
             loadingText.visibility = View.GONE
             setScreenBrightness(0f)
+            Log.i("MainActivity", "Boot during off hours — screen dimmed")
         } else {
             val images = playlistManager.getImageFiles()
             if (images.isEmpty()) {
@@ -385,24 +386,49 @@ class MainActivity : AppCompatActivity() {
         window.attributes = lp
     }
 
+    private fun triggerReboot() {
+        Log.i("MainActivity", "Schedule: rebooting device")
+        try {
+            // Try runtime reboot (works on rooted or system apps)
+            Runtime.getRuntime().exec(arrayOf("su", "-c", "reboot"))
+        } catch (e: Exception) {
+            Log.w("MainActivity", "su reboot failed, trying PowerManager")
+            try {
+                val pm = getSystemService(Context.POWER_SERVICE) as PowerManager
+                pm.reboot("schedule")
+            } catch (e2: Exception) {
+                Log.w("MainActivity", "PowerManager reboot failed, dimming instead")
+                // Fallback: dim if reboot not possible
+                setScreenBrightness(0f)
+            }
+        }
+    }
+
     private fun startScheduleChecker() {
         scheduleRunnable = object : Runnable {
             override fun run() {
                 if (isFinishing || isDestroyed) return
+                val config = Config(this@MainActivity)
                 val shouldBeOn = isWithinSchedule()
+                val offMode = config.getScreenOffMode()
+
                 if (!shouldBeOn && !isScreenOff) {
-                    // Turn off: dim screen to minimum, hide content
                     isScreenOff = true
-                    imageView.visibility = View.GONE
-                    imageViewNext.visibility = View.GONE
-                    loadingText.visibility = View.GONE
-                    rotationRunnable?.let { handler.removeCallbacks(it) }
-                    setScreenBrightness(0f)
-                    Log.i("MainActivity", "Schedule: screen OFF (dimmed)")
+                    if (offMode == "reboot") {
+                        triggerReboot()
+                    } else {
+                        // Dim mode: brightness 0, hide content
+                        imageView.visibility = View.GONE
+                        imageViewNext.visibility = View.GONE
+                        loadingText.visibility = View.GONE
+                        rotationRunnable?.let { handler.removeCallbacks(it) }
+                        setScreenBrightness(0f)
+                        Log.i("MainActivity", "Schedule: screen OFF (dimmed)")
+                    }
                 } else if (shouldBeOn && isScreenOff) {
-                    // Turn back on: restore brightness, show content
+                    // Turn back on
                     isScreenOff = false
-                    setScreenBrightness(-1f) // -1 = system default
+                    setScreenBrightness(-1f)
                     imageView.visibility = View.VISIBLE
                     val images = playlistManager.getImageFiles()
                     if (images.isNotEmpty()) {
@@ -412,7 +438,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     Log.i("MainActivity", "Schedule: screen ON")
                 }
-                handler.postDelayed(this, 30000) // check every 30s
+                handler.postDelayed(this, 30000)
             }
         }
         handler.postDelayed(scheduleRunnable!!, 5000)

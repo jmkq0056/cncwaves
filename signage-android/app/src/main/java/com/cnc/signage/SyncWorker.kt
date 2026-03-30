@@ -64,9 +64,10 @@ class SyncWorker(context: Context, params: WorkerParameters) : Worker(context, p
         val serverData = fetchWithRetry(endpoint) ?: return Result.retry()
 
         return try {
-            // Always save config from server (schedule, interval)
+            // Always save config from server (schedule, interval, off mode)
             config.setScreenOnTime(serverData.optString("screenOnTime", ""))
             config.setScreenOffTime(serverData.optString("screenOffTime", ""))
+            config.setScreenOffMode(serverData.optString("screenOffMode", "dim"))
             val serverInterval = serverData.optLong("rotationInterval", 10000L)
             if (serverInterval != config.getRotationInterval()) {
                 config.setRotationInterval(serverInterval)

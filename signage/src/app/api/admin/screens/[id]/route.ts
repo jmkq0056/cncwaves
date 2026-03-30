@@ -105,6 +105,7 @@ export async function PUT(
     if (body.images !== undefined) update.images = body.images;
     if (body.screenOnTime !== undefined) update.screenOnTime = body.screenOnTime;
     if (body.screenOffTime !== undefined) update.screenOffTime = body.screenOffTime;
+    if (body.screenOffMode !== undefined) update.screenOffMode = body.screenOffMode;
 
     // Handle publish toggle
     if (body.published !== undefined) {

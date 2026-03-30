@@ -35,4 +35,7 @@ class Config(private val context: Context) {
     fun setScreenOnTime(time: String) = prefs.edit().putString("screen_on_time", time).commit()
     fun getScreenOffTime(): String = prefs.getString("screen_off_time", "") ?: ""
     fun setScreenOffTime(time: String) = prefs.edit().putString("screen_off_time", time).commit()
+
+    fun getScreenOffMode(): String = prefs.getString("screen_off_mode", "dim") ?: "dim"
+    fun setScreenOffMode(mode: String) = prefs.edit().putString("screen_off_mode", mode).commit()
 }

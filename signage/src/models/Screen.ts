@@ -22,6 +22,7 @@ const ScreenSchema = new mongoose.Schema(
     // Schedule: HH:mm format, empty = always on
     screenOnTime: { type: String, default: "" },
     screenOffTime: { type: String, default: "" },
+    screenOffMode: { type: String, default: "dim" }, // "dim" or "reboot"
     // Remote control
     pendingCommand: { type: String, default: "" }, // "identify", "force-sync", "restart"
     // Device status (updated by heartbeat)
