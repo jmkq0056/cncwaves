@@ -96,6 +96,7 @@ export default function AdminLayout({
 
   const isScreens = pathname === "/admin";
   const isImages = pathname === "/admin/images";
+  const isMenu = pathname?.startsWith("/admin/menu");
 
   return (
     <div className="min-h-screen pb-20 sm:pb-0">
@@ -126,6 +127,16 @@ export default function AdminLayout({
             >
               Images
             </a>
+            <a
+              href="/admin/menu"
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                isMenu
+                  ? "bg-gray-800 text-white"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              Menu
+            </a>
           </div>
         </div>
       </nav>
@@ -155,6 +166,15 @@ export default function AdminLayout({
         >
           <div className="text-lg mb-0.5">{isImages ? "▣" : "▢"}</div>
           Images
+        </a>
+        <a
+          href="/admin/menu"
+          className={`flex-1 py-4 text-center text-sm font-medium transition ${
+            isMenu ? "text-orange-500" : "text-gray-500"
+          }`}
+        >
+          <div className="text-lg mb-0.5">{isMenu ? "☰" : "≡"}</div>
+          Menu
         </a>
       </nav>
     </div>

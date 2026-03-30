@@ -57,6 +57,34 @@
             <Button android:id="@+id/btn10" android:layout_width="56dp" android:layout_height="56dp" android:text="10" android:textSize="18sp" android:textColor="#FFFFFF" android:background="#333333" android:layout_margin="4dp" android:focusable="true" />
         </LinearLayout>
 
+        <!-- Row 3: Screens 11-15 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <Button android:id="@+id/btn11" android:layout_width="56dp" android:layout_height="56dp" android:text="11" android:textSize="18sp" android:textColor="#FFFFFF" android:background="#333333" android:layout_margin="4dp" android:focusable="true" />
+            <Button android:id="@+id/btn12" android:layout_width="56dp" android:layout_height="56dp" android:text="12" android:textSize="18sp" android:textColor="#FFFFFF" android:background="#333333" android:layout_margin="4dp" android:focusable="true" />
+            <Button android:id="@+id/btn13" android:layout_width="56dp" android:layout_height="56dp" android:text="13" android:textSize="18sp" android:textColor="#FFFFFF" android:background="#333333" android:layout_margin="4dp" android:focusable="true" />
+            <Button android:id="@+id/btn14" android:layout_width="56dp" android:layout_height="56dp" android:text="14" android:textSize="18sp" android:textColor="#FFFFFF" android:background="#333333" android:layout_margin="4dp" android:focusable="true" />
+            <Button android:id="@+id/btn15" android:layout_width="56dp" android:layout_height="56dp" android:text="15" android:textSize="18sp" android:textColor="#FFFFFF" android:background="#333333" android:layout_margin="4dp" android:focusable="true" />
+        </LinearLayout>
+
+        <!-- Row 4: Screens 16-20 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <Button android:id="@+id/btn16" android:layout_width="56dp" android:layout_height="56dp" android:text="16" android:textSize="18sp" android:textColor="#FFFFFF" android:background="#333333" android:layout_margin="4dp" android:focusable="true" />
+            <Button android:id="@+id/btn17" android:layout_width="56dp" android:layout_height="56dp" android:text="17" android:textSize="18sp" android:textColor="#FFFFFF" android:background="#333333" android:layout_margin="4dp" android:focusable="true" />
+            <Button android:id="@+id/btn18" android:layout_width="56dp" android:layout_height="56dp" android:text="18" android:textSize="18sp" android:textColor="#FFFFFF" android:background="#333333" android:layout_margin="4dp" android:focusable="true" />
+            <Button android:id="@+id/btn19" android:layout_width="56dp" android:layout_height="56dp" android:text="19" android:textSize="18sp" android:textColor="#FFFFFF" android:background="#333333" android:layout_margin="4dp" android:focusable="true" />
+            <Button android:id="@+id/btn20" android:layout_width="56dp" android:layout_height="56dp" android:text="20" android:textSize="18sp" android:textColor="#FFFFFF" android:background="#333333" android:layout_margin="4dp" android:focusable="true" />
+        </LinearLayout>
+
         <!-- Selected screen display -->
         <TextView
             android:id="@+id/selectedText"

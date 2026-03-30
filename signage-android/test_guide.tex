@@ -1,0 +1,248 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{amssymb}
+
+\definecolor{cncOrange}{HTML}{FF6600}
+\definecolor{passGreen}{HTML}{2E7D32}
+\definecolor{failRed}{HTML}{C62828}
+\definecolor{sectionBg}{HTML}{FFF3E0}
+
+\hypersetup{colorlinks=true, linkcolor=cncOrange, urlcolor=cncOrange}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textcolor{cncOrange}{\textbf{CNC Signage}} --- Production Readiness Test}
+\rhead{\today}
+\cfoot{\thepage}
+
+% Checkbox command
+\newcommand{\checkbox}{$\square$\;}
+\newcommand{\pass}{\textcolor{passGreen}{\textbf{PASS}}}
+\newcommand{\fail}{\textcolor{failRed}{\textbf{FAIL}}}
+
+\title{%
+  \vspace{-1cm}
+  {\Huge\textcolor{cncOrange}{\textbf{CNC Signage}}}\\[0.3cm]
+  {\Large Production Readiness Test Guide}\\[0.2cm]
+  {\normalsize Version 1.0 --- \today}
+}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\noindent
+\begin{tabular}{@{}ll}
+  \textbf{Tester:} & \rule{6cm}{0.4pt} \\[0.3cm]
+  \textbf{Device:} & \rule{6cm}{0.4pt} \\[0.3cm]
+  \textbf{Android Version:} & \rule{3cm}{0.4pt} \quad \textbf{API Level:} \rule{2cm}{0.4pt} \\[0.3cm]
+  \textbf{APK Version:} & \rule{6cm}{0.4pt} \\[0.3cm]
+  \textbf{Date:} & \rule{6cm}{0.4pt} \\
+\end{tabular}
+
+\vspace{0.5cm}
+\noindent\textit{Check each box after verifying. Mark \pass{} or \fail{} in the result column. If a test fails, note the issue in the remarks.}
+
+% =====================================================================
+\section{Fresh Install}
+% =====================================================================
+
+\begin{tabular}{@{}p{0.5cm}p{10cm}p{2cm}p{3cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Step} & \textbf{Result} & \textbf{Remarks} \\
+\midrule
+\checkbox & Uninstall any previous version of the app & & \\[0.3cm]
+\checkbox & Install APK (via ADB or file manager) & & \\[0.3cm]
+\checkbox & App name shows as \textbf{``CNC Signage''} (not package name) & & \\[0.3cm]
+\checkbox & App icon appears in the app drawer & & \\[0.3cm]
+\checkbox & App opens without crashing & & \\
+\bottomrule
+\end{tabular}
+
+% =====================================================================
+\section{Setup Screen}
+% =====================================================================
+
+\begin{tabular}{@{}p{0.5cm}p{10cm}p{2cm}p{3cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Step} & \textbf{Result} & \textbf{Remarks} \\
+\midrule
+\checkbox & First launch opens the Setup screen & & \\[0.3cm]
+\checkbox & All 20 screen buttons (1--20) are visible & & \\[0.3cm]
+\checkbox & Tapping a button highlights it \textcolor{cncOrange}{orange} & & \\[0.3cm]
+\checkbox & Text updates to ``Screen X'' when selected & & \\[0.3cm]
+\checkbox & Default server URL is \texttt{signage-android.vercel.app} & & \\[0.3cm]
+\checkbox & START without selecting a screen shows a warning & & \\[0.3cm]
+\checkbox & WiFi / Ethernet / Settings buttons work & & \\[0.3cm]
+\checkbox & ``Change Server URL'' reveals the URL input & & \\[0.3cm]
+\checkbox & Pressing START with valid config goes to main screen & & \\
+\bottomrule
+\end{tabular}
+
+% =====================================================================
+\section{Default Launcher Prompt}
+% =====================================================================
+
+\begin{tabular}{@{}p{0.5cm}p{10cm}p{2cm}p{3cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Step} & \textbf{Result} & \textbf{Remarks} \\
+\midrule
+\checkbox & On first launch, app asks to be set as default launcher & & \\[0.3cm]
+\checkbox & Prompt only appears \textbf{once} (not on every launch) & & \\[0.3cm]
+\checkbox & After accepting, Home button stays in the app & & \\[0.3cm]
+\checkbox & If declined, app still works normally & & \\
+\bottomrule
+\end{tabular}
+
+% =====================================================================
+\section{Image Display}
+% =====================================================================
+
+\begin{tabular}{@{}p{0.5cm}p{10cm}p{2cm}p{3cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Step} & \textbf{Result} & \textbf{Remarks} \\
+\midrule
+\checkbox & After setup, shows ``Connecting\ldots'' then loads images & & \\[0.3cm]
+\checkbox & Images rotate with a smooth fade transition & & \\[0.3cm]
+\checkbox & Rotation continues for 10+ minutes without freezing & & \\[0.3cm]
+\checkbox & No black screen between image transitions & & \\[0.3cm]
+\checkbox & Single-image playlist displays without rotation & & \\
+\bottomrule
+\end{tabular}
+
+% =====================================================================
+\section{Kiosk Lockdown}
+% =====================================================================
+
+\begin{tabular}{@{}p{0.5cm}p{10cm}p{2cm}p{3cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Step} & \textbf{Result} & \textbf{Remarks} \\
+\midrule
+\checkbox & Back button does nothing & & \\[0.3cm]
+\checkbox & Home button does nothing (if set as launcher) & & \\[0.3cm]
+\checkbox & Recent apps / app switcher blocked & & \\[0.3cm]
+\checkbox & Status bar cannot be pulled down & & \\[0.3cm]
+\checkbox & Screen stays on permanently (no sleep) & & \\[0.3cm]
+\checkbox & App does \textbf{not} enter an infinite pin/restart loop & & \\
+\bottomrule
+\end{tabular}
+
+% =====================================================================
+\section{Admin Access (5-Tap Menu)}
+% =====================================================================
+
+\begin{tabular}{@{}p{0.5cm}p{10cm}p{2cm}p{3cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Step} & \textbf{Result} & \textbf{Remarks} \\
+\midrule
+\checkbox & Tap screen 5 times quickly $\rightarrow$ PIN dialog appears & & \\[0.3cm]
+\checkbox & Wrong PIN $\rightarrow$ ``Incorrect PIN'' toast & & \\[0.3cm]
+\checkbox & Correct PIN (default: \texttt{1111}) $\rightarrow$ Admin menu & & \\[0.3cm]
+\checkbox & ``App Setup'' opens setup screen & & \\[0.3cm]
+\checkbox & ``WiFi Settings'' opens WiFi & & \\[0.3cm]
+\checkbox & ``Force Sync Now'' shows ``Sync triggered'' & & \\[0.3cm]
+\checkbox & PIN dialog auto-dismisses after 30 seconds & & \\
+\bottomrule
+\end{tabular}
+
+% =====================================================================
+\section{Boot Auto-Start}
+% =====================================================================
+
+\begin{tabular}{@{}p{0.5cm}p{10cm}p{2cm}p{3cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Step} & \textbf{Result} & \textbf{Remarks} \\
+\midrule
+\checkbox & Reboot the device (power cycle or restart) & & \\[0.3cm]
+\checkbox & App launches automatically within $\sim$5 seconds of boot & & \\[0.3cm]
+\checkbox & No user interaction needed to start displaying & & \\[0.3cm]
+\checkbox & Goes straight to image display (not setup) & & \\[0.3cm]
+\checkbox & Works after a cold boot (power off for 30+ seconds) & & \\
+\bottomrule
+\end{tabular}
+
+% =====================================================================
+\section{Crash Recovery}
+% =====================================================================
+
+\begin{tabular}{@{}p{0.5cm}p{10cm}p{2cm}p{3cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Step} & \textbf{Result} & \textbf{Remarks} \\
+\midrule
+\checkbox & Force-stop the app via Settings $\rightarrow$ it restarts within seconds & & \\[0.3cm]
+\checkbox & No permanent black screen after a crash & & \\[0.3cm]
+\checkbox & Watchdog service brings it back if killed & & \\
+\bottomrule
+\end{tabular}
+
+% =====================================================================
+\section{Network Resilience}
+% =====================================================================
+
+\begin{tabular}{@{}p{0.5cm}p{10cm}p{2cm}p{3cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Step} & \textbf{Result} & \textbf{Remarks} \\
+\midrule
+\checkbox & Disconnect network $\rightarrow$ app keeps showing cached images & & \\[0.3cm]
+\checkbox & Reconnect $\rightarrow$ app syncs new content within $\sim$2 min & & \\[0.3cm]
+\checkbox & Server down $\rightarrow$ app shows last cached images & & \\[0.3cm]
+\checkbox & Server returns empty playlist $\rightarrow$ keeps old images & & \\
+\bottomrule
+\end{tabular}
+
+% =====================================================================
+\section{Content Sync}
+% =====================================================================
+
+\begin{tabular}{@{}p{0.5cm}p{10cm}p{2cm}p{3cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Step} & \textbf{Result} & \textbf{Remarks} \\
+\midrule
+\checkbox & Change images on the admin panel for this screen & & \\[0.3cm]
+\checkbox & App picks up new images within $\sim$2 minutes & & \\[0.3cm]
+\checkbox & Old images are replaced, not duplicated & & \\[0.3cm]
+\checkbox & Image order matches the server & & \\
+\bottomrule
+\end{tabular}
+
+% =====================================================================
+\vspace{1cm}
+\section*{Device Owner Setup \textcolor{failRed}{(Production Signage Boxes Only)}}
+% =====================================================================
+
+For full kiosk lockdown with \textbf{silent pinning} (no ``Screen pinned'' prompt), run this \textbf{once} via ADB on a factory-reset device with no Google accounts:
+
+\begin{verbatim}
+    adb shell dpm set-device-owner com.cnc.signage/.CNCSignageApp
+\end{verbatim}
+
+\noindent This enables:
+\begin{itemize}[nosep]
+  \item Silent screen pinning (no user confirmation)
+  \item App cannot be exited without the admin PIN
+  \item Full kiosk mode with no escape routes
+\end{itemize}
+
+\vspace{0.5cm}
+\noindent\textit{Not needed for basic testing --- only for production deployment on dedicated signage hardware.}
+
+% =====================================================================
+\vspace{1cm}
+\noindent\rule{\textwidth}{0.4pt}
+\vspace{0.3cm}
+
+\noindent
+\begin{tabular}{@{}p{8cm}p{8cm}@{}}
+\textbf{Overall Result:} \checkbox \pass \quad \checkbox \fail &
+\textbf{Signed off by:} \rule{5cm}{0.4pt} \\
+\end{tabular}
+
+\end{document}

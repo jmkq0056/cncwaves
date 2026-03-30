@@ -37,10 +37,12 @@ class SetupActivity : AppCompatActivity() {
             selectedScreen = config.getScreenNumber()
         }
 
-        // Set up screen number buttons (1-10)
+        // Set up screen number buttons (1-20)
         val buttonIds = listOf(
             R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5,
-            R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9, R.id.btn10
+            R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9, R.id.btn10,
+            R.id.btn11, R.id.btn12, R.id.btn13, R.id.btn14, R.id.btn15,
+            R.id.btn16, R.id.btn17, R.id.btn18, R.id.btn19, R.id.btn20
         )
 
         for ((index, id) in buttonIds.withIndex()) {
@@ -57,7 +59,7 @@ class SetupActivity : AppCompatActivity() {
         }
 
         // Highlight pre-selected button
-        if (selectedScreen in 1..10) {
+        if (selectedScreen in 1..20) {
             updateButtonStyles()
             selectedText.text = "Screen $selectedScreen"
             selectedText.setTextColor(Color.parseColor("#FF6600"))
