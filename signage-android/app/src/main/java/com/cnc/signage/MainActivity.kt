@@ -755,10 +755,10 @@ class MainActivity : AppCompatActivity() {
                     startRotation()
                 }
 
-                handler.postDelayed(this, 30000)
+                handler.postDelayed(this, 120000) // poll every 2 min (safe for 20 devices on Vercel)
             }
         }
-        handler.postDelayed(watcherRunnable!!, 10000) // first check 10s after launch
+        handler.postDelayed(watcherRunnable!!, 15000) // first check 15s after launch
     }
 
     // === SECRET ADMIN ACCESS ===
