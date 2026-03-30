@@ -8,12 +8,12 @@ class Config(private val context: Context) {
     fun isConfigured(): Boolean = prefs.contains("screen_number")
 
     fun getScreenNumber(): Int = prefs.getInt("screen_number", -1)
-    fun setScreenNumber(num: Int) = prefs.edit().putInt("screen_number", num).apply()
+    fun setScreenNumber(num: Int) = prefs.edit().putInt("screen_number", num).commit()
 
     fun getServerUrl(): String =
-        prefs.getString("server_url", "https://signage-rouge.vercel.app") ?: ""
+        prefs.getString("server_url", "https://signage-android.vercel.app") ?: ""
 
-    fun setServerUrl(url: String) = prefs.edit().putString("server_url", url).apply()
+    fun setServerUrl(url: String) = prefs.edit().putString("server_url", url).commit()
 
     fun getPlaylistHash(): String = prefs.getString("playlist_hash", "") ?: ""
     fun setPlaylistHash(hash: String) =

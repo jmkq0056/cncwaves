@@ -11,6 +11,14 @@
         android:scaleType="centerCrop"
         android:background="@android:color/black" />
 
+    <ImageView
+        android:id="@+id/imageViewNext"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:background="@android:color/black"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/loadingText"
         android:layout_width="wrap_content"

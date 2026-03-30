@@ -2,8 +2,13 @@ package com.cnc.signage
 
 import android.app.ActivityManager
 import android.app.AlertDialog
+import android.app.admin.DevicePolicyManager
+import android.app.role.RoleManager
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
@@ -22,11 +27,13 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
     private lateinit var imageView: ImageView
+    private lateinit var imageViewNext: ImageView
     private lateinit var loadingText: TextView
     private lateinit var playlistManager: PlaylistManager
     private var currentIndex = 0
@@ -39,6 +46,11 @@ class MainActivity : AppCompatActivity() {
     private var lastTapTime = 0L
     private var pauseRestartScheduled = false
     private var dialogShowing = false
+    private var systemDialogShowing = false
+
+    private val launcherRoleLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { systemDialogShowing = false }
 
     // Bitmap cache: keeps decoded images in memory for instant rotation
     // Capped at MAX_CACHED_BITMAPS to prevent OOM on cheap 1GB boxes
@@ -60,10 +72,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         lockdownWindow()
-        hideSystemUI()
-
         setContentView(R.layout.activity_main)
+        hideSystemUI()
         imageView = findViewById(R.id.imageView)
+        imageViewNext = findViewById(R.id.imageViewNext)
         loadingText = findViewById(R.id.loadingText)
 
         playlistManager = PlaylistManager(this)
@@ -78,6 +90,8 @@ class MainActivity : AppCompatActivity() {
             showCurrentImage()
             startRotation()
         }
+
+        requestDefaultLauncher()
 
         SyncWorker.schedule(this)
         SyncWorker.triggerImmediate(this)
@@ -94,6 +108,45 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Log.w("MainActivity", "Watchdog start failed: ${e.message}")
         }
+    }
+
+    // === DEFAULT LAUNCHER PROMPT (once per install) ===
+    private fun requestDefaultLauncher() {
+        if (isDefaultLauncher()) return
+
+        val prefs = getSharedPreferences("cnc_signage", MODE_PRIVATE)
+        if (prefs.getBoolean("launcher_prompted", false)) return
+        prefs.edit().putBoolean("launcher_prompted", true).apply()
+
+        systemDialogShowing = true
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                val roleManager = getSystemService(Context.ROLE_SERVICE) as RoleManager
+                if (roleManager.isRoleAvailable(RoleManager.ROLE_HOME) &&
+                    !roleManager.isRoleHeld(RoleManager.ROLE_HOME)) {
+                    launcherRoleLauncher.launch(roleManager.createRequestRoleIntent(RoleManager.ROLE_HOME))
+                } else {
+                    systemDialogShowing = false
+                }
+            } else {
+                val intent = Intent(Intent.ACTION_MAIN).apply {
+                    addCategory(Intent.CATEGORY_HOME)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                }
+                startActivity(intent)
+                // Can't track when chooser returns on pre-Q, clear after delay
+                handler.postDelayed({ systemDialogShowing = false }, 10000)
+            }
+        } catch (e: Exception) {
+            systemDialogShowing = false
+            Log.w("MainActivity", "Could not request default launcher: ${e.message}")
+        }
+    }
+
+    private fun isDefaultLauncher(): Boolean {
+        val intent = Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME)
+        val resolveInfo = packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        return resolveInfo?.activityInfo?.packageName == packageName
     }
 
     // === BITMAP CACHE: pre-decode all images into memory ===
@@ -153,13 +206,22 @@ class MainActivity : AppCompatActivity() {
                 or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
         )
 
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                startLockTask()
+        // Only pin if device owner — otherwise startLockTask() shows a system
+        // confirmation dialog which triggers onPause() → restart → infinite loop
+        if (isDeviceOwner()) {
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    startLockTask()
+                }
+            } catch (e: Exception) {
+                Log.w("MainActivity", "Lock task not available: ${e.message}")
             }
-        } catch (e: Exception) {
-            Log.w("MainActivity", "Lock task not available: ${e.message}")
         }
+    }
+
+    private fun isDeviceOwner(): Boolean {
+        val dpm = getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
+        return dpm.isDeviceOwnerApp(packageName)
     }
 
     @Suppress("DEPRECATION")
@@ -203,9 +265,9 @@ class MainActivity : AppCompatActivity() {
         super.onWindowFocusChanged(hasFocus)
         if (hasFocus) {
             hideSystemUI()
-        } else if (!dialogShowing) {
+        } else if (!dialogShowing && !systemDialogShowing) {
             handler.postDelayed({
-                if (!isFinishing && !isDestroyed && !dialogShowing) {
+                if (!isFinishing && !isDestroyed && !dialogShowing && !systemDialogShowing) {
                     hideSystemUI()
                     bringToFront()
                 }
@@ -213,14 +275,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // Don't restart while PIN dialog is showing
+    // Don't restart while any dialog (PIN, system, launcher) is showing
     override fun onPause() {
         super.onPause()
-        if (!pauseRestartScheduled && !dialogShowing) {
+        if (!pauseRestartScheduled && !dialogShowing && !systemDialogShowing) {
             pauseRestartScheduled = true
             handler.postDelayed({
                 pauseRestartScheduled = false
-                if (!isFinishing && !isDestroyed && !dialogShowing) {
+                if (!isFinishing && !isDestroyed && !dialogShowing && !systemDialogShowing) {
                     val intent = Intent(this, MainActivity::class.java).apply {
                         addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
@@ -234,6 +296,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         pauseRestartScheduled = false
+        systemDialogShowing = false
         hideSystemUI()
     }
 
@@ -293,6 +356,38 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadNextImage() {
+        val images = playlistManager.getImageFiles()
+        if (images.isEmpty()) return
+        val idx = currentIndex.coerceIn(0, images.size - 1)
+        val path = images[idx].absolutePath
+        val cached = bitmapCache[path]
+        if (cached != null && !cached.isRecycled) {
+            imageViewNext.setImageBitmap(cached)
+        } else {
+            try {
+                val options = BitmapFactory.Options().apply {
+                    inPreferredConfig = Bitmap.Config.ARGB_8888
+                    inScaled = false
+                }
+                val bitmap = BitmapFactory.decodeFile(path, options)
+                if (bitmap != null) {
+                    if (bitmapCache.size < MAX_CACHED_BITMAPS) {
+                        bitmapCache[path] = bitmap
+                    }
+                    imageViewNext.setImageBitmap(bitmap)
+                }
+            } catch (e: OutOfMemoryError) {
+                try {
+                    System.gc()
+                    val opts = BitmapFactory.Options().apply { inSampleSize = 2; inPreferredConfig = Bitmap.Config.RGB_565 }
+                    val bitmap = BitmapFactory.decodeFile(path, opts)
+                    if (bitmap != null) imageViewNext.setImageBitmap(bitmap)
+                } catch (_: Throwable) {}
+            } catch (_: Exception) {}
+        }
+    }
+
     private fun startRotation() {
         rotationRunnable?.let { handler.removeCallbacks(it) }
 
@@ -311,16 +406,34 @@ class MainActivity : AppCompatActivity() {
 
                 currentIndex = (currentIndex + 1) % imgs.size
 
+                // Swipe right transition: next image slides in from left
+                val width = imageView.width.toFloat()
+                if (width <= 0) {
+                    showCurrentImage()
+                    return
+                }
+
+                // Prepare next image off-screen to the left
+                imageViewNext.visibility = View.VISIBLE
+                imageViewNext.translationX = -width
+                imageViewNext.alpha = 1f
+                loadNextImage()
+
+                // Slide current image out to the right, next image in from left
                 imageView.animate()
-                    .alpha(0f)
-                    .setDuration(300)
+                    .translationX(width)
+                    .setDuration(400)
+                    .start()
+
+                imageViewNext.animate()
+                    .translationX(0f)
+                    .setDuration(400)
                     .withEndAction {
                         if (!isFinishing && !isDestroyed) {
-                            showCurrentImage()
-                            imageView.animate()
-                                .alpha(1f)
-                                .setDuration(300)
-                                .start()
+                            // Swap: put the next image into the main imageView
+                            imageView.setImageDrawable(imageViewNext.drawable)
+                            imageView.translationX = 0f
+                            imageViewNext.visibility = View.GONE
                         }
                     }.start()
 
@@ -393,7 +506,7 @@ class MainActivity : AppCompatActivity() {
 
             if (tapCount >= 5) {
                 tapCount = 0
-                showPinDialog()
+                showAdminMenu()
             }
         }
         return super.onTouchEvent(event)
@@ -441,11 +554,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showAdminMenu() {
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                stopLockTask()
-            }
-        } catch (_: Exception) {}
+        if (isDeviceOwner()) {
+            try {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    stopLockTask()
+                }
+            } catch (_: Exception) {}
+        }
 
         dialogShowing = true
         val options = arrayOf(

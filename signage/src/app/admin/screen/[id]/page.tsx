@@ -28,14 +28,7 @@ interface LibraryImage {
   url: string;
 }
 
-const INTERVALS = [
-  { label: "Static (no rotation)", value: 0 },
-  { label: "5 seconds", value: 5000 },
-  { label: "10 seconds", value: 10000 },
-  { label: "15 seconds", value: 15000 },
-  { label: "30 seconds", value: 30000 },
-  { label: "60 seconds", value: 60000 },
-];
+const INTERVAL_PRESETS = [0, 3, 5, 7, 10, 15, 20, 30, 45, 60, 90, 120];
 
 export default function EditScreen() {
   const { id } = useParams();
@@ -357,19 +350,32 @@ export default function EditScreen() {
           </div>
           <div>
             <label className="block text-sm text-gray-400 mb-1">
-              Rotation Interval
+              Rotation Interval (seconds)
             </label>
-            <select
-              value={interval}
-              onChange={(e) => setInterval(Number(e.target.value))}
-              className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white"
-            >
-              {INTERVALS.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
+            <input
+              type="number"
+              min="0"
+              max="300"
+              value={interval / 1000}
+              onChange={(e) => setInterval(Math.max(0, Math.min(300, Number(e.target.value))) * 1000)}
+              className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white mb-2"
+            />
+            <div className="flex flex-wrap gap-1.5">
+              {INTERVAL_PRESETS.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => setInterval(s * 1000)}
+                  className={`px-2.5 py-1 rounded text-xs font-medium ${
+                    interval === s * 1000
+                      ? "bg-orange-500 text-white"
+                      : "bg-gray-800 text-gray-400 hover:bg-gray-700"
+                  }`}
+                >
+                  {s === 0 ? "Static" : `${s}s`}
+                </button>
               ))}
-            </select>
+            </div>
           </div>
         </div>
 
