@@ -23,6 +23,12 @@ const ScreenSchema = new mongoose.Schema(
     screenOnTime: { type: String, default: "" },
     screenOffTime: { type: String, default: "" },
     screenOffMode: { type: String, default: "dim" }, // "dim" or "reboot"
+    // Burst: synchronized content shown at clock intervals across screens
+    burstEnabled: { type: Boolean, default: false },
+    burstImageUrl: { type: String, default: "" },
+    burstCloudinaryId: { type: String, default: "" },
+    burstInterval: { type: Number, default: 3 }, // minutes between bursts
+    burstDuration: { type: Number, default: 10 }, // seconds to show burst
     // Remote control
     pendingCommand: { type: String, default: "" }, // "identify", "force-sync", "restart"
     // Device status (updated by heartbeat)

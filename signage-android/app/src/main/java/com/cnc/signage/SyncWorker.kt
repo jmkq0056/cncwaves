@@ -68,6 +68,15 @@ class SyncWorker(context: Context, params: WorkerParameters) : Worker(context, p
             config.setScreenOnTime(serverData.optString("screenOnTime", ""))
             config.setScreenOffTime(serverData.optString("screenOffTime", ""))
             config.setScreenOffMode(serverData.optString("screenOffMode", "dim"))
+
+            // Save burst config
+            val burst = serverData.optJSONObject("burst")
+            if (burst != null) {
+                config.setBurstEnabled(burst.optBoolean("enabled", false))
+                config.setBurstImageUrl(burst.optString("imageUrl", ""))
+                config.setBurstInterval(burst.optInt("interval", 3))
+                config.setBurstDuration(burst.optInt("duration", 10))
+            }
             val serverInterval = serverData.optLong("rotationInterval", 10000L)
             if (serverInterval != config.getRotationInterval()) {
                 config.setRotationInterval(serverInterval)

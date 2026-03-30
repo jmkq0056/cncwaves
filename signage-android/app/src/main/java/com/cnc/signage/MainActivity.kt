@@ -11,6 +11,8 @@ import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
+import android.graphics.drawable.AnimatedImageDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -48,7 +50,9 @@ class MainActivity : AppCompatActivity() {
     private var watcherRunnable: Runnable? = null
     private var immersiveRunnable: Runnable? = null
     private var scheduleRunnable: Runnable? = null
+    private var burstRunnable: Runnable? = null
     private var isScreenOff = false
+    private var isBursting = false
     private var tapCount = 0
     private var lastTapTime = 0L
     private var pauseRestartScheduled = false
@@ -116,6 +120,7 @@ class MainActivity : AppCompatActivity() {
         startPlaylistWatcher()
         startImmersiveEnforcer()
         startScheduleChecker()
+        startBurstChecker()
 
         try {
             val intent = Intent(this, WatchdogService::class.java)
@@ -442,6 +447,101 @@ class MainActivity : AppCompatActivity() {
             }
         }
         handler.postDelayed(scheduleRunnable!!, 5000)
+    }
+
+    // === BURST: clock-synced content across all screens ===
+    private fun startBurstChecker() {
+        burstRunnable = object : Runnable {
+            override fun run() {
+                if (isFinishing || isDestroyed || isScreenOff) {
+                    handler.postDelayed(this, 5000)
+                    return
+                }
+
+                val config = Config(this@MainActivity)
+                if (!config.isBurstEnabled() || config.getBurstImageUrl().isEmpty()) {
+                    handler.postDelayed(this, 5000)
+                    return
+                }
+
+                val tz = TimeZone.getTimeZone("Europe/Copenhagen")
+                val now = Calendar.getInstance(tz)
+                val minute = now.get(Calendar.MINUTE)
+                val second = now.get(Calendar.SECOND)
+                val interval = config.getBurstInterval()
+                val duration = config.getBurstDuration()
+
+                if (minute % interval == 0 && second < duration && !isBursting) {
+                    // Time to burst!
+                    showBurst(config.getBurstImageUrl(), duration)
+                }
+
+                handler.postDelayed(this, 1000) // check every second for precise timing
+            }
+        }
+        handler.postDelayed(burstRunnable!!, 3000)
+    }
+
+    private fun showBurst(imageUrl: String, durationSeconds: Int) {
+        isBursting = true
+        rotationRunnable?.let { handler.removeCallbacks(it) }
+
+        // Download and show burst image (supports GIF)
+        Thread {
+            try {
+                val cache = ImageCache(this)
+                val burstFile = java.io.File(filesDir, "burst_image")
+
+                // Download if not cached or URL changed
+                val connection = java.net.URL(imageUrl).openConnection() as java.net.HttpURLConnection
+                connection.connectTimeout = 10000
+                connection.readTimeout = 10000
+                connection.inputStream.use { input ->
+                    burstFile.outputStream().use { output ->
+                        input.copyTo(output)
+                    }
+                }
+                connection.disconnect()
+
+                handler.post {
+                    if (isFinishing || isDestroyed) return@post
+
+                    try {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                            // Android 9+: supports animated GIF via ImageDecoder
+                            val source = ImageDecoder.createSource(burstFile)
+                            val drawable = ImageDecoder.decodeDrawable(source)
+                            imageView.setImageDrawable(drawable)
+                            if (drawable is AnimatedImageDrawable) {
+                                drawable.start()
+                            }
+                        } else {
+                            // Fallback: static image
+                            val bitmap = BitmapFactory.decodeFile(burstFile.absolutePath)
+                            if (bitmap != null) imageView.setImageBitmap(bitmap)
+                        }
+                        imageView.visibility = View.VISIBLE
+                        imageViewNext.visibility = View.GONE
+                    } catch (e: Exception) {
+                        Log.w("MainActivity", "Burst display failed: ${e.message}")
+                    }
+                }
+
+                // End burst after duration
+                handler.postDelayed({
+                    isBursting = false
+                    val images = playlistManager.getImageFiles()
+                    if (images.isNotEmpty()) {
+                        showCurrentImage()
+                        startRotation()
+                    }
+                }, durationSeconds * 1000L)
+
+            } catch (e: Exception) {
+                Log.w("MainActivity", "Burst download failed: ${e.message}")
+                isBursting = false
+            }
+        }.start()
     }
 
     // === IMAGE DISPLAY: uses bitmap cache, no disk I/O ===

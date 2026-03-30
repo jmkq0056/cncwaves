@@ -28,6 +28,13 @@ export async function GET(
         rotationInterval: screen.rotationInterval,
         screenOnTime: screen.screenOnTime || "",
         screenOffTime: screen.screenOffTime || "",
+        screenOffMode: screen.screenOffMode || "dim",
+        burst: {
+          enabled: screen.burstEnabled || false,
+          imageUrl: screen.burstImageUrl || "",
+          interval: screen.burstInterval || 3,
+          duration: screen.burstDuration || 10,
+        },
         images: [],
       });
     }
@@ -40,6 +47,12 @@ export async function GET(
       screenOnTime: screen.screenOnTime || "",
       screenOffTime: screen.screenOffTime || "",
       screenOffMode: screen.screenOffMode || "dim",
+      burst: {
+        enabled: screen.burstEnabled || false,
+        imageUrl: screen.burstImageUrl || "",
+        interval: screen.burstInterval || 3,
+        duration: screen.burstDuration || 10,
+      },
       images: screen.images.map((img: any) => ({
         filename: img.filename,
         url: img.url,

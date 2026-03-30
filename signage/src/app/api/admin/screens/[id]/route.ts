@@ -106,6 +106,11 @@ export async function PUT(
     if (body.screenOnTime !== undefined) update.screenOnTime = body.screenOnTime;
     if (body.screenOffTime !== undefined) update.screenOffTime = body.screenOffTime;
     if (body.screenOffMode !== undefined) update.screenOffMode = body.screenOffMode;
+    if (body.burstEnabled !== undefined) update.burstEnabled = !!body.burstEnabled;
+    if (body.burstImageUrl !== undefined) update.burstImageUrl = body.burstImageUrl;
+    if (body.burstCloudinaryId !== undefined) update.burstCloudinaryId = body.burstCloudinaryId;
+    if (body.burstInterval !== undefined) update.burstInterval = body.burstInterval;
+    if (body.burstDuration !== undefined) update.burstDuration = body.burstDuration;
 
     // Handle publish toggle
     if (body.published !== undefined) {
