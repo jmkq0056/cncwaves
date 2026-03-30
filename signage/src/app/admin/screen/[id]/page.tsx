@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
 
 interface ScreenImage {
@@ -21,9 +21,11 @@ interface ScreenData {
 }
 
 interface LibraryImage {
-  publicId: string;
+  _id: string;
+  name: string;
+  category: string;
+  cloudinaryPublicId: string;
   url: string;
-  filename: string;
 }
 
 const INTERVALS = [
@@ -47,11 +49,24 @@ export default function EditScreen() {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState("");
   const [saved, setSaved] = useState(false);
+
+  // Library modal
   const [showLibrary, setShowLibrary] = useState(false);
   const [libraryImages, setLibraryImages] = useState<LibraryImage[]>([]);
+  const [libraryCategories, setLibraryCategories] = useState<string[]>([]);
+  const [libraryCategory, setLibraryCategory] = useState<string | null>(null);
   const [libraryLoading, setLibraryLoading] = useState(false);
+
+  // Upload modal
+  const [showUpload, setShowUpload] = useState(false);
+  const [uploadName, setUploadName] = useState("");
+  const [uploadCategory, setUploadCategory] = useState("");
+  const [newCategory, setNewCategory] = useState("");
+  const [uploadFile, setUploadFile] = useState<File | null>(null);
+  const [uploadPreview, setUploadPreview] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState("");
+  const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     async function load() {
@@ -74,17 +89,46 @@ export default function EditScreen() {
   async function loadLibrary() {
     setLibraryLoading(true);
     try {
-      const res = await fetch("/api/admin/images");
-      if (!res.ok) throw new Error("Failed to load images");
-      const data = await res.json();
-      setLibraryImages(Array.isArray(data) ? data : []);
+      const [imgRes, catRes] = await Promise.all([
+        fetch(
+          libraryCategory
+            ? `/api/admin/images?category=${encodeURIComponent(libraryCategory)}`
+            : "/api/admin/images"
+        ),
+        fetch("/api/admin/categories"),
+      ]);
+      if (!imgRes.ok) throw new Error("Failed to load images");
+      const imgData = await imgRes.json();
+      setLibraryImages(Array.isArray(imgData) ? imgData : []);
+      if (catRes.ok) {
+        const catData = await catRes.json();
+        setLibraryCategories(Array.isArray(catData) ? catData : []);
+      }
       setShowLibrary(true);
     } catch {
-      alert("Failed to load image library. Check your connection.");
+      alert("Failed to load image library.");
     } finally {
       setLibraryLoading(false);
     }
   }
+
+  // Reload library when category filter changes
+  useEffect(() => {
+    if (showLibrary) {
+      (async () => {
+        try {
+          const url = libraryCategory
+            ? `/api/admin/images?category=${encodeURIComponent(libraryCategory)}`
+            : "/api/admin/images";
+          const res = await fetch(url);
+          if (res.ok) {
+            const data = await res.json();
+            setLibraryImages(Array.isArray(data) ? data : []);
+          }
+        } catch {}
+      })();
+    }
+  }, [libraryCategory, showLibrary]);
 
   async function handleSave() {
     setSaving(true);
@@ -116,60 +160,97 @@ export default function EditScreen() {
     }
   }
 
-  async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
+    setUploadFile(file);
+    setUploadPreview(URL.createObjectURL(file));
+    if (!uploadName) {
+      setUploadName(file.name.replace(/\.[^.]+$/, ""));
+    }
+  }
+
+  async function handleUpload() {
+    if (!uploadFile || !uploadName.trim()) return;
     setUploading(true);
     setUploadError("");
 
+    const finalCategory = newCategory.trim() || uploadCategory || "Uncategorized";
+
     try {
-      // Get signed params from server
-      const sigRes = await fetch("/api/admin/upload", { method: "POST" });
+      // Step 1: Get signed params
+      const sigRes = await fetch("/api/admin/upload");
       if (!sigRes.ok) throw new Error("Failed to get upload signature");
       const sig = await sigRes.json();
 
-      // Upload directly to Cloudinary (bypasses Vercel 4.5MB limit)
+      // Step 2: Upload to Cloudinary
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", uploadFile);
       formData.append("api_key", sig.apiKey);
       formData.append("timestamp", String(sig.timestamp));
       formData.append("signature", sig.signature);
       formData.append("folder", sig.folder);
       formData.append("format", "png");
 
-      const res = await fetch(
+      const cloudRes = await fetch(
         `https://api.cloudinary.com/v1_1/${sig.cloudName}/image/upload`,
         { method: "POST", body: formData }
       );
-      if (!res.ok) throw new Error("Upload to Cloudinary failed");
-      const data = await res.json();
-      const publicId = data.public_id;
+      if (!cloudRes.ok) throw new Error("Upload to Cloudinary failed");
+      const cloudData = await cloudRes.json();
+
+      // Step 3: Save metadata to DB
+      const saveRes = await fetch("/api/admin/upload", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: uploadName.trim(),
+          category: finalCategory,
+          cloudinaryPublicId: cloudData.public_id,
+          url: cloudData.secure_url,
+          width: cloudData.width,
+          height: cloudData.height,
+          format: cloudData.format,
+          sizeBytes: cloudData.bytes,
+        }),
+      });
+      if (!saveRes.ok) throw new Error("Failed to save image metadata");
+
+      // Add to screen images
       setImages([
         ...images,
         {
-          filename: publicId.split("/").pop() + ".png",
-          cloudinaryPublicId: publicId,
-          url: data.secure_url,
+          filename: uploadName.trim(),
+          cloudinaryPublicId: cloudData.public_id,
+          url: cloudData.secure_url,
           order: images.length + 1,
         },
       ]);
+
+      // Reset upload modal
+      setShowUpload(false);
+      setUploadName("");
+      setUploadCategory("");
+      setNewCategory("");
+      setUploadFile(null);
+      setUploadPreview(null);
     } catch (e: any) {
       setUploadError(e.message || "Upload failed");
-      setTimeout(() => setUploadError(""), 5000);
     } finally {
       setUploading(false);
-      e.target.value = "";
     }
   }
 
   function addFromLibrary(img: LibraryImage) {
-    const already = images.some((i) => i.cloudinaryPublicId === img.publicId);
+    const already = images.some(
+      (i) => i.cloudinaryPublicId === img.cloudinaryPublicId
+    );
     if (already) return;
     setImages([
       ...images,
       {
-        filename: img.filename,
-        cloudinaryPublicId: img.publicId,
+        filename: img.name,
+        cloudinaryPublicId: img.cloudinaryPublicId,
         url: img.url,
         order: images.length + 1,
       },
@@ -177,8 +258,8 @@ export default function EditScreen() {
     setShowLibrary(false);
   }
 
-  function removeImage(filename: string) {
-    setImages(images.filter((i) => i.filename !== filename));
+  function removeImage(index: number) {
+    setImages(images.filter((_, i) => i !== index));
   }
 
   function moveImage(index: number, direction: -1 | 1) {
@@ -214,8 +295,10 @@ export default function EditScreen() {
     name !== screen.name ||
     interval !== screen.rotationInterval ||
     published !== (screen.published || false) ||
-    JSON.stringify(images.map((i) => i.filename)) !==
-      JSON.stringify((screen.images || []).map((i: any) => i.filename));
+    JSON.stringify(images.map((i) => i.cloudinaryPublicId)) !==
+      JSON.stringify(
+        (screen.images || []).map((i: any) => i.cloudinaryPublicId)
+      );
 
   return (
     <div>
@@ -302,7 +385,7 @@ export default function EditScreen() {
           <div className="space-y-2 mb-4">
             {images.map((img, index) => (
               <div
-                key={img.filename}
+                key={img.cloudinaryPublicId}
                 className="flex items-center gap-3 sm:gap-4 bg-gray-800 rounded-lg p-2 sm:p-3"
               >
                 <img
@@ -329,7 +412,7 @@ export default function EditScreen() {
                     &darr;
                   </button>
                   <button
-                    onClick={() => removeImage(img.filename)}
+                    onClick={() => removeImage(index)}
                     className="px-2 py-1 text-red-400 hover:text-red-300 text-lg"
                   >
                     &times;
@@ -348,21 +431,13 @@ export default function EditScreen() {
           >
             {libraryLoading ? "Loading..." : "Add from Library"}
           </button>
-          <label className="bg-gray-800 hover:bg-gray-700 active:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm cursor-pointer">
-            {uploading ? "Uploading..." : "Upload New"}
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleUpload}
-              className="hidden"
-              disabled={uploading}
-            />
-          </label>
+          <button
+            onClick={() => setShowUpload(true)}
+            className="bg-gray-800 hover:bg-gray-700 active:bg-gray-600 text-white px-4 py-2 rounded-lg text-sm"
+          >
+            Upload New
+          </button>
         </div>
-
-        {uploadError && (
-          <p className="text-red-400 text-sm mb-4">{uploadError}</p>
-        )}
 
         <div className="flex flex-wrap items-center gap-3">
           <button
@@ -390,6 +465,7 @@ export default function EditScreen() {
         </div>
       </div>
 
+      {/* Library Modal */}
       {showLibrary && (
         <div
           className="fixed inset-0 bg-black/80 flex items-end sm:items-center justify-center z-50"
@@ -408,36 +484,176 @@ export default function EditScreen() {
                 &times;
               </button>
             </div>
+
+            {/* Category filter in library modal */}
+            <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
+              <button
+                onClick={() => setLibraryCategory(null)}
+                className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                  libraryCategory === null
+                    ? "bg-orange-500 text-white"
+                    : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                }`}
+              >
+                All
+              </button>
+              {libraryCategories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setLibraryCategory(cat)}
+                  className={`px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap ${
+                    libraryCategory === cat
+                      ? "bg-orange-500 text-white"
+                      : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
             {libraryImages.length === 0 ? (
               <p className="text-gray-500 text-center py-8">
-                No images in library. Upload one first.
+                No images found. Upload one first.
               </p>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 {libraryImages.map((img) => {
                   const alreadyAdded = images.some(
-                    (i) => i.cloudinaryPublicId === img.publicId
+                    (i) =>
+                      i.cloudinaryPublicId === img.cloudinaryPublicId
                   );
                   return (
                     <div
-                      key={img.publicId}
+                      key={img.cloudinaryPublicId}
                       onClick={() => !alreadyAdded && addFromLibrary(img)}
-                      className={`aspect-video rounded-lg overflow-hidden border-2 cursor-pointer transition ${
+                      className={`rounded-lg overflow-hidden border-2 cursor-pointer transition ${
                         alreadyAdded
                           ? "border-green-500 opacity-50 cursor-not-allowed"
                           : "border-gray-700 hover:border-orange-500 active:border-orange-400"
                       }`}
                     >
-                      <img
-                        src={img.url}
-                        alt={img.filename}
-                        className="w-full h-full object-cover"
-                      />
+                      <div className="aspect-video">
+                        <img
+                          src={img.url}
+                          alt={img.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-2 bg-gray-800">
+                        <div className="text-xs text-white truncate">
+                          {img.name}
+                        </div>
+                        <div className="text-xs text-gray-500">
+                          {img.category}
+                        </div>
+                      </div>
                     </div>
                   );
                 })}
               </div>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Upload Modal */}
+      {showUpload && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-900 border border-gray-700 rounded-2xl w-full max-w-md p-6">
+            <h3 className="text-lg font-bold mb-4">Upload Image</h3>
+
+            <div
+              onClick={() => fileRef.current?.click()}
+              className="border-2 border-dashed border-gray-700 rounded-xl p-6 text-center cursor-pointer hover:border-gray-500 mb-4"
+            >
+              {uploadPreview ? (
+                <img
+                  src={uploadPreview}
+                  alt="Preview"
+                  className="max-h-40 mx-auto rounded-lg"
+                />
+              ) : (
+                <div className="text-gray-500">
+                  <div className="text-3xl mb-2">+</div>
+                  <div className="text-sm">Click to select image</div>
+                </div>
+              )}
+              <input
+                ref={fileRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileSelect}
+                className="hidden"
+              />
+            </div>
+
+            <label className="block text-sm text-gray-400 mb-1">Name</label>
+            <input
+              type="text"
+              value={uploadName}
+              onChange={(e) => setUploadName(e.target.value)}
+              placeholder="e.g. Summer Promo Banner"
+              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white mb-4 text-sm"
+            />
+
+            <label className="block text-sm text-gray-400 mb-1">
+              Category
+            </label>
+            <select
+              value={uploadCategory}
+              onChange={(e) => {
+                setUploadCategory(e.target.value);
+                if (e.target.value !== "__new__") setNewCategory("");
+              }}
+              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white mb-2 text-sm"
+            >
+              <option value="">Uncategorized</option>
+              {libraryCategories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+              <option value="__new__">+ New Category...</option>
+            </select>
+            {uploadCategory === "__new__" && (
+              <input
+                type="text"
+                value={newCategory}
+                onChange={(e) => setNewCategory(e.target.value)}
+                placeholder="New category name"
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white mb-2 text-sm"
+                autoFocus
+              />
+            )}
+
+            {uploadError && (
+              <p className="text-red-400 text-sm mb-3">{uploadError}</p>
+            )}
+
+            <div className="flex gap-3 mt-4">
+              <button
+                onClick={() => {
+                  setShowUpload(false);
+                  setUploadFile(null);
+                  setUploadPreview(null);
+                  setUploadName("");
+                  setUploadCategory("");
+                  setNewCategory("");
+                  setUploadError("");
+                }}
+                className="flex-1 bg-gray-800 hover:bg-gray-700 text-white py-2.5 rounded-lg text-sm font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleUpload}
+                disabled={uploading || !uploadFile || !uploadName.trim()}
+                className="flex-1 bg-orange-500 hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed text-white py-2.5 rounded-lg text-sm font-bold"
+              >
+                {uploading ? "Uploading..." : "Upload & Add"}
+              </button>
+            </div>
           </div>
         </div>
       )}

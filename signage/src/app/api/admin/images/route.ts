@@ -2,26 +2,28 @@ import { NextRequest, NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 import { connectDB } from "@/lib/db";
 import Screen from "@/models/Screen";
+import ImageModel from "@/models/Image";
 import { verifyAdmin } from "@/lib/auth";
 
+// GET: list all images, optionally filter by ?category=
 export async function GET(request: NextRequest) {
   if (!verifyAdmin(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    // Get all images from Cloudinary cnc-signage folder
-    const result = await cloudinary.api.resources({
-      type: "upload",
-      prefix: "cnc-signage/",
-      max_results: 500,
-      resource_type: "image",
-    });
-
-    // Get all screens to check usage
     await connectDB();
-    const screens = await Screen.find().lean();
 
+    const category = request.nextUrl.searchParams.get("category");
+    const filter: any = {};
+    if (category) filter.category = category;
+
+    const images = await ImageModel.find(filter)
+      .sort({ category: 1, name: 1 })
+      .lean();
+
+    // Get screen usage
+    const screens = await Screen.find().lean();
     const usageMap: Record<string, number[]> = {};
     for (const screen of screens) {
       for (const img of (screen as any).images || []) {
@@ -32,27 +34,62 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    const images = (result.resources || []).map((r: any) => ({
-      publicId: r.public_id,
-      url: r.secure_url,
-      filename: r.public_id.split("/").pop() + "." + (r.format || "png"),
-      format: r.format,
-      width: r.width,
-      height: r.height,
-      createdAt: r.created_at,
-      usedByScreens: usageMap[r.public_id] || [],
+    const result = images.map((img: any) => ({
+      _id: img._id,
+      name: img.name,
+      category: img.category,
+      cloudinaryPublicId: img.cloudinaryPublicId,
+      url: img.url,
+      width: img.width,
+      height: img.height,
+      format: img.format,
+      sizeBytes: img.sizeBytes,
+      createdAt: img.createdAt,
+      usedByScreens: usageMap[img.cloudinaryPublicId] || [],
     }));
 
-    return NextResponse.json(images);
+    return NextResponse.json(result);
   } catch (e: any) {
     console.error("GET /api/admin/images error:", e);
     return NextResponse.json(
-      { error: "Failed to fetch images: " + (e.message || "Unknown error") },
+      { error: "Failed to fetch images" },
       { status: 500 }
     );
   }
 }
 
+// PUT: rename or recategorize an image
+export async function PUT(request: NextRequest) {
+  if (!verifyAdmin(request)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    const body = await request.json();
+    const { _id, name, category } = body;
+
+    if (!_id) {
+      return NextResponse.json({ error: "_id required" }, { status: 400 });
+    }
+
+    await connectDB();
+    const update: any = {};
+    if (name !== undefined) update.name = name.trim();
+    if (category !== undefined) update.category = category.trim() || "Uncategorized";
+
+    const image = await ImageModel.findByIdAndUpdate(_id, update, { new: true }).lean();
+    if (!image) {
+      return NextResponse.json({ error: "Image not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(image);
+  } catch (e: any) {
+    console.error("PUT /api/admin/images error:", e);
+    return NextResponse.json({ error: "Update failed" }, { status: 500 });
+  }
+}
+
+// DELETE: remove image from library and Cloudinary
 export async function DELETE(request: NextRequest) {
   if (!verifyAdmin(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -60,25 +97,21 @@ export async function DELETE(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { publicId } = body;
+    const { _id } = body;
 
-    if (!publicId || typeof publicId !== "string") {
-      return NextResponse.json(
-        { error: "publicId required" },
-        { status: 400 }
-      );
+    if (!_id) {
+      return NextResponse.json({ error: "_id required" }, { status: 400 });
     }
 
-    // Validate publicId format (only allow cnc-signage/ prefix)
-    if (!publicId.startsWith("cnc-signage/")) {
-      return NextResponse.json(
-        { error: "Invalid publicId" },
-        { status: 400 }
-      );
+    await connectDB();
+    const image = await ImageModel.findById(_id).lean();
+    if (!image) {
+      return NextResponse.json({ error: "Image not found" }, { status: 404 });
     }
+
+    const publicId = (image as any).cloudinaryPublicId;
 
     // Check if image is used by any screen
-    await connectDB();
     const usedBy = await Screen.find({
       "images.cloudinaryPublicId": publicId,
     }).lean();
@@ -93,13 +126,13 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
+    // Delete from Cloudinary and MongoDB
     await cloudinary.uploader.destroy(publicId);
+    await ImageModel.findByIdAndDelete(_id);
+
     return NextResponse.json({ success: true });
   } catch (e: any) {
     console.error("DELETE /api/admin/images error:", e);
-    return NextResponse.json(
-      { error: "Delete failed: " + (e.message || "Unknown error") },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Delete failed" }, { status: 500 });
   }
 }
