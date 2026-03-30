@@ -109,8 +109,8 @@ export async function PUT(
     if (body.burstEnabled !== undefined) update.burstEnabled = !!body.burstEnabled;
     if (body.burstImageUrl !== undefined) update.burstImageUrl = body.burstImageUrl;
     if (body.burstCloudinaryId !== undefined) update.burstCloudinaryId = body.burstCloudinaryId;
-    if (body.burstInterval !== undefined) update.burstInterval = body.burstInterval;
-    if (body.burstDuration !== undefined) update.burstDuration = body.burstDuration;
+    if (body.burstInterval !== undefined) update.burstInterval = Math.max(1, Math.min(60, Number(body.burstInterval) || 3));
+    if (body.burstDuration !== undefined) update.burstDuration = Math.max(3, Math.min(120, Number(body.burstDuration) || 10));
 
     // Handle publish toggle
     if (body.published !== undefined) {

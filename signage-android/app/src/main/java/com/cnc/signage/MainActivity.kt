@@ -351,7 +351,9 @@ class MainActivity : AppCompatActivity() {
         immersiveRunnable = object : Runnable {
             override fun run() {
                 if (isFinishing || isDestroyed) return
-                hideSystemUI()
+                if (!Config(this@MainActivity).isAdminNavigating()) {
+                    hideSystemUI()
+                }
                 handler.postDelayed(this, 5000)
             }
         }
@@ -450,11 +452,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     // === BURST: clock-synced content across all screens ===
+    private var lastBurstMinute = -1 // prevent re-triggering within same minute
+    private var burstCachedUrl = "" // track if burst image changed
+
     private fun startBurstChecker() {
+        // Pre-download burst image so it's ready when needed
+        preloadBurstImage()
+
         burstRunnable = object : Runnable {
             override fun run() {
                 if (isFinishing || isDestroyed || isScreenOff) {
-                    handler.postDelayed(this, 5000)
+                    handler.postDelayed(this, 1000)
                     return
                 }
 
@@ -464,84 +472,98 @@ class MainActivity : AppCompatActivity() {
                     return
                 }
 
+                // Re-download if URL changed
+                if (config.getBurstImageUrl() != burstCachedUrl) {
+                    preloadBurstImage()
+                }
+
                 val tz = TimeZone.getTimeZone("Europe/Copenhagen")
                 val now = Calendar.getInstance(tz)
                 val minute = now.get(Calendar.MINUTE)
                 val second = now.get(Calendar.SECOND)
-                val interval = config.getBurstInterval()
-                val duration = config.getBurstDuration()
+                val interval = config.getBurstInterval().coerceAtLeast(1)
+                val duration = config.getBurstDuration().coerceIn(3, 120)
 
-                if (minute % interval == 0 && second < duration && !isBursting) {
-                    // Time to burst!
-                    showBurst(config.getBurstImageUrl(), duration)
+                // Trigger once per interval window, not every second
+                if (minute % interval == 0 && second < 2 && !isBursting && minute != lastBurstMinute) {
+                    lastBurstMinute = minute
+                    showBurst(duration)
                 }
 
-                handler.postDelayed(this, 1000) // check every second for precise timing
+                handler.postDelayed(this, 1000)
             }
         }
         handler.postDelayed(burstRunnable!!, 3000)
     }
 
-    private fun showBurst(imageUrl: String, durationSeconds: Int) {
+    private fun preloadBurstImage() {
+        val config = Config(this)
+        val url = config.getBurstImageUrl()
+        if (url.isEmpty()) return
+
+        Thread {
+            try {
+                val burstFile = java.io.File(filesDir, "burst_image")
+                val connection = java.net.URL(url).openConnection() as java.net.HttpURLConnection
+                connection.connectTimeout = 15000
+                connection.readTimeout = 15000
+                try {
+                    if (connection.responseCode == 200) {
+                        connection.inputStream.use { input ->
+                            burstFile.outputStream().use { output ->
+                                input.copyTo(output)
+                            }
+                        }
+                        burstCachedUrl = url
+                        Log.d("MainActivity", "Burst image pre-downloaded")
+                    }
+                } finally {
+                    connection.disconnect()
+                }
+            } catch (e: Exception) {
+                Log.w("MainActivity", "Burst preload failed: ${e.message}")
+            }
+        }.start()
+    }
+
+    private fun showBurst(durationSeconds: Int) {
+        val burstFile = java.io.File(filesDir, "burst_image")
+        if (!burstFile.exists() || burstFile.length() == 0L) return
+
         isBursting = true
         rotationRunnable?.let { handler.removeCallbacks(it) }
 
-        // Download and show burst image (supports GIF)
-        Thread {
-            try {
-                val cache = ImageCache(this)
-                val burstFile = java.io.File(filesDir, "burst_image")
-
-                // Download if not cached or URL changed
-                val connection = java.net.URL(imageUrl).openConnection() as java.net.HttpURLConnection
-                connection.connectTimeout = 10000
-                connection.readTimeout = 10000
-                connection.inputStream.use { input ->
-                    burstFile.outputStream().use { output ->
-                        input.copyTo(output)
-                    }
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                val source = ImageDecoder.createSource(burstFile)
+                val drawable = ImageDecoder.decodeDrawable(source)
+                imageView.setImageDrawable(drawable)
+                if (drawable is AnimatedImageDrawable) {
+                    drawable.start()
                 }
-                connection.disconnect()
-
-                handler.post {
-                    if (isFinishing || isDestroyed) return@post
-
-                    try {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                            // Android 9+: supports animated GIF via ImageDecoder
-                            val source = ImageDecoder.createSource(burstFile)
-                            val drawable = ImageDecoder.decodeDrawable(source)
-                            imageView.setImageDrawable(drawable)
-                            if (drawable is AnimatedImageDrawable) {
-                                drawable.start()
-                            }
-                        } else {
-                            // Fallback: static image
-                            val bitmap = BitmapFactory.decodeFile(burstFile.absolutePath)
-                            if (bitmap != null) imageView.setImageBitmap(bitmap)
-                        }
-                        imageView.visibility = View.VISIBLE
-                        imageViewNext.visibility = View.GONE
-                    } catch (e: Exception) {
-                        Log.w("MainActivity", "Burst display failed: ${e.message}")
-                    }
-                }
-
-                // End burst after duration
-                handler.postDelayed({
-                    isBursting = false
-                    val images = playlistManager.getImageFiles()
-                    if (images.isNotEmpty()) {
-                        showCurrentImage()
-                        startRotation()
-                    }
-                }, durationSeconds * 1000L)
-
-            } catch (e: Exception) {
-                Log.w("MainActivity", "Burst download failed: ${e.message}")
-                isBursting = false
+            } else {
+                val bitmap = BitmapFactory.decodeFile(burstFile.absolutePath)
+                if (bitmap != null) imageView.setImageBitmap(bitmap)
             }
-        }.start()
+            imageView.translationX = 0f
+            imageView.visibility = View.VISIBLE
+            imageViewNext.visibility = View.GONE
+        } catch (e: Exception) {
+            Log.w("MainActivity", "Burst display failed: ${e.message}")
+            isBursting = false
+            return
+        }
+
+        // End burst after duration, resume normal rotation
+        handler.postDelayed({
+            if (isFinishing || isDestroyed) return@postDelayed
+            isBursting = false
+            val images = playlistManager.getImageFiles()
+            if (images.isNotEmpty()) {
+                showCurrentImage()
+                startRotation()
+            }
+        }, durationSeconds * 1000L)
     }
 
     // === IMAGE DISPLAY: uses bitmap cache, no disk I/O ===
@@ -592,7 +614,9 @@ class MainActivity : AppCompatActivity() {
     private fun loadNextImage() {
         val images = playlistManager.getImageFiles()
         if (images.isEmpty()) return
+        // currentIndex was already incremented before calling this
         val idx = currentIndex.coerceIn(0, images.size - 1)
+        // This is correct — currentIndex points to the NEW image after increment
         val path = images[idx].absolutePath
         val cached = bitmapCache[path]
         if (cached != null && !cached.isRecycled) {
@@ -687,6 +711,8 @@ class MainActivity : AppCompatActivity() {
                     preloadBitmaps(images)
                     showCurrentImage()
                     startRotation()
+                    // Stop retrying — images loaded
+                    retryRunnable = null
                 } else {
                     SyncWorker.triggerImmediate(this@MainActivity)
                     handler.postDelayed(this, 10000)

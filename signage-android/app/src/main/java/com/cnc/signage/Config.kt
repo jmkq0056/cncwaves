@@ -17,11 +17,11 @@ class Config(private val context: Context) {
 
     fun getPlaylistHash(): String = prefs.getString("playlist_hash", "") ?: ""
     fun setPlaylistHash(hash: String) =
-        prefs.edit().putString("playlist_hash", hash).apply()
+        prefs.edit().putString("playlist_hash", hash).commit()
 
     fun getRotationInterval(): Long = prefs.getLong("rotation_interval", 10000L)
     fun setRotationInterval(interval: Long) =
-        prefs.edit().putLong("rotation_interval", interval).apply()
+        prefs.edit().putLong("rotation_interval", interval).commit()
 
     fun getPin(): String = prefs.getString("pin", "1111") ?: "1111"
 
