@@ -22,6 +22,12 @@ export async function GET(request: NextRequest) {
         published: s.published || false,
         publishedAt: s.publishedAt || null,
         updatedAt: s.updatedAt,
+        screenOnTime: s.screenOnTime || "",
+        screenOffTime: s.screenOffTime || "",
+        screenOffMode: s.screenOffMode || "dim",
+        burstEnabled: s.burstEnabled || false,
+        burstInterval: s.burstInterval || 3,
+        burstDuration: s.burstDuration || 10,
       }))
     );
   } catch (e) {

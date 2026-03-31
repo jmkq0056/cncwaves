@@ -1,306 +1,538 @@
 #!/usr/bin/env python3
 """
-Full signage seed:
-1. Generate 9 burst GIF slices (2160x3840) matching the prototype design
-2. Upload burst GIFs + inspiration images to Cloudinary
-3. Seed MongoDB screens 1-11:
-   - Screens 1-9: menu boards + burst enabled
-   - Screen 10: full price list (no burst)
-   - Screen 11: drinks & coffee (no burst)
+Full signage seed — 20 screens matching production config.
+Seeds MongoDB with exact screen configs (images, burst, schedule).
+Does NOT upload images or generate burst frames — uses existing Cloudinary URLs.
 
 Run: cd cnc-solutions && python3 seed_signage_full.py
 """
 
-import os
 import sys
 import hashlib
-import json
-from pathlib import Path
+from datetime import datetime, timezone
 
-# Check deps
 try:
-    from PIL import Image, ImageDraw, ImageFont
-    import cloudinary
-    import cloudinary.uploader
     from pymongo import MongoClient
 except ImportError:
-    print("Install: pip3 install Pillow cloudinary pymongo")
+    print("Install: pip3 install pymongo")
     sys.exit(1)
 
 # === CONFIG ===
 MONGO_URI = "mongodb+srv://jawa0056:4yuc4PVaUKPh9cHx@cluster0.54zxry3.mongodb.net/CNCtest?retryWrites=true&w=majority"
-cloudinary.config(
-    cloud_name="dtcjxk8si",
-    api_key="327179765556728",
-    api_secret="J05WLti2g_12vdN5L1ARA7KkED8",
-)
 
-W, H = 2160, 3840
-INSPIRATION = Path(__file__).parent / "inspiration menu" / "screens"
-OUTPUT = Path(__file__).parent / "seed_output"
-OUTPUT.mkdir(exist_ok=True)
-
-# === 11 SCREEN LAYOUT ===
+# === 20 SCREEN LAYOUT (matches existing database) ===
 SCREENS = {
-    1:  {"name": "Beef Burger Meals",     "images": ["screen-1/beef-burger-meals.png"], "burst": True},
-    2:  {"name": "Chicken Burgers",       "images": ["screen-2/chicken-burgers-meals.png"], "burst": True},
-    3:  {"name": "Chicken & Fish",        "images": ["screen-2/chicken-fish-burgers-meals.png"], "burst": True},
-    4:  {"name": "Chicken N Chicken",     "images": ["screen-2/chicken-n-chicken-meals.png"], "burst": True},
-    5:  {"name": "Wraps & Salad",         "images": ["screen-3/wraps-vegi-salad-meals.png", "screen-3/ris-bowl-promo.jpg"], "burst": True},
-    6:  {"name": "Tacos Meals",           "images": ["screen-4/tacos-meals.png"], "burst": True},
-    7:  {"name": "Family Buckets",        "images": ["screen-5/family-sharing-buckets.png"], "burst": True},
-    8:  {"name": "Sides",                 "images": ["screen-6/sides.png"], "burst": True},
-    9:  {"name": "Kids Meal",             "images": ["screen-7/kids-meal.png"], "burst": True},
-    10: {"name": "Full Price List",       "images": ["screen-8/full-menu-price-list.jpg"], "burst": False},
-    11: {"name": "Drinks & Coffee",       "images": ["screen-9/cold-drinks-shakes-sundae.jpg", "screen-9/kaffe-kage.jpg"], "burst": False},
+    1: {
+        "name": "Beef Burger Meals",
+        "images": [
+            {
+                "filename": "beef-burger-meals.png",
+                "cloudinaryPublicId": "cnc-signage/screen-1-beef-burger-meals",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896638/cnc-signage/screen-1-beef-burger-meals.png",
+                "order": 1,
+            }
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "10:45",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975500/cnc-signage/easter-burst-screen-1.png",
+        "burstCloudinaryId": "cnc-signage/easter-burst-screen-1",
+        "burstInterval": 2,
+        "burstDuration": 10,
+    },
+    2: {
+        "name": "Chicken Burgers",
+        "images": [
+            {
+                "filename": "chicken-burgers-meals.png",
+                "cloudinaryPublicId": "cnc-signage/screen-2-chicken-burgers-meals",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896642/cnc-signage/screen-2-chicken-burgers-meals.png",
+                "order": 1,
+            }
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "10:45",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975502/cnc-signage/easter-burst-screen-2.png",
+        "burstCloudinaryId": "cnc-signage/easter-burst-screen-2",
+        "burstInterval": 2,
+        "burstDuration": 10,
+    },
+    3: {
+        "name": "Chicken & Fish",
+        "images": [
+            {
+                "filename": "chicken-fish-burgers-meals.png",
+                "cloudinaryPublicId": "cnc-signage/screen-3-chicken-fish-burgers-meals",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896644/cnc-signage/screen-3-chicken-fish-burgers-meals.png",
+                "order": 1,
+            }
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "10:45",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975503/cnc-signage/easter-burst-screen-3.png",
+        "burstCloudinaryId": "cnc-signage/easter-burst-screen-3",
+        "burstInterval": 2,
+        "burstDuration": 10,
+    },
+    4: {
+        "name": "Chicken N Chicken",
+        "images": [
+            {
+                "filename": "22e82ec1-b09d-4a14-93f1-5c423a443752",
+                "cloudinaryPublicId": "cnc-signage/jakvd3baopatnq0enudb",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774900044/cnc-signage/jakvd3baopatnq0enudb.png",
+                "order": 1,
+            }
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "10:45",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975504/cnc-signage/easter-burst-screen-4.png",
+        "burstCloudinaryId": "cnc-signage/easter-burst-screen-4",
+        "burstInterval": 2,
+        "burstDuration": 10,
+    },
+    5: {
+        "name": "Wraps & Salad",
+        "images": [
+            {
+                "filename": "Tacos Meals 1",
+                "cloudinaryPublicId": "cnc-signage/screen-6-tacos-meals",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896655/cnc-signage/screen-6-tacos-meals.png",
+                "order": 1,
+            }
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "10:45",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975505/cnc-signage/easter-burst-screen-5.png",
+        "burstCloudinaryId": "cnc-signage/easter-burst-screen-5",
+        "burstInterval": 2,
+        "burstDuration": 10,
+    },
+    6: {
+        "name": "Tacos Meals",
+        "images": [
+            {
+                "filename": "Chicken N Chicken 1",
+                "cloudinaryPublicId": "cnc-signage/screen-4-chicken-n-chicken-meals",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896647/cnc-signage/screen-4-chicken-n-chicken-meals.png",
+                "order": 1,
+            }
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "10:45",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975506/cnc-signage/easter-burst-screen-6.png",
+        "burstCloudinaryId": "cnc-signage/easter-burst-screen-6",
+        "burstInterval": 2,
+        "burstDuration": 10,
+    },
+    7: {
+        "name": "Family Buckets",
+        "images": [
+            {
+                "filename": "family-sharing-buckets.png",
+                "cloudinaryPublicId": "cnc-signage/screen-7-family-sharing-buckets",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896657/cnc-signage/screen-7-family-sharing-buckets.png",
+                "order": 1,
+            }
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "10:45",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975507/cnc-signage/easter-burst-screen-7.png",
+        "burstCloudinaryId": "cnc-signage/easter-burst-screen-7",
+        "burstInterval": 2,
+        "burstDuration": 10,
+    },
+    8: {
+        "name": "Sides",
+        "images": [
+            {
+                "filename": "sides.png",
+                "cloudinaryPublicId": "cnc-signage/screen-8-sides",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896659/cnc-signage/screen-8-sides.png",
+                "order": 1,
+            }
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "10:45",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975508/cnc-signage/easter-burst-screen-8.png",
+        "burstCloudinaryId": "cnc-signage/easter-burst-screen-8",
+        "burstInterval": 2,
+        "burstDuration": 10,
+    },
+    9: {
+        "name": "Kids Meal",
+        "images": [
+            {
+                "filename": "kids-meal.png",
+                "cloudinaryPublicId": "cnc-signage/screen-9-kids-meal",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896661/cnc-signage/screen-9-kids-meal.png",
+                "order": 1,
+            }
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "10:45",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975509/cnc-signage/easter-burst-screen-9.png",
+        "burstCloudinaryId": "cnc-signage/easter-burst-screen-9",
+        "burstInterval": 2,
+        "burstDuration": 10,
+    },
+    10: {
+        "name": "Full Price List",
+        "images": [
+            {
+                "filename": "full-menu-price-list.png",
+                "cloudinaryPublicId": "cnc-signage/screen-10-full-menu-price-list",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896848/cnc-signage/screen-10-full-menu-price-list.png",
+                "order": 1,
+            }
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "10:45",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896834/cnc-signage/screen-5-ris-bowl-promo.png",
+        "burstCloudinaryId": "cnc-signage/screen-5-ris-bowl-promo",
+        "burstInterval": 2,
+        "burstDuration": 10,
+    },
+    11: {
+        "name": "Drinks & Coffee",
+        "images": [
+            {
+                "filename": "cold-drinks-shakes-sundae.png",
+                "cloudinaryPublicId": "cnc-signage/screen-11-cold-drinks-shakes-sundae",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896851/cnc-signage/screen-11-cold-drinks-shakes-sundae.png",
+                "order": 1,
+            },
+            {
+                "filename": "kaffe-kage.png",
+                "cloudinaryPublicId": "cnc-signage/screen-11-kaffe-kage",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896853/cnc-signage/screen-11-kaffe-kage.png",
+                "order": 2,
+            },
+        ],
+        "rotationInterval": 10000,
+        "screenOnTime": "10:45",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": False,
+        "burstImageUrl": "",
+        "burstCloudinaryId": "",
+        "burstInterval": 3,
+        "burstDuration": 10,
+    },
+    12: {
+        "name": "Screen 12",
+        "images": [
+            {
+                "filename": "Screen 12 A",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-12-a",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883947/cnc-signage/seed-screen-12-a.png",
+                "order": 1,
+            },
+            {
+                "filename": "Screen 12 B",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-12-b",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883947/cnc-signage/seed-screen-12-b.png",
+                "order": 2,
+            },
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "11:00",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883975/cnc-signage/burst-screen-12.gif",
+        "burstCloudinaryId": "cnc-signage/burst-screen-12",
+        "burstInterval": 3,
+        "burstDuration": 10,
+    },
+    13: {
+        "name": "Screen 13",
+        "images": [
+            {
+                "filename": "Screen 13 A",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-13-a",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883948/cnc-signage/seed-screen-13-a.png",
+                "order": 1,
+            },
+            {
+                "filename": "Screen 13 B",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-13-b",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883949/cnc-signage/seed-screen-13-b.png",
+                "order": 2,
+            },
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "11:00",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883976/cnc-signage/burst-screen-13.gif",
+        "burstCloudinaryId": "cnc-signage/burst-screen-13",
+        "burstInterval": 3,
+        "burstDuration": 10,
+    },
+    14: {
+        "name": "Screen 14",
+        "images": [
+            {
+                "filename": "Screen 14 A",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-14-a",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883950/cnc-signage/seed-screen-14-a.png",
+                "order": 1,
+            },
+            {
+                "filename": "Screen 14 B",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-14-b",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883951/cnc-signage/seed-screen-14-b.png",
+                "order": 2,
+            },
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "11:00",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883977/cnc-signage/burst-screen-14.gif",
+        "burstCloudinaryId": "cnc-signage/burst-screen-14",
+        "burstInterval": 3,
+        "burstDuration": 10,
+    },
+    15: {
+        "name": "Screen 15",
+        "images": [
+            {
+                "filename": "Screen 15 A",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-15-a",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883952/cnc-signage/seed-screen-15-a.png",
+                "order": 1,
+            },
+            {
+                "filename": "Screen 15 B",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-15-b",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883953/cnc-signage/seed-screen-15-b.png",
+                "order": 2,
+            },
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "11:00",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883978/cnc-signage/burst-screen-15.gif",
+        "burstCloudinaryId": "cnc-signage/burst-screen-15",
+        "burstInterval": 3,
+        "burstDuration": 10,
+    },
+    16: {
+        "name": "Screen 16",
+        "images": [
+            {
+                "filename": "Screen 16 A",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-16-a",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883954/cnc-signage/seed-screen-16-a.png",
+                "order": 1,
+            },
+            {
+                "filename": "Screen 16 B",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-16-b",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883955/cnc-signage/seed-screen-16-b.png",
+                "order": 2,
+            },
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "11:00",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883979/cnc-signage/burst-screen-16.gif",
+        "burstCloudinaryId": "cnc-signage/burst-screen-16",
+        "burstInterval": 3,
+        "burstDuration": 10,
+    },
+    17: {
+        "name": "Screen 17",
+        "images": [
+            {
+                "filename": "Screen 17 A",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-17-a",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883955/cnc-signage/seed-screen-17-a.png",
+                "order": 1,
+            },
+            {
+                "filename": "Screen 17 B",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-17-b",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883956/cnc-signage/seed-screen-17-b.png",
+                "order": 2,
+            },
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "11:00",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883980/cnc-signage/burst-screen-17.gif",
+        "burstCloudinaryId": "cnc-signage/burst-screen-17",
+        "burstInterval": 3,
+        "burstDuration": 10,
+    },
+    18: {
+        "name": "Screen 18",
+        "images": [
+            {
+                "filename": "Screen 18 A",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-18-a",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883958/cnc-signage/seed-screen-18-a.png",
+                "order": 1,
+            },
+            {
+                "filename": "Screen 18 B",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-18-b",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883958/cnc-signage/seed-screen-18-b.png",
+                "order": 2,
+            },
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "11:00",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883981/cnc-signage/burst-screen-18.gif",
+        "burstCloudinaryId": "cnc-signage/burst-screen-18",
+        "burstInterval": 3,
+        "burstDuration": 10,
+    },
+    19: {
+        "name": "Screen 19",
+        "images": [
+            {
+                "filename": "Screen 19 A",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-19-a",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883960/cnc-signage/seed-screen-19-a.png",
+                "order": 1,
+            },
+            {
+                "filename": "Screen 19 B",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-19-b",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883961/cnc-signage/seed-screen-19-b.png",
+                "order": 2,
+            },
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "11:00",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883982/cnc-signage/burst-screen-19.gif",
+        "burstCloudinaryId": "cnc-signage/burst-screen-19",
+        "burstInterval": 3,
+        "burstDuration": 10,
+    },
+    20: {
+        "name": "Screen 20",
+        "images": [
+            {
+                "filename": "Screen 20 A",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-20-a",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883962/cnc-signage/seed-screen-20-a.png",
+                "order": 1,
+            },
+            {
+                "filename": "Screen 20 B",
+                "cloudinaryPublicId": "cnc-signage/seed-screen-20-b",
+                "url": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883962/cnc-signage/seed-screen-20-b.png",
+                "order": 2,
+            },
+        ],
+        "rotationInterval": 60000,
+        "screenOnTime": "11:00",
+        "screenOffTime": "23:30",
+        "screenOffMode": "dim",
+        "burstEnabled": True,
+        "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883983/cnc-signage/burst-screen-20.gif",
+        "burstCloudinaryId": "cnc-signage/burst-screen-20",
+        "burstInterval": 3,
+        "burstDuration": 10,
+    },
 }
-
-# === BURST DESIGN — matching the HTML prototype ===
-# Gradient colors per screen (dark red → orange, screens 1-9)
-BURST_COLORS = [
-    ((61,13,15), (90,21,24)),    # Screen 1
-    ((90,21,24), (114,28,31)),   # Screen 2
-    ((114,28,31), (138,35,37)),  # Screen 3
-    ((138,35,37), (165,46,40)),  # Screen 4
-    ((165,46,40), (192,58,28)),  # Screen 5
-    ((192,58,28), (216,80,16)),  # Screen 6
-    ((216,80,16), (232,101,5)),  # Screen 7
-    ((232,101,5), (241,125,0)),  # Screen 8
-    ((241,125,0), (248,144,32)), # Screen 9
-]
-
-# What each screen shows in the burst
-# Screen 1: stripes, Screen 2: "TASTE\nIS A", Screens 3-9: P,A,S,S,I,O,N
-BURST_CONTENT = [
-    "STRIPES",
-    "TASTE\nIS A",
-    "P", "A", "S", "S", "I", "O", "N",
-]
-
-
-def lerp(a, b, t):
-    return int(a + (b - a) * t)
-
-
-def make_gradient(w, h, c1, c2):
-    """Create diagonal gradient image."""
-    img = Image.new("RGB", (w, h))
-    for y in range(h):
-        for x in range(0, w, 4):  # Step 4 for speed
-            t = (x / w * 0.4 + y / h * 0.6)
-            r = lerp(c1[0], c2[0], t)
-            g = lerp(c1[1], c2[1], t)
-            b = lerp(c1[2], c2[2], t)
-            for dx in range(4):
-                if x + dx < w:
-                    img.putpixel((x + dx, y), (r, g, b))
-    return img
-
-
-def get_font(size):
-    """Try to get Oswald or fallback."""
-    for name in ["/System/Library/Fonts/Helvetica.ttc", "/System/Library/Fonts/SFNSDisplay.ttf"]:
-        try:
-            return ImageFont.truetype(name, size)
-        except:
-            pass
-    return ImageFont.load_default()
-
-
-def draw_stripes(draw, cx, cy, h=700):
-    """Draw the CNC red/orange/red stripes."""
-    bar_w = 50
-    gap = 30
-    total_w = bar_w * 3 + gap * 2
-    x = cx - total_w // 2
-    y = cy - h // 2
-    # Colors: white/light for stripes
-    colors = [(230, 230, 230), (180, 160, 140), (230, 230, 230)]
-    for i, color in enumerate(colors):
-        bx = x + i * (bar_w + gap)
-        draw.rounded_rectangle([(bx, y), (bx + bar_w, y + h)], radius=12, fill=color)
-
-
-def create_burst_frame(screen_idx, show_content=True):
-    """Create one burst frame for a screen."""
-    c1, c2 = BURST_COLORS[screen_idx]
-    # Use bands instead of pixel-by-pixel for speed
-    img = Image.new("RGB", (W, H))
-    draw = ImageDraw.Draw(img)
-    bands = 200
-    band_h = H // bands
-    for i in range(bands):
-        t = i / bands
-        r = lerp(c1[0], c2[0], t * 0.6 + 0.2)
-        g = lerp(c1[1], c2[1], t * 0.6 + 0.2)
-        b = lerp(c1[2], c2[2], t * 0.6 + 0.2)
-        draw.rectangle([(0, i * band_h), (W, (i + 1) * band_h)], fill=(r, g, b))
-
-    if not show_content:
-        return img
-
-    content = BURST_CONTENT[screen_idx]
-    cx, cy = W // 2, H // 2
-
-    if content == "STRIPES":
-        draw_stripes(draw, cx, cy, h=1200)
-
-    elif "\n" in content:
-        # "TASTE\nIS A" — two lines
-        lines = content.split("\n")
-        font = get_font(350)
-        # TASTE
-        bbox = draw.textbbox((0, 0), lines[0], font=font)
-        tw = bbox[2] - bbox[0]
-        th = bbox[3] - bbox[1]
-        draw.text((cx - tw // 2, cy - th - 40), lines[0], fill=(255, 255, 255), font=font)
-        # IS A
-        bbox2 = draw.textbbox((0, 0), lines[1], font=font)
-        tw2 = bbox2[2] - bbox2[0]
-        draw.text((cx - tw2 // 2, cy + 40), lines[1], fill=(255, 255, 255), font=font)
-
-    else:
-        # Single big letter
-        font = get_font(900)
-        bbox = draw.textbbox((0, 0), content, font=font)
-        tw = bbox[2] - bbox[0]
-        th = bbox[3] - bbox[1]
-        draw.text((cx - tw // 2, cy - th // 2), content, fill=(255, 255, 255), font=font)
-
-    return img
 
 
 def main():
     client = MongoClient(MONGO_URI)
     db = client["CNCtest"]
     screens_col = db["screens"]
-    images_col = db["images"]
 
-    print("=== GENERATING BURST GIFs ===\n")
-    burst_urls = {}
+    print("=== SEEDING 20 SCREENS ===\n")
 
-    for i in range(9):
-        screen_num = i + 1
-        print(f"  Screen {screen_num}: {BURST_CONTENT[i]}...")
+    for screen_id, config in SCREENS.items():
+        now = datetime.now(timezone.utc)
 
-        # Static PNG — no animation, just the final look
-        frame = create_burst_frame(i, show_content=True)
-
-        png_path = OUTPUT / f"burst_screen_{screen_num}.png"
-        frame.save(str(png_path))
-
-        # Upload to Cloudinary as PNG
-        result = cloudinary.uploader.upload(str(png_path),
-            folder="cnc-signage",
-            public_id=f"burst-screen-{screen_num}",
-            overwrite=True,
-            resource_type="image",
-            format="png",
-        )
-        burst_urls[screen_num] = {
-            "url": result["secure_url"],
-            "public_id": result["public_id"],
-        }
-        print(f"    → {result['secure_url'][-50:]}")
-
-    print("\n=== UPLOADING INSPIRATION IMAGES ===\n")
-    screen_images = {}  # screen_num -> list of {filename, cloudinaryPublicId, url, order}
-
-    for screen_num, config in SCREENS.items():
-        screen_images[screen_num] = []
-        for order, rel_path in enumerate(config["images"]):
-            full_path = INSPIRATION / rel_path
-            if not full_path.exists():
-                print(f"  SKIP Screen {screen_num}: {rel_path} (not found)")
-                continue
-
-            filename = full_path.stem
-            public_id = f"cnc-signage/screen-{screen_num}-{filename}"
-
-            print(f"  Screen {screen_num}: uploading {rel_path}...")
-            result = cloudinary.uploader.upload(str(full_path),
-                folder="cnc-signage",
-                public_id=f"screen-{screen_num}-{filename}",
-                overwrite=True,
-                format="png",
-            )
-
-            # Save to images collection
-            images_col.update_one(
-                {"cloudinaryPublicId": result["public_id"]},
-                {"$set": {
-                    "name": f"{config['name']} {order + 1}",
-                    "category": "Menu Boards",
-                    "cloudinaryPublicId": result["public_id"],
-                    "url": result["secure_url"],
-                    "width": result["width"],
-                    "height": result["height"],
-                    "format": result.get("format", "png"),
-                    "sizeBytes": result.get("bytes", 0),
-                }},
-                upsert=True,
-            )
-
-            screen_images[screen_num].append({
-                "filename": f"{filename}.png",
-                "cloudinaryPublicId": result["public_id"],
-                "url": result["secure_url"],
-                "order": order,
-            })
-            print(f"    → {result['secure_url'][-50:]}")
-
-    print("\n=== SEEDING 11 SCREENS ===\n")
-
-    for screen_num, config in SCREENS.items():
-        imgs = screen_images.get(screen_num, [])
-
-        # Playlist hash
-        hash_data = "|".join(f"{img['url']}:{img['order']}" for img in imgs)
+        # Compute playlist hash
+        hash_data = "|".join(f"{img['url']}:{img['order']}" for img in config["images"])
         playlist_hash = hashlib.md5(hash_data.encode()).hexdigest()
 
         update = {
             "name": config["name"],
-            "images": imgs,
-            "rotationInterval": 60000,  # 60 seconds
+            "images": config["images"],
+            "rotationInterval": config["rotationInterval"],
             "published": True,
-            "publishedAt": __import__("datetime").datetime.utcnow(),
+            "publishedAt": now,
             "playlistHash": playlist_hash,
-            "screenOnTime": "11:00",
-            "screenOffTime": "23:05",
-            "screenOffMode": "dim",
+            "screenOnTime": config["screenOnTime"],
+            "screenOffTime": config["screenOffTime"],
+            "screenOffMode": config["screenOffMode"],
+            "burstEnabled": config["burstEnabled"],
+            "burstImageUrl": config["burstImageUrl"],
+            "burstCloudinaryId": config["burstCloudinaryId"],
+            "burstInterval": config["burstInterval"],
+            "burstDuration": config["burstDuration"],
         }
 
-        if config["burst"] and screen_num in burst_urls:
-            update.update({
-                "burstEnabled": True,
-                "burstImageUrl": burst_urls[screen_num]["url"],
-                "burstCloudinaryId": burst_urls[screen_num]["public_id"],
-                "burstInterval": 3,   # every 3 minutes
-                "burstDuration": 10,  # show for 10 seconds
-            })
-        else:
-            update.update({
-                "burstEnabled": False,
-                "burstImageUrl": "",
-                "burstCloudinaryId": "",
-            })
-
         screens_col.update_one(
-            {"_id": screen_num},
-            {"$set": update},
+            {"_id": screen_id},
+            {"$set": update, "$setOnInsert": {"createdAt": now}},
             upsert=True,
         )
 
-        burst_status = "BURST" if config["burst"] else "no burst"
-        print(f"  Screen {screen_num:2d}: {config['name']:<25s} | {len(imgs)} images | {burst_status}")
+        burst_status = "BURST" if config["burstEnabled"] else "no burst"
+        img_count = len(config["images"])
+        print(f"  Screen {screen_id:2d}: {config['name']:<25s} | {img_count} img | {burst_status} | {config['screenOnTime']}-{config['screenOffTime']}")
 
-    print(f"\nDone! 11 screens seeded.")
-    print(f"  Screens 1-9:  menu boards + burst (TASTE IS A PASSION)")
-    print(f"  Screen 10:    full price list")
-    print(f"  Screen 11:    drinks & coffee")
-    print(f"  Schedule:     11:00 - 23:05")
-    print(f"  Rotation:     60 seconds")
-    print(f"  Burst:        every 3 min, 10 sec duration")
+    print(f"\nDone! 20 screens seeded.")
+    print(f"  Screens 1-9:   menu boards + burst")
+    print(f"  Screen 10:     full price list + burst (ris-bowl-promo, interval 2)")
+    print(f"  Screen 11:     drinks & coffee, no burst, 10s rotation")
+    print(f"  Screens 12-20: placeholder screens + burst")
+    print(f"  Schedule 1-11: 10:45 - 00:05")
+    print(f"  Schedule 12-20: 11:00 - 23:05")
 
     client.close()
 

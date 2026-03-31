@@ -2,126 +2,69 @@
 <html lang="da">
 <head>
 <meta charset="UTF-8">
-<title>CNC Burst — 9 Screens</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+<title>CNC Easter Burst — 9 Screens Preview</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #000; font-family: 'Oswald', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-
-  .wall { display: flex; gap: 5px; }
-  .screen {
-    width: 110px;
-    height: 196px;
-    overflow: hidden;
-    position: relative;
-    border-radius: 3px;
+  body {
+    background: #000;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #888;
   }
-
-  .screen:nth-child(1) { background: linear-gradient(155deg, #3d0d0f 0%, #5a1518 100%); }
-  .screen:nth-child(2) { background: linear-gradient(155deg, #5a1518 0%, #721c1f 100%); }
-  .screen:nth-child(3) { background: linear-gradient(155deg, #721c1f 0%, #8a2325 100%); }
-  .screen:nth-child(4) { background: linear-gradient(155deg, #8a2325 0%, #a52e28 100%); }
-  .screen:nth-child(5) { background: linear-gradient(155deg, #a52e28 0%, #c03a1c 100%); }
-  .screen:nth-child(6) { background: linear-gradient(155deg, #c03a1c 0%, #d85010 100%); }
-  .screen:nth-child(7) { background: linear-gradient(155deg, #d85010 0%, #e86505 100%); }
-  .screen:nth-child(8) { background: linear-gradient(155deg, #e86505 0%, #f17d00 100%); }
-  .screen:nth-child(9) { background: linear-gradient(155deg, #f17d00 0%, #f89020 100%); }
-
-  .stripes {
-    display: flex; gap: 12px;
-    opacity: 0;
-    animation: fadeScale 0.8s ease forwards 0.2s;
+  h1 { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; color: #666; }
+  .info { font-size: 11px; margin-bottom: 12px; opacity: 0.5; }
+  .wall {
+    display: flex;
+    gap: 3px;
+    width: 100vw;
+    padding: 0 8px;
   }
-  .stripes div { width: 14px; height: 100px; border-radius: 4px; }
-  .stripes .r { background: rgba(255,255,255,0.8); }
-  .stripes .o { background: rgba(255,255,255,0.35); }
-
-  /* Screen 2: TASTE top line, IS A bottom line */
-  .two-lines {
+  .wall img {
+    flex: 1;
+    min-width: 0;
+    width: calc((100vw - 40px) / 9);
+    height: auto;
+    display: block;
+    border: 1px solid #222;
+    border-radius: 2px;
+    object-fit: contain;
+  }
+  .labels {
+    display: flex;
+    width: 100vw;
+    padding: 0 8px;
+    gap: 3px;
+    margin-top: 4px;
+  }
+  .labels span {
+    flex: 1;
     text-align: center;
-    opacity: 0;
-    animation: letterIn 0.8s cubic-bezier(0.16,1,0.3,1) forwards;
-  }
-  .two-lines .top {
-    font-size: 42px;
-    font-weight: 700;
-    color: white;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
-    width: 100px;
-    text-align: justify;
-    text-align-last: justify;
-    line-height: 1;
-    margin: 0;
-  }
-  .two-lines .bottom {
-    font-size: 42px;
-    font-weight: 700;
-    color: white;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
-    text-align: center;
-    line-height: 1;
-    margin: 0;
-  }
-
-  /* Screens 3-9: giant PASSION letters */
-  .letter {
-    font-size: 120px;
-    font-weight: 700;
-    color: white;
-    line-height: 1;
-    text-shadow: 0 4px 30px rgba(0,0,0,0.4);
-    opacity: 0;
-    animation: letterIn 0.7s cubic-bezier(0.16,1,0.3,1) forwards;
-  }
-
-  .screen:nth-child(2) .two-lines { animation-delay: 0.6s; }
-  .screen:nth-child(3) .letter { animation-delay: 1.2s; }
-  .screen:nth-child(4) .letter { animation-delay: 1.35s; }
-  .screen:nth-child(5) .letter { animation-delay: 1.5s; }
-  .screen:nth-child(6) .letter { animation-delay: 1.65s; }
-  .screen:nth-child(7) .letter { animation-delay: 1.8s; }
-  .screen:nth-child(8) .letter { animation-delay: 1.95s; }
-  .screen:nth-child(9) .letter { animation-delay: 2.1s; }
-
-  @keyframes fadeScale {
-    from { opacity: 0; transform: scaleY(0); }
-    to { opacity: 1; transform: scaleY(1); }
-  }
-  @keyframes letterIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .controls {
-    position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%);
-  }
-  .controls button {
-    background: #f17d00; color: white; border: none; padding: 6px 18px;
-    border-radius: 4px; font-family: 'Oswald', sans-serif; font-size: 13px; cursor: pointer;
+    font-size: 10px;
+    opacity: 0.4;
   }
 </style>
 </head>
 <body>
-
-<div class="wall" id="wall">
-  <div class="screen"><div class="stripes"><div class="r"></div><div class="o"></div><div class="r"></div></div></div>
-  <div class="screen"><div class="two-lines"><div class="top">TASTE</div><div class="bottom">IS&nbsp;A</div></div></div>
-  <div class="screen"><div class="letter">P</div></div>
-  <div class="screen"><div class="letter">A</div></div>
-  <div class="screen"><div class="letter">S</div></div>
-  <div class="screen"><div class="letter">S</div></div>
-  <div class="screen"><div class="letter">I</div></div>
-  <div class="screen"><div class="letter">O</div></div>
-  <div class="screen"><div class="letter">N</div></div>
-</div>
-
-<div class="controls">
-  <button onclick="var w=document.getElementById('wall');w.parentNode.replaceChild(w.cloneNode(true),w)">Replay</button>
-</div>
-
+  <h1>Easter Burst Preview</h1>
+  <p class="info">9 screens · 2160×3840 each</p>
+  <div class="wall">
+    <img src="output/burst_screen_1.png" alt="Screen 1">
+    <img src="output/burst_screen_2.png" alt="Screen 2">
+    <img src="output/burst_screen_3.png" alt="Screen 3">
+    <img src="output/burst_screen_4.png" alt="Screen 4">
+    <img src="output/burst_screen_5.png" alt="Screen 5">
+    <img src="output/burst_screen_6.png" alt="Screen 6">
+    <img src="output/burst_screen_7.png" alt="Screen 7">
+    <img src="output/burst_screen_8.png" alt="Screen 8">
+    <img src="output/burst_screen_9.png" alt="Screen 9">
+  </div>
+  <div class="labels">
+    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+  </div>
 </body>
 </html>

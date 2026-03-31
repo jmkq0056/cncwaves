@@ -66,6 +66,8 @@ export default function EditScreen() {
   const [libraryCategory, setLibraryCategory] = useState<string | null>(null);
   const [libraryLoading, setLibraryLoading] = useState(false);
   const [burstPickMode, setBurstPickMode] = useState(false);
+  const [forceSyncing, setForceSyncing] = useState(false);
+  const [forceSynced, setForceSynced] = useState(false);
 
   // Upload modal
   const [showUpload, setShowUpload] = useState(false);
@@ -348,6 +350,27 @@ export default function EditScreen() {
             Screen #{screen._id}
           </h2>
           <div className="flex items-center gap-3">
+            <button
+              onClick={async () => {
+                setForceSyncing(true);
+                try {
+                  const res = await fetch("/api/admin/screens/force-sync", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ screenIds: [Number(id)] }),
+                  });
+                  if (res.ok) {
+                    setForceSynced(true);
+                    setTimeout(() => setForceSynced(false), 3000);
+                  }
+                } catch {}
+                setForceSyncing(false);
+              }}
+              disabled={forceSyncing}
+              className="bg-gray-800 hover:bg-gray-700 text-gray-300 text-xs font-medium px-3 py-1.5 rounded-lg transition disabled:opacity-50"
+            >
+              {forceSynced ? "Synced!" : forceSyncing ? "Syncing..." : "Force Sync"}
+            </button>
             {screen.publishedAt && (
               <span className="text-xs text-gray-500 hidden sm:inline">
                 Published{" "}
