@@ -65,7 +65,7 @@ export default function SimulatePage() {
         if (!isNaN(n)) ids.push(n);
       }
     }
-    return [...new Set(ids)].sort((a, b) => a - b);
+    return Array.from(new Set(ids)).sort((a, b) => a - b);
   }
 
   function applyRange() {
