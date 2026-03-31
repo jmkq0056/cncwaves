@@ -1,0 +1,133 @@
+{
+  "brand": {
+    "name": "Chicken N Chicken",
+    "tagline": "Taste is a passion",
+    "colors": {
+      "primary_red": "#8B1A1A",
+      "primary_yellow": "#FFD700",
+      "primary_orange": "#E87500",
+      "background": "#FFFFFF",
+      "price_text": "#000000",
+      "category_header_bg": "#8B1A1A"
+    },
+    "currency": "KR",
+    "language": "da"
+  },
+  "screens": [
+    {
+      "id": "beef-burgers",
+      "title": "BEEF BURGER MEALS",
+      "screen_number": 1,
+      "subtitle": null,
+      "stor_menu_price": 10,
+      "items": [
+        {
+          "id": "double-cheese",
+          "name": "DOUBLE CHEESE",
+          "description": "Dobbelt oksebøf, dobbelt cheddar, tomat, iceberg, biggy dressing, sesambolle",
+          "price_single": 47,
+          "price_meal": 77,
+          "price_meal_large": 87,
+          "weight_grams": 56,
+          "bun_size": "Small Bun 10cm",
+          "image": "menu-assets/items/beef-burgers/double-cheese.png",
+          "meal_image": "menu-assets/items/beef-burgers/double-cheese-meal.png",
+          "is_spicy": false,
+          "is_new": false,
+          "is_sold_out": false,
+          "category": "beef-burgers",
+          "allergens": []
+        },
+        {
+          "id": "triple-cheese-burger",
+          "name": "TRIPLE CHEESE BURGER",
+          "description": "Tredobbelt oksebøf, tredobbelt cheddar, tomat, iceberg, biggy dressing, sesambolle",
+          "price_single": 54,
+          "price_meal": 84,
+          "price_meal_large": 94,
+          "weight_grams": 56,
+          "bun_size": "Small Bun 10cm",
+          "image": "menu-assets/items/beef-burgers/triple-cheese.png",
+          "meal_image": "menu-assets/items/beef-burgers/triple-cheese-meal.png",
+          "is_spicy": false,
+          "is_new": false,
+          "is_sold_out": false,
+          "category": "beef-burgers",
+          "allergens": []
+        },
+        {
+          "id": "oring-cheese-burger",
+          "name": "O'RING CHEESE BURGER",
+          "description": "Oksebøf, cheddar, iceberg, onion rings, algérienne, brioche burgerbolle",
+          "price_single": 47,
+          "price_meal": 74,
+          "price_meal_large": 84,
+          "weight_grams": 56,
+          "bun_size": "Small Bun 10cm",
+          "image": "menu-assets/items/beef-burgers/oring-cheese-burger.png",
+          "meal_image": "menu-assets/items/beef-burgers/oring-cheese-burger-meal.png",
+          "is_spicy": false,
+          "is_new": false,
+          "is_sold_out": false,
+          "category": "beef-burgers",
+          "allergens": []
+        },
+        {
+          "id": "grand-beef",
+          "name": "GRAND BEEF",
+          "description": "Stor oksebøf, dobbelt cheddar, tomat, iceberg, biggy dressing, brioche burgerbolle",
+          "price_single": 54,
+          "price_meal": 79,
+          "price_meal_large": 84,
+          "weight_grams": 113,
+          "bun_size": "Big Bun 12.5cm",
+          "image": "menu-assets/items/beef-burgers/grand-beef.png",
+          "meal_image": "menu-assets/items/beef-burgers/grand-beef-meal.png",
+          "is_spicy": false,
+          "is_new": false,
+          "is_sold_out": false,
+          "category": "beef-burgers",
+          "allergens": []
+        },
+        {
+          "id": "mega-beef-parmesan",
+          "name": "MEGA BEEF PARMESAN",
+          "description": "Stor oksebøf, parmesan ost, tomat, iceberg, jalapeños, biggy dressing, brioche burgerbolle",
+          "price_single": 64,
+          "price_meal": 89,
+          "price_meal_large": 99,
+          "weight_grams": 113,
+          "bun_size": "Big Bun 12.5cm",
+          "image": "menu-assets/items/beef-burgers/mega-beef-parmesan.png",
+          "meal_image": "menu-assets/items/beef-burgers/mega-beef-parmesan-meal.png",
+          "is_spicy": true,
+          "is_new": false,
+          "is_sold_out": false,
+          "category": "beef-burgers",
+          "allergens": []
+        }
+      ],
+      "footer": {
+        "type": "dip_bar",
+        "title": "HUSK DIP",
+        "subtitle": "GØR DIN MENU MERE FRISTENDE",
+        "items": [
+          {"name": "Mayonnaise", "price_25g": 6, "image": "menu-assets/items/dips/mayonnaise.png"},
+          {"name": "Pomfrit Sauce", "price_25g": 6, "image": "menu-assets/items/dips/pomfrit-sauce.png"},
+          {"name": "Barbecue", "price_25g": 6, "image": "menu-assets/items/dips/barbecue.png"},
+          {"name": "Garlic", "price_25g": 6, "image": "menu-assets/items/dips/garlic.png"},
+          {"name": "Curry Mango", "price_25g": 6, "image": "menu-assets/items/dips/curry-mango.png"},
+          {"name": "Peri Peri (Chili)", "price_25g": 6, "image": "menu-assets/items/dips/peri-peri.png"},
+          {"name": "Honey Mustard", "price_25g": 6, "image": "menu-assets/items/dips/honey-mustard.png"},
+          {"name": "Ketchup", "price_25g": 6, "image": "menu-assets/items/dips/ketchup.png"},
+          {"name": "Sweet & Sour", "price_25g": 6, "image": "menu-assets/items/dips/sweet-and-sour.png"},
+          {"name": "Chili Mayo", "price_25g": 6, "image": "menu-assets/items/dips/chili-mayo.png"},
+          {"name": "Algérienne", "price_10g": 4, "image": "menu-assets/items/dips/algerienne.png"},
+          {"name": "Biggy Burger", "price_10g": 4, "image": "menu-assets/items/dips/biggy-burger.png"},
+          {"name": "Samourai", "price_10g": 4, "image": "menu-assets/items/dips/samourai.png"}
+        ]
+      }
+    }
+  ],
+  "promotions": []
+}

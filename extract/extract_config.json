@@ -1,0 +1,45 @@
+{
+  "screens": {
+    "beef-burger-meals": {
+      "source": "menu-originals/beef-burger-meals.png",
+      "category": "beef-burgers",
+      "description": "Beef Burger Meals - 5 burgers + dip bar",
+      "items": [
+        {"name": "double-cheese-meal",      "crop_pct": [0.00, 0.055, 0.62, 0.215], "type": "meal"},
+        {"name": "triple-cheese-meal",       "crop_pct": [0.00, 0.215, 0.62, 0.395], "type": "meal"},
+        {"name": "oring-cheese-burger-meal", "crop_pct": [0.00, 0.395, 0.62, 0.555], "type": "meal"},
+        {"name": "grand-beef-meal",          "crop_pct": [0.00, 0.555, 0.62, 0.720], "type": "meal"},
+        {"name": "mega-beef-parmesan-meal",  "crop_pct": [0.00, 0.720, 0.62, 0.885], "type": "meal"},
+        {"name": "double-cheese",            "crop_pct": [0.18, 0.060, 0.50, 0.210], "type": "item"},
+        {"name": "triple-cheese",            "crop_pct": [0.18, 0.220, 0.50, 0.390], "type": "item"},
+        {"name": "oring-cheese-burger",      "crop_pct": [0.18, 0.400, 0.50, 0.550], "type": "item"},
+        {"name": "grand-beef",               "crop_pct": [0.18, 0.560, 0.50, 0.715], "type": "item"},
+        {"name": "mega-beef-parmesan",       "crop_pct": [0.18, 0.725, 0.50, 0.880], "type": "item"}
+      ],
+      "brand_elements": [
+        {"name": "triple-stripe",   "crop_pct": [0.00, 0.000, 0.08, 0.055]},
+        {"name": "stor-menu-badge", "crop_pct": [0.78, 0.000, 1.00, 0.060]},
+        {"name": "husk-dip-banner", "crop_pct": [0.00, 0.885, 1.00, 0.930]}
+      ],
+      "reusable": [
+        {"name": "fries-small",     "crop_pct": [0.02, 0.065, 0.16, 0.205]},
+        {"name": "pepsi-cup-small", "crop_pct": [0.42, 0.065, 0.58, 0.205]}
+      ],
+      "dips": [
+        {"name": "mayonnaise",     "crop_pct": [0.00, 0.935, 0.10, 1.00]},
+        {"name": "pomfrit-sauce",  "crop_pct": [0.09, 0.935, 0.18, 1.00]},
+        {"name": "barbecue",       "crop_pct": [0.17, 0.935, 0.26, 1.00]},
+        {"name": "garlic",         "crop_pct": [0.25, 0.935, 0.34, 1.00]},
+        {"name": "curry-mango",    "crop_pct": [0.33, 0.935, 0.42, 1.00]},
+        {"name": "peri-peri",      "crop_pct": [0.41, 0.935, 0.50, 1.00]},
+        {"name": "honey-mustard",  "crop_pct": [0.49, 0.935, 0.58, 1.00]},
+        {"name": "ketchup",        "crop_pct": [0.57, 0.935, 0.66, 1.00]},
+        {"name": "sweet-and-sour", "crop_pct": [0.65, 0.935, 0.74, 1.00]},
+        {"name": "chili-mayo",     "crop_pct": [0.73, 0.935, 0.82, 1.00]},
+        {"name": "algerienne",     "crop_pct": [0.81, 0.935, 0.91, 1.00]},
+        {"name": "biggy-burger",   "crop_pct": [0.82, 0.935, 0.91, 1.00]},
+        {"name": "samourai",       "crop_pct": [0.91, 0.935, 1.00, 1.00]}
+      ]
+    }
+  }
+}
