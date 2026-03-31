@@ -28,6 +28,16 @@ export default function DeliveriesPage() {
   const [loading, setLoading] = useState(true);
   const [emailingId, setEmailingId] = useState<string | null>(null);
   const [msg, setMsg] = useState("");
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  function handleCopyLink(d: Delivery) {
+    const url = `${window.location.origin}/d/${d.shareToken}`;
+    navigator.clipboard.writeText(url).then(() => {
+      setCopiedId(d._id);
+      setMsg(`Link copied for ${d.reference}`);
+      setTimeout(() => setCopiedId(null), 2000);
+    });
+  }
 
   useEffect(() => {
     loadDeliveries();
@@ -118,6 +128,17 @@ export default function DeliveriesPage() {
                       <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                     </button>
                     <button
+                      onClick={() => handleCopyLink(d)}
+                      className={`p-1.5 rounded transition-colors ${copiedId === d._id ? "bg-green-100 text-green-600" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}
+                      title="Copy pick list link"
+                    >
+                      {copiedId === d._id ? (
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                      ) : (
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.54a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364L4.25 8.81" /></svg>
+                      )}
+                    </button>
+                    <button
                       onClick={() => handleEmail(d._id)}
                       disabled={emailingId === d._id}
                       className="p-1.5 bg-gray-100 text-gray-600 rounded hover:bg-gray-200 disabled:opacity-50 transition-colors"
@@ -171,6 +192,16 @@ export default function DeliveriesPage() {
                   className="p-2 rounded-lg bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                </button>
+                <button
+                  onClick={() => handleCopyLink(d)}
+                  className={`p-2 rounded-lg transition-colors ${copiedId === d._id ? "bg-green-50 text-green-600" : "bg-gray-50 text-gray-600 hover:bg-gray-100"}`}
+                >
+                  {copiedId === d._id ? (
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                  ) : (
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.54a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364L4.25 8.81" /></svg>
+                  )}
                 </button>
                 <button
                   onClick={() => handleEmail(d._id)}
