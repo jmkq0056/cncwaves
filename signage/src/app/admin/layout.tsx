@@ -107,6 +107,7 @@ export default function AdminLayout({
   const isScreens = pathname === "/admin";
   const isImages = pathname === "/admin/images";
   const isMenu = pathname?.startsWith("/admin/menu");
+  const isSimulate = pathname === "/admin/simulate";
 
   return (
     <div className="min-h-screen pb-20 sm:pb-0">
@@ -146,6 +147,16 @@ export default function AdminLayout({
               }`}
             >
               Menu
+            </a>
+            <a
+              href="/admin/simulate"
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+                isSimulate
+                  ? "bg-gray-800 text-white"
+                  : "text-gray-400 hover:text-white"
+              }`}
+            >
+              Simulate
             </a>
             {burstOn !== null && (
               <button
@@ -211,6 +222,15 @@ export default function AdminLayout({
         >
           <div className="text-lg mb-0.5">{isMenu ? "☰" : "≡"}</div>
           Menu
+        </a>
+        <a
+          href="/admin/simulate"
+          className={`flex-1 py-4 text-center text-sm font-medium transition ${
+            isSimulate ? "text-orange-500" : "text-gray-500"
+          }`}
+        >
+          <div className="text-lg mb-0.5">{isSimulate ? "▶" : "▷"}</div>
+          Simulate
         </a>
       </nav>
     </div>
