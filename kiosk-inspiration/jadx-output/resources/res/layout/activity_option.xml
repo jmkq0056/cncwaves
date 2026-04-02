@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:tag="layout/activity_option_0"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/exitbutton"
+        android:clickable="true"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentEnd="true"/>
+    <include
+        android:id="@+id/no_handicap"
+        layout="@layout/option_layout_nohandicap"/>
+    <include
+        android:id="@+id/handicap"
+        layout="@layout/option_layout_handicap"/>
+</RelativeLayout>

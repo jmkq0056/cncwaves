@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+body { overflow: hidden; user-select: none; }

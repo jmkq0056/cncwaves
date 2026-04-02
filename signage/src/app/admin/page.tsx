@@ -18,6 +18,8 @@ interface ScreenSummary {
   burstEnabled: boolean;
   burstInterval: number;
   burstDuration: number;
+  deviceIp: string;
+  lastSeenAt: string | null;
 }
 
 export default function AdminHome() {
@@ -46,6 +48,9 @@ export default function AdminHome() {
   const [bulkBurstEnabled, setBulkBurstEnabled] = useState(true);
   const [bulkBurstInterval, setBulkBurstInterval] = useState(2);
   const [bulkBurstDuration, setBulkBurstDuration] = useState(10);
+
+  // Network modal
+  const [showNetworkModal, setShowNetworkModal] = useState(false);
 
   // Force sync state
   const [syncing, setSyncing] = useState<Set<number>>(new Set());
@@ -266,6 +271,12 @@ export default function AdminHome() {
           {bulkMsg && (
             <span className="text-green-400 text-xs font-medium">{bulkMsg}</span>
           )}
+          <button
+            onClick={() => setShowNetworkModal(true)}
+            className="px-3 py-1.5 rounded-lg text-xs font-bold bg-gray-800 text-gray-400 hover:bg-gray-700 transition"
+          >
+            Network
+          </button>
           <button
             onClick={() => {
               setSelectMode(!selectMode);
@@ -521,6 +532,84 @@ export default function AdminHome() {
                 className="flex-1 bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white py-2.5 rounded-lg text-sm font-bold"
               >
                 {bulkLoading ? "Applying..." : "Apply"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Network Modal */}
+      {showNetworkModal && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+          onClick={() => setShowNetworkModal(false)}
+        >
+          <div
+            className="bg-gray-900 border border-gray-700 rounded-xl p-6 w-full max-w-lg max-h-[80vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold">Screen Network</h3>
+              <button
+                onClick={() => setShowNetworkModal(false)}
+                className="text-gray-500 hover:text-white text-xl"
+              >
+                &times;
+              </button>
+            </div>
+            <p className="text-xs text-gray-500 mb-4">
+              Run <code className="bg-gray-800 px-1.5 py-0.5 rounded text-orange-400">python3 cnc-solutions/discover_screens.py</code> to scan &amp; update
+            </p>
+            <div className="space-y-2">
+              {screens.map((s) => (
+                <div
+                  key={s._id}
+                  className={`flex items-center justify-between p-3 rounded-lg border ${
+                    s.deviceIp
+                      ? "border-green-800 bg-green-900/20"
+                      : "border-gray-800 bg-gray-800/30"
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div
+                      className={`w-2 h-2 rounded-full ${
+                        s.deviceIp ? "bg-green-500" : "bg-gray-600"
+                      }`}
+                    />
+                    <div>
+                      <span className="text-sm font-medium">
+                        #{s._id} {s.name}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    {s.deviceIp ? (
+                      <>
+                        <div className="text-sm font-mono text-green-400">
+                          {s.deviceIp}:5555
+                        </div>
+                        <div className="text-[10px] text-gray-500">
+                          {s.lastSeenAt
+                            ? `Seen ${new Date(s.lastSeenAt).toLocaleString()}`
+                            : ""}
+                        </div>
+                      </>
+                    ) : (
+                      <span className="text-xs text-gray-600">No IP</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between">
+              <span className="text-xs text-gray-500">
+                {screens.filter((s) => s.deviceIp).length} / {screens.length} online
+              </span>
+              <button
+                onClick={() => setShowNetworkModal(false)}
+                className="bg-gray-800 hover:bg-gray-700 text-white text-sm px-4 py-2 rounded-lg"
+              >
+                Close
               </button>
             </div>
           </div>

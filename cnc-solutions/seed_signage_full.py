@@ -39,8 +39,8 @@ SCREENS = {
         "burstEnabled": True,
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975500/cnc-signage/easter-burst-screen-1.png",
         "burstCloudinaryId": "cnc-signage/easter-burst-screen-1",
-        "burstInterval": 2,
-        "burstDuration": 10,
+        "burstInterval": 1,
+        "burstDuration": 15,
     },
     2: {
         "name": "Chicken Burgers",
@@ -59,8 +59,8 @@ SCREENS = {
         "burstEnabled": True,
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975502/cnc-signage/easter-burst-screen-2.png",
         "burstCloudinaryId": "cnc-signage/easter-burst-screen-2",
-        "burstInterval": 2,
-        "burstDuration": 10,
+        "burstInterval": 1,
+        "burstDuration": 15,
     },
     3: {
         "name": "Chicken & Fish",
@@ -79,8 +79,8 @@ SCREENS = {
         "burstEnabled": True,
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975503/cnc-signage/easter-burst-screen-3.png",
         "burstCloudinaryId": "cnc-signage/easter-burst-screen-3",
-        "burstInterval": 2,
-        "burstDuration": 10,
+        "burstInterval": 1,
+        "burstDuration": 15,
     },
     4: {
         "name": "Chicken N Chicken",
@@ -99,8 +99,8 @@ SCREENS = {
         "burstEnabled": True,
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975504/cnc-signage/easter-burst-screen-4.png",
         "burstCloudinaryId": "cnc-signage/easter-burst-screen-4",
-        "burstInterval": 2,
-        "burstDuration": 10,
+        "burstInterval": 1,
+        "burstDuration": 15,
     },
     5: {
         "name": "Wraps & Salad",
@@ -119,8 +119,8 @@ SCREENS = {
         "burstEnabled": True,
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975505/cnc-signage/easter-burst-screen-5.png",
         "burstCloudinaryId": "cnc-signage/easter-burst-screen-5",
-        "burstInterval": 2,
-        "burstDuration": 10,
+        "burstInterval": 1,
+        "burstDuration": 15,
     },
     6: {
         "name": "Tacos Meals",
@@ -139,8 +139,8 @@ SCREENS = {
         "burstEnabled": True,
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975506/cnc-signage/easter-burst-screen-6.png",
         "burstCloudinaryId": "cnc-signage/easter-burst-screen-6",
-        "burstInterval": 2,
-        "burstDuration": 10,
+        "burstInterval": 1,
+        "burstDuration": 15,
     },
     7: {
         "name": "Family Buckets",
@@ -159,8 +159,8 @@ SCREENS = {
         "burstEnabled": True,
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975507/cnc-signage/easter-burst-screen-7.png",
         "burstCloudinaryId": "cnc-signage/easter-burst-screen-7",
-        "burstInterval": 2,
-        "burstDuration": 10,
+        "burstInterval": 1,
+        "burstDuration": 15,
     },
     8: {
         "name": "Sides",
@@ -179,8 +179,8 @@ SCREENS = {
         "burstEnabled": True,
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975508/cnc-signage/easter-burst-screen-8.png",
         "burstCloudinaryId": "cnc-signage/easter-burst-screen-8",
-        "burstInterval": 2,
-        "burstDuration": 10,
+        "burstInterval": 1,
+        "burstDuration": 15,
     },
     9: {
         "name": "Kids Meal",
@@ -199,8 +199,8 @@ SCREENS = {
         "burstEnabled": True,
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774975509/cnc-signage/easter-burst-screen-9.png",
         "burstCloudinaryId": "cnc-signage/easter-burst-screen-9",
-        "burstInterval": 2,
-        "burstDuration": 10,
+        "burstInterval": 1,
+        "burstDuration": 15,
     },
     10: {
         "name": "Full Price List",
@@ -219,8 +219,8 @@ SCREENS = {
         "burstEnabled": True,
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774896834/cnc-signage/screen-5-ris-bowl-promo.png",
         "burstCloudinaryId": "cnc-signage/screen-5-ris-bowl-promo",
-        "burstInterval": 2,
-        "burstDuration": 10,
+        "burstInterval": 1,
+        "burstDuration": 15,
     },
     11: {
         "name": "Drinks & Coffee",
@@ -246,7 +246,7 @@ SCREENS = {
         "burstImageUrl": "",
         "burstCloudinaryId": "",
         "burstInterval": 3,
-        "burstDuration": 10,
+        "burstDuration": 15,
     },
     12: {
         "name": "Screen 12",
@@ -272,7 +272,7 @@ SCREENS = {
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883975/cnc-signage/burst-screen-12.gif",
         "burstCloudinaryId": "cnc-signage/burst-screen-12",
         "burstInterval": 3,
-        "burstDuration": 10,
+        "burstDuration": 15,
     },
     13: {
         "name": "Screen 13",
@@ -298,7 +298,7 @@ SCREENS = {
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883976/cnc-signage/burst-screen-13.gif",
         "burstCloudinaryId": "cnc-signage/burst-screen-13",
         "burstInterval": 3,
-        "burstDuration": 10,
+        "burstDuration": 15,
     },
     14: {
         "name": "Screen 14",
@@ -324,7 +324,7 @@ SCREENS = {
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883977/cnc-signage/burst-screen-14.gif",
         "burstCloudinaryId": "cnc-signage/burst-screen-14",
         "burstInterval": 3,
-        "burstDuration": 10,
+        "burstDuration": 15,
     },
     15: {
         "name": "Screen 15",
@@ -350,7 +350,7 @@ SCREENS = {
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883978/cnc-signage/burst-screen-15.gif",
         "burstCloudinaryId": "cnc-signage/burst-screen-15",
         "burstInterval": 3,
-        "burstDuration": 10,
+        "burstDuration": 15,
     },
     16: {
         "name": "Screen 16",
@@ -376,7 +376,7 @@ SCREENS = {
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883979/cnc-signage/burst-screen-16.gif",
         "burstCloudinaryId": "cnc-signage/burst-screen-16",
         "burstInterval": 3,
-        "burstDuration": 10,
+        "burstDuration": 15,
     },
     17: {
         "name": "Screen 17",
@@ -402,7 +402,7 @@ SCREENS = {
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883980/cnc-signage/burst-screen-17.gif",
         "burstCloudinaryId": "cnc-signage/burst-screen-17",
         "burstInterval": 3,
-        "burstDuration": 10,
+        "burstDuration": 15,
     },
     18: {
         "name": "Screen 18",
@@ -428,7 +428,7 @@ SCREENS = {
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883981/cnc-signage/burst-screen-18.gif",
         "burstCloudinaryId": "cnc-signage/burst-screen-18",
         "burstInterval": 3,
-        "burstDuration": 10,
+        "burstDuration": 15,
     },
     19: {
         "name": "Screen 19",
@@ -454,7 +454,7 @@ SCREENS = {
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883982/cnc-signage/burst-screen-19.gif",
         "burstCloudinaryId": "cnc-signage/burst-screen-19",
         "burstInterval": 3,
-        "burstDuration": 10,
+        "burstDuration": 15,
     },
     20: {
         "name": "Screen 20",
@@ -480,7 +480,7 @@ SCREENS = {
         "burstImageUrl": "https://res.cloudinary.com/dtcjxk8si/image/upload/v1774883983/cnc-signage/burst-screen-20.gif",
         "burstCloudinaryId": "cnc-signage/burst-screen-20",
         "burstInterval": 3,
-        "burstDuration": 10,
+        "burstDuration": 15,
     },
 }
 

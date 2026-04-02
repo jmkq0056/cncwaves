@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="800.0dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
+        <TextView android:textSize="40.0pt" android:gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/login_title" />
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="100.0dp">
+            <TextView android:textSize="30.0pt" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/kiosk_id_label" android:labelFor="@id/kiosk_id" />
+            <EditText android:textSize="25.0pt" android:id="@id/kiosk_id" android:background="@drawable/login_input" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="25.0dp" android:inputType="text" android:autofillHints="username" />
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="50.0dp">
+            <TextView android:textSize="30.0pt" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/kiosk_password_label" android:labelFor="@id/kiosk_password" />
+            <EditText android:textSize="25.0pt" android:id="@id/kiosk_password" android:background="@drawable/login_input" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="25.0dp" android:inputType="textPassword" android:autofillHints="password" />
+        </LinearLayout>
+        <Button android:textSize="25.0pt" android:textColor="@color/white" android:id="@id/login" android:layout_width="match_parent" android:layout_height="150.0dp" android:layout_marginTop="40.0dp" android:text="@string/login_button" android:textAllCaps="true" />
+        <Space android:layout_width="match_parent" android:layout_height="20.0dp" />
+        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="18.0sp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="App Version: " />
+            <TextView android:textSize="18.0sp" android:id="@id/app_version" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1.0" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

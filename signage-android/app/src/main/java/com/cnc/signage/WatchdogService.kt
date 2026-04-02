@@ -7,18 +7,25 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Build
 import android.os.Handler
+import android.os.HandlerThread
 import android.os.IBinder
 import android.os.Looper
 import android.util.Log
 
 class WatchdogService : Service() {
 
-    private val handler = Handler(Looper.getMainLooper())
-    private val checkInterval = 30000L // 30 seconds
+    private val mainHandler = Handler(Looper.getMainLooper())
+    private lateinit var syncThread: HandlerThread
+    private lateinit var syncHandler: Handler
+    private val activityCheckInterval = 30000L // 30s — keep MainActivity alive
+    private val syncInterval = 45000L           // 45s — sync content from server
+    private var consecutiveFailures = 0
 
-    private val watchdog = object : Runnable {
+    private val activityWatchdog = object : Runnable {
         override fun run() {
             try {
                 val config = Config(this@WatchdogService)
@@ -30,15 +37,70 @@ class WatchdogService : Service() {
                     startActivity(intent)
                 }
             } catch (e: Exception) {
-                Log.w("Watchdog", "Watchdog check failed: ${e.message}")
+                Log.w(TAG, "Activity watchdog failed: ${e.message}")
             }
-            handler.postDelayed(this, checkInterval)
+            mainHandler.postDelayed(this, activityCheckInterval)
+        }
+    }
+
+    private val syncLoop = object : Runnable {
+        override fun run() {
+            try {
+                if (!isNetworkAvailable()) {
+                    Log.d(TAG, "No network — skipping sync, waiting for connectivity")
+                    consecutiveFailures = 0 // don't count network-down as failure
+                    scheduleSyncLoop(syncInterval)
+                    return
+                }
+
+                val config = Config(this@WatchdogService)
+                if (!config.isConfigured()) {
+                    scheduleSyncLoop(syncInterval)
+                    return
+                }
+
+                val success = SyncEngine.sync(this@WatchdogService)
+                if (success) {
+                    consecutiveFailures = 0
+                    scheduleSyncLoop(syncInterval)
+                } else {
+                    consecutiveFailures++
+                    // Back off on repeated failures: 45s, 90s, 135s, cap at 3min
+                    val backoff = (syncInterval * consecutiveFailures).coerceAtMost(180000L)
+                    Log.w(TAG, "Sync failed ($consecutiveFailures consecutive), next in ${backoff / 1000}s")
+                    scheduleSyncLoop(backoff)
+                }
+            } catch (e: Exception) {
+                Log.w(TAG, "Sync loop error: ${e.message}")
+                consecutiveFailures++
+                scheduleSyncLoop(syncInterval)
+            }
+        }
+    }
+
+    private fun scheduleSyncLoop(delayMs: Long) {
+        syncHandler.removeCallbacks(syncLoop)
+        syncHandler.postDelayed(syncLoop, delayMs)
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network = cm.activeNetwork ?: return false
+            val caps = cm.getNetworkCapabilities(network) ?: return false
+            return caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        } else {
+            @Suppress("DEPRECATION")
+            val info = cm.activeNetworkInfo
+            @Suppress("DEPRECATION")
+            return info != null && info.isConnected
         }
     }
 
     override fun onCreate() {
         super.onCreate()
-        // Must call startForeground within 5 seconds on Android 8+
+
+        // Foreground notification — required on Android 8+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channelId = "cnc_watchdog"
             val channel = NotificationChannel(
@@ -63,11 +125,31 @@ class WatchdogService : Service() {
                 startForeground(1, notification)
             }
         }
+
+        // Dedicated thread for sync (network I/O off main thread)
+        syncThread = HandlerThread("CNC-Sync").also { it.start() }
+        syncHandler = Handler(syncThread.looper)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        handler.removeCallbacks(watchdog)
-        handler.postDelayed(watchdog, checkInterval)
+        // Activity watchdog on main thread
+        mainHandler.removeCallbacks(activityWatchdog)
+        mainHandler.postDelayed(activityWatchdog, activityCheckInterval)
+
+        // Sync loop on background thread
+        syncHandler.removeCallbacks(syncLoop)
+
+        // If triggered by NetworkReceiver, sync immediately
+        val immediate = intent?.getBooleanExtra(EXTRA_IMMEDIATE_SYNC, false) ?: false
+        if (immediate) {
+            Log.i(TAG, "Immediate sync triggered (network change)")
+            consecutiveFailures = 0 // network just came back, reset failures
+            syncHandler.post(syncLoop)
+        } else {
+            // Normal start: first sync in 5s, then every 45s
+            syncHandler.postDelayed(syncLoop, 5000)
+        }
+
         return START_STICKY
     }
 
@@ -75,7 +157,13 @@ class WatchdogService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        handler.removeCallbacks(watchdog)
-        // Don't try to restart from onDestroy — START_STICKY handles it
+        mainHandler.removeCallbacks(activityWatchdog)
+        syncHandler.removeCallbacks(syncLoop)
+        syncThread.quitSafely()
+    }
+
+    companion object {
+        private const val TAG = "WatchdogService"
+        const val EXTRA_IMMEDIATE_SYNC = "immediate_sync"
     }
 }

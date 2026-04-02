@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.CNCKiosk" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/cnc_red</item>
+        <item name="colorPrimaryDark">@color/cnc_red_dark</item>
+        <item name="colorAccent">@color/cnc_gold</item>
+        <item name="android:windowBackground">@color/cnc_bg</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="Theme.CNCKiosk.Fullscreen">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

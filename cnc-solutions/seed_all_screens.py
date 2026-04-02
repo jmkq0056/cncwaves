@@ -3,7 +3,7 @@
 Seed all 20 signage screens:
 - 2 unique color images per screen (uploaded to Cloudinary + saved to MongoDB Image collection)
 - Burst GIF (2 frames) per screen for panoramic effect
-- Schedule: ON 11:00, OFF 23:05 (Copenhagen)
+- Schedule: ON 11:00, OFF 23:03 (Copenhagen)
 - Rotation interval: 60 seconds
 - All published
 """

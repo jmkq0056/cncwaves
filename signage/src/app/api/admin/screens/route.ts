@@ -28,6 +28,8 @@ export async function GET(request: NextRequest) {
         burstEnabled: s.burstEnabled || false,
         burstInterval: s.burstInterval || 3,
         burstDuration: s.burstDuration || 10,
+        deviceIp: s.deviceIp || "",
+        lastSeenAt: s.lastSeenAt || null,
       }))
     );
   } catch (e) {

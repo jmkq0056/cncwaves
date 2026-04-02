@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/cnc_bg"
+    android:gravity="center_horizontal">
+
+    <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="2" />
+
+    <ImageView
+        android:id="@+id/optionLogo"
+        android:layout_width="260dp"
+        android:layout_height="130dp"
+        android:scaleType="fitCenter" />
+
+    <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VÆLG DIN MULIGHED"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="@color/cnc_text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="24dp"
+        android:layout_marginTop="36dp">
+
+        <LinearLayout
+            android:id="@+id/btnTakeAway"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/card_rounded"
+            android:elevation="4dp"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_takeaway"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Take Away"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/cnc_red"
+                android:layout_marginTop="12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnDineIn"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/card_rounded"
+            android:elevation="4dp"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_dinein"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spis Her"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/cnc_red"
+                android:layout_marginTop="12dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnPickupLater"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/card_rounded"
+            android:elevation="4dp"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_pickup"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Afhentning\nSenere"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/cnc_red"
+                android:gravity="center"
+                android:layout_marginTop="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View android:layout_width="0dp" android:layout_height="0dp" android:layout_weight="2" />
+
+    <!-- Bottom: language flags + handicap -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
+        android:paddingBottom="28dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:text="VÆLG SPROG"
+            android:textSize="11sp"
+            android:textColor="@color/cnc_text_light"
+            android:letterSpacing="0.05" />
+
+        <LinearLayout
+            android:id="@+id/languageSelector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView android:layout_width="44dp" android:layout_height="36dp"
+                android:text="🇩🇰" android:textSize="24sp" android:gravity="center" />
+            <TextView android:layout_width="44dp" android:layout_height="36dp"
+                android:text="🇬🇧" android:textSize="24sp" android:gravity="center" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/handicapButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_handicap"
+            android:scaleType="fitCenter"
+            android:padding="8dp" />
+    </RelativeLayout>
+</LinearLayout>

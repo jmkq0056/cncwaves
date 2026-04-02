@@ -1,0 +1,318 @@
+.class public final Lcom/stripe/logwriter/TerminalLogWriter;
+.super Ljava/lang/Object;
+.source "TerminalLogWriter.kt"
+
+# interfaces
+.implements Lcom/stripe/logwriter/LogLevelAwareWriter;
+
+
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000:\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\u0008\u0004\n\u0002\u0010\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\u0008\u0003\n\u0002\u0010\u0003\n\u0002\u0008\u0004\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0003\u0018\u00002\u00020\u0001B\u0015\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\u0006\u0010\u0004\u001a\u00020\u0005\u00a2\u0006\u0002\u0010\u0006J\u0018\u0010\t\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\u000c2\u0006\u0010\r\u001a\u00020\u000cH\u0016J\u0018\u0010\u000e\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\u000c2\u0006\u0010\r\u001a\u00020\u000cH\u0016J$\u0010\u000e\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\u000c2\u0008\u0010\r\u001a\u0004\u0018\u00010\u000c2\u0008\u0010\u000f\u001a\u0004\u0018\u00010\u0010H\u0016J\u0018\u0010\u0011\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\u000c2\u0006\u0010\r\u001a\u00020\u000cH\u0016J)\u0010\u0012\u001a\u00020\n2\u0006\u0010\u0013\u001a\u00020\u00032\u0017\u0010\u0014\u001a\u0013\u0012\u0004\u0012\u00020\u0005\u0012\u0004\u0012\u00020\n0\u0015\u00a2\u0006\u0002\u0008\u0016H\u0002J\u0018\u0010\u0017\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\u000c2\u0006\u0010\r\u001a\u00020\u000cH\u0016J\u0018\u0010\u0018\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\u000c2\u0006\u0010\r\u001a\u00020\u000cH\u0016J$\u0010\u0018\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\u000c2\u0008\u0010\r\u001a\u0004\u0018\u00010\u000c2\u0008\u0010\u000f\u001a\u0004\u0018\u00010\u0010H\u0016J\u0018\u0010\u0018\u001a\u00020\n2\u0006\u0010\u000b\u001a\u00020\u000c2\u0006\u0010\u000f\u001a\u00020\u0010H\u0016R\u000e\u0010\u0004\u001a\u00020\u0005X\u0082\u0004\u00a2\u0006\u0002\n\u0000R\u0014\u0010\u0002\u001a\u00020\u0003X\u0096\u0004\u00a2\u0006\u0008\n\u0000\u001a\u0004\u0008\u0007\u0010\u0008\u00a8\u0006\u0019"
+    }
+    d2 = {
+        "Lcom/stripe/logwriter/TerminalLogWriter;",
+        "Lcom/stripe/logwriter/LogLevelAwareWriter;",
+        "minLogLevel",
+        "Lcom/stripe/loggingmodels/LogLevel;",
+        "logWriter",
+        "Lcom/stripe/logwriter/LogWriter;",
+        "(Lcom/stripe/loggingmodels/LogLevel;Lcom/stripe/logwriter/LogWriter;)V",
+        "getMinLogLevel",
+        "()Lcom/stripe/loggingmodels/LogLevel;",
+        "d",
+        "",
+        "tag",
+        "",
+        "message",
+        "e",
+        "throwable",
+        "",
+        "i",
+        "logWithMinLevel",
+        "level",
+        "method",
+        "Lkotlin/Function1;",
+        "Lkotlin/ExtensionFunctionType;",
+        "v",
+        "w",
+        "public_release"
+    }
+    k = 0x1
+    mv = {
+        0x1,
+        0x9,
+        0x0
+    }
+    xi = 0x30
+.end annotation
+
+
+# instance fields
+.field private final logWriter:Lcom/stripe/logwriter/LogWriter;
+
+.field private final minLogLevel:Lcom/stripe/loggingmodels/LogLevel;
+
+
+# direct methods
+.method public constructor <init>(Lcom/stripe/loggingmodels/LogLevel;Lcom/stripe/logwriter/LogWriter;)V
+    .locals 1
+
+    const-string v0, "minLogLevel"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const-string v0, "logWriter"
+
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 9
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 10
+    iput-object p1, p0, Lcom/stripe/logwriter/TerminalLogWriter;->minLogLevel:Lcom/stripe/loggingmodels/LogLevel;
+
+    .line 11
+    iput-object p2, p0, Lcom/stripe/logwriter/TerminalLogWriter;->logWriter:Lcom/stripe/logwriter/LogWriter;
+
+    return-void
+.end method
+
+.method private final logWithMinLevel(Lcom/stripe/loggingmodels/LogLevel;Lkotlin/jvm/functions/Function1;)V
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "(",
+            "Lcom/stripe/loggingmodels/LogLevel;",
+            "Lkotlin/jvm/functions/Function1<",
+            "-",
+            "Lcom/stripe/logwriter/LogWriter;",
+            "Lkotlin/Unit;",
+            ">;)V"
+        }
+    .end annotation
+
+    .line 47
+    invoke-virtual {p0}, Lcom/stripe/logwriter/TerminalLogWriter;->getMinLogLevel()Lcom/stripe/loggingmodels/LogLevel;
+
+    move-result-object v0
+
+    check-cast p1, Ljava/lang/Enum;
+
+    invoke-virtual {v0, p1}, Lcom/stripe/loggingmodels/LogLevel;->compareTo(Ljava/lang/Enum;)I
+
+    move-result p1
+
+    if-ltz p1, :cond_0
+
+    iget-object p1, p0, Lcom/stripe/logwriter/TerminalLogWriter;->logWriter:Lcom/stripe/logwriter/LogWriter;
+
+    invoke-interface {p2, p1}, Lkotlin/jvm/functions/Function1;->invoke(Ljava/lang/Object;)Ljava/lang/Object;
+
+    :cond_0
+    return-void
+.end method
+
+
+# virtual methods
+.method public d(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 2
+
+    const-string v0, "tag"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const-string v0, "message"
+
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 38
+    sget-object v0, Lcom/stripe/loggingmodels/LogLevel;->VERBOSE:Lcom/stripe/loggingmodels/LogLevel;
+
+    new-instance v1, Lcom/stripe/logwriter/TerminalLogWriter$d$1;
+
+    invoke-direct {v1, p1, p2}, Lcom/stripe/logwriter/TerminalLogWriter$d$1;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+
+    check-cast v1, Lkotlin/jvm/functions/Function1;
+
+    invoke-direct {p0, v0, v1}, Lcom/stripe/logwriter/TerminalLogWriter;->logWithMinLevel(Lcom/stripe/loggingmodels/LogLevel;Lkotlin/jvm/functions/Function1;)V
+
+    return-void
+.end method
+
+.method public e(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 2
+
+    const-string v0, "tag"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const-string v0, "message"
+
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 18
+    sget-object v0, Lcom/stripe/loggingmodels/LogLevel;->ERROR:Lcom/stripe/loggingmodels/LogLevel;
+
+    new-instance v1, Lcom/stripe/logwriter/TerminalLogWriter$e$2;
+
+    invoke-direct {v1, p1, p2}, Lcom/stripe/logwriter/TerminalLogWriter$e$2;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+
+    check-cast v1, Lkotlin/jvm/functions/Function1;
+
+    invoke-direct {p0, v0, v1}, Lcom/stripe/logwriter/TerminalLogWriter;->logWithMinLevel(Lcom/stripe/loggingmodels/LogLevel;Lkotlin/jvm/functions/Function1;)V
+
+    return-void
+.end method
+
+.method public e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
+    .locals 2
+
+    const-string v0, "tag"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 14
+    sget-object v0, Lcom/stripe/loggingmodels/LogLevel;->ERROR:Lcom/stripe/loggingmodels/LogLevel;
+
+    new-instance v1, Lcom/stripe/logwriter/TerminalLogWriter$e$1;
+
+    invoke-direct {v1, p1, p2, p3}, Lcom/stripe/logwriter/TerminalLogWriter$e$1;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    check-cast v1, Lkotlin/jvm/functions/Function1;
+
+    invoke-direct {p0, v0, v1}, Lcom/stripe/logwriter/TerminalLogWriter;->logWithMinLevel(Lcom/stripe/loggingmodels/LogLevel;Lkotlin/jvm/functions/Function1;)V
+
+    return-void
+.end method
+
+.method public getMinLogLevel()Lcom/stripe/loggingmodels/LogLevel;
+    .locals 1
+
+    .line 10
+    iget-object v0, p0, Lcom/stripe/logwriter/TerminalLogWriter;->minLogLevel:Lcom/stripe/loggingmodels/LogLevel;
+
+    return-object v0
+.end method
+
+.method public i(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 2
+
+    const-string v0, "tag"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const-string v0, "message"
+
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 34
+    sget-object v0, Lcom/stripe/loggingmodels/LogLevel;->INFO:Lcom/stripe/loggingmodels/LogLevel;
+
+    new-instance v1, Lcom/stripe/logwriter/TerminalLogWriter$i$1;
+
+    invoke-direct {v1, p1, p2}, Lcom/stripe/logwriter/TerminalLogWriter$i$1;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+
+    check-cast v1, Lkotlin/jvm/functions/Function1;
+
+    invoke-direct {p0, v0, v1}, Lcom/stripe/logwriter/TerminalLogWriter;->logWithMinLevel(Lcom/stripe/loggingmodels/LogLevel;Lkotlin/jvm/functions/Function1;)V
+
+    return-void
+.end method
+
+.method public v(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 2
+
+    const-string v0, "tag"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const-string v0, "message"
+
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 42
+    sget-object v0, Lcom/stripe/loggingmodels/LogLevel;->VERBOSE:Lcom/stripe/loggingmodels/LogLevel;
+
+    new-instance v1, Lcom/stripe/logwriter/TerminalLogWriter$v$1;
+
+    invoke-direct {v1, p1, p2}, Lcom/stripe/logwriter/TerminalLogWriter$v$1;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+
+    check-cast v1, Lkotlin/jvm/functions/Function1;
+
+    invoke-direct {p0, v0, v1}, Lcom/stripe/logwriter/TerminalLogWriter;->logWithMinLevel(Lcom/stripe/loggingmodels/LogLevel;Lkotlin/jvm/functions/Function1;)V
+
+    return-void
+.end method
+
+.method public w(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 2
+
+    const-string v0, "tag"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const-string v0, "message"
+
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 26
+    sget-object v0, Lcom/stripe/loggingmodels/LogLevel;->WARNING:Lcom/stripe/loggingmodels/LogLevel;
+
+    new-instance v1, Lcom/stripe/logwriter/TerminalLogWriter$w$2;
+
+    invoke-direct {v1, p1, p2}, Lcom/stripe/logwriter/TerminalLogWriter$w$2;-><init>(Ljava/lang/String;Ljava/lang/String;)V
+
+    check-cast v1, Lkotlin/jvm/functions/Function1;
+
+    invoke-direct {p0, v0, v1}, Lcom/stripe/logwriter/TerminalLogWriter;->logWithMinLevel(Lcom/stripe/loggingmodels/LogLevel;Lkotlin/jvm/functions/Function1;)V
+
+    return-void
+.end method
+
+.method public w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
+    .locals 2
+
+    const-string v0, "tag"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 22
+    sget-object v0, Lcom/stripe/loggingmodels/LogLevel;->WARNING:Lcom/stripe/loggingmodels/LogLevel;
+
+    new-instance v1, Lcom/stripe/logwriter/TerminalLogWriter$w$1;
+
+    invoke-direct {v1, p1, p2, p3}, Lcom/stripe/logwriter/TerminalLogWriter$w$1;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    check-cast v1, Lkotlin/jvm/functions/Function1;
+
+    invoke-direct {p0, v0, v1}, Lcom/stripe/logwriter/TerminalLogWriter;->logWithMinLevel(Lcom/stripe/loggingmodels/LogLevel;Lkotlin/jvm/functions/Function1;)V
+
+    return-void
+.end method
+
+.method public w(Ljava/lang/String;Ljava/lang/Throwable;)V
+    .locals 2
+
+    const-string v0, "tag"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const-string v0, "throwable"
+
+    invoke-static {p2, v0}, Lkotlin/jvm/internal/Intrinsics;->checkNotNullParameter(Ljava/lang/Object;Ljava/lang/String;)V
+
+    .line 30
+    sget-object v0, Lcom/stripe/loggingmodels/LogLevel;->WARNING:Lcom/stripe/loggingmodels/LogLevel;
+
+    new-instance v1, Lcom/stripe/logwriter/TerminalLogWriter$w$3;
+
+    invoke-direct {v1, p1, p2}, Lcom/stripe/logwriter/TerminalLogWriter$w$3;-><init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+
+    check-cast v1, Lkotlin/jvm/functions/Function1;
+
+    invoke-direct {p0, v0, v1}, Lcom/stripe/logwriter/TerminalLogWriter;->logWithMinLevel(Lcom/stripe/loggingmodels/LogLevel;Lkotlin/jvm/functions/Function1;)V
+
+    return-void
+.end method

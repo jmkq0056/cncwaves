@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center" android:tag="layout/option_layout_nohandicap_0" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:layout_gravity="center" android:tag="binding_1" android:layout_width="300.0dp" android:layout_height="300.0dp" />
+        <Space android:layout_width="match_parent" android:layout_height="75.0dp" />
+        <TextView android:textSize="50.0sp" android:textColor="@color/black" android:tag="binding_2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/uni_sans" android:textAlignment="center" />
+        <Space android:layout_width="match_parent" android:layout_height="175.0dp" />
+        <LinearLayout android:layout_gravity="center" android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:tag="binding_3" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <LinearLayout android:gravity="center" android:id="@id/takeAwayButton" android:background="@drawable/option_button" android:padding="67.0dp" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <ImageView android:layout_gravity="center" android:layout_width="112.0dp" android:layout_height="112.0dp" android:src="@drawable/takeaway" />
+                </LinearLayout>
+                <Space android:layout_width="match_parent" android:layout_height="30.0dp" />
+                <TextView android:textSize="24.0sp" android:textColor="@color/black" android:tag="binding_4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/uni_sans" />
+            </LinearLayout>
+            <Space android:tag="binding_5" android:layout_width="37.0dp" android:layout_height="wrap_content" />
+            <Space android:tag="binding_6" android:layout_width="37.0dp" android:layout_height="wrap_content" />
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:tag="binding_7" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <LinearLayout android:gravity="center" android:id="@id/dineInButton" android:background="@drawable/option_button" android:padding="67.0dp" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <ImageView android:layout_gravity="center" android:layout_width="112.0dp" android:layout_height="112.0dp" android:src="@drawable/dinein" />
+                </LinearLayout>
+                <Space android:layout_width="match_parent" android:layout_height="30.0dp" />
+                <TextView android:textSize="24.0sp" android:textColor="@color/black" android:tag="binding_8" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/uni_sans" />
+            </LinearLayout>
+            <Space android:tag="binding_9" android:layout_width="37.0dp" android:layout_height="wrap_content" />
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:tag="binding_10" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <LinearLayout android:gravity="center" android:id="@id/pickUpButton" android:background="@drawable/option_button" android:padding="67.0dp" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <ImageView android:layout_gravity="center" android:layout_width="112.0dp" android:layout_height="112.0dp" android:src="@drawable/pickup" />
+                </LinearLayout>
+                <Space android:layout_width="match_parent" android:layout_height="30.0dp" />
+                <TextView android:textSize="24.0sp" android:textColor="@color/black" android:tag="binding_11" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/uni_sans" />
+            </LinearLayout>
+        </LinearLayout>
+        <Space android:layout_width="wrap_content" android:layout_height="225.0dp" />
+        <TextView android:textSize="32.0sp" android:textColor="@color/black" android:tag="binding_12" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/uni_sans" />
+        <Space android:layout_width="wrap_content" android:layout_height="37.0dp" />
+        <LinearLayout android:orientation="horizontal" android:id="@id/languages" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <Space android:layout_width="match_parent" android:layout_height="100.0dp" />
+        <LinearLayout android:gravity="center" android:layout_gravity="end" android:id="@id/handicapButton" android:background="@drawable/option_button" android:padding="40.0dp" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginEnd="100.0dp">
+            <ImageView android:layout_gravity="center" android:layout_width="50.0dp" android:layout_height="50.0dp" android:src="@drawable/handicap" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

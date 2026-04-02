@@ -1,0 +1,20 @@
+package com.stripe.bbpos.bbdevice;
+
+import com.stripe.bbpos.bbdevice.aaa003zz;
+import java.util.List;
+
+/* JADX INFO: loaded from: classes3.dex */
+class bbb077zz extends bbb005zz {
+    bbb077zz(aaa003zz aaa003zzVar, aaa011zz aaa011zzVar) {
+        super(aaa003zzVar, aaa011zzVar);
+    }
+
+    void aaa000(List<ccc067zz> list, boolean z, String str) {
+        ccc067zz ccc067zzVarAaa000 = ccc068zz.aaa000(list, "DF8668");
+        if (ccc067zzVarAaa000 != null) {
+            this.aaa000.aaa018(ccc067zzVarAaa000.aaa001);
+        } else {
+            this.aaa000.aaa000(aaa003zz.aaa002zz.UNKNOWN, str);
+        }
+    }
+}

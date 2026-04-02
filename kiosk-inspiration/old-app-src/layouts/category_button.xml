@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/button" android:tag="layout/category_button_0" android:paddingLeft="20.0dp" android:paddingTop="24.0dp" android:paddingRight="20.0dp" android:focusable="true" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView android:tag="binding_1" android:layout_width="80.0dp" android:layout_height="80.0dp" />
+    <Space android:layout_width="match_parent" android:layout_height="10.0dp" />
+    <TextView android:textSize="22.0sp" android:textColor="@color/black" android:id="@id/categoryName" android:tag="binding_2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/uni_sans" android:textAlignment="center" />
+    <Space android:layout_width="match_parent" android:layout_height="23.0dp" />
+    <View android:background="#f0f0f0" android:layout_width="match_parent" android:layout_height="2.0dp" />
+</LinearLayout>

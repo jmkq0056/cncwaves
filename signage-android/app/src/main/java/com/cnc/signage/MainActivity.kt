@@ -4,6 +4,7 @@ import android.app.ActivityManager
 import android.app.AlertDialog
 import android.app.admin.DevicePolicyManager
 import android.app.role.RoleManager
+import android.content.BroadcastReceiver
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -47,7 +48,6 @@ class MainActivity : AppCompatActivity() {
     private val handler = Handler(Looper.getMainLooper())
     private var rotationRunnable: Runnable? = null
     private var retryRunnable: Runnable? = null
-    private var watcherRunnable: Runnable? = null
     private var immersiveRunnable: Runnable? = null
     private var scheduleRunnable: Runnable? = null
     private var burstRunnable: Runnable? = null
@@ -58,6 +58,9 @@ class MainActivity : AppCompatActivity() {
     private var pauseRestartScheduled = false
     private var dialogShowing = false
     private var systemDialogShowing = false
+
+    // Listens for sync-complete broadcasts from WatchdogService
+    private var syncReceiver: BroadcastReceiver? = null
 
     private val launcherRoleLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -115,9 +118,8 @@ class MainActivity : AppCompatActivity() {
         requestDefaultLauncher()
         requestOverlayPermission()
 
-        SyncWorker.schedule(this)
-        SyncWorker.triggerImmediate(this)
-        startPlaylistWatcher()
+        SyncWorker.schedule(this) // WorkManager fallback (every 15 min)
+        startSyncReceiver()       // Listen for WatchdogService sync broadcasts
         startImmersiveEnforcer()
         startScheduleChecker()
         startBurstChecker()
@@ -714,7 +716,7 @@ class MainActivity : AppCompatActivity() {
                     // Stop retrying — images loaded
                     retryRunnable = null
                 } else {
-                    SyncWorker.triggerImmediate(this@MainActivity)
+                    // WatchdogService handles sync, just keep checking for images
                     handler.postDelayed(this, 10000)
                 }
             }
@@ -722,44 +724,71 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed(retryRunnable!!, 10000)
     }
 
-    private fun startPlaylistWatcher() {
-        var lastHash = Config(this).getPlaylistHash()
-        var lastInterval = Config(this).getRotationInterval()
+    /**
+     * Listen for sync-complete broadcasts from WatchdogService.
+     * Replaces the old 2-min polling loop — now reacts instantly
+     * when the foreground service finishes a sync.
+     */
+    private var lastReceivedHash = ""
+    private var lastReceivedInterval = 0L
 
-        watcherRunnable = object : Runnable {
-            override fun run() {
+    private fun startSyncReceiver() {
+        lastReceivedHash = Config(this).getPlaylistHash()
+        lastReceivedInterval = Config(this).getRotationInterval()
+
+        syncReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context, intent: Intent) {
                 if (isFinishing || isDestroyed) return
-
-                // Sync with server every 30s
-                SyncWorker.triggerImmediate(this@MainActivity)
 
                 val config = Config(this@MainActivity)
                 val currentHash = config.getPlaylistHash()
                 val currentInterval = config.getRotationInterval()
 
                 // Detect image/playlist changes
-                if (currentHash != lastHash && currentHash.isNotEmpty()) {
-                    lastHash = currentHash
+                if (currentHash != lastReceivedHash && currentHash.isNotEmpty()) {
+                    lastReceivedHash = currentHash
                     currentIndex = 0
                     val newImages = playlistManager.getImageFiles()
                     preloadBitmaps(newImages)
                     showCurrentImage()
                     rotationRunnable?.let { handler.removeCallbacks(it) }
                     startRotation()
+                    Log.i("MainActivity", "Playlist updated from sync broadcast")
                 }
 
-                // Detect interval change (restart rotation with new timing)
-                if (currentInterval != lastInterval) {
-                    lastInterval = currentInterval
+                // Detect interval change
+                if (currentInterval != lastReceivedInterval) {
+                    lastReceivedInterval = currentInterval
                     rotationRunnable?.let { handler.removeCallbacks(it) }
                     startRotation()
                 }
 
-                handler.postDelayed(this, 120000) // poll every 2 min (safe for 20 devices on Vercel)
+                // If we were showing "Connecting..." and now have images, show them
+                if (retryRunnable != null) {
+                    val images = playlistManager.getImageFiles()
+                    if (images.isNotEmpty()) {
+                        loadingText.visibility = View.GONE
+                        retryRunnable?.let { handler.removeCallbacks(it) }
+                        retryRunnable = null
+                        preloadBitmaps(images)
+                        showCurrentImage()
+                        startRotation()
+                    }
+                }
             }
         }
-        handler.postDelayed(watcherRunnable!!, 15000) // first check 15s after launch
+
+        val filter = IntentFilter(SyncEngine.ACTION_SYNC_COMPLETE)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(syncReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            registerReceiver(syncReceiver, filter)
+        }
     }
+
+    // Battery optimization exemption is granted via ADB during deploy:
+    //   adb shell dumpsys deviceidle whitelist +com.cnc.signage
+    // No runtime dialog needed — dialogs steal focus and fight kiosk lockdown.
 
     // === SECRET ADMIN ACCESS ===
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -850,7 +879,17 @@ class MainActivity : AppCompatActivity() {
                     2 -> { Config(this).setAdminNavigating(true); openSettings("android.settings.ETHERNET_SETTINGS") }
                     3 -> { Config(this).setAdminNavigating(true); openSettings(android.provider.Settings.ACTION_SETTINGS) }
                     4 -> {
-                        SyncWorker.triggerImmediate(this)
+                        // Trigger immediate sync via WatchdogService
+                        val syncIntent = Intent(this, WatchdogService::class.java).apply {
+                            putExtra(WatchdogService.EXTRA_IMMEDIATE_SYNC, true)
+                        }
+                        try {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                startForegroundService(syncIntent)
+                            } else {
+                                startService(syncIntent)
+                            }
+                        } catch (_: Exception) {}
                         Toast.makeText(this, "Sync triggered", Toast.LENGTH_SHORT).show()
                     }
                     else -> {} // Cancel
@@ -909,6 +948,11 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         handler.removeCallbacksAndMessages(null)
+        // Unregister sync broadcast receiver
+        try {
+            syncReceiver?.let { unregisterReceiver(it) }
+        } catch (_: Exception) {}
+        syncReceiver = null
         // Recycle all cached bitmaps
         for (bitmap in bitmapCache.values) {
             if (!bitmap.isRecycled) bitmap.recycle()

@@ -1,0 +1,61 @@
+.class public final Lcom/stripe/core/device/dagger/SdkIntModule;
+.super Ljava/lang/Object;
+.source "SdkIntModule.kt"
+
+
+# annotations
+.annotation runtime Ldagger/Module;
+.end annotation
+
+.annotation runtime Lkotlin/Metadata;
+    d1 = {
+        "\u0000\u0014\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\u0008\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0002\u0008\u0007\u0018\u00002\u00020\u0001B\u0005\u00a2\u0006\u0002\u0010\u0002J\r\u0010\u0003\u001a\u00020\u0004H\u0001\u00a2\u0006\u0002\u0008\u0005\u00a8\u0006\u0006"
+    }
+    d2 = {
+        "Lcom/stripe/core/device/dagger/SdkIntModule;",
+        "",
+        "()V",
+        "provideSdkInt",
+        "Lcom/stripe/core/device/SdkInt;",
+        "provideSdkInt$device_release",
+        "device_release"
+    }
+    k = 0x1
+    mv = {
+        0x1,
+        0x9,
+        0x0
+    }
+    xi = 0x30
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .locals 0
+
+    .line 8
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public final provideSdkInt$device_release()Lcom/stripe/core/device/SdkInt;
+    .locals 1
+    .annotation runtime Ldagger/Provides;
+    .end annotation
+
+    .annotation runtime Ldagger/Reusable;
+    .end annotation
+
+    .line 12
+    sget-object v0, Lcom/stripe/core/device/SdkInt;->Companion:Lcom/stripe/core/device/SdkInt$Companion;
+
+    invoke-virtual {v0}, Lcom/stripe/core/device/SdkInt$Companion;->get()Lcom/stripe/core/device/SdkInt;
+
+    move-result-object v0
+
+    return-object v0
+.end method

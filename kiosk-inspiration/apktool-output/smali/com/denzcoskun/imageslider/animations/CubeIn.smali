@@ -1,0 +1,95 @@
+.class public final Lcom/denzcoskun/imageslider/animations/CubeIn;
+.super Ljava/lang/Object;
+.source "CubeIn.kt"
+
+# interfaces
+.implements Landroidx/viewpager/widget/ViewPager$PageTransformer;
+
+
+# annotations
+.annotation runtime Lkotlin/Metadata;
+    bv = {
+        0x1,
+        0x0,
+        0x3
+    }
+    d1 = {
+        "\u0000\u001e\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0008\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0007\n\u0000\u0018\u00002\u00020\u0001B\u0005\u00a2\u0006\u0002\u0010\u0002J\u0018\u0010\u0003\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\u0008H\u0016\u00a8\u0006\t"
+    }
+    d2 = {
+        "Lcom/denzcoskun/imageslider/animations/CubeIn;",
+        "Landroidx/viewpager/widget/ViewPager$PageTransformer;",
+        "()V",
+        "transformPage",
+        "",
+        "view",
+        "Landroid/view/View;",
+        "position",
+        "",
+        "imageslider_release"
+    }
+    k = 0x1
+    mv = {
+        0x1,
+        0x1,
+        0x10
+    }
+.end annotation
+
+
+# direct methods
+.method public constructor <init>()V
+    .locals 0
+
+    .line 11
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method
+
+
+# virtual methods
+.method public transformPage(Landroid/view/View;F)V
+    .locals 2
+
+    const-string v0, "view"
+
+    invoke-static {p1, v0}, Lkotlin/jvm/internal/Intrinsics;->checkParameterIsNotNull(Ljava/lang/Object;Ljava/lang/String;)V
+
+    const/4 v0, 0x0
+
+    int-to-float v0, v0
+
+    cmpl-float v0, p2, v0
+
+    const/4 v1, 0x0
+
+    if-lez v0, :cond_0
+
+    move v0, v1
+
+    goto :goto_0
+
+    .line 14
+    :cond_0
+    invoke-virtual {p1}, Landroid/view/View;->getWidth()I
+
+    move-result v0
+
+    int-to-float v0, v0
+
+    :goto_0
+    invoke-virtual {p1, v0}, Landroid/view/View;->setPivotX(F)V
+
+    .line 15
+    invoke-virtual {p1, v1}, Landroid/view/View;->setPivotY(F)V
+
+    const/high16 v0, -0x3d4c0000    # -90.0f
+
+    mul-float/2addr p2, v0
+
+    .line 16
+    invoke-virtual {p1, p2}, Landroid/view/View;->setRotationY(F)V
+
+    return-void
+.end method

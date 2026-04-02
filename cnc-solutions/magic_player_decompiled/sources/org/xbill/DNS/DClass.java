@@ -1,0 +1,56 @@
+package org.xbill.DNS;
+
+import org.eclipse.jetty.util.security.Constraint;
+
+/* JADX INFO: loaded from: classes2.dex */
+public final class DClass {
+    public static final int ANY = 255;
+    public static final int CH = 3;
+    public static final int CHAOS = 3;
+    public static final int HESIOD = 4;
+    public static final int HS = 4;
+    public static final int IN = 1;
+    public static final int NONE = 254;
+    private static Mnemonic classes;
+
+    public static class DClassMnemonic extends Mnemonic {
+        public DClassMnemonic() {
+            super("DClass", 2);
+            setPrefix("CLASS");
+        }
+
+        @Override // org.xbill.DNS.Mnemonic
+        public void check(int i4) {
+            DClass.check(i4);
+        }
+    }
+
+    static {
+        DClassMnemonic dClassMnemonic = new DClassMnemonic();
+        classes = dClassMnemonic;
+        dClassMnemonic.add(1, "IN");
+        classes.add(3, "CH");
+        classes.addAlias(3, "CHAOS");
+        classes.add(4, "HS");
+        classes.addAlias(4, "HESIOD");
+        classes.add(254, Constraint.NONE);
+        classes.add(255, "ANY");
+    }
+
+    private DClass() {
+    }
+
+    public static void check(int i4) {
+        if (i4 < 0 || i4 > 65535) {
+            throw new InvalidDClassException(i4);
+        }
+    }
+
+    public static String string(int i4) {
+        return classes.getText(i4);
+    }
+
+    public static int value(String str) {
+        return classes.getValue(str);
+    }
+}
