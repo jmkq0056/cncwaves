@@ -90,8 +90,14 @@ kiosk-android/.gradle/
 kiosk-android/build/
 kiosk-android/local.properties
 
-# Kiosk inspiration images
-kiosk-inspiration/
+# Kiosk inspiration — ignore decompiled/binary junk, keep API data
+kiosk-inspiration/jadx-output/
+kiosk-inspiration/apktool-output/
+kiosk-inspiration/*.apk
+kiosk-inspiration/*.png
+kiosk-inspiration/ui-audit/
+kiosk-inspiration/api-data/images/
+kiosk-inspiration/api-data/node_modules/
 
 # Screenshots
 *.png

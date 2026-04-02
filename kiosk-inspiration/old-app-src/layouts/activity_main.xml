@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/connection_failed" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
+        <TextView android:textSize="60.0sp" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Connection Failed" android:fontFamily="@font/uni_sans" />
+        <Space android:layout_width="match_parent" android:layout_height="40.0dp" />
+        <androidx.appcompat.widget.AppCompatButton android:textSize="40.0sp" android:textColor="@color/white" android:id="@id/retry_connection" android:background="@drawable/success_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Retry" android:fontFamily="@font/uni_sans" android:paddingHorizontal="50.0dp" android:paddingVertical="30.0dp" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/connecting" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent">
+        <TextView android:textSize="60.0sp" android:textColor="@color/black" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Connecting to Server" android:fontFamily="@font/uni_sans" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
