@@ -1,5 +1,0 @@
-package g2;
-
-/* JADX INFO: loaded from: classes2.dex */
-public class g0 extends j {
-}

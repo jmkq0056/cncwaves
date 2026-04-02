@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="horizontal" android:paddingBottom="10.0dp" android:layout_width="wrap_content" android:layout_height="match_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <Space android:layout_width="150.0dp" android:layout_height="match_parent" />
-    <TextView android:textSize="20.0sp" android:textColor="#438d02" android:id="@id/extra" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/uni_sans" />
-    <Space android:layout_width="0.0dp" android:layout_height="match_parent" android:layout_weight="1.0" />
-    <TextView android:textSize="20.0sp" android:textColor="#438d02" android:id="@id/extra_price" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="@font/uni_sans" />
-</LinearLayout>

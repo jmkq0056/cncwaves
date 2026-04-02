@@ -70,3 +70,31 @@ products.json
 .cache/
 tmp/
 temp/
+
+# Decompiled / reverse-engineered apps (huge, not ours)
+cnc-solutions/magic_player_decompiled/
+
+# Generated output images
+cnc-solutions/output/
+
+# Menu assets (large images)
+cnc-solutions/Menu/
+
+# Android build artifacts
+signage-android/app/build/
+signage-android/.gradle/
+signage-android/build/
+signage-android/local.properties
+kiosk-android/app/build/
+kiosk-android/.gradle/
+kiosk-android/build/
+kiosk-android/local.properties
+
+# Kiosk inspiration images
+kiosk-inspiration/
+
+# Screenshots
+*.png
+!**/src/**/*.png
+!**/public/**/*.png
+!**/res/**/*.png

@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         requestDefaultLauncher()
-        requestOverlayPermission()
+        // Overlay permission granted via ADB during deploy (appops set SYSTEM_ALERT_WINDOW allow)
 
         SyncWorker.schedule(this) // WorkManager fallback (every 15 min)
         startSyncReceiver()       // Listen for WatchdogService sync broadcasts
@@ -175,26 +175,7 @@ class MainActivity : AppCompatActivity() {
         return resolveInfo?.activityInfo?.packageName == packageName
     }
 
-    // === OVERLAY PERMISSION (needed for boot auto-launch on Android 10+) ===
-    private fun requestOverlayPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
-            try {
-                Config(this).setAdminNavigating(true)
-                dialogShowing = true
-                systemDialogShowing = true
-                val intent = Intent(
-                    Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:$packageName")
-                )
-                startActivity(intent)
-            } catch (e: Exception) {
-                dialogShowing = false
-                systemDialogShowing = false
-                Config(this).setAdminNavigating(false)
-                Log.w("MainActivity", "Could not request overlay permission: ${e.message}")
-            }
-        }
-    }
+    // Overlay permission granted silently via ADB: appops set com.cnc.signage SYSTEM_ALERT_WINDOW allow
 
     // === BITMAP CACHE: pre-decode all images into memory ===
     private fun preloadBitmaps(imageFiles: List<File>) {

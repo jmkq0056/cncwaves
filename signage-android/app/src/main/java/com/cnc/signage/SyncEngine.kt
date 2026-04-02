@@ -72,9 +72,17 @@ object SyncEngine {
                 return true
             }
 
-            if (serverHash == localHash) {
+            // Hash matches BUT verify images actually exist on disk.
+            // After app reinstall, prefs may have old hash but cache is wiped.
+            val playlistManager = PlaylistManager(context)
+            val hasLocalImages = playlistManager.getImageFiles().isNotEmpty()
+
+            if (serverHash == localHash && hasLocalImages) {
                 Log.d(TAG, "Hash unchanged, config synced")
                 return true
+            }
+            if (serverHash == localHash && !hasLocalImages) {
+                Log.w(TAG, "Hash matches but no local images — forcing re-download")
             }
 
             // Hash changed — download new images
