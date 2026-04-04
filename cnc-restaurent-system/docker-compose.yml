@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_NAME=karenderia
+      - DB_USER=karenderia
+      - DB_PASSWORD=karenderia123
+    restart: unless-stopped
+
+  db:
+    image: mariadb:10.6
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: karenderia
+      MYSQL_USER: karenderia
+      MYSQL_PASSWORD: karenderia123
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install/karenderia.sql:/docker-entrypoint-initdb.d/01-karenderia.sql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: karenderia
+      PMA_PASSWORD: karenderia123
+    depends_on:
+      - db
+
+volumes:
+  db_data:

@@ -1,0 +1,14 @@
+{
+    "name": "Chicken N Chicken Waves",
+    "short_name": "CNC Waves",
+    "icons": [
+        {
+            "src": "/themes/karenderia_v2/assets/icons/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#3d0d0f",
+    "background_color": "#ffffff",
+    "display": "standalone"
+}

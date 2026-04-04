@@ -1,0 +1,15 @@
+# Don't push zip archives or temp dirs
+*.zip
+install_full/
+updates_full/
+codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install_full/
+codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/updates_full/
+codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install.zip
+codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/updates.zip
+codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/*.pdf
+codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/.DS_Store
+codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install/protected/runtime/
+codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install/backoffice/protected/runtime/
+*.pyc
+__pycache__/
+.DS_Store

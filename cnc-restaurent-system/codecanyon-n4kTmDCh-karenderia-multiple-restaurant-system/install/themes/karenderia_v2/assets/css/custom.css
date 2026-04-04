@@ -1,0 +1,618 @@
+/* ── Chicken N Chicken Brand ── */
+/* Primary: #f17d00 (orange)  Secondary: #9d292b (red)  Dark: #3d0d0f */
+
+:root {
+  --cnc-red: #9d292b;
+  --cnc-orange: #f17d00;
+  --cnc-orange-light: #f89020;
+  --cnc-dark: #3d0d0f;
+  --cnc-light: #fff8f0;
+}
+
+/* ═══ ALL BUTTONS — CONSISTENT ORANGE + BLACK TEXT ═══ */
+.btn-green,
+.btn-grey:hover,
+.badge.badge-green,
+.custom-control-input:checked ~ .custom-control-label::before,
+.btn-green-line:hover,
+.btn-theme,
+.btn-primary,
+.section-promo,
+.layer-content,
+.add_to_cart,
+button.add_to_cart,
+.add_to_cart span,
+.add_to_cart .label,
+.el-button--success,
+.el-button--primary {
+  background: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+  color: #000 !important;
+  font-weight: 700 !important;
+}
+.btn-green:focus,
+.btn-green:hover,
+.btn-theme:hover,
+.btn-primary:hover,
+.add_to_cart:hover,
+.el-button--success:hover,
+.el-button--primary:hover {
+  background: var(--cnc-red) !important;
+  border-color: var(--cnc-red) !important;
+  color: #fff !important;
+}
+
+/* Size selector pills — orange outline, not black */
+.btn-black.rounded-pill,
+.quantity a.rounded-pill,
+.item-size-button,
+.rounded-pill.active,
+.rounded-pill[class*="btn"] {
+  background: var(--cnc-dark) !important;
+  border-color: var(--cnc-dark) !important;
+  color: #fff !important;
+}
+
+/* Green text → Orange */
+.text-green,
+a:hover,
+ul.top-menu a:hover,
+.list-inline a:hover,
+.menu-category a:hover,
+.siderbar-menu li.active a,
+#menu-category .col a.active,
+.btn.normal:hover,
+.menu-carousel a.active,
+.menu-carousel a:hover {
+  color: var(--cnc-orange) !important;
+}
+
+/* Green borders → Orange */
+.btn-green-line,
+.border-green {
+  border: 1px solid var(--cnc-orange) !important;
+  color: var(--cnc-orange) !important;
+}
+.btn-green-circle,
+.btn-green-circle:hover {
+  background: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+}
+.btn-white {
+  background: #fff;
+  color: var(--cnc-orange) !important;
+}
+.badge-green {
+  background: var(--cnc-orange) !important;
+}
+
+/* ═══ BLACK/RED BUTTONS — ALWAYS white text ═══ */
+.btn-black,
+.btn.btn-black,
+button.btn-black,
+.btn-black.w-100,
+.modal .btn-black,
+.modal-footer .btn-black,
+.rounded-button-icon:hover {
+  background: var(--cnc-red) !important;
+  color: #fff !important;
+}
+.btn-black:focus,
+.btn-black:hover,
+.btn.btn-black:hover {
+  background: var(--cnc-dark) !important;
+  color: #fff !important;
+}
+/* Disabled green/orange buttons — keep readable */
+.btn-green:disabled,
+.btn-green[disabled],
+.btn.btn-green:disabled {
+  background: var(--cnc-orange) !important;
+  color: #fff !important;
+  opacity: 0.6;
+}
+/* Til kassen / checkout button — always bold orange */
+.btn-green.w-100:not(:disabled),
+.cart-summary .btn-green,
+.sticky-cart .btn-green {
+  background: var(--cnc-orange) !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  font-weight: 700;
+}
+
+/* ═══ TOP NAV BAR ═══ */
+#top-navigation {
+  background: var(--cnc-dark) !important;
+}
+/* Nav text white — scoped to direct nav elements only, NOT drawers/modals */
+#top-navigation > div > div a,
+#top-navigation > div > div i,
+#top-navigation > div > div span,
+#top-navigation .top-logo a,
+#top-navigation ul#vue-cart-preview > li > a,
+#top-navigation ul#vue-cart-preview > li > a *,
+#top-navigation ul#vue-cart-preview > li > div,
+#top-navigation ul#vue-cart-preview > li.line-left > a {
+  color: #fff !important;
+}
+#top-navigation ul#vue-cart-preview > li > a:hover,
+#top-navigation ul#vue-cart-preview > li > a:hover * {
+  color: var(--cnc-orange) !important;
+  opacity: 1;
+}
+/* Logged-in user name in nav */
+#top-navigation .dropdown > a,
+#top-navigation .dropdown > a *,
+#top-navigation .dropdown-toggle,
+#top-navigation .dropdown-toggle * {
+  color: #fff !important;
+}
+#top-navigation .dropdown > a:hover,
+#top-navigation .dropdown > a:hover * {
+  color: var(--cnc-orange) !important;
+}
+/* Only invert the cart bag SVG, not profile pics or drawer content */
+#top-navigation .cart-handle img,
+#top-navigation .cart-handle svg {
+  filter: brightness(0) invert(1) !important;
+}
+/* Profile pic — no filter */
+#top-navigation .profile-photo img,
+#top-navigation img.rounded-circle,
+#top-navigation img[src*="avatar"],
+#top-navigation img[src*="profile"],
+.el-drawer img,
+.drawer-menu img {
+  filter: none !important;
+}
+#top-navigation .hamburger-inner,
+#top-navigation .hamburger-inner::before,
+#top-navigation .hamburger-inner::after {
+  background-color: #fff !important;
+}
+#top-navigation .top-logo img {
+  max-height: 55px;
+  width: auto;
+  padding: 4px 0;
+}
+#top-navigation {
+  padding: 10px 0 !important;
+}
+/* Nav: logo left, items far right with spacing */
+#top-navigation > .row {
+  display: flex !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+}
+/* Middle col (address widget) — collapse it */
+#vue-widget-nav {
+  display: none !important;
+  flex: 0 !important;
+  width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+/* Right col — push to far right */
+#top-navigation > .row > .col-lg-auto.d-flex.justify-content-end,
+#top-navigation > .row > div:last-child {
+  margin-left: auto !important;
+  flex: 0 0 auto !important;
+}
+ul#vue-cart-preview.top-menu {
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+ul#vue-cart-preview.top-menu > li {
+  margin: 0 0 0 24px !important;
+  padding: 0 !important;
+}
+ul#vue-cart-preview.top-menu > li:first-child {
+  margin-left: 0 !important;
+}
+
+/* Hide distance label */
+li:has(.zmdi-pin),
+[class*="distance"],
+.info-items-dot-separator + li:has(.zmdi-pin) {
+  display: none !important;
+}
+
+/* Hide top search bar */
+#vue-cart-preview li a[href*="search"],
+#vue-cart-preview li:has(a[href*="search"]),
+.widget-search,
+a[href="/search"] {
+  display: none !important;
+}
+
+/* Hide static map image (403 from Google — we use embed instead) */
+.section-address img[src*="staticmap"],
+img[src*="googleapis.com/maps/api/staticmap"] {
+  display: none !important;
+}
+
+/* Mobile sidebar / drawer menu */
+.drawer-menu a,
+.drawer-menu li a,
+.drawer-menu-mobile a,
+.drawer-menu-mobile li a,
+.el-drawer a,
+.el-drawer span,
+.el-drawer li,
+.el-drawer p {
+  color: var(--cnc-dark) !important;
+}
+.drawer-menu a:hover,
+.drawer-menu li a:hover,
+.drawer-menu-mobile a:hover,
+.el-drawer a:hover {
+  color: var(--cnc-orange) !important;
+}
+.el-drawer__header span,
+.drawer-menu #el-drawer__title {
+  color: var(--cnc-dark) !important;
+}
+/* Drawer — force all content dark and readable */
+.el-drawer i,
+.drawer-menu i,
+.drawer-menu-mobile i {
+  color: var(--cnc-dark) !important;
+}
+.el-drawer img,
+.drawer-menu img {
+  filter: none !important;
+}
+/* Override the #top-navigation white text for drawer */
+.el-drawer,
+.el-drawer *,
+.el-drawer a,
+.el-drawer span,
+.el-drawer li,
+.el-drawer p,
+.el-drawer div,
+.el-overlay .el-drawer *,
+.el-overlay a,
+.el-overlay li {
+  color: #333 !important;
+}
+.el-drawer a:hover {
+  color: var(--cnc-orange) !important;
+}
+
+/* All modals/dialogs — force dark readable text */
+.modal, .modal *, .modal select, .modal option,
+#orderTypeTime, #orderTypeTime *,
+#orderTypeTime select, #orderTypeTime option {
+  color: #333 !important;
+}
+.modal select, #orderTypeTime select {
+  background: #fff !important;
+}
+/* Toggle buttons (Nu / Planlæg til senere) */
+.btn-group-toggle label.active,
+.modal .btn-group-toggle label.active {
+  color: #fff !important;
+  background: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+}
+.btn-group-toggle label {
+  color: #333 !important;
+}
+
+/* Modal close button — always visible */
+.modal .btn-black.btn-circle,
+.modal .btn-circle,
+.el-dialog .btn-circle {
+  background: #333 !important;
+  color: #fff !important;
+}
+.modal .btn-black.btn-circle i,
+.modal .btn-circle i {
+  color: #fff !important;
+}
+
+/* ═══ MENU PAGE ═══ */
+#menu-category .nav-link.active,
+#menu-category .nav-link:hover,
+.menu-category a.active {
+  color: var(--cnc-orange) !important;
+  border-left: 3px solid var(--cnc-orange);
+  font-weight: 600;
+}
+.item-price,
+.price,
+.pretty-price {
+  color: var(--cnc-red) !important;
+  font-weight: 700;
+}
+.cart-count,
+.badge-cart {
+  background: var(--cnc-orange) !important;
+}
+.merchant-banner-wrap,
+.merchant-banner {
+  background: linear-gradient(135deg, var(--cnc-dark), var(--cnc-red), var(--cnc-orange)) !important;
+  min-height: 180px;
+}
+
+/* ═══ ITEM DIALOG / MODAL ═══ */
+.modal .btn-green,
+.item-dialog .btn-green,
+.modal-footer .btn-green,
+#vue-item-dialog .btn-green {
+  background: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+  color: #000 !important;
+}
+.modal .btn-green:hover {
+  background: var(--cnc-red) !important;
+  border-color: var(--cnc-red) !important;
+  color: #fff !important;
+}
+.el-radio__input.is-checked .el-radio__inner,
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background-color: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+}
+.el-radio__input.is-checked + .el-radio__label,
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: var(--cnc-orange) !important;
+}
+.el-tag,
+.el-tag--primary {
+  background-color: var(--cnc-light) !important;
+  border-color: var(--cnc-orange) !important;
+  color: var(--cnc-red) !important;
+}
+
+/* ═══ CART SIDEBAR ═══ */
+.cart-summary .btn-green {
+  background: var(--cnc-orange) !important;
+  color: #000 !important;
+}
+
+/* ═══ FOOTER — no gap ═══ */
+.sub-footer {
+  background: var(--cnc-dark) !important;
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+.sub-footer a {
+  color: #ccc !important;
+  font-size: 13px;
+}
+.sub-footer a:hover {
+  color: var(--cnc-orange) !important;
+}
+footer {
+  background: var(--cnc-dark) !important;
+  color: #ccc !important;
+  margin-top: 0 !important;
+  border-top: 1px solid rgba(255,255,255,0.1) !important;
+}
+footer a {
+  color: var(--cnc-orange) !important;
+}
+footer p {
+  color: #ccc !important;
+}
+
+/* ═══ CHECKOUT ═══ */
+.checkout-wrap .btn-green,
+.payment-method.active {
+  background: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+  color: #000 !important;
+}
+
+/* ═══ HIDE MULTI-RESTAURANT UI ═══ */
+.components-cuisine-list,
+.section-mobileapp,
+.section-newmobileapp,
+.components-join,
+.home-steps,
+.signup-section,
+.section-social-links,
+.app-store-wrap,
+.section-join-us,
+.section-join-us2,
+.section-become,
+.swiperOutsideContainer {
+  display: none !important;
+}
+
+/* Hide address/delivery — pickup only, keep time picker */
+#vue-widget-nav,
+.component-change-address,
+.components-select-address,
+.components-address-form,
+.home-search-wrap,
+#main-search-banner,
+.mobile-home-banner,
+.delivery-address-wrap,
+.address-selection-wrap,
+components-location-estimation,
+.address-needed {
+  display: none !important;
+}
+/* In the delivery details modal, hide the address row but keep time */
+#ModalDeliveryDetails .modal-body > a:first-child,
+.component-delivery-details .chevron-section:first-child {
+  display: none !important;
+}
+
+/* ═══ MOBILE CART — slide-up popup ═══ */
+@media (max-width: 991px) {
+  #mobile-cart-panel {
+    display: none;
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: #fff;
+    box-shadow: 0 -6px 30px rgba(0,0,0,0.25);
+    border-top: 3px solid var(--cnc-orange);
+    border-radius: 16px 16px 0 0;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding: 16px !important;
+    animation: slideUp 0.3s ease forwards;
+  }
+  #mobile-cart-panel.open {
+    display: block !important;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  /* Close button for mobile cart */
+  .mobile-cart-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    z-index: 10;
+    background: var(--cnc-dark);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Backdrop */
+  .cart-backdrop {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9998;
+  }
+  .cart-backdrop.open {
+    display: block;
+  }
+  .floating-cart {
+    z-index: 1000 !important;
+  }
+}
+
+/* ═══ SEARCH — hide Restaurant tab, only Food ═══ */
+.widget-search .nav-item:first-child,
+.search-tabs .nav-item:first-child {
+  display: none !important;
+}
+
+/* ═══ ELEMENT PLUS BUTTONS — force orange + black ═══ */
+.el-button[style*="f17d00"],
+.el-button[style*="3ecf8e"],
+.el-button--success,
+.el-button--primary,
+.el-button.white-color {
+  background-color: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+  color: #000 !important;
+  font-weight: 700 !important;
+}
+.el-button[style*="f17d00"]:hover,
+.el-button.white-color:hover {
+  background-color: var(--cnc-red) !important;
+  border-color: var(--cnc-red) !important;
+  color: #fff !important;
+}
+/* Disabled "Læg i kurv" — lighter orange, not grey */
+.el-button.is-disabled.white-color,
+.el-button[disabled].white-color,
+button.add_to_cart:disabled,
+.btn-green:disabled {
+  background-color: #f9b366 !important;
+  border-color: #f9b366 !important;
+  color: #666 !important;
+  opacity: 0.7 !important;
+}
+
+/* ═══ PRICE HIGHLIGHT ═══ */
+.item-price,
+.price,
+.pretty-price,
+.pretty_price,
+[class*="price"] {
+  color: var(--cnc-orange) !important;
+  font-weight: 800 !important;
+  font-size: 1.05em !important;
+}
+
+/* ═══ CNC PICKUP BUTTONS ═══ */
+.cnc-pickup-buttons {
+  display: flex !important;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.cnc-btn-pickup-now,
+.cnc-btn-pickup-later {
+  padding: 10px 28px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 15px;
+  border: 2px solid var(--cnc-dark);
+  background: #fff;
+  color: var(--cnc-dark);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.cnc-btn-pickup-now:hover,
+.cnc-btn-pickup-later:hover {
+  background: var(--cnc-orange);
+  border-color: var(--cnc-orange);
+  color: #000;
+}
+.cnc-btn-pickup-now.active {
+  background: var(--cnc-orange);
+  border-color: var(--cnc-orange);
+  color: #000;
+}
+.cnc-btn-pickup-later.active {
+  background: var(--cnc-dark);
+  border-color: var(--cnc-dark);
+  color: #fff;
+}
+.cnc-pickup-status {
+  font-size: 13px;
+  color: #666;
+}
+
+/* ═══ MISC ═══ */
+::selection {
+  background: var(--cnc-orange);
+  color: #fff;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cnc-red);
+}
+.nav-pills .nav-link.active {
+  background-color: var(--cnc-orange) !important;
+  color: #000 !important;
+}
+.progress-bar {
+  background-color: var(--cnc-orange) !important;
+}
+.alert-success {
+  background-color: var(--cnc-light) !important;
+  border-color: var(--cnc-orange) !important;
+  color: var(--cnc-dark) !important;
+}
+.jq-star-svg {
+  fill: var(--cnc-orange) !important;
+}
