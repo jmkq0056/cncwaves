@@ -37,7 +37,7 @@ return array(
 		'application.models.*',
 		'application.components.*',		
 		'application.components.jobs.*', 
-		'application.controllers.*',		
+		//'application.controllers.*', // removed: causes duplicate class in PHP 8.1
 		'application.vendor.*',
 		'application.extensions.*',
 		'application.extensions.EHttpClient.*',
