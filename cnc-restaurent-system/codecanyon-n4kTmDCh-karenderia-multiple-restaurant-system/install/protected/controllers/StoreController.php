@@ -1,4 +1,5 @@
 <?php
+if (class_exists('StoreController', false)) return;
 class StoreController extends SiteCommon
 {
 	public function beforeAction($action)
