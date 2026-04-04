@@ -52,7 +52,31 @@ EOSQL
     wait $MYSQL_PID 2>/dev/null
     echo "✓ MariaDB initialized"
 else
-    echo "✓ MariaDB data exists, skipping init"
+    echo "✓ MariaDB data exists"
+    # Ensure DB user exists (may be missing from failed init)
+    MARIADBD=$(which mariadbd || which mysqld || echo "/usr/sbin/mariadbd")
+    $MARIADBD --user=mysql &
+    MYSQL_PID=$!
+    for i in $(seq 1 15); do
+        if mysqladmin ping &>/dev/null; then break; fi
+        sleep 1
+    done
+    mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;" 2>/dev/null
+    mysql -u root -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';" 2>/dev/null
+    mysql -u root -e "CREATE USER IF NOT EXISTS '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';" 2>/dev/null
+    mysql -u root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';" 2>/dev/null
+    mysql -u root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';" 2>/dev/null
+    mysql -u root -e "FLUSH PRIVILEGES;" 2>/dev/null
+    # Check if DB has tables, if not seed
+    TABLE_COUNT=$(mysql -u root "$DB_NAME" -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='$DB_NAME';" 2>/dev/null || echo "0")
+    if [ "$TABLE_COUNT" -lt "10" ] 2>/dev/null; then
+        echo "Seeding database..."
+        mysql -u root "$DB_NAME" < /opt/db-seed.sql
+        echo "✓ Database seeded"
+    fi
+    kill $MYSQL_PID 2>/dev/null
+    wait $MYSQL_PID 2>/dev/null
+    echo "✓ DB user verified"
 fi
 
 # Fix permissions
