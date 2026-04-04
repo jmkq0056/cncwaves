@@ -66,7 +66,7 @@ RUN MARIADBD=$(which mariadbd || which mysqld || echo "/usr/sbin/mariadbd") \
     && echo "stderr_logfile=/dev/stderr" >> /etc/supervisord.conf \
     && echo "stderr_logfile_maxbytes=0" >> /etc/supervisord.conf
 
-# Copy app
+# Copy app (v2 - force rebuild)
 COPY codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install/ /var/www/html/
 
 # Copy DB seed
