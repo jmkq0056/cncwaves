@@ -65,5 +65,14 @@ chmod -R 777 /var/www/html/backoffice/protected/runtime 2>/dev/null || true
 mkdir -p /var/www/html/protected/runtime/cache
 chmod 777 /var/www/html/protected/runtime/cache
 
+# Fix Apache MPM at runtime — ensure only prefork is loaded
+rm -f /etc/apache2/mods-enabled/mpm_event.load /etc/apache2/mods-enabled/mpm_event.conf \
+      /etc/apache2/mods-enabled/mpm_worker.load /etc/apache2/mods-enabled/mpm_worker.conf 2>/dev/null
+# Keep only prefork
+if [ ! -f /etc/apache2/mods-enabled/mpm_prefork.load ]; then
+    ln -sf /etc/apache2/mods-available/mpm_prefork.load /etc/apache2/mods-enabled/
+    ln -sf /etc/apache2/mods-available/mpm_prefork.conf /etc/apache2/mods-enabled/
+fi
+
 echo "✓ Starting Apache + MariaDB"
 exec "$@"
