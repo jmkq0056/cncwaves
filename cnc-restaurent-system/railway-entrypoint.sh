@@ -24,7 +24,8 @@ if [ ! -d "/data/mysql/mysql" ]; then
     mysql_install_db --user=mysql --datadir=/data/mysql
 
     # Start MariaDB temporarily for seeding
-    mariadbd --user=mysql &
+    MARIADBD=$(which mariadbd || which mysqld || echo "/usr/sbin/mariadbd")
+    $MARIADBD --user=mysql &
     MYSQL_PID=$!
 
     # Wait for MariaDB

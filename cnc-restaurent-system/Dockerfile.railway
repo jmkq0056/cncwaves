@@ -12,55 +12,56 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # PHP config
-RUN echo "upload_max_filesize = 64M" > /usr/local/etc/php/conf.d/app.ini \
-    && echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/app.ini \
-    && echo "memory_limit = 256M" >> /usr/local/etc/php/conf.d/app.ini \
-    && echo "max_execution_time = 300" >> /usr/local/etc/php/conf.d/app.ini \
-    && echo "date.timezone = Europe/Copenhagen" >> /usr/local/etc/php/conf.d/app.ini
+RUN echo "upload_max_filesize = 64M\n\
+post_max_size = 64M\n\
+memory_limit = 256M\n\
+max_execution_time = 300\n\
+date.timezone = Europe/Copenhagen" > /usr/local/etc/php/conf.d/app.ini
 
-# Apache config
-RUN a2enmod rewrite headers expires \
-    && sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
+# Apache config — fix MPM conflict
+RUN a2dismod mpm_event 2>/dev/null; a2dismod mpm_worker 2>/dev/null; a2enmod mpm_prefork rewrite headers expires \
+    && sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf \
+    && echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Timezone
 RUN ln -sf /usr/share/zoneinfo/Europe/Copenhagen /etc/localtime \
     && echo "Europe/Copenhagen" > /etc/timezone
 
-# MariaDB config — store data on Railway volume
+# MariaDB config
 RUN mkdir -p /data/mysql /run/mysqld \
-    && chown -R mysql:mysql /data/mysql /run/mysqld
-RUN echo "[mysqld]\n\
-datadir=/data/mysql\n\
-socket=/run/mysqld/mysqld.sock\n\
-port=3306\n\
-character-set-server=utf8mb4\n\
-collation-server=utf8mb4_general_ci\n\
-skip-networking=false\n\
-bind-address=127.0.0.1\n" > /etc/mysql/mariadb.conf.d/99-railway.cnf
+    && chown -R mysql:mysql /data/mysql /run/mysqld \
+    && echo "[mysqld]" > /etc/mysql/mariadb.conf.d/99-railway.cnf \
+    && echo "datadir=/data/mysql" >> /etc/mysql/mariadb.conf.d/99-railway.cnf \
+    && echo "socket=/run/mysqld/mysqld.sock" >> /etc/mysql/mariadb.conf.d/99-railway.cnf \
+    && echo "port=3306" >> /etc/mysql/mariadb.conf.d/99-railway.cnf \
+    && echo "character-set-server=utf8mb4" >> /etc/mysql/mariadb.conf.d/99-railway.cnf \
+    && echo "collation-server=utf8mb4_general_ci" >> /etc/mysql/mariadb.conf.d/99-railway.cnf \
+    && echo "bind-address=127.0.0.1" >> /etc/mysql/mariadb.conf.d/99-railway.cnf
 
-# Supervisor to run both Apache + MariaDB
-RUN echo "[supervisord]\n\
-nodaemon=true\n\
-logfile=/dev/stdout\n\
-logfile_maxbytes=0\n\
-\n\
-[program:mariadb]\n\
-command=/usr/bin/mariadbd --user=mysql\n\
-autostart=true\n\
-autorestart=true\n\
-stdout_logfile=/dev/stdout\n\
-stdout_logfile_maxbytes=0\n\
-stderr_logfile=/dev/stderr\n\
-stderr_logfile_maxbytes=0\n\
-\n\
-[program:apache]\n\
-command=/usr/local/bin/apache2-foreground\n\
-autostart=true\n\
-autorestart=true\n\
-stdout_logfile=/dev/stdout\n\
-stdout_logfile_maxbytes=0\n\
-stderr_logfile=/dev/stderr\n\
-stderr_logfile_maxbytes=0\n" > /etc/supervisord.conf
+# Find mariadbd binary path and create supervisor config
+RUN MARIADBD=$(which mariadbd || which mysqld || echo "/usr/sbin/mariadbd") \
+    && echo "[supervisord]" > /etc/supervisord.conf \
+    && echo "nodaemon=true" >> /etc/supervisord.conf \
+    && echo "logfile=/dev/stdout" >> /etc/supervisord.conf \
+    && echo "logfile_maxbytes=0" >> /etc/supervisord.conf \
+    && echo "" >> /etc/supervisord.conf \
+    && echo "[program:mariadb]" >> /etc/supervisord.conf \
+    && echo "command=${MARIADBD} --user=mysql" >> /etc/supervisord.conf \
+    && echo "autostart=true" >> /etc/supervisord.conf \
+    && echo "autorestart=true" >> /etc/supervisord.conf \
+    && echo "stdout_logfile=/dev/stdout" >> /etc/supervisord.conf \
+    && echo "stdout_logfile_maxbytes=0" >> /etc/supervisord.conf \
+    && echo "stderr_logfile=/dev/stderr" >> /etc/supervisord.conf \
+    && echo "stderr_logfile_maxbytes=0" >> /etc/supervisord.conf \
+    && echo "" >> /etc/supervisord.conf \
+    && echo "[program:apache]" >> /etc/supervisord.conf \
+    && echo "command=apache2-foreground" >> /etc/supervisord.conf \
+    && echo "autostart=true" >> /etc/supervisord.conf \
+    && echo "autorestart=true" >> /etc/supervisord.conf \
+    && echo "stdout_logfile=/dev/stdout" >> /etc/supervisord.conf \
+    && echo "stdout_logfile_maxbytes=0" >> /etc/supervisord.conf \
+    && echo "stderr_logfile=/dev/stderr" >> /etc/supervisord.conf \
+    && echo "stderr_logfile_maxbytes=0" >> /etc/supervisord.conf
 
 # Copy app
 COPY codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install/ /var/www/html/
@@ -76,7 +77,6 @@ RUN chmod +x /usr/local/bin/railway-entrypoint.sh
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Railway uses PORT env var
 ENV PORT=80
 EXPOSE 80
 

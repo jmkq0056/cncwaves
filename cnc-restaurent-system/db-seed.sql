@@ -1,5 +1,3 @@
-time="2026-04-04T21:54:21+02:00" level=warning msg="/Users/jawadmehmoodkhanqayyum/Documents/GitHub/cncwaves/cnc-restaurent-system/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
-/*M!999999\- enable the sandbox mode */ 
 -- MariaDB dump 10.19  Distrib 10.6.25-MariaDB, for debian-linux-gnu (aarch64)
 --
 -- Host: localhost    Database: karenderia
