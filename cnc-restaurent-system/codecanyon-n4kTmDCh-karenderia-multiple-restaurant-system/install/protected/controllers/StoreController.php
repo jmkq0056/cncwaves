@@ -1,5 +1,5 @@
 <?php
-if (class_exists('StoreController', false)) return;
+if (!class_exists('StoreController', false)):
 class StoreController extends SiteCommon
 {
 	public function beforeAction($action)
@@ -341,4 +341,5 @@ fbq('track', 'PageView');
 	}
 		
 }
+endif;
 /*end class*/

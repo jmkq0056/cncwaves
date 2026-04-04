@@ -37,7 +37,7 @@ return array(
 		'application.models.*',
 		'application.components.*',		
 		'application.components.jobs.*', 
-		'application.controllers.SiteCommon',
+		'application.controllers.*',
 		'application.vendor.*',
 		'application.extensions.*',
 		'application.extensions.EHttpClient.*',
