@@ -80,8 +80,5 @@ RUN chown -R www-data:www-data /var/www/html \
 ENV PORT=80
 EXPOSE 80
 
-# Data volume — Railway persists /data
-VOLUME ["/data/mysql"]
-
 ENTRYPOINT ["railway-entrypoint.sh"]
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
