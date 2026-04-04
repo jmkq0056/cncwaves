@@ -13,3 +13,4 @@ codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install/backoffice/pro
 *.pyc
 __pycache__/
 .DS_Store
+StripetestController.php
