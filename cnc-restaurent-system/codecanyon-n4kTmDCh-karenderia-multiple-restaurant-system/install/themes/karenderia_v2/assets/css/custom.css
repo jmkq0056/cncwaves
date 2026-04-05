@@ -483,14 +483,8 @@ components-location-estimation,
 }
 
 /* ═══ CATEGORY DRAWER — item count pill readable ═══ */
-.drawer-category .bg-light,
-.drawer-category .bg-light.btn-circle,
-.drawer-category .bg-light.btn-circle.rounded-pill {
+div.bg-light.btn-circle.rounded-pill {
   background-color: var(--cnc-orange) !important;
-  color: #fff !important;
-  -webkit-text-fill-color: #fff !important;
-}
-.drawer-category a.list-group-item .bg-light {
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
 }
