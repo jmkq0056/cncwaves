@@ -234,7 +234,7 @@ Yii::app()->clientScript->registerMetaTag('da_DK', null, null, array('property'=
 
 <!-- CONTACT FORM -->
 <div class="cnc-contact">
-  <h2><?php echo t("Contact us")?></h2>
+  <h2><?php echo t("Contact Us")?></h2>
   <p class="contact-sub"><?php echo t("Have questions? Write to us below.")?></p>
 
   <?php if(Yii::app()->user->hasFlash('success')): ?>

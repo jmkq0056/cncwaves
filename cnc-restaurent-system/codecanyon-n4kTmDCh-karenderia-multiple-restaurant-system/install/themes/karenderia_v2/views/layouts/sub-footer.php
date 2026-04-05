@@ -21,7 +21,7 @@
           <p class="mb-2">Over Bølgen 3, st. 1<br>2670 Greve</p>
           <p class="mb-2"><strong>Åbningstider:</strong><br>
             Man–Tor: 11:00–22:00<br>
-            Fre–Lør: 11:00–23:00<br>
+            Fre–Lør: 11:00–22:00<br>
             Søn: 11:00–22:00
           </p>
           <a href="https://www.google.com/maps/dir/?api=1&destination=Over+B%C3%B8lgen+3%2C+2670+Greve"
