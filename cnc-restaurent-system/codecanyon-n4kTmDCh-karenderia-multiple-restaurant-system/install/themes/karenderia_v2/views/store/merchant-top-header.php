@@ -80,9 +80,9 @@
 					
 					<!-- Pickup buttons (desktop) -->
 					<div class="pt-2 cnc-pickup-buttons">
-						<button class="btn cnc-btn-pickup-now" onclick="setCncPickup('now')">Afhent nu</button>
-						<button class="btn cnc-btn-pickup-later" onclick="setCncPickup('later')">Afhent senere</button>
-						<button class="btn cnc-btn-contact" title="Kontakt os" onclick="if(typeof Tawk_API!=='undefined')Tawk_API.maximize()"><i class="zmdi zmdi-comment-text"></i></button>
+						<button class="btn cnc-btn-pickup-now" onclick="setCncPickup('now')"><?php echo t("Pickup now")?></button>
+						<button class="btn cnc-btn-pickup-later" onclick="setCncPickup('later')"><?php echo t("Pickup later")?></button>
+						<button class="btn cnc-btn-contact" title="<?php echo t("Contact us")?>" onclick="if(typeof Tawk_API!=='undefined')Tawk_API.maximize()"><i class="zmdi zmdi-comment-text"></i></button>
 					</div>
 					<p class="cnc-pickup-status mt-1 mb-0" id="cnc-pickup-status-desktop"></p>									
 					

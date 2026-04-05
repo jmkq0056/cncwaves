@@ -282,7 +282,7 @@ return array(
 			    'merchant/payment-processing'=>"merchant/paymentprocessing",
 			    'merchant/signup-failed'=>"merchant/signupfailed",
 			    'merchant/cashin-successful'=>"merchant/cashin_successful",
-			    '<action:(restaurants|offers|pagenotfound|feed|contactus|search|clearcache|landing)>' => 'store/<action>',
+			    '<action:(restaurants|offers|pagenotfound|feed|contactus|search|clearcache|landing|terms|privacy|cookies)>' => 'store/<action>',
 			    '<controller:\w+>/<action:\w+>/id/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',				 
 			),

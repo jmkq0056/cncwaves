@@ -468,6 +468,20 @@ components-location-estimation,
   height: 100%;
 }
 
+/* ═══ QUANTITY ADD-CART — red style like main Læg i kurv ═══ */
+.btn-grey.quantity-add-cart {
+  background: var(--cnc-red) !important;
+  border-color: var(--cnc-red) !important;
+  color: #fff !important;
+  opacity: 0.7;
+}
+.btn-grey.quantity-add-cart:hover {
+  opacity: 1;
+  background: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+  color: #000 !important;
+}
+
 /* ═══ QTY BUTTONS — white icons on dark background ═══ */
 .qty-btn i,
 .qty-btn .zmdi {

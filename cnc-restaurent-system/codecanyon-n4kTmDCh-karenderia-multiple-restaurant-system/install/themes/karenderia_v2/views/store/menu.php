@@ -35,12 +35,12 @@
 		<!-- Pickup buttons -->
 		<div class="pt-2 cnc-pickup-buttons">
 			<button class="btn cnc-btn-pickup-now" onclick="setCncPickup('now')">
-				Afhent nu
+				<?php echo t("Pickup now")?>
 			</button>
 			<button class="btn cnc-btn-pickup-later" onclick="setCncPickup('later')">
-				Afhent senere
+				<?php echo t("Pickup later")?>
 			</button>
-			<button class="btn cnc-btn-contact" title="Kontakt os" onclick="if(typeof Tawk_API!=='undefined')Tawk_API.maximize()"><i class="zmdi zmdi-comment-text"></i></button>
+			<button class="btn cnc-btn-contact" title="<?php echo t("Contact us")?>" onclick="if(typeof Tawk_API!=='undefined')Tawk_API.maximize()"><i class="zmdi zmdi-comment-text"></i></button>
 		</div>
 		<p class="cnc-pickup-status mt-2 mb-0" id="cnc-pickup-status"></p>
 		<?php if($home_search_mode=="address"):?>
@@ -252,6 +252,10 @@ $this->renderPartial("//components/template_age_verifications");
 	    </div> <!--col menu right-->
 <script>
 // ═══ CNC Pickup buttons ═══
+var cncLang = {
+  picking_up_now: '<?php echo CJavaScript::quote(t("Picking up now"))?>',
+  pickup_scheduled: '<?php echo CJavaScript::quote(t("Pickup scheduled"))?>'
+};
 function cncUpdatePickupStatus(text) {
   document.querySelectorAll('#cnc-pickup-status, #cnc-pickup-status-desktop').forEach(function(el){ el.textContent = text; });
 }
@@ -261,15 +265,13 @@ function setCncPickup(mode) {
     if (typeof setCookie === 'function') {
       setCookie('choosen_delivery', JSON.stringify({whento_deliver: 'now', delivery_date: '', delivery_time: '', transaction_type: 'pickup'}), 30);
     }
-    cncUpdatePickupStatus('Du afhenter nu');
+    cncUpdatePickupStatus(cncLang.picking_up_now);
     document.querySelectorAll('.cnc-btn-pickup-now').forEach(function(b){b.classList.add('active');});
     document.querySelectorAll('.cnc-btn-pickup-later').forEach(function(b){b.classList.remove('active');});
     if (typeof vue_cart !== 'undefined') vue_cart.loadcart();
   } else {
-    // Update buttons immediately
     document.querySelectorAll('.cnc-btn-pickup-later').forEach(function(b){b.classList.add('active');});
     document.querySelectorAll('.cnc-btn-pickup-now').forEach(function(b){b.classList.remove('active');});
-    // Open Karenderia's schedule-order time picker — wait for ps if not loaded yet
     function openSchedulePicker() {
       if (typeof ps !== 'undefined' && ps.$refs && ps.$refs.select_time) {
         ps.show();
@@ -281,7 +283,6 @@ function setCncPickup(mode) {
   }
 }
 
-// Fix any broken cookie on load
 (function() {
   try {
     var raw = document.cookie.match(/choosen_delivery=([^;]*)/);
@@ -291,32 +292,29 @@ function setCncPickup(mode) {
   }
 })();
 
-// Init: set default pickup mode & hook into schedule-order save
 var _cncPickupInit = setInterval(function() {
   if (typeof setCookie !== 'function' || typeof ps === 'undefined') return;
   clearInterval(_cncPickupInit);
 
-  // Restore button state from cookie
   try {
     var existing = getCookie('choosen_delivery');
     if (!existing || !existing.whento_deliver) {
       setCncPickup('now');
     } else if (existing.whento_deliver === 'now') {
       document.querySelectorAll('.cnc-btn-pickup-now').forEach(function(b){b.classList.add('active');});
-      cncUpdatePickupStatus('Du afhenter nu');
+      cncUpdatePickupStatus(cncLang.picking_up_now);
     } else {
       document.querySelectorAll('.cnc-btn-pickup-later').forEach(function(b){b.classList.add('active');});
-      cncUpdatePickupStatus('Afhentning planlagt');
+      cncUpdatePickupStatus(cncLang.pickup_scheduled);
     }
   } catch(e) { setCncPickup('now'); }
 
-  // Patch schedule-order: after user picks a time, update pickup buttons
   var _origSave = ps.afterSaveTransOptions;
   ps.afterSaveTransOptions = function(e) {
     if (_origSave) _origSave.call(ps, e);
     document.querySelectorAll('.cnc-btn-pickup-later').forEach(function(b){b.classList.add('active');});
     document.querySelectorAll('.cnc-btn-pickup-now').forEach(function(b){b.classList.remove('active');});
-    cncUpdatePickupStatus('Afhentning planlagt');
+    cncUpdatePickupStatus(cncLang.pickup_scheduled);
   };
 }, 200);
 </script>

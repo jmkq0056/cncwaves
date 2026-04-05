@@ -290,6 +290,33 @@ fbq('track', 'PageView');
 		]);
 	}
 
+	public function actionterms()
+	{
+		$this->pageTitle = 'Vilkår og betingelser - Chicken N Chicken Waves';
+		$this->render('legal-page', [
+			'content_da' => $this->renderPartial('legal/terms-da', null, true),
+			'content_en' => $this->renderPartial('legal/terms-en', null, true),
+		]);
+	}
+
+	public function actionprivacy()
+	{
+		$this->pageTitle = 'Privatlivspolitik - Chicken N Chicken Waves';
+		$this->render('legal-page', [
+			'content_da' => $this->renderPartial('legal/privacy-da', null, true),
+			'content_en' => $this->renderPartial('legal/privacy-en', null, true),
+		]);
+	}
+
+	public function actioncookies()
+	{
+		$this->pageTitle = 'Cookiepolitik - Chicken N Chicken Waves';
+		$this->render('legal-page', [
+			'content_da' => $this->renderPartial('legal/cookies-da', null, true),
+			'content_en' => $this->renderPartial('legal/cookies-en', null, true),
+		]);
+	}
+
 	public function actioncontactus()
 	{
 		

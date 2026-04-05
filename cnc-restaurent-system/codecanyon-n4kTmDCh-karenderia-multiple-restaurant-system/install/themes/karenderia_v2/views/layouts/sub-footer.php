@@ -42,8 +42,9 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col text-center">
-        <a href="/privacy-policy" class="mr-3"><?php echo t("Privacy policy")?></a>
-        <a href="/terms-and-conditions"><?php echo t("Terms and conditions")?></a>
+        <a href="<?php echo Yii::app()->createUrl('/privacy')?>" class="mr-3"><?php echo t("Privacy policy")?></a>
+        <a href="<?php echo Yii::app()->createUrl('/terms')?>" class="mr-3"><?php echo t("Terms and conditions")?></a>
+        <a href="<?php echo Yii::app()->createUrl('/cookies')?>"><?php echo t("Cookiepolitik")?></a>
       </div>
     </div>
   </div>

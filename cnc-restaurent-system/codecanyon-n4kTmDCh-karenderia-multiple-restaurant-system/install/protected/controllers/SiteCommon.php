@@ -14,10 +14,18 @@ class SiteCommon extends CController
 		if(isset($_POST['language'])) {
 			$lang = $_POST['language'];
 			$MultilangReturnUrl = $_POST[$lang];
+			setcookie('site_language', $lang, time()+365*24*3600, '/');
 			$this->redirect($MultilangReturnUrl);
 		}
-		// Force single language (Danish)
-		Yii::app()->language = KMRS_DEFAULT_LANGUAGE;		
+		// Language: check GET param, then cookie, then default
+		if(isset($_GET['language']) && preg_match('/^[a-z]{2}$/', $_GET['language'])){
+			Yii::app()->language = $_GET['language'];
+			setcookie('site_language', $_GET['language'], time()+365*24*3600, '/');
+		} elseif(isset($_COOKIE['site_language']) && preg_match('/^[a-z]{2}$/', $_COOKIE['site_language'])){
+			Yii::app()->language = $_COOKIE['site_language'];
+		} else {
+			Yii::app()->language = KMRS_DEFAULT_LANGUAGE;
+		}		
 	}
 
 	public function createMultilanguageReturnUrl($lang='en'){
