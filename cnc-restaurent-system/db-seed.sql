@@ -1,3 +1,4 @@
+/*M!999999\- enable the sandbox mode */ 
 -- MariaDB dump 10.19  Distrib 10.6.25-MariaDB, for debian-linux-gnu (aarch64)
 --
 -- Host: localhost    Database: karenderia
@@ -303,7 +304,7 @@ CREATE TABLE `st_cache` (
 
 LOCK TABLES `st_cache` WRITE;
 /*!40000 ALTER TABLE `st_cache` DISABLE KEYS */;
-INSERT INTO `st_cache` VALUES (1,'2026-04-04 21:53:21');
+INSERT INTO `st_cache` VALUES (1,'2026-04-05 09:31:10');
 /*!40000 ALTER TABLE `st_cache` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -348,7 +349,7 @@ CREATE TABLE `st_cart` (
   KEY `item_token` (`item_token`),
   KEY `item_size_id` (`item_size_id`),
   KEY `cart_row` (`cart_row`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -357,7 +358,7 @@ CREATE TABLE `st_cart` (
 
 LOCK TABLES `st_cart` WRITE;
 /*!40000 ALTER TABLE `st_cart` DISABLE KEYS */;
-INSERT INTO `st_cart` VALUES (1,'840ef663-3036-11f1-86f1-4ab0e3a8062d','ceecf908-3034-11f1-86f1-4ab0e3a8062d',1,1,'086180f0-3036-11f1-86f1-4ab0e3a8062d',1,6,'','substitute',0,0,NULL,'','','','',311.0000,0.00,0.0000,'DKK',0,0,0,0,'2026-04-04 16:56:52','2026-04-04 18:24:14','192.168.97.1'),(2,'b581fb34-303e-11f1-86f1-4ab0e3a8062d','ceecf908-3034-11f1-86f1-4ab0e3a8062d',1,9,'086212f4-3036-11f1-86f1-4ab0e3a8062d',124,1,'','substitute',0,0,NULL,'','','','',311.0000,0.00,0.0000,'DKK',0,0,0,0,'2026-04-04 17:55:31','2026-04-04 17:55:33','192.168.97.1'),(4,'d7977e01-3043-11f1-86f1-4ab0e3a8062d','d7ed9737-3042-11f1-86f1-4ab0e3a8062d',1,1,'086180f0-3036-11f1-86f1-4ab0e3a8062d',1,2,'','substitute',0,0,NULL,'','','','',94.0000,0.00,0.0000,'DKK',0,0,0,0,'2026-04-04 18:32:16','2026-04-04 19:39:54','192.168.97.1');
+INSERT INTO `st_cart` VALUES (1,'840ef663-3036-11f1-86f1-4ab0e3a8062d','ceecf908-3034-11f1-86f1-4ab0e3a8062d',1,1,'086180f0-3036-11f1-86f1-4ab0e3a8062d',1,6,'','substitute',0,0,NULL,'','','','',311.0000,0.00,0.0000,'DKK',0,0,0,0,'2026-04-04 16:56:52','2026-04-04 18:24:14','192.168.97.1'),(2,'b581fb34-303e-11f1-86f1-4ab0e3a8062d','ceecf908-3034-11f1-86f1-4ab0e3a8062d',1,9,'086212f4-3036-11f1-86f1-4ab0e3a8062d',124,1,'','substitute',0,0,NULL,'','','','',311.0000,0.00,0.0000,'DKK',0,0,0,0,'2026-04-04 17:55:31','2026-04-04 17:55:33','192.168.97.1'),(4,'d7977e01-3043-11f1-86f1-4ab0e3a8062d','d7ed9737-3042-11f1-86f1-4ab0e3a8062d',1,1,'086180f0-3036-11f1-86f1-4ab0e3a8062d',1,2,'','substitute',0,0,NULL,'','','','',94.0000,0.00,0.0000,'DKK',0,0,0,0,'2026-04-04 18:32:16','2026-04-04 19:39:54','192.168.97.1'),(8,'6ad1c6b0-30c1-11f1-b058-9a79972e1847','1196a0a6-3051-11f1-86f1-4ab0e3a8062d',1,1,'086180f0-3036-11f1-86f1-4ab0e3a8062d',1,1,'','substitute',0,0,NULL,'','','','',47.0000,0.00,0.0000,'DKK',0,0,0,0,'2026-04-05 09:31:10','2026-04-05 07:31:10','192.168.97.1');
 /*!40000 ALTER TABLE `st_cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -412,7 +413,7 @@ CREATE TABLE `st_cart_attributes` (
   KEY `cart_row` (`cart_row`),
   KEY `cart_uuid` (`cart_uuid`),
   KEY `meta_name` (`meta_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -421,7 +422,7 @@ CREATE TABLE `st_cart_attributes` (
 
 LOCK TABLES `st_cart_attributes` WRITE;
 /*!40000 ALTER TABLE `st_cart_attributes` DISABLE KEYS */;
-INSERT INTO `st_cart_attributes` VALUES (1,'0','ceecf908-3034-11f1-86f1-4ab0e3a8062d','transaction_type','pickup','2026-04-04 16:47:58'),(2,'0','ceecf908-3034-11f1-86f1-4ab0e3a8062d','whento_deliver','now','2026-04-04 16:56:52'),(3,'0','d7ed9737-3042-11f1-86f1-4ab0e3a8062d','transaction_type','pickup','2026-04-04 18:25:07'),(4,'0','d7ed9737-3042-11f1-86f1-4ab0e3a8062d','whento_deliver','now','2026-04-04 18:25:07');
+INSERT INTO `st_cart_attributes` VALUES (1,'0','ceecf908-3034-11f1-86f1-4ab0e3a8062d','transaction_type','pickup','2026-04-04 16:47:58'),(2,'0','ceecf908-3034-11f1-86f1-4ab0e3a8062d','whento_deliver','now','2026-04-04 16:56:52'),(3,'0','d7ed9737-3042-11f1-86f1-4ab0e3a8062d','transaction_type','pickup','2026-04-04 18:25:07'),(4,'0','d7ed9737-3042-11f1-86f1-4ab0e3a8062d','whento_deliver','now','2026-04-04 18:25:07'),(13,'0','1196a0a6-3051-11f1-86f1-4ab0e3a8062d','transaction_type','pickup','2026-04-05 09:31:10'),(14,'0','1196a0a6-3051-11f1-86f1-4ab0e3a8062d','whento_deliver','now','2026-04-05 09:31:10');
 /*!40000 ALTER TABLE `st_cart_attributes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6732,10 +6733,6 @@ LOCK TABLES `st_zones` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'karenderia'
---
-
---
 -- Final view structure for view `st_view_client_address_locations`
 --
 
@@ -7050,4 +7047,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-04 19:54:21
+-- Dump completed on 2026-04-05  7:32:40

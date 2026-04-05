@@ -243,124 +243,95 @@ $this->renderPartial("//components/template_age_verifications");
 		   ))?>
 
            
-		  <el-affix 
-		  position="bottom" :offset="20" v-if="item_in_cart>0" 
+		  <el-affix
+		  position="bottom" :offset="20" v-if="item_in_cart>0"
 		  z-index="9"
 		  v-cloak >
-			  <div class="floating-cart d-block d-md-none">				  
-		      <button @click="showDrawerCart" class="btn btn-black small rounded w-100 position-relative">				  
+			  <div class="floating-cart d-block d-md-none">
+		      <button @click="showDrawerCart" class="btn btn-black small rounded w-100 position-relative">
 			      <p class="m-0"><?php echo t("View order")?></p>
 				  <h5 class="m-0">{{merchant_data.restaurant_name}}</h5>
 				  <count>{{item_in_cart}}</count>
-			  </button>			  
+			  </button>
 		      </div>
 		  </el-affix>
-		   
+
 	    </div> <!--col menu center-->
-	    
-	    <div id="cart-backdrop" class="cart-backdrop" onclick="toggleMobileCart(false)"></div>
-    <div id="mobile-cart-panel" class="col-lg-3 col-md-12 mb-3 mb-lg-3 menu-right p-0 d-none d-lg-block">
-          <button class="mobile-cart-close d-lg-none" onclick="toggleMobileCart(false)">&times;</button>
+
+	    <div class="col-lg-3 col-md-12 mb-3 mb-lg-3 menu-right p-0 d-none d-lg-block">
 	      <?php $this->renderPartial("//store/cart",array(
 	        'checkout'=>false,
 	        'checkout_link'=>$checkout_link
 	      ))?>
 	    </div> <!--col menu right-->
 <script>
-function toggleMobileCart(show) {
-  var panel = document.getElementById('mobile-cart-panel');
-  var backdrop = document.getElementById('cart-backdrop');
-  if (show) {
-    panel.classList.add('open');
-    backdrop.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  } else {
-    panel.classList.remove('open');
-    backdrop.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-}
-// Hook into bag icon, cart links, and floating button
-document.addEventListener('click', function(e) {
-  if (window.innerWidth >= 992) return;
-  // Catch bag icon, #vue-cart links, cart-handle, showCartPreview
-  var cartLink = e.target.closest('a[href*="vue-cart"], .cart-handle, .floating-cart button, [onclick*="showDrawerCart"]');
-  if (cartLink) {
-    e.preventDefault();
-    e.stopPropagation();
-    toggleMobileCart(true);
-    return;
-  }
-});
-// Also open on hash
-if (window.location.hash === '#vue-cart' && window.innerWidth < 992) {
-  setTimeout(function() { toggleMobileCart(true); }, 500);
-}
-
 // ═══ CNC Pickup buttons ═══
-function setCncPickup(mode) {
-  var statusEl = document.getElementById('cnc-pickup-status') || document.getElementById('cnc-pickup-status-desktop');
-  var statusEl2 = document.getElementById('cnc-pickup-status-desktop');
-  var btnNow = document.querySelector('.cnc-btn-pickup-now');
-  var btnLater = document.querySelector('.cnc-btn-pickup-later');
+function cncUpdatePickupStatus(text) {
+  document.querySelectorAll('#cnc-pickup-status, #cnc-pickup-status-desktop').forEach(function(el){ el.textContent = text; });
+}
 
+function setCncPickup(mode) {
   if (mode === 'now') {
-    // Karenderia's setCookie stores raw value, getCookie does JSON.parse
-    // So we must pass the JSON STRING, not the object
     if (typeof setCookie === 'function') {
       setCookie('choosen_delivery', JSON.stringify({whento_deliver: 'now', delivery_date: '', delivery_time: '', transaction_type: 'pickup'}), 30);
     }
-    statusEl.textContent = 'Du afhenter nu';
-    if (statusEl2) statusEl2.textContent = 'Du afhenter nu';
-    // Sync all pickup buttons on page
+    cncUpdatePickupStatus('Du afhenter nu');
     document.querySelectorAll('.cnc-btn-pickup-now').forEach(function(b){b.classList.add('active');});
     document.querySelectorAll('.cnc-btn-pickup-later').forEach(function(b){b.classList.remove('active');});
     if (typeof vue_cart !== 'undefined') vue_cart.loadcart();
   } else {
-    // Open Karenderia's built-in time picker
-    if (typeof ps !== 'undefined' && ps.$refs && ps.$refs.select_time) {
-      ps.show();
-    } else {
-      statusEl.textContent = 'Vælg tidspunkt ved kassen';
-      if (statusEl2) statusEl2.textContent = 'Vælg tidspunkt ved kassen';
-    }
+    // Update buttons immediately
     document.querySelectorAll('.cnc-btn-pickup-later').forEach(function(b){b.classList.add('active');});
     document.querySelectorAll('.cnc-btn-pickup-now').forEach(function(b){b.classList.remove('active');});
+    // Open Karenderia's schedule-order time picker — wait for ps if not loaded yet
+    function openSchedulePicker() {
+      if (typeof ps !== 'undefined' && ps.$refs && ps.$refs.select_time) {
+        ps.show();
+      } else {
+        setTimeout(openSchedulePicker, 100);
+      }
+    }
+    openSchedulePicker();
   }
 }
 
-// Fix any broken cookie first, then auto-set pickup now
+// Fix any broken cookie on load
 (function() {
-  // Clear broken cookie
   try {
     var raw = document.cookie.match(/choosen_delivery=([^;]*)/);
-    if (raw && raw[1]) {
-      var decoded = decodeURIComponent(raw[1]);
-      JSON.parse(decoded); // test if valid
-    }
+    if (raw && raw[1]) { JSON.parse(decodeURIComponent(raw[1])); }
   } catch(e) {
-    // Cookie is malformed, delete it
     document.cookie = 'choosen_delivery=;path=/;max-age=0';
   }
 })();
 
-// Wait for Karenderia JS to load, then set default
+// Init: set default pickup mode & hook into schedule-order save
 var _cncPickupInit = setInterval(function() {
-  if (typeof setCookie === 'function') {
-    clearInterval(_cncPickupInit);
-    try {
-      var existing = getCookie('choosen_delivery');
-      if (!existing || !existing.whento_deliver) {
-        setCncPickup('now');
-      } else if (existing.whento_deliver === 'now') {
-        document.querySelector('.cnc-btn-pickup-now').classList.add('active');
-        document.getElementById('cnc-pickup-status').textContent = 'Du afhenter nu';
-      } else {
-        document.querySelector('.cnc-btn-pickup-later').classList.add('active');
-        document.getElementById('cnc-pickup-status').textContent = 'Afhentning planlagt';
-      }
-    } catch(e) { setCncPickup('now'); }
-  }
+  if (typeof setCookie !== 'function' || typeof ps === 'undefined') return;
+  clearInterval(_cncPickupInit);
+
+  // Restore button state from cookie
+  try {
+    var existing = getCookie('choosen_delivery');
+    if (!existing || !existing.whento_deliver) {
+      setCncPickup('now');
+    } else if (existing.whento_deliver === 'now') {
+      document.querySelectorAll('.cnc-btn-pickup-now').forEach(function(b){b.classList.add('active');});
+      cncUpdatePickupStatus('Du afhenter nu');
+    } else {
+      document.querySelectorAll('.cnc-btn-pickup-later').forEach(function(b){b.classList.add('active');});
+      cncUpdatePickupStatus('Afhentning planlagt');
+    }
+  } catch(e) { setCncPickup('now'); }
+
+  // Patch schedule-order: after user picks a time, update pickup buttons
+  var _origSave = ps.afterSaveTransOptions;
+  ps.afterSaveTransOptions = function(e) {
+    if (_origSave) _origSave.call(ps, e);
+    document.querySelectorAll('.cnc-btn-pickup-later').forEach(function(b){b.classList.add('active');});
+    document.querySelectorAll('.cnc-btn-pickup-now').forEach(function(b){b.classList.remove('active');});
+    cncUpdatePickupStatus('Afhentning planlagt');
+  };
 }, 200);
 </script>
 	    

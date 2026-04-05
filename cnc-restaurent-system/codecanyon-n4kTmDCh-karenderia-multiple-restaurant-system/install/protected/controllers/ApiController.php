@@ -1958,8 +1958,43 @@ class ApiController extends SiteCommon
 		           $digit_code = CommonUtility::generateNumber(4,true);
 		           $model->mobile_verification_code = $digit_code;
 				   $model->scenario="resend_otp";
-		           if($model->save()){		   
-		           	   // SEND EMAIL HERE         
+		           if($model->save()){
+
+		           	   $options = OptionsTools::find(array('signup_verification_tpl'));
+		           	   $template_id = isset($options['signup_verification_tpl'])?$options['signup_verification_tpl']:'';
+
+		           	   if(!empty($template_id)){
+		           	       $site = CNotifications::getSiteData();
+		           	       $data = array(
+		           	         'first_name'=>$model->first_name,
+		           	         'last_name'=>$model->last_name,
+		           	         'email_address'=>$model->email_address,
+		           	         'code'=>$digit_code,
+		           	         'site'=>$site,
+		           	         'logo'=>isset($site['logo'])?$site['logo']:'',
+		           	       );
+
+		           	       $path = Yii::getPathOfAlias('backend_webroot')."/twig";
+		           	       $loader = new \Twig\Loader\FilesystemLoader($path);
+		           	       $twig = new \Twig\Environment($loader, [
+		           	           'cache' => $path."/compilation_cache",
+		           	           'debug'=>true
+		           	       ]);
+
+		           	       $templates = CTemplates::get($template_id, array('email'), Yii::app()->language);
+		           	       foreach ($templates as $items) {
+		           	           if($items['template_type']=="email" && $items['enabled_email']==1){
+		           	               $email_subject = isset($items['title'])?$items['title']:'';
+		           	               $template = isset($items['content'])?$items['content']:'';
+		           	               $twig_template = $twig->createTemplate($template);
+		           	               $template = $twig_template->render($data);
+		           	               $twig_subject = $twig->createTemplate($email_subject);
+		           	               $email_subject = $twig_subject->render($data);
+		           	               CommonUtility::sendEmail($model->email_address, $model->first_name, $email_subject, $template);
+		           	           }
+		           	       }
+		           	   }
+
 			           $this->code = 1;
 			           $this->msg = t("We sent a code to {{email_address}}.",array(
 			             '{{email_address}}'=> CommonUtility::maskEmail($model->email_address)
