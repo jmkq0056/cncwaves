@@ -448,6 +448,19 @@ components-location-estimation,
   display: none !important;
 }
 
+/* ═══ MENU ITEM IMAGES — 1:1 aspect ratio ═══ */
+.item-image-preview .el-image {
+  aspect-ratio: 1 / 1 !important;
+  height: auto !important;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.item-image-preview .el-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 /* ═══ QTY BUTTONS — white icons on dark background ═══ */
 .qty-btn i,
 .qty-btn .zmdi {

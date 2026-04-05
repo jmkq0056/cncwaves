@@ -245,6 +245,42 @@ fbq('track', 'PageView');
 		} else $this->render("//store/404-page");		
 	}
 	
+	public function actionlanding()
+	{
+		$options = array('contact_email_receiver','contact_field','contact_content','contact_enabled_captcha','captcha_site_key','captcha_lang');
+		$data = OptionsTools::find($options);
+		$contact_email_receiver = isset($data['contact_email_receiver'])?$data['contact_email_receiver']:'';
+		$contact_field = isset($data['contact_field'])?$data['contact_field']:false;
+		$contact_field = !empty($contact_field)?json_decode($contact_field,true):false;
+		$contact_enabled_captcha = isset($data['contact_enabled_captcha'])?$data['contact_enabled_captcha']:false;
+		$contact_enabled_captcha = $contact_enabled_captcha==1?true:false;
+		$captcha_site_key = isset($data['captcha_site_key'])?$data['captcha_site_key']:'';
+		$captcha_lang = isset($data['captcha_lang'])?$data['captcha_lang']:'en';
+
+		$model = new AR_contact();
+		if(isset($_POST['AR_contact'])){
+			$model->attributes=$_POST['AR_contact'];
+			$model->capcha = $contact_enabled_captcha;
+			$model->recaptcha_response = isset($_POST['recaptcha_response'])?$_POST['recaptcha_response']:'';
+			if($model->validate()){
+				$model->receiver_email_address = $contact_email_receiver;
+				if($model->save()){
+					Yii::app()->user->setFlash('success',t("Your request has been sent."));
+					$this->refresh();
+				} else Yii::app()->user->setFlash('error', CommonUtility::parseModelErrorToString( $model->getErrors(),"<br/>" ));
+			} else Yii::app()->user->setFlash('error', CommonUtility::parseModelErrorToString( $model->getErrors(),"<br/>" ));
+		}
+
+		$this->pageTitle = 'Chicken N Chicken Waves - Bestil Online';
+		$this->render('landing',[
+			'model'=>$model,
+			'contact_field'=>$contact_field,
+			'enabled_captcha'=>$contact_enabled_captcha,
+			'captcha_site_key'=>$captcha_site_key,
+			'captcha_lang'=>$captcha_lang
+		]);
+	}
+
 	public function actioncontactus()
 	{
 		
