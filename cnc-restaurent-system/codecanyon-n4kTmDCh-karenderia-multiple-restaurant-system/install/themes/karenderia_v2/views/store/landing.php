@@ -30,6 +30,7 @@ Yii::app()->clientScript->registerMetaTag('da_DK', null, null, array('property'=
   height: auto;
   position: relative;
   margin-bottom: 16px;
+  filter: brightness(0) invert(1);
 }
 .cnc-hero .location-name {
   font-size: 52px;
@@ -179,21 +180,6 @@ Yii::app()->clientScript->registerMetaTag('da_DK', null, null, array('property'=
   color: #fff;
 }
 
-.cnc-footer-landing {
-  background: #3d0d0f;
-  padding: 30px 20px;
-  text-align: center;
-}
-.cnc-footer-landing p {
-  color: #999;
-  font-size: 13px;
-  margin: 4px 0;
-}
-.cnc-footer-landing a {
-  color: #f17d00;
-  text-decoration: none;
-}
-
 @media (max-width: 600px) {
   .cnc-hero { padding: 40px 16px 50px; }
   .cnc-hero .cnc-logo-img { max-width: 240px; }
@@ -286,12 +272,5 @@ Yii::app()->clientScript->registerMetaTag('da_DK', null, null, array('property'=
   <?php $this->endWidget(); ?>
 </div>
 
-<!-- FOOTER -->
-<div class="cnc-footer-landing">
-  <p style="color:#f17d00;font-weight:700;font-size:16px;margin-bottom:8px;">Chicken N Chicken Waves</p>
-  <p>Over B&oslash;lgen 3, st. 1 &middot; 2670 Greve</p>
-  <p><a href="mailto:contact@chickenwaves.dk">contact@chickenwaves.dk</a></p>
-  <p style="margin-top:12px;">&copy; <?php echo date('Y')?> Chicken N Chicken. Alle rettigheder forbeholdes.</p>
-</div>
 
 </div>
