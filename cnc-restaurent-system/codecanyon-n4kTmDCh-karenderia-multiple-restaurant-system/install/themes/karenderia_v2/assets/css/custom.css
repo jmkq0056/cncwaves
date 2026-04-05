@@ -482,10 +482,12 @@ components-location-estimation,
   color: #000 !important;
 }
 
-/* ═══ CATEGORY DRAWER — badge text white on dark bg ═══ */
-.drawer-category .badge,
-.drawer-category .list-group-item .badge {
+/* ═══ CATEGORY DRAWER — item count pill white text ═══ */
+.drawer-category .btn-circle,
+.drawer-category .bg-light.btn-circle,
+.drawer-category .list-group-item .btn-circle {
   color: #fff !important;
+  background: var(--cnc-red) !important;
 }
 
 /* ═══ QTY BUTTONS — white icons on dark background ═══ */
