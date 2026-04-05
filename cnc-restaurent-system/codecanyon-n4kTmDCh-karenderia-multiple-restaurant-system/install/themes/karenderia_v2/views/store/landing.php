@@ -196,36 +196,36 @@ Yii::app()->clientScript->registerMetaTag('da_DK', null, null, array('property'=
 <div class="cnc-hero">
   <img src="<?php echo Yii::app()->getBaseUrl()?>/upload/cnc-logo.png" alt="Chicken N Chicken" class="cnc-logo-img">
   <h2 class="location-name"><span>Waves</span> <span class="location-dot">&middot;</span> Greve</h2>
-  <p class="tagline">Friske burgere, crispy chicken og meget mere</p>
-  <a href="<?php echo Yii::app()->createUrl('/chicken-n-chicken')?>" class="cta">Bestil online</a>
+  <p class="tagline"><?php echo t("Fresh burgers, crispy chicken and much more")?></p>
+  <a href="<?php echo Yii::app()->createUrl('/chicken-n-chicken')?>" class="cta"><?php echo t("Order online")?></a>
 </div>
 
 <!-- FEATURES -->
 <div class="cnc-features">
   <div class="cnc-feature">
     <div class="cnc-feature-icon"><i class="zmdi zmdi-shopping-basket"></i></div>
-    <h3>Bestil online</h3>
-    <p>Bestil direkte fra vores menu og hent i butikken</p>
+    <h3><?php echo t("Order online")?></h3>
+    <p><?php echo t("Order directly from our menu and pick up in store")?></p>
   </div>
   <div class="cnc-feature">
     <div class="cnc-feature-icon"><i class="zmdi zmdi-time"></i></div>
-    <h3>Afhent nu eller senere</h3>
-    <p>V&aelig;lg det tidspunkt der passer dig bedst</p>
+    <h3><?php echo t("Pickup now or later")?></h3>
+    <p><?php echo t("Choose the time that suits you best")?></p>
   </div>
   <div class="cnc-feature">
     <div class="cnc-feature-icon"><i class="zmdi zmdi-star"></i></div>
-    <h3>4.8 ud af 5</h3>
-    <p>Vores kunder elsker vores mad</p>
+    <h3><?php echo t("4.8 out of 5")?></h3>
+    <p><?php echo t("Our customers love our food")?></p>
   </div>
 </div>
 
 <!-- OPENING HOURS -->
 <div class="cnc-hours">
-  <h2>&Aring;bningstider</h2>
+  <h2><?php echo t("Opening hours")?></h2>
   <div class="cnc-hours-grid">
-    <b>Mandag - Torsdag</b> 11:00 - 22:00<br>
-    <b>Fredag - L&oslash;rdag</b> 11:00 - 22:00<br>
-    <b>S&oslash;ndag</b> 11:00 - 22:00
+    <b><?php echo t("Monday - Thursday")?></b> 11:00 - 22:00<br>
+    <b><?php echo t("Friday - Saturday")?></b> 11:00 - 22:00<br>
+    <b><?php echo t("Sunday")?></b> 11:00 - 22:00
   </div>
   <p style="margin-top:16px;color:#666;font-size:14px;">
     <i class="zmdi zmdi-pin mr-1"></i>Over B&oslash;lgen 3, st. 1 &middot; 2670 Greve
@@ -234,8 +234,8 @@ Yii::app()->clientScript->registerMetaTag('da_DK', null, null, array('property'=
 
 <!-- CONTACT FORM -->
 <div class="cnc-contact">
-  <h2>Kontakt os</h2>
-  <p class="contact-sub">Har du sp&oslash;rgsm&aring;l? Skriv til os herunder.</p>
+  <h2><?php echo t("Contact us")?></h2>
+  <p class="contact-sub"><?php echo t("Have questions? Write to us below.")?></p>
 
   <?php if(Yii::app()->user->hasFlash('success')): ?>
   <div class="alert alert-success" style="background:#d4edda;color:#155724;padding:12px;border-radius:8px;margin-bottom:16px;text-align:center;">
@@ -258,16 +258,16 @@ Yii::app()->clientScript->registerMetaTag('da_DK', null, null, array('property'=
   <?php if(is_array($contact_field)):?>
   <?php foreach ($contact_field as $item):?>
     <?php if($item=="message"):?>
-      <textarea name="AR_contact[<?php echo $item?>]" class="form-control" placeholder="Din besked..." ><?php echo CHtml::encode($model->$item)?></textarea>
+      <textarea name="AR_contact[<?php echo $item?>]" class="form-control" placeholder="<?php echo t("Your message")?>" ><?php echo CHtml::encode($model->$item)?></textarea>
     <?php else:?>
       <input type="<?php echo $item=='email_address'?'email':'text'?>" name="AR_contact[<?php echo $item?>]" class="form-control"
-        placeholder="<?php echo $item=='fullname'?'Dit navn':'Din email'?>"
+        placeholder="<?php echo $item=='fullname'?t("Your name"):t("Your email")?>"
         value="<?php echo CHtml::encode($model->$item)?>" />
     <?php endif?>
   <?php endforeach;?>
   <?php endif?>
 
-  <button type="submit" class="btn-submit">Send besked</button>
+  <button type="submit" class="btn-submit"><?php echo t("Send message")?></button>
 
   <?php $this->endWidget(); ?>
 </div>

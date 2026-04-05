@@ -100,7 +100,7 @@
  
  </li>
  <li class="d-none d-lg-inline">
-   <a href="<?php echo Yii::app()->createUrl('/contactus')?>" class="ml-2"><?php echo t("Kontakt")?></a>
+   <a href="<?php echo Yii::app()->createUrl('/contactus')?>" class="ml-2"><?php echo t("Contact")?></a>
  </li>
  <li class="d-none d-lg-inline line-left">
  <a
@@ -231,7 +231,7 @@
 
 	<li>
 		<a href="<?php echo Yii::app()->createUrl('/contactus')?>">
-		<i class="zmdi zmdi-email mr-2"></i><?php echo t("Kontakt")?>
+		<i class="zmdi zmdi-email mr-2"></i><?php echo t("Contact")?>
 		</a>
 	</li>
 	<li>
