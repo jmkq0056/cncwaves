@@ -20,7 +20,7 @@
 	'home_search_mode'=>isset($home_search_mode)?$home_search_mode:''
 ])?>
 
-<div class="container pt-2 pb-2">
+<div class="container pt-2 pb-2 d-block d-lg-none">
    <h5 class="m-0"><?php echo $data['restaurant_name']?></h5> 
    
    <a href="#section-address" class="d-block chevron center position-relative no-hover">
