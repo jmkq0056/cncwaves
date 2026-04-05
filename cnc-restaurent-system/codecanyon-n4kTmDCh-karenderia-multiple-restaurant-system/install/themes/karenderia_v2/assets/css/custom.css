@@ -446,6 +446,12 @@ components-location-estimation,
   display: none !important;
 }
 
+/* ═══ QTY BUTTONS — white icons on dark background ═══ */
+.qty-btn i,
+.qty-btn .zmdi {
+  color: #fff !important;
+}
+
 /* ═══ MOBILE CART — floating button z-index ═══ */
 @media (max-width: 991px) {
   .floating-cart {
@@ -535,6 +541,25 @@ button.add_to_cart:disabled,
   background: var(--cnc-dark);
   border-color: var(--cnc-dark);
   color: #fff;
+}
+.cnc-btn-contact {
+  width: 42px;
+  height: 42px;
+  border-radius: 50% !important;
+  background: var(--cnc-dark) !important;
+  color: #fff !important;
+  border: 2px solid var(--cnc-dark) !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 0 !important;
+  font-size: 18px;
+  transition: all 0.2s;
+}
+.cnc-btn-contact:hover {
+  background: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+  color: #000 !important;
 }
 .cnc-pickup-status {
   font-size: 13px;

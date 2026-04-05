@@ -25,24 +25,9 @@
    
    <a href="#section-address" class="d-block chevron center position-relative no-hover">
 	    <p class="font-weight-bolder m-0">
-			<span class="mr-1"><i class="zmdi zmdi-star"></i></span>
-			<span class="mr-1">(<?php echo t("{{rating}} ratings",array('{{rating}}'=>$data['review_count']))?>)</span>			
-			<!-- <span>&bull; <?php echo $data['cuisine'][0]?> &bull; $<span> -->
-			<span>
-			&bull; 
-			<?php if(is_array($data['cuisine']) && count($data['cuisine'])>=1):?> 
-			<?php foreach ($data['cuisine'] as $cuisine_key=> $item_cuisine):?>
-				 <?php echo $item_cuisine;?>,
-				 <?php 
-				 if($cuisine_key>0){
-					 break;
-				 }
-				 ?>
-		    <?php endforeach?>
-		    <?php endif?>
-			&bull; <?php echo Price_Formatter::$number_format['currency_symbol'];?>
-			<span>
-		</p>		
+			<span class="mr-1"><i class="zmdi zmdi-star"></i><i class="zmdi zmdi-star"></i><i class="zmdi zmdi-star"></i><i class="zmdi zmdi-star"></i><i class="zmdi zmdi-star-half"></i></span>
+			<span class="mr-1">4.8 (27)</span>
+		</p>
 		<p class="font-weight-light m-0"><?php echo t("Tap for hours,address, and more")?></p>
 	</a>
 
@@ -55,6 +40,7 @@
 			<button class="btn cnc-btn-pickup-later" onclick="setCncPickup('later')">
 				Afhent senere
 			</button>
+			<button class="btn cnc-btn-contact" title="Kontakt os" onclick="if(typeof Tawk_API!=='undefined')Tawk_API.maximize()"><i class="zmdi zmdi-comment-text"></i></button>
 		</div>
 		<p class="cnc-pickup-status mt-2 mb-0" id="cnc-pickup-status"></p>
 		<?php if($home_search_mode=="address"):?>

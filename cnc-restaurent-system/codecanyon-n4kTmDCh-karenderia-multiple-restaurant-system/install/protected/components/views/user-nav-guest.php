@@ -23,8 +23,11 @@
  </a>
  
  </li>
-<li class="d-none d-lg-inline line-left">
-   <a href="<?php echo Yii::app()->createUrl("/account/login")?>"><?php echo t("Sign in")?></a>  
+<li class="d-none d-lg-inline">
+   <a href="<?php echo Yii::app()->createUrl('/contactus')?>" class="ml-2"><?php echo t("Kontakt")?></a>
+ </li>
+ <li class="d-none d-lg-inline line-left">
+   <a href="<?php echo Yii::app()->createUrl("/account/login")?>"><?php echo t("Sign in")?></a>
  </li>
 
  <li class="ml-3 ml-xs-1  d-inline d-lg-none">
@@ -70,6 +73,7 @@
    <ul class="list-unstyled">
       <li><a href="<?php echo Yii::app()->createUrl("/merchant")?>"><?php echo t("Add your restaurant")?></a></li>
       <li><a href="<?php echo Yii::app()->createUrl("/deliveryboy/signup")?>"><?php echo t("Sign up to deliver")?></a></li>
+      <li><a href="<?php echo Yii::app()->createUrl('/contactus')?>"><i class="zmdi zmdi-email mr-2"></i><?php echo t("Kontakt")?></a></li>
    </ul>
 
    <hr/>

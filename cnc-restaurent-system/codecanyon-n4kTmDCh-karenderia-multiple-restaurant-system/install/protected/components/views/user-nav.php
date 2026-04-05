@@ -99,8 +99,11 @@
  
  
  </li>
+ <li class="d-none d-lg-inline">
+   <a href="<?php echo Yii::app()->createUrl('/contactus')?>" class="ml-2"><?php echo t("Kontakt")?></a>
+ </li>
  <li class="d-none d-lg-inline line-left">
- <a 
+ <a
    href="<?php echo $cart_preview==true?'javascript:;':'#vue-cart'?>"
    class="<?php echo $cart_preview==true?'ssm-toggle-navx':''?>"
    <?php if($cart_preview):?>
@@ -227,9 +230,14 @@
 	<?php endif;?>
 
 	<li>
+		<a href="<?php echo Yii::app()->createUrl('/contactus')?>">
+		<i class="zmdi zmdi-email mr-2"></i><?php echo t("Kontakt")?>
+		</a>
+	</li>
+	<li>
 		<a class="with-icon-logout" href="<?php echo Yii::app()->createUrl("/account/logout")?>">
 		<?php echo t("Logout")?>
-		</a>			         
+		</a>
 	</li>
    </ul>
  </div>

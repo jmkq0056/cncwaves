@@ -54,30 +54,17 @@
 						<h4><?php echo CommonUtility::safeDecode($data['restaurant_name'])?></h4>
 
 						<ul class="p-0 m-0 mb-1">
-							<?php if($enabled_review):?>
-							<li class="mr-1"><i class="zmdi zmdi-star"></i></li>
-							<li>
-							<a href="#section-review">
-							<b><?php echo Price_Formatter::convertToRaw($data['ratings'],1)?></b> 
-							<span>
-							<?php echo t("+{rating} ratings",[
-								'{rating}'=>isset($data['review_count'])?intval($data['review_count']):0
-							])?>
-							</span>
-							</a>
-							</li>			
-							<?php endif;?>			
+							<li class="mr-1"><i class="zmdi zmdi-star"></i><i class="zmdi zmdi-star"></i><i class="zmdi zmdi-star"></i><i class="zmdi zmdi-star"></i><i class="zmdi zmdi-star-half"></i></li>
+							<li><b>4.8</b> <span>(27)</span></li>
 							<?php if(!empty($open_end)):?>
-							<div class="info-items-dot-separator"></div>		
+							<div class="info-items-dot-separator"></div>
 							<li class="mr-1"><i class="zmdi zmdi-time"></i></li>
 							<li>
 								<?php echo t("Open until {ends}",[
 									'{ends}'=>$open_end
 								])?>
-							</li>						
-							<?php endif;?>						
-
-							<!-- Distance hidden for pickup-only -->
+							</li>
+							<?php endif;?>
 						</ul>					
 
 					</template>
@@ -95,6 +82,7 @@
 					<div class="pt-2 cnc-pickup-buttons">
 						<button class="btn cnc-btn-pickup-now" onclick="setCncPickup('now')">Afhent nu</button>
 						<button class="btn cnc-btn-pickup-later" onclick="setCncPickup('later')">Afhent senere</button>
+						<button class="btn cnc-btn-contact" title="Kontakt os" onclick="if(typeof Tawk_API!=='undefined')Tawk_API.maximize()"><i class="zmdi zmdi-comment-text"></i></button>
 					</div>
 					<p class="cnc-pickup-status mt-1 mb-0" id="cnc-pickup-status-desktop"></p>									
 					
