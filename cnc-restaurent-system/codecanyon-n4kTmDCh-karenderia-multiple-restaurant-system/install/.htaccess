@@ -10,6 +10,9 @@ RewriteRule . /index.php [L]
 </IfModule>
 
 <IfModule mod_headers.c>
+  # Kill cached 302 redirects on root
+  Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0" "expr=%{REQUEST_URI} == '/'"
+
   <FilesMatch "\.(mp3|m4a|wav|webm)$">
     Header set Access-Control-Allow-Origin "*"
   </FilesMatch>

@@ -95,20 +95,7 @@
 
 		   </div>
 		   <!-- col -->
-		   <div class="col-6 right-infox position-relative rounded" >               			   
-			   <div class="fav-wrap" style="z-index: 99;">
-					<component-save-store
-					:active="found"
-					:merchant_id="<?php echo intval($data['merchant_id'])?>"
-					@after-save="getSaveStore"
-					:is_guest="<?php echo Yii::app()->user->isGuest;?>"
-					please_login="<?php echo CHtml::encode(t("Login to save it to your favorites"))?>"
-					/>
-					</component-save-store>	        
-				</div>	     
-				<?php if(!empty($data['url_header']) && $data['has_header'] ):?>
-				<el-image class="w-100" style="max-height: 250px;" src="<?php echo $data['url_header']?>" fit="contain" lazy ></el-image>
-				<?php endif;?>
+		   <!-- Banner/heart column hidden for CNC single-restaurant -->
 		   </div>
 		   <!-- col -->
 		</div>
@@ -122,25 +109,4 @@
 <!-- </DIV> -->
 <!-- vue-merchant-details -->
 
-<!-- mobile view -->
-<div class="d-block d-lg-none">
- <div class="top-merchant-details mobile-merchant-details position-relative">
-
- 
- <div class="sub">
-	 <div class="container p-4">
-     <div class="d-flex justify-content-end">		
-		<template v-if="!is_loading"> 	          
-		<component-save-store
-			:active="found"
-			:merchant_id="<?php echo intval($data['merchant_id'])?>"
-			@after-save="getSaveStore"
-		/>
-		</component-save-store>	        
-		</template>
-	</div>  <!-- d-flex -->	
-	</div> <!--  container -->
- </div> 
- <!-- sub -->
-</div>   
-<!-- top-merchant-details -->
+<!-- mobile banner hidden for CNC single-restaurant -->

@@ -68,8 +68,15 @@ fbq('track', 'PageView');
 	}			  
 	
 	public function actionIndex()
-	{							
-						
+	{
+		header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+		header('Pragma: no-cache');
+		$this->actionlanding();
+		Yii::app()->end();
+	}
+
+	public function actionIndexOld()
+	{
 		AssetsFrontBundle::includeMaps();
 		
 		ScriptUtility::registerScript(array(			

@@ -41,10 +41,17 @@ id="itemModal" tabindex="-1" role="dialog" aria-labelledby="itemModal" aria-hidd
       <template v-if="items!=''">
       
        <div class="item_s" :data-item_token="items.item_token" >        
-        <el-image
-          style="width: 100%; height: 170px"        
+        <img
+          style="width: 100%; display: block; border-radius: 8px; cursor: zoom-in;"
           :src="image_featured ? image_featured : items.url_image"
-          :fit="cover"          
+          @click="$refs.imgViewer && $refs.imgViewer.click()"
+        />
+        <el-image
+          ref="imgViewer"
+          style="width:0;height:0;overflow:hidden;position:absolute;"
+          :src="image_featured ? image_featured : items.url_image"
+          :preview-src-list="[image_featured ? image_featured : items.url_image]"
+          :hide-on-click-modal="true"
         ></el-image>
        </div> <!--item_s-->
        

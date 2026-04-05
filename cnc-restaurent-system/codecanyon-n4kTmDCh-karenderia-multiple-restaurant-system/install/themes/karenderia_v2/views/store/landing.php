@@ -1,8 +1,8 @@
 <style>
 .cnc-landing * { box-sizing: border-box; }
 .cnc-hero {
-  background: linear-gradient(135deg, #3d0d0f 0%, #5a1518 50%, #3d0d0f 100%);
-  padding: 80px 20px;
+  background: linear-gradient(160deg, #3d0d0f 0%, #5a1518 40%, #3d0d0f 100%);
+  padding: 60px 20px 70px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -12,27 +12,36 @@
   position: absolute;
   top: -50%; left: -50%;
   width: 200%; height: 200%;
-  background: radial-gradient(circle at 30% 70%, rgba(241,125,0,0.15) 0%, transparent 50%);
+  background: radial-gradient(circle at 30% 70%, rgba(241,125,0,0.12) 0%, transparent 50%);
 }
-.cnc-hero h1 {
-  color: #f17d00;
-  font-size: 48px;
+.cnc-hero .cnc-logo-img {
+  max-width: 340px;
+  width: 80%;
+  height: auto;
+  position: relative;
+  filter: brightness(0) invert(1);
+  margin-bottom: 16px;
+}
+.cnc-hero .location-name {
+  font-size: 52px;
   font-weight: 800;
-  letter-spacing: 2px;
+  color: #fff;
+  letter-spacing: 3px;
   margin: 0;
   position: relative;
+  text-transform: uppercase;
 }
-.cnc-hero h1 span { color: #fff; }
-.cnc-hero .subtitle {
-  color: #ccc;
-  font-size: 18px;
-  margin: 8px 0 0;
-  position: relative;
+.cnc-hero .location-name span {
+  color: #f17d00;
+}
+.cnc-hero .location-dot {
+  color: #f17d00;
+  margin: 0 6px;
 }
 .cnc-hero .tagline {
-  color: #fff;
-  font-size: 22px;
-  margin: 24px 0 32px;
+  color: rgba(255,255,255,0.7);
+  font-size: 18px;
+  margin: 16px 0 32px;
   font-weight: 300;
   position: relative;
 }
@@ -177,9 +186,10 @@
 }
 
 @media (max-width: 600px) {
-  .cnc-hero { padding: 50px 16px; }
-  .cnc-hero h1 { font-size: 32px; }
-  .cnc-hero .tagline { font-size: 17px; }
+  .cnc-hero { padding: 40px 16px 50px; }
+  .cnc-hero .cnc-logo-img { max-width: 240px; }
+  .cnc-hero .location-name { font-size: 32px; letter-spacing: 2px; }
+  .cnc-hero .tagline { font-size: 15px; }
   .cnc-hero .cta { padding: 14px 36px; font-size: 16px; }
   .cnc-features { gap: 24px; padding: 30px 16px; }
 }
@@ -189,8 +199,8 @@
 
 <!-- HERO -->
 <div class="cnc-hero">
-  <h1>Chicken <span>N</span> Chicken</h1>
-  <p class="subtitle">Waves &middot; Greve</p>
+  <img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/cnc-logo-full.png" alt="Chicken N Chicken" class="cnc-logo-img">
+  <h2 class="location-name"><span>Waves</span> <span class="location-dot">&middot;</span> Greve</h2>
   <p class="tagline">Friske burgere, crispy chicken og meget mere</p>
   <a href="<?php echo Yii::app()->createUrl('/chicken-n-chicken')?>" class="cta">Bestil online</a>
 </div>
@@ -218,9 +228,9 @@
 <div class="cnc-hours">
   <h2>&Aring;bningstider</h2>
   <div class="cnc-hours-grid">
-    <b>Mandag - Torsdag</b> 11:00 - 23:00<br>
-    <b>Fredag - L&oslash;rdag</b> 11:00 - 23:00<br>
-    <b>S&oslash;ndag</b> 11:00 - 23:00
+    <b>Mandag - Torsdag</b> 11:00 - 22:00<br>
+    <b>Fredag - L&oslash;rdag</b> 11:00 - 22:00<br>
+    <b>S&oslash;ndag</b> 11:00 - 22:00
   </div>
   <p style="margin-top:16px;color:#666;font-size:14px;">
     <i class="zmdi zmdi-pin mr-1"></i>Over B&oslash;lgen 3, st. 1 &middot; 2670 Greve
