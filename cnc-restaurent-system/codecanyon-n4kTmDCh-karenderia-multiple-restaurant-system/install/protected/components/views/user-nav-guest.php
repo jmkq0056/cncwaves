@@ -68,11 +68,9 @@
  >
  
  <template #default>
- <a href="<?php echo Yii::app()->createUrl("/account/login")?>" class="btn btn-black text-white w-100 rounded-0"><?php echo t("Sign in")?></a>
- <div class="mt-4">    
+ <a href="<?php echo Yii::app()->createUrl("/account/login")?>" class="btn w-100 rounded-0" style="background:#f17d00;color:#000;font-weight:700;"><?php echo t("Sign in")?></a>
+ <div class="mt-4">
    <ul class="list-unstyled">
-      <li><a href="<?php echo Yii::app()->createUrl("/merchant")?>"><?php echo t("Add your restaurant")?></a></li>
-      <li><a href="<?php echo Yii::app()->createUrl("/deliveryboy/signup")?>"><?php echo t("Sign up to deliver")?></a></li>
       <li><a href="<?php echo Yii::app()->createUrl('/contactus')?>"><i class="zmdi zmdi-email mr-2"></i><?php echo t("Contact")?></a></li>
    </ul>
 
