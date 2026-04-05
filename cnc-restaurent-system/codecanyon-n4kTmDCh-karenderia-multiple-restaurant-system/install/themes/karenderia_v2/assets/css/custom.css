@@ -483,11 +483,13 @@ components-location-estimation,
 }
 
 /* ═══ CATEGORY DRAWER — item count pill white text ═══ */
-.drawer-category .btn-circle,
-.drawer-category .bg-light.btn-circle,
-.drawer-category .list-group-item .btn-circle {
+.drawer-category .list-group-item .bg-light.btn-circle.rounded-pill,
+.drawer-category .btn-circle.bg-light,
+.drawer-category .btn-circle {
   color: #fff !important;
-  background: var(--cnc-red) !important;
+  background-color: var(--cnc-orange) !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
 }
 
 /* ═══ QTY BUTTONS — white icons on dark background ═══ */
