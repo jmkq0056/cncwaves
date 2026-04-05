@@ -67,12 +67,20 @@ else
     mysql -u root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';" 2>/dev/null
     mysql -u root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';" 2>/dev/null
     mysql -u root -e "FLUSH PRIVILEGES;" 2>/dev/null
-    # Check if DB has tables, if not seed
-    TABLE_COUNT=$(mysql -u root "$DB_NAME" -N -e "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='$DB_NAME';" 2>/dev/null || echo "0")
-    if [ "$TABLE_COUNT" -lt "10" ] 2>/dev/null; then
-        echo "Seeding database..."
-        mysql -u root "$DB_NAME" < /opt/db-seed.sql
-        echo "✓ Database seeded"
+    # Re-seed if seed file changed since last import
+    SEED_FILE="/opt/db-seed.sql"
+    SEED_MARKER="/data/mysql/.seed_hash"
+    NEW_HASH=$(md5sum "$SEED_FILE" 2>/dev/null | cut -d' ' -f1)
+    OLD_HASH=""
+    [ -f "$SEED_MARKER" ] && OLD_HASH=$(cat "$SEED_MARKER")
+    if [ "$NEW_HASH" != "$OLD_HASH" ]; then
+        echo "⏳ New DB seed detected — re-importing..."
+        mysql -u root "$DB_NAME" < "$SEED_FILE" && \
+            echo "$NEW_HASH" > "$SEED_MARKER" && \
+            echo "✓ Database re-seeded successfully" || \
+            echo "⚠ DB seed failed"
+    else
+        echo "✓ DB seed unchanged — skipping"
     fi
     kill $MYSQL_PID 2>/dev/null
     wait $MYSQL_PID 2>/dev/null
