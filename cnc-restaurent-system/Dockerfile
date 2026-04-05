@@ -23,6 +23,9 @@ RUN apt-get update && apt-get install -y \
         opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Install mysql client for DB seeding
+RUN apt-get update && apt-get install -y default-mysql-client && apt-get clean && rm -rf /var/lib/apt/lists/*
+
 # PHP configuration
 RUN echo "upload_max_filesize = 64M" > /usr/local/etc/php/conf.d/uploads.ini \
     && echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/uploads.ini \
@@ -38,6 +41,9 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 
 # Fix permissions for runtime/upload directories
 RUN mkdir -p /var/www/html && chown -R www-data:www-data /var/www/html
+
+# Copy DB seed for Railway re-seeding
+COPY db-seed.sql /var/www/html/db-seed.sql
 
 # Copy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
