@@ -89,8 +89,10 @@ ul.top-menu a:hover,
 /* ═══ BLACK/RED BUTTONS — ALWAYS white text ═══ */
 .btn-black,
 .btn.btn-black,
+a.btn-black,
 button.btn-black,
 .btn-black.w-100,
+.drawer-menu .btn-black,
 .modal .btn-black,
 .modal-footer .btn-black,
 .rounded-button-icon:hover {

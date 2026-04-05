@@ -53,10 +53,9 @@ def get_font(size, style="bold"):
                  "/System/Library/Fonts/Helvetica.ttc"],
         "regular": ["/System/Library/Fonts/Supplemental/Arial.ttf",
                     "/System/Library/Fonts/Helvetica.ttc"],
-        "italic": ["/System/Library/Fonts/Supplemental/Arial Bold Italic.ttf",
-                   "/System/Library/Fonts/Supplemental/Arial Italic.ttf",
-                   "/System/Library/Fonts/Supplemental/Georgia Italic.ttf",
-                   "/System/Library/Fonts/Supplemental/Times New Roman Italic.ttf"],
+        "italic": ["/System/Library/Fonts/Supplemental/Didot.ttc",
+                   "/System/Library/Fonts/Supplemental/Bodoni 72.ttc",
+                   "/System/Library/Fonts/Supplemental/Georgia Italic.ttf"],
     }
     for p in styles.get(style, styles["bold"]):
         try: return ImageFont.truetype(p, size)
@@ -181,11 +180,11 @@ def build():
         (170, 115, 75),   # chocolate brown
     ]
 
-    # Grouped, overlapping, extending to bottom edge
+    # Grouped, overlapping, moved up to show full cups
     positions = [
-        (1, 0,      int(SCREEN_H * 1.02), 1.0),    # Vanilla: center, tallest
-        (0, -1100,  int(SCREEN_H * 1.05), 0.95),   # Strawberry: left, slightly forward
-        (2, 1100,   int(SCREEN_H * 1.05), 0.95),   # Chocolate: right, slightly forward
+        (1, 0,      int(SCREEN_H * 0.93), 1.0),    # Vanilla: center, tallest
+        (0, -1100,  int(SCREEN_H * 0.96), 0.95),   # Strawberry: left, slightly forward
+        (2, 1100,   int(SCREEN_H * 0.96), 0.95),   # Chocolate: right, slightly forward
     ]
 
     for shake_idx, x_off, y_bot, scale_m in positions:
@@ -236,13 +235,14 @@ def build():
         return get_font(100, style=style), 0, 0
 
     # MILKSHAKE — big bold, fills width (keep as-is)
-    f_milk, _, h_milk = fit_font_w("MILKSHAKE", usable_w, 2000, style="bold")
+    f_milk, _, h_milk = fit_font_w("MILKSHAKE", int(usable_w * 0.85), 2000, style="bold")
 
-    # Supporting text — italic tagline feel for top, regular for bottom, same size
-    support_size = int(h_milk * 0.38)
-    f_top = get_font(support_size, style="italic")
+    # Top tagline — bigger elegant serif, bottom — smaller regular
+    top_size = int(h_milk * 0.65)
+    bot_size = int(h_milk * 0.38)
+    f_top = get_font(top_size, style="italic")
     _, h_top = measure(draw, "Drik vores lækre", f_top)
-    f_bot = get_font(support_size, style="regular")
+    f_bot = get_font(bot_size, style="regular")
     _, h_bot = measure(draw, "FRISKE · CREMEDE · LÆKRE", f_bot)
 
     # Distribute spacing — more room below MILKSHAKE
@@ -254,16 +254,16 @@ def build():
 
     # Font descender space makes visual gap uneven — compensate
     # Push bottom text further down so it LOOKS equal to the top gap
-    gap_top = int(total_gaps * 0.12)
-    gap_mid_above = int(total_gaps * 0.22)
-    gap_mid_below = int(total_gaps * 0.40) # much bigger to visually match gap_mid_above
-    gap_bottom = int(total_gaps * 0.26)
+    gap_top = int(total_gaps * 0.10)
+    gap_mid_above = int(total_gaps * 0.20)
+    gap_mid_below = int(total_gaps * 0.38)
+    gap_bottom = int(total_gaps * 0.32)
 
     y_top = usable_top + gap_top + h_top // 2
     y_milk = usable_top + gap_top + h_top + gap_mid_above + h_milk // 2
     y_bot = usable_top + gap_top + h_top + gap_mid_above + h_milk + gap_mid_below + h_bot // 2
 
-    text_centered(draw, "DRIK VORES LÆKRE", tcx, y_top, f_top, fill=CREAM, shadow=8)
+    text_centered(draw, "Drik vores lækre", tcx, y_top, f_top, fill=CREAM, shadow=8)
     text_centered(draw, "MILKSHAKE", tcx, y_milk, f_milk, fill=WHITE, shadow=20)
     text_centered(draw, "FRISKE · CREMEDE · LÆKRE", tcx, y_bot, f_bot, fill=GOLD, shadow=8)
 

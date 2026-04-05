@@ -775,6 +775,10 @@ class CommonUtility
      public static function getHomebaseUrl()
      {
      	 if(IS_FRONTEND){
+			// Docker: strip external port so internal self-callbacks use port 80
+			if(getenv('DB_HOST') === 'db'){
+				return 'http://localhost';
+			}
 			if(self::isSSL()){
 				return Yii::app()->createAbsoluteUrl("/",array(),'https');
 			} else return Yii::app()->createAbsoluteUrl("/");     	 	

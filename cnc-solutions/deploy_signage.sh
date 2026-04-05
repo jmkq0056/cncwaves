@@ -47,8 +47,8 @@ deploy_one() {
     # 3) Kill app + dismiss stuck dialogs in one shot
     adb -s "$DEV" shell "am force-stop $PKG; input keyevent 4; input keyevent 4" 2>/dev/null
 
-    # 4) Disable Play Protect + app verification
-    adb -s "$DEV" shell "settings put global verifier_verify_adb_installs 0; settings put global package_verifier_enable 0" 2>/dev/null
+    # 4) Disable Play Protect + enable NTP time sync (burst sync depends on it)
+    adb -s "$DEV" shell "settings put global verifier_verify_adb_installs 0; settings put global package_verifier_enable 0; settings put global auto_time 1; settings put global auto_time_zone 1" 2>/dev/null
 
     # 5) Uninstall + Install
     adb -s "$DEV" uninstall "$PKG" >> "$LOG" 2>&1

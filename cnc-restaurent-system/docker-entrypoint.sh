@@ -19,6 +19,9 @@ ln -sf /usr/share/zoneinfo/Europe/Copenhagen /etc/localtime
 echo "Europe/Copenhagen" > /etc/timezone
 echo "✓ Timezone set to Europe/Copenhagen"
 
+# Fix Apache ServerName warning
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
 # Ensure writable directories
 chmod -R 777 /var/www/html/protected/runtime 2>/dev/null || true
 chmod -R 777 /var/www/html/upload 2>/dev/null || true

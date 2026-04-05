@@ -1,9 +1,4 @@
 <?php
-require 'mailjet/vendor/autoload.php';
-require 'mailgun/vendor/autoload.php';
-use \Mailjet\Resources;
-use Mailgun\Mailgun;
-
 require 'PHPMailerLib/vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -119,7 +114,8 @@ class CEmailer
                    }
 				   break;
 					
-				case "mailjet":		
+				case "mailjet":
+					 require_once 'mailjet/vendor/autoload.php';
 				     $mj = new \Mailjet\Client($model->api_key,$model->secret_key,true,['version' => 'v3.1']);
 				     
 				     $body = [
