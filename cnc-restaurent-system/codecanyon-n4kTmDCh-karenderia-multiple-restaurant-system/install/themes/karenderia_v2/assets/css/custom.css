@@ -482,6 +482,12 @@ components-location-estimation,
   color: #000 !important;
 }
 
+/* ═══ CATEGORY DRAWER — badge text white on dark bg ═══ */
+.drawer-category .badge,
+.drawer-category .list-group-item .badge {
+  color: #fff !important;
+}
+
 /* ═══ QTY BUTTONS — white icons on dark background ═══ */
 .qty-btn i,
 .qty-btn .zmdi {
