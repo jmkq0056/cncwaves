@@ -489,6 +489,13 @@ div.bg-light.btn-circle.rounded-pill {
   -webkit-text-fill-color: #fff !important;
 }
 
+/* ═══ CART REMOVE BUTTON — white X on dark circle ═══ */
+a.item-remove,
+a.item-remove i {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
 /* ═══ QTY BUTTONS — white icons on dark background ═══ */
 .qty-btn i,
 .qty-btn .zmdi {
