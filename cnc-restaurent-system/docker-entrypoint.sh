@@ -22,21 +22,30 @@ echo "✓ Timezone set to Europe/Copenhagen"
 # Fix Apache ServerName warning
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# Re-seed database on Railway deploy (when RAILWAY_ENVIRONMENT is set)
-if [ -n "$RAILWAY_ENVIRONMENT" ] && [ -f "/var/www/html/db-seed.sql" ]; then
-    echo "⏳ Railway deploy detected — re-seeding database..."
-    # Wait for DB to be ready
-    for i in $(seq 1 30); do
-        if mysql -h"${DB_HOST}" -u"${DB_USER}" -p"${DB_PASSWORD}" "${DB_NAME}" -e "SELECT 1" > /dev/null 2>&1; then
-            break
-        fi
-        echo "  Waiting for database... ($i/30)"
-        sleep 2
-    done
-    # Import seed
-    mysql -h"${DB_HOST}" -u"${DB_USER}" -p"${DB_PASSWORD}" "${DB_NAME}" < /var/www/html/db-seed.sql 2>/dev/null && \
-        echo "✓ Database re-seeded successfully" || \
-        echo "⚠ Database seed failed (may already be up to date)"
+# Re-seed database on deploy (uses PHP — works with any DB config from k-config.php)
+SEED_FILE="/var/www/html/db-seed.sql"
+SEED_MARKER="/var/www/html/protected/runtime/.seed_hash"
+if [ -f "$SEED_FILE" ]; then
+    NEW_HASH=$(md5sum "$SEED_FILE" | cut -d' ' -f1)
+    OLD_HASH=""
+    [ -f "$SEED_MARKER" ] && OLD_HASH=$(cat "$SEED_MARKER")
+    if [ "$NEW_HASH" != "$OLD_HASH" ]; then
+        echo "⏳ New DB seed detected — importing..."
+        php -r "
+        require '/var/www/html/k-config.php';
+        try {
+            \$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
+            \$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            \$sql = file_get_contents('$SEED_FILE');
+            \$pdo->exec(\$sql);
+            echo '✓ Database seeded successfully' . PHP_EOL;
+        } catch (Exception \$e) {
+            echo '⚠ DB seed: ' . \$e->getMessage() . PHP_EOL;
+        }
+        " && echo "$NEW_HASH" > "$SEED_MARKER"
+    else
+        echo "✓ DB seed unchanged — skipping"
+    fi
 fi
 
 # Ensure writable directories
