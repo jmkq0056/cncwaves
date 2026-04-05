@@ -36,16 +36,25 @@
 
 <?php echo $content; ?>
 
-<!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script — only on landing + menu pages, minimized by default -->
 <script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/69d215e0e360ca1c3ce30616/1jleaatpc';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
+  var path = window.location.pathname;
+  if (path === '/' || path.indexOf('/chicken-n-chicken') === 0) {
+    var Tawk_API = window.Tawk_API || {};
+    window.Tawk_API = Tawk_API;
+    Tawk_API.onLoad = function(){
+      Tawk_API.hideWidget();
+    };
+    Tawk_API.customStyle = { zIndex: 999 };
+    var Tawk_LoadStart = new Date();
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/69d215e0e360ca1c3ce30616/1jleaatpc';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  }
 })();
 </script>
 <!--End of Tawk.to Script-->

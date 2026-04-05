@@ -40,7 +40,7 @@
 			<button class="btn cnc-btn-pickup-later" onclick="setCncPickup('later')">
 				<?php echo t("Pickup later")?>
 			</button>
-			<button class="btn cnc-btn-contact" title="<?php echo t("Contact us")?>" onclick="if(typeof Tawk_API!=='undefined')Tawk_API.maximize()"><i class="zmdi zmdi-comment-text"></i></button>
+			<button class="btn cnc-btn-contact" title="<?php echo t("Contact us")?>" onclick="if(typeof Tawk_API!=='undefined'){Tawk_API.showWidget();Tawk_API.maximize()}"><i class="zmdi zmdi-comment-text"></i></button>
 		</div>
 		<p class="cnc-pickup-status mt-2 mb-0" id="cnc-pickup-status"></p>
 		<?php if($home_search_mode=="address"):?>
