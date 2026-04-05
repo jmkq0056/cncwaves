@@ -1,3 +1,13 @@
+<?php
+// SEO meta tags
+Yii::app()->clientScript->registerMetaTag('Chicken N Chicken Waves - Bestil burgere, chicken, wraps og meget mere online. Afhent i Waves, Greve.', 'description');
+Yii::app()->clientScript->registerMetaTag('Chicken N Chicken, Waves, Greve, burger, chicken, bestil online, takeaway, afhentning', 'keywords');
+Yii::app()->clientScript->registerMetaTag('Chicken N Chicken Waves - Bestil Online', null, null, array('property'=>'og:title'));
+Yii::app()->clientScript->registerMetaTag('Friske burgere, crispy chicken og meget mere. Bestil online og afhent i Waves, Greve.', null, null, array('property'=>'og:description'));
+Yii::app()->clientScript->registerMetaTag(Yii::app()->getBaseUrl(true).'/upload/cnc-logo.png', null, null, array('property'=>'og:image'));
+Yii::app()->clientScript->registerMetaTag('website', null, null, array('property'=>'og:type'));
+Yii::app()->clientScript->registerMetaTag('da_DK', null, null, array('property'=>'og:locale'));
+?>
 <style>
 .cnc-landing * { box-sizing: border-box; }
 .cnc-hero {
@@ -19,7 +29,6 @@
   width: 80%;
   height: auto;
   position: relative;
-  filter: brightness(0) invert(1);
   margin-bottom: 16px;
 }
 .cnc-hero .location-name {
@@ -199,7 +208,7 @@
 
 <!-- HERO -->
 <div class="cnc-hero">
-  <img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/cnc-logo-full.png" alt="Chicken N Chicken" class="cnc-logo-img">
+  <img src="<?php echo Yii::app()->getBaseUrl()?>/upload/cnc-logo.png" alt="Chicken N Chicken" class="cnc-logo-img">
   <h2 class="location-name"><span>Waves</span> <span class="location-dot">&middot;</span> Greve</h2>
   <p class="tagline">Friske burgere, crispy chicken og meget mere</p>
   <a href="<?php echo Yii::app()->createUrl('/chicken-n-chicken')?>" class="cta">Bestil online</a>
