@@ -1374,4 +1374,14 @@ label.btn del {
    ═══════════════════════════════════════════════════════════ */
 .section-menu {
   padding-top: 16px !important;
+  padding-bottom: 60px !important;
+}
+/* Hide restaurant details below menu (about, gallery, address, map) */
+.section-menu ~ .container,
+#section-about,
+#section-gallery,
+#section-address,
+#section-reviews,
+.section-menu ~ div.container:not(.section-menu) {
+  display: none !important;
 }
