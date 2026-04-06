@@ -704,7 +704,7 @@ button.add_to_cart:disabled,
 .section-menu section[data-cat_id] > h5,
 section[data-cat_id] > h5 {
   position: sticky;
-  top: 56px;
+  top: 0;
   z-index: 40;
   background: var(--cnc-light);
   padding: 10px 12px;
@@ -726,8 +726,192 @@ section[data-cat_id] + section[data-cat_id] {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   FIX #2: HIDE BREADCRUMB (redundant for single restaurant)
+   FIX #2: MAXIMIZE MENU SPACE — wider menu, tighter layout
    ═══════════════════════════════════════════════════════════ */
+/* Desktop: sidebar slim, menu takes most space, cart fixed width */
+@media (min-width: 992px) {
+  .menu-left {
+    flex: 0 0 150px !important;
+    max-width: 150px !important;
+    padding-right: 0 !important;
+  }
+  .menu-center {
+    flex: 1 !important;
+    max-width: calc(100% - 150px - 300px) !important;
+    padding: 0 15px !important;
+  }
+  .menu-right {
+    flex: 0 0 300px !important;
+    max-width: 300px !important;
+  }
+}
+/* ═══ HERO BANNER — full-width gradient with logo + info ═══ */
+.merchant-top-header {
+  background: linear-gradient(135deg, var(--cnc-dark) 0%, #5a1a1d 50%, var(--cnc-red) 100%) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.merchant-top-header .container {
+  max-width: 100% !important;
+  padding: 20px 30px !important;
+}
+.merchant-top-header .left-info {
+  width: 100% !important;
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+/* Center everything in the banner */
+.merchant-top-header .d-flex.align-items-start {
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center;
+}
+.merchant-top-header .d-flex.align-items-start > .pl-3 {
+  padding-left: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.merchant-top-header .cnc-pickup-buttons {
+  justify-content: center !important;
+}
+.merchant-top-header ul.p-0 {
+  justify-content: center !important;
+}
+.merchant-top-header .row {
+  justify-content: center !important;
+}
+/* White text on dark banner */
+.merchant-top-header h4,
+.merchant-top-header h5,
+.merchant-top-header li,
+.merchant-top-header span,
+.merchant-top-header p,
+.merchant-top-header b,
+.merchant-top-header .text-grey li,
+.merchant-top-header .info-items-dot-separator {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.merchant-top-header .zmdi-star,
+.merchant-top-header .zmdi-star-half,
+.merchant-top-header .zmdi-time {
+  color: var(--cnc-orange) !important;
+  -webkit-text-fill-color: var(--cnc-orange) !important;
+}
+/* Logo on banner — white bg circle, fully visible */
+.merchant-top-header .img-thumbnail {
+  border: none !important;
+  border-radius: 16px !important;
+  background: #fff !important;
+  padding: 6px !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2) !important;
+}
+.merchant-top-header .img-thumbnail .el-image {
+  max-height: 100px !important;
+  min-height: 100px !important;
+  width: 100px !important;
+  min-width: 100px !important;
+}
+.merchant-top-header .img-thumbnail .el-image img {
+  object-fit: contain !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+/* Pickup buttons on banner — invert for visibility */
+.merchant-top-header .cnc-btn-pickup-now,
+.merchant-top-header .cnc-btn-pickup-later {
+  border-color: rgba(255,255,255,0.5) !important;
+  color: #fff !important;
+  background: transparent !important;
+}
+.merchant-top-header .cnc-btn-pickup-now:hover,
+.merchant-top-header .cnc-btn-pickup-later:hover {
+  background: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+  color: #000 !important;
+}
+.merchant-top-header .cnc-btn-pickup-now.active {
+  background: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+  color: #000 !important;
+}
+.merchant-top-header .cnc-btn-pickup-later.active {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: #fff !important;
+  color: #fff !important;
+}
+.merchant-top-header .cnc-btn-contact {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.4) !important;
+  color: #fff !important;
+}
+.merchant-top-header .cnc-pickup-status {
+  color: rgba(255,255,255,0.7) !important;
+}
+/* Mobile banner — also show with gradient */
+.merchant-top-header.d-none.d-lg-block {
+  display: block !important;
+}
+/* Hide duplicate mobile header since banner now shows on all viewports */
+#vue-merchant-details + .container.d-block.d-lg-none {
+  display: none !important;
+}
+/* Category pill tabs styling */
+#menu-category .nav-link {
+  padding: 5px 10px !important;
+  font-size: 13px !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease;
+}
+.category-carousel .nav-link,
+.owl-carousel .nav-link {
+  white-space: nowrap;
+  padding: 7px 16px !important;
+  border-radius: 20px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--cnc-dark) !important;
+  background: var(--cnc-light) !important;
+  border: 1.5px solid transparent !important;
+  transition: all 0.2s ease;
+  margin: 3px 2px !important;
+}
+.category-carousel .nav-link.active,
+.owl-carousel .nav-link.active {
+  background: var(--cnc-dark) !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+.category-carousel .nav-link:hover,
+.owl-carousel .nav-link:hover {
+  background: var(--cnc-orange) !important;
+  color: #000 !important;
+  -webkit-text-fill-color: #000 !important;
+}
+/* "Store is close" banner — compact */
+#vue-schedule-order .container {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+#vue-schedule-order h4 {
+  font-size: 15px !important;
+  margin-bottom: 2px !important;
+}
+#vue-schedule-order p {
+  font-size: 12px !important;
+  margin-bottom: 2px !important;
+}
+/* Search bar — tighter */
+.components-search-menu {
+  margin-bottom: 8px !important;
+}
+.components-search-menu .el-input {
+  max-height: 38px !important;
+}
+
+/* Hide breadcrumb (redundant for single restaurant) */
 .el-breadcrumb,
 .breadcrumb-section {
   display: none !important;
@@ -759,6 +943,20 @@ button.add_to_cart:active,
 /* Card borders removed for cleaner look */
 .list-item-rows {
   border: none !important;
+}
+/* Full-width layout — use all screen space with comfortable padding */
+.section-menu > .container {
+  max-width: 100% !important;
+  padding: 0 30px !important;
+}
+#vue-schedule-order > .container-fluid > .container {
+  max-width: 100% !important;
+  padding: 0 30px !important;
+}
+@media (max-width: 991px) {
+  .section-menu > .container {
+    padding: 0 12px !important;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -793,9 +991,9 @@ button.add_to_cart:active,
     margin-bottom: 4px !important;
     padding: 3px !important;
   }
-  /* Sticky section headers on mobile — account for category carousel */
+  /* Sticky section headers on mobile */
   section[data-cat_id] > h5 {
-    top: 48px !important;
+    top: 0 !important;
     font-size: 15px !important;
     padding: 8px 10px !important;
   }
@@ -814,10 +1012,29 @@ button.add_to_cart:active,
   .floating-cart h5 {
     display: none !important;
   }
-  /* Reduce merchant header height on mobile */
+  /* Mobile banner — compact */
   .merchant-top-header .container {
-    padding-top: 6px !important;
-    padding-bottom: 10px !important;
+    padding: 12px 15px !important;
+  }
+  .merchant-top-header .img-thumbnail .el-image {
+    max-height: 75px !important;
+    width: 75px !important;
+    min-width: 75px !important;
+    min-height: 75px !important;
+  }
+  .merchant-top-header h4 {
+    font-size: 18px !important;
+  }
+  .merchant-top-header .d-flex.align-items-start {
+    flex-wrap: wrap;
+  }
+  .merchant-top-header .cnc-pickup-buttons {
+    padding: 6px 0 !important;
+  }
+  .merchant-top-header .cnc-btn-pickup-now,
+  .merchant-top-header .cnc-btn-pickup-later {
+    padding: 8px 20px !important;
+    font-size: 13px !important;
   }
 }
 
