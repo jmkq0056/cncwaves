@@ -117,7 +117,7 @@ return array(
 	
 	'sourceLanguage'=>"en_us",
 	
-	'timezone'=>"Asia/Manila",
+	'timezone'=>"Europe/Copenhagen",
 
 	// application components
 	'components'=>array(

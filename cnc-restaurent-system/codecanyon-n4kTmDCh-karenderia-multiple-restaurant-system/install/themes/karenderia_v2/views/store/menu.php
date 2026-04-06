@@ -254,10 +254,25 @@ $this->renderPartial("//components/template_age_verifications");
 // ═══ CNC Pickup buttons ═══
 var cncLang = {
   picking_up_now: '<?php echo CJavaScript::quote(t("Picking up now"))?>',
-  pickup_scheduled: '<?php echo CJavaScript::quote(t("Pickup scheduled"))?>'
+  pickup_at: '<?php echo CJavaScript::quote(t("Pickup"))?>'
 };
 function cncUpdatePickupStatus(text) {
   document.querySelectorAll('#cnc-pickup-status, #cnc-pickup-status-desktop').forEach(function(el){ el.textContent = text; });
+}
+
+function cncPrettyTime(e) {
+  var time = '';
+  if (e && e.delivery_time) {
+    var dt = typeof e.delivery_time === 'string' ? (function(){ try { return JSON.parse(e.delivery_time); } catch(x){ return null; } })() : e.delivery_time;
+    if (dt && dt.pretty_time) time = dt.pretty_time;
+  }
+  if (e && e.delivery_datetime) {
+    return cncLang.pickup_at + ': ' + e.delivery_datetime;
+  }
+  if (time) {
+    return cncLang.pickup_at + ': ' + time;
+  }
+  return cncLang.pickup_at;
 }
 
 function setCncPickup(mode) {
@@ -305,7 +320,7 @@ var _cncPickupInit = setInterval(function() {
       cncUpdatePickupStatus(cncLang.picking_up_now);
     } else {
       document.querySelectorAll('.cnc-btn-pickup-later').forEach(function(b){b.classList.add('active');});
-      cncUpdatePickupStatus(cncLang.pickup_scheduled);
+      cncUpdatePickupStatus(cncPrettyTime(existing));
     }
   } catch(e) { setCncPickup('now'); }
 
@@ -314,7 +329,7 @@ var _cncPickupInit = setInterval(function() {
     if (_origSave) _origSave.call(ps, e);
     document.querySelectorAll('.cnc-btn-pickup-later').forEach(function(b){b.classList.add('active');});
     document.querySelectorAll('.cnc-btn-pickup-now').forEach(function(b){b.classList.remove('active');});
-    cncUpdatePickupStatus(cncLang.pickup_scheduled);
+    cncUpdatePickupStatus(cncPrettyTime(e));
   };
 }, 200);
 </script>

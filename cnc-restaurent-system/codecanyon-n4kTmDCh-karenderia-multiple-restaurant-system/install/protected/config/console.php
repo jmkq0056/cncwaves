@@ -99,7 +99,7 @@ return array(
     'language'=>KMRS_DEFAULT_LANGUAGE,
     
 
-    'timezone'=>"Asia/Manila",
+    'timezone'=>"Europe/Copenhagen",
     
 
     'preload'=>array('log'),
