@@ -48,6 +48,12 @@ export default function AdminHome() {
   const [bulkBurstEnabled, setBulkBurstEnabled] = useState(true);
   const [bulkBurstInterval, setBulkBurstInterval] = useState(2);
   const [bulkBurstDuration, setBulkBurstDuration] = useState(10);
+  const [bulkBurstImageUrl, setBulkBurstImageUrl] = useState("");
+  const [bulkBurstCloudinaryId, setBulkBurstCloudinaryId] = useState("");
+  const [burstLibraryImages, setBurstLibraryImages] = useState<
+    { url: string; cloudinaryPublicId: string; name: string }[]
+  >([]);
+  const [burstLibraryLoading, setBurstLibraryLoading] = useState(false);
 
   // Network modal
   const [showNetworkModal, setShowNetworkModal] = useState(false);
@@ -211,20 +217,43 @@ export default function AdminHome() {
     }
   }
 
+  async function loadBurstLibrary() {
+    if (burstLibraryImages.length > 0) return;
+    setBurstLibraryLoading(true);
+    try {
+      const res = await fetch("/api/admin/images");
+      if (res.ok) {
+        const data = await res.json();
+        setBurstLibraryImages(Array.isArray(data) ? data : []);
+      }
+    } catch {} finally {
+      setBurstLibraryLoading(false);
+    }
+  }
+
   async function applyBulkBurst() {
     if (selected.size === 0) return;
+    if (bulkBurstEnabled && !bulkBurstImageUrl) {
+      alert("Select a burst image first");
+      return;
+    }
     setBulkLoading(true);
     try {
+      const updates: Record<string, any> = {
+        burstEnabled: bulkBurstEnabled,
+        burstInterval: bulkBurstInterval,
+        burstDuration: bulkBurstDuration,
+      };
+      if (bulkBurstEnabled) {
+        updates.burstImageUrl = bulkBurstImageUrl;
+        updates.burstCloudinaryId = bulkBurstCloudinaryId;
+      }
       const res = await fetch("/api/admin/screens/bulk", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           screenIds: Array.from(selected),
-          updates: {
-            burstEnabled: bulkBurstEnabled,
-            burstInterval: bulkBurstInterval,
-            burstDuration: bulkBurstDuration,
-          },
+          updates,
         }),
       });
       if (!res.ok) throw new Error("Failed");
@@ -448,7 +477,7 @@ export default function AdminHome() {
               Set Schedule
             </button>
             <button
-              onClick={() => setShowBurstModal(true)}
+              onClick={() => { setShowBurstModal(true); loadBurstLibrary(); }}
               disabled={bulkLoading}
               className="bg-gray-800 hover:bg-gray-700 text-white text-xs font-medium px-3 py-2 rounded-lg whitespace-nowrap"
             >
@@ -629,6 +658,49 @@ export default function AdminHome() {
             <h3 className="text-lg font-bold mb-4">
               Set Burst ({selected.size} screens)
             </h3>
+
+            {/* Burst image picker */}
+            <label className="block text-sm text-gray-400 mb-2">
+              Burst Image
+            </label>
+            {bulkBurstImageUrl ? (
+              <div className="relative mb-4">
+                <img
+                  src={bulkBurstImageUrl}
+                  alt="Burst"
+                  className="w-full aspect-video object-cover rounded-lg border border-orange-500"
+                />
+                <button
+                  onClick={() => { setBulkBurstImageUrl(""); setBulkBurstCloudinaryId(""); }}
+                  className="absolute top-1 right-1 bg-black/70 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs"
+                >
+                  ×
+                </button>
+              </div>
+            ) : burstLibraryLoading ? (
+              <p className="text-xs text-gray-500 mb-4">Loading images...</p>
+            ) : burstLibraryImages.length === 0 ? (
+              <p className="text-xs text-gray-500 mb-4">No images in library</p>
+            ) : (
+              <div className="grid grid-cols-3 gap-2 mb-4 max-h-48 overflow-y-auto">
+                {burstLibraryImages.map((img) => (
+                  <div
+                    key={img.cloudinaryPublicId}
+                    onClick={() => {
+                      setBulkBurstImageUrl(img.url);
+                      setBulkBurstCloudinaryId(img.cloudinaryPublicId);
+                    }}
+                    className="rounded-lg overflow-hidden border-2 border-gray-700 hover:border-orange-500 cursor-pointer transition"
+                  >
+                    <img
+                      src={img.url}
+                      alt={img.name}
+                      className="w-full aspect-video object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
 
             <div className="flex items-center justify-between mb-4">
               <span className="text-sm text-gray-300">Burst enabled</span>

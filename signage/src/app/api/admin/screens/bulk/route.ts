@@ -11,6 +11,8 @@ const ALLOWED_FIELDS = [
   "burstEnabled",
   "burstInterval",
   "burstDuration",
+  "burstImageUrl",
+  "burstCloudinaryId",
   "published",
 ];
 
