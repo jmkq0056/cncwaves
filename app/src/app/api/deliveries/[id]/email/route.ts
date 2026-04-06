@@ -52,9 +52,10 @@ export async function POST(_req: NextRequest, { params }: { params: Promise<{ id
   `;
 
   const resend = new Resend(process.env.RESEND_API_KEY);
+  const to = recipientEmail.split(",").map((e: string) => e.trim()).filter(Boolean);
   await resend.emails.send({
     from: `${process.env.EMAIL_FROM_NAME} <${process.env.EMAIL_FROM_ADDRESS}>`,
-    to: recipientEmail,
+    to,
     subject: `Packing List - ${delivery.reference}`,
     html,
   });
