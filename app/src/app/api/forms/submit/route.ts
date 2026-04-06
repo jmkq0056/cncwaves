@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import { connectDB } from "@/lib/db";
 import { getFormBySlug } from "@/lib/form-definitions";
 import { sanitizeField } from "@/lib/sanitize";
@@ -87,15 +87,9 @@ export async function POST(req: NextRequest) {
           <p style="text-align:center;color:#999;font-size:11px;margin-top:12px;">CNC Manager</p>
         </div>`;
 
-      const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT),
-        secure: process.env.SMTP_SECURE === "true",
-        auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASSWORD },
-      });
-
-      await transporter.sendMail({
-        from: `"${process.env.EMAIL_FROM_NAME}" <${process.env.EMAIL_FROM_ADDRESS}>`,
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      await resend.emails.send({
+        from: `${process.env.EMAIL_FROM_NAME} <${process.env.EMAIL_FROM_ADDRESS}>`,
         to: recipientEmail,
         subject: `New: ${formDef.title} - CNC Manager`,
         html,
