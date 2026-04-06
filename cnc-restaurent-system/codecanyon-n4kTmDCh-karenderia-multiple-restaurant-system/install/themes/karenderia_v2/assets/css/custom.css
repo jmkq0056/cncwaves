@@ -654,13 +654,183 @@ button.add_to_cart:disabled,
   color: #666;
 }
 
-/* ═══ MISC ═══ */
+/* ═══════════════════════════════════════════════════════════
+   FIX #1: COMPACT ITEM CARDS — reduce height ~40%
+   ═══════════════════════════════════════════════════════════ */
+.list-item-rows {
+  margin-bottom: 6px !important;
+  padding: 4px !important;
+  border-radius: 10px !important;
+  background: #fff;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.list-item-rows:hover {
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  transform: translateY(-1px);
+}
+.list-item-rows:active {
+  transform: translateY(0);
+}
+/* Shrink images from 140px → 85px */
+.list-item-rows .item-image-preview .el-image {
+  height: 85px !important;
+  width: 85px !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 10px !important;
+}
+.list-item-rows .fixed-height {
+  min-height: 70px !important;
+}
+/* Clamp description to 1 line */
+.list-item-rows .ellipsis-2-lines {
+  -webkit-line-clamp: 1 !important;
+  max-height: 1.4em !important;
+  overflow: hidden;
+  margin-bottom: 2px !important;
+  font-size: 12px !important;
+  color: #888 !important;
+}
+/* Tighter item name */
+.list-item-rows h6 {
+  font-size: 14px !important;
+  margin-bottom: 1px !important;
+  font-weight: 700 !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FIX #4: STICKY CATEGORY SECTION HEADERS
+   ═══════════════════════════════════════════════════════════ */
+.section-menu section[data-cat_id] > h5,
+section[data-cat_id] > h5 {
+  position: sticky;
+  top: 56px;
+  z-index: 40;
+  background: var(--cnc-light);
+  padding: 10px 12px;
+  margin: 0 -5px 8px;
+  border-bottom: 2px solid var(--cnc-orange);
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: var(--cnc-dark) !important;
+  border-radius: 0;
+}
+section[data-cat_id] > p {
+  font-size: 12px !important;
+  color: #999 !important;
+  margin-bottom: 8px !important;
+  padding: 0 12px;
+}
+section[data-cat_id] + section[data-cat_id] {
+  margin-top: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FIX #2: HIDE BREADCRUMB (redundant for single restaurant)
+   ═══════════════════════════════════════════════════════════ */
+.el-breadcrumb,
+.breadcrumb-section {
+  display: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   VISUAL POLISH — shadows, depth, transitions
+   ═══════════════════════════════════════════════════════════ */
+/* Button press effects */
+.btn-green,
+button.add_to_cart,
+.add_to_cart,
+.el-button.white-color {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: all 0.2s ease !important;
+}
+.btn-green:active,
+button.add_to_cart:active,
+.el-button.white-color:active {
+  transform: translateY(1px) !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
+}
+/* Modal polish */
+.modal-content {
+  border-radius: 14px !important;
+  border: none !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.18) !important;
+}
+/* Card borders removed for cleaner look */
+.list-item-rows {
+  border: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FIX #5: MOBILE COMPACT LAYOUT
+   ═══════════════════════════════════════════════════════════ */
+@media (max-width: 991px) {
+  /* Smaller image on mobile */
+  .list-item-rows .item-image-preview .el-image {
+    height: 68px !important;
+    width: 68px !important;
+  }
+  .list-item-rows .fixed-height {
+    min-height: auto !important;
+  }
+  /* Narrow image column */
+  .list-item-rows > .row > .col-3 {
+    flex: 0 0 80px !important;
+    max-width: 80px !important;
+    padding: 4px !important;
+  }
+  .list-item-rows > .row > .col-9 {
+    flex: 1 !important;
+    max-width: calc(100% - 80px) !important;
+    padding: 4px 8px !important;
+  }
+  /* Hide description on mobile — most are empty anyway */
+  .list-item-rows .ellipsis-2-lines {
+    display: none !important;
+  }
+  /* Tighter spacing */
+  .list-item-rows {
+    margin-bottom: 4px !important;
+    padding: 3px !important;
+  }
+  /* Sticky section headers on mobile — account for category carousel */
+  section[data-cat_id] > h5 {
+    top: 48px !important;
+    font-size: 15px !important;
+    padding: 8px 10px !important;
+  }
+  /* Prominent floating cart button */
+  .floating-cart button {
+    border-radius: 999px !important;
+    padding: 14px 24px !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25) !important;
+    background: var(--cnc-dark) !important;
+    border-color: var(--cnc-dark) !important;
+  }
+  .floating-cart p {
+    font-size: 14px !important;
+    font-weight: 700 !important;
+  }
+  .floating-cart h5 {
+    display: none !important;
+  }
+  /* Reduce merchant header height on mobile */
+  .merchant-top-header .container {
+    padding-top: 6px !important;
+    padding-bottom: 10px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   MISC
+   ═══════════════════════════════════════════════════════════ */
 ::selection {
   background: var(--cnc-orange);
   color: #fff;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--cnc-red);
+  border-radius: 4px;
 }
 .nav-pills .nav-link.active {
   background-color: var(--cnc-orange) !important;
