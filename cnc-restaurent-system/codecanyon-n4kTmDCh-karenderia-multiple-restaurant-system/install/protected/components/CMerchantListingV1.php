@@ -1964,36 +1964,31 @@ class CMerchantListingV1
 
 	public static function openHours2($merchant_id='', $interval="20 mins", $days_to_generate=15)
 	{
+		// Force Copenhagen timezone for all date calculations
+		date_default_timezone_set('Europe/Copenhagen');
+
 		$opening_hours = [];
 		$order_by_days = '';
-		$date_today = date('Y-m-d'); 		
-		$yesterday = date('Y-m-d', strtotime($date_today. " -1 days"));	
+		$date_today = date('Y-m-d');
+		$yesterday = date('Y-m-d', strtotime($date_today. " -1 days"));
 		$tomorrow = date('Y-m-d', strtotime($date_today. " +1 days"));
-		$current_time = date("H:i");		
+		$current_time = date("H:i");
 		$time_now = date("H:i",strtotime("+".intval($interval)." minutes"));
 
-		for($i=1; $i<=7; $i++){			
-			$days = date('l', strtotime($yesterday. " +$i days"));			
-			$days = strtolower($days);	
-			$order_by_days.=q($days).",";	
-			$daylist[$days]= date('Y-m-d', strtotime($yesterday. " +$i days"));	 
+		for($i=1; $i<=7; $i++){
+			$days = date('l', strtotime($yesterday. " +$i days"));
+			$days = strtolower($days);
+			$order_by_days.=q($days).",";
+			$daylist[$days]= date('Y-m-d', strtotime($yesterday. " +$i days"));
 		}
-		
-		$order_by_days = substr($order_by_days,0,-1);
-		$stmt="
-		SELECT day,start_time,end_time
-		FROM {{opening_hours}}
-		WHERE merchant_id=".q($merchant_id)."
-		AND status='open'			
-		ORDER BY FIELD(day, $order_by_days),start_time ASC
-		";				
-		if($res = Yii::app()->db->createCommand($stmt)->queryAll()){
-			foreach ($res as $row) {
-				$opening_hours[strtolower($row['day'])][] = [
-					'start_time' => $row['start_time'],
-					'end_time' => $row['end_time'],
-				];
-			}							
+
+		// Hardcoded Copenhagen opening hours: 10:00–22:00 every day
+		$opening_hours = [];
+		foreach (['monday','tuesday','wednesday','thursday','friday','saturday','sunday'] as $d) {
+			$opening_hours[$d][] = ['start_time' => '10:00', 'end_time' => '22:00'];
+		}
+
+		{							
 						
 			$today = new DateTime(); 			
 			$dates_with_opening_hours = [];

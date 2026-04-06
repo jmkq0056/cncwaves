@@ -3,6 +3,12 @@ set -e
 
 echo "=== CNC Waves Railway Entrypoint ==="
 
+# Ensure PHP and OS timezone is Copenhagen
+echo "date.timezone = Europe/Copenhagen" > /usr/local/etc/php/conf.d/timezone.ini
+ln -sf /usr/share/zoneinfo/Europe/Copenhagen /etc/localtime 2>/dev/null
+echo "Europe/Copenhagen" > /etc/timezone 2>/dev/null
+echo "✓ Timezone set to Europe/Copenhagen"
+
 DB_NAME="karenderia"
 DB_USER="karenderia"
 DB_PASS="karenderia123"
