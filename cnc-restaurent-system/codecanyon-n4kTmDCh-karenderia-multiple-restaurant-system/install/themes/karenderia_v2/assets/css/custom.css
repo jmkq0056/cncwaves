@@ -311,10 +311,12 @@ img[src*="googleapis.com/maps/api/staticmap"] {
 .el-dialog .btn-circle {
   background: #333 !important;
   color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
 }
 .modal .btn-black.btn-circle i,
 .modal .btn-circle i {
   color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
 }
 
 /* ═══ MENU PAGE ═══ */
@@ -489,17 +491,32 @@ div.bg-light.btn-circle.rounded-pill {
   -webkit-text-fill-color: #fff !important;
 }
 
-/* ═══ CART REMOVE BUTTON — white X on dark circle ═══ */
+/* ═══ WHITE ICONS on dark-bg containers — override drawer/overlay/modal dark text ═══ */
+/* Needs high specificity to beat .el-overlay .el-drawer * (0,2,0) */
 a.item-remove,
-a.item-remove i {
+a.item-remove i,
+.el-drawer a.item-remove,
+.el-drawer a.item-remove i,
+.el-overlay a.item-remove,
+.el-overlay a.item-remove i,
+.qty-btn i,
+.qty-btn .zmdi,
+.el-drawer .qty-btn i,
+.el-drawer .qty-btn .zmdi,
+.btn-black i.zmdi,
+.el-drawer .btn-black i,
+.el-overlay .btn-black i,
+.quantity a.rounded-pill i,
+.el-drawer .quantity a.rounded-pill i,
+.el-overlay .quantity a.rounded-pill i,
+.close-panel i,
+.el-drawer .close-panel i,
+.el-overlay .close-panel i,
+.rounded-button-icon i,
+.el-drawer .rounded-button-icon i,
+.el-overlay .rounded-button-icon i {
   color: #fff !important;
   -webkit-text-fill-color: #fff !important;
-}
-
-/* ═══ QTY BUTTONS — white icons on dark background ═══ */
-.qty-btn i,
-.qty-btn .zmdi {
-  color: #fff !important;
 }
 
 /* ═══ MOBILE CART — floating button z-index ═══ */
