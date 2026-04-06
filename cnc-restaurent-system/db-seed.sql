@@ -8006,5 +8006,34 @@ SET FOREIGN_KEY_CHECKS = 1;
 -- Price markup: 1.1x (10% increase)
 
 -- ========== FIX OPENING HOURS (10:00-22:00 Copenhagen) ==========
+DELETE FROM st_opening_hours WHERE merchant_id = 1;
 UPDATE st_opening_hours SET start_time = '10:00', end_time = '22:00' WHERE merchant_id = 0;
-UPDATE st_opening_hours SET start_time = '10:00', end_time = '22:00' WHERE merchant_id = 1;
+INSERT INTO st_opening_hours (merchant_id, time_config_type, transaction_type, day, day_of_week, status, start_time, end_time) VALUES
+(1,'regular_hours',NULL,'Monday',1,'open','10:00','22:00'),
+(1,'regular_hours',NULL,'Tuesday',2,'open','10:00','22:00'),
+(1,'regular_hours',NULL,'Wednesday',3,'open','10:00','22:00'),
+(1,'regular_hours',NULL,'Thursday',4,'open','10:00','22:00'),
+(1,'regular_hours',NULL,'Friday',5,'open','10:00','22:00'),
+(1,'regular_hours',NULL,'Saturday',6,'open','10:00','22:00'),
+(1,'regular_hours',NULL,'Sunday',0,'open','10:00','22:00'),
+(1,'transaction_type','pickup','Monday',1,'open','10:00','22:00'),
+(1,'transaction_type','pickup','Tuesday',2,'open','10:00','22:00'),
+(1,'transaction_type','pickup','Wednesday',3,'open','10:00','22:00'),
+(1,'transaction_type','pickup','Thursday',4,'open','10:00','22:00'),
+(1,'transaction_type','pickup','Friday',5,'open','10:00','22:00'),
+(1,'transaction_type','pickup','Saturday',6,'open','10:00','22:00'),
+(1,'transaction_type','pickup','Sunday',0,'open','10:00','22:00');
+
+-- ========== RECREATE VIEW (ensure addon sub-items resolve) ==========
+DROP VIEW IF EXISTS st_view_item_relationship_subcategory_item;
+CREATE VIEW st_view_item_relationship_subcategory_item AS
+SELECT b.merchant_id, b.item_id,
+  (SELECT st_item.item_token FROM st_item WHERE st_item.item_id = b.item_id LIMIT 1) AS item_token,
+  b.item_size_id, a.subcat_id, a.sub_item_id
+FROM st_subcategory_item_relationships a
+LEFT JOIN st_item_relationship_subcategory b ON a.subcat_id = b.subcat_id
+WHERE a.merchant_id IS NOT NULL;
+
+-- ========== FLUSH QUERY CACHE ==========
+RESET QUERY CACHE;
+FLUSH TABLES;
