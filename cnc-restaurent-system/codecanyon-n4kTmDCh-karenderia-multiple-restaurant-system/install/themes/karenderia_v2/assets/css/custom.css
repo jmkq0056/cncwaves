@@ -1254,15 +1254,21 @@ label.btn del {
    ═══════════════════════════════════════════════════════════ */
 @media (min-width: 992px) {
   .menu-left {
-    background: var(--cnc-dark) !important;
     padding-top: 20px !important;
-    padding-bottom: 60px !important;
-    min-height: 100%;
-    align-self: stretch;
-    border-radius: 0 0 12px 0 !important;
+    position: relative !important;
   }
-  .section-menu > .container > .row {
-    align-items: stretch !important;
+  .menu-left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -200px;
+    background: var(--cnc-dark);
+    z-index: -1;
+  }
+  .section-menu {
+    overflow: hidden !important;
   }
   .menu-left h5 {
     color: #fff !important;
