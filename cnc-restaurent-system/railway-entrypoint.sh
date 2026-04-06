@@ -47,6 +47,11 @@ EOSQL
     mysql -u root "$DB_NAME" < /opt/db-seed.sql
     echo "✓ Database seeded with all CNC data"
 
+    # Clear Yii file cache (stale query results)
+    rm -rf /var/www/html/protected/runtime/cache/* 2>/dev/null
+    rm -rf /var/www/html/backoffice/protected/runtime/cache/* 2>/dev/null
+    echo "✓ Yii file cache cleared"
+
     # Stop temp MariaDB
     kill $MYSQL_PID
     wait $MYSQL_PID 2>/dev/null
@@ -77,7 +82,9 @@ else
         echo "⏳ New DB seed detected — re-importing..."
         mysql -u root "$DB_NAME" < "$SEED_FILE" && \
             echo "$NEW_HASH" > "$SEED_MARKER" && \
-            echo "✓ Database re-seeded successfully" || \
+            rm -rf /var/www/html/protected/runtime/cache/* 2>/dev/null && \
+            rm -rf /var/www/html/backoffice/protected/runtime/cache/* 2>/dev/null && \
+            echo "✓ Database re-seeded + cache cleared" || \
             echo "⚠ DB seed failed"
     else
         echo "✓ DB seed unchanged — skipping"

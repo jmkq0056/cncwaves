@@ -7054,955 +7054,232 @@ UNLOCK TABLES;
 
 -- Dump completed on 2026-04-05 11:57:39
 
--- ========== PROD MENU OVERRIDE (10% markup) ==========
--- Karenderia menu seed (markup: 1.1x)
--- Generated: 2026-04-06 07:25:50
--- Source: full-menu.json (scraped + enriched from yammi.dk)
+-- ========== PROD PRICE MARKUP (10% — UPDATE only, preserves UUIDs) ==========
+-- Karenderia price update (markup: 1.1x)
+-- Generated: 2026-04-06 08:53:22
+-- Only UPDATEs prices — preserves UUIDs, addons, views, relationships
 
 SET NAMES utf8mb4;
-SET CHARACTER SET utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
 
--- ========== CATEGORIES ==========
-DELETE FROM st_category WHERE merchant_id = 1;
-INSERT INTO st_category (cat_id, merchant_id, category_name, category_description, available, photo, path, icon, icon_path, status, sequence, available_at_specific, date_created, date_modified, ip_address) VALUES
-(1,1,'Beef Burger','Udforsk vores udvalg af lækre bøf burgere',1,'','','','','publish',1,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(2,1,'Chicken & Fish Burgers','Udforsk vores udvalg af de lækreste kyllinge- og fiskeburgere',1,'','','','','publish',2,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(3,1,'Vegi\'s & Salad','Dette er til alle vores kunder, der foretrækker et kødfrit måltid',1,'','','','','publish',3,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(4,1,'Wraps & Tacos','Udforsk vores udvalg af appetitvækkende wraps og tacos',1,'','','','','publish',4,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(5,1,'Family & Social Bucket','Udforsk de mange friturestegte kyllingespande, vi tilbyder!',1,'','','','','publish',5,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(6,1,'Chicken N Chicken','Udforsk vores udvalg af det sprødeste friturestegt kylling: Vinger, ben og underlår!',1,'','','','','publish',6,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(7,1,'Kids Meal','Appetitvækkende menuer + gave til de helt små',1,'','','','','publish',7,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(8,1,'Sides & Dips','Forskellige lækre tilbehør og dyppelse',1,'','','','','publish',8,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(9,1,'Coffee & Cake','Vi tilbyder et bredt udvalg af kaffe og kager',1,'','','','','publish',9,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(10,1,'Ice Cream & Shakes','Velsmagende is og shakes',1,'','','','','publish',10,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(11,1,'Cold Drinks','Køl tørsten ned med en af ​​de mange kolde drinks, vi har',1,'','','','','publish',11,0,'2026-04-06 07:25:50','2026-04-06 07:25:50','');
+-- ========== ITEM PRICES ==========
+UPDATE st_item_relationship_size SET price = 52.0000 WHERE item_id = 1 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 82.0000 WHERE item_id = 2 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 85.0000 WHERE item_id = 3 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 93.0000 WHERE item_id = 4 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 5 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 98.0000 WHERE item_id = 6 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 32.0000 WHERE item_id = 7 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 52.0000 WHERE item_id = 8 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 60.0000 WHERE item_id = 9 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 60.0000 WHERE item_id = 10 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 71.0000 WHERE item_id = 11 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 60.0000 WHERE item_id = 12 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 13 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 14 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 85.0000 WHERE item_id = 15 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 104.0000 WHERE item_id = 16 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 17 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 18 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 98.0000 WHERE item_id = 19 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 98.0000 WHERE item_id = 20 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 98.0000 WHERE item_id = 21 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 98.0000 WHERE item_id = 22 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 86.0000 WHERE item_id = 23 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 54.0000 WHERE item_id = 24 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 52.0000 WHERE item_id = 25 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 71.0000 WHERE item_id = 26 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 60.0000 WHERE item_id = 27 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 60.0000 WHERE item_id = 28 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 65.0000 WHERE item_id = 29 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 65.0000 WHERE item_id = 30 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 65.0000 WHERE item_id = 31 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 71.0000 WHERE item_id = 32 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 53.0000 WHERE item_id = 33 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 76.0000 WHERE item_id = 34 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 35 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 36 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 22.0000 WHERE item_id = 37 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 98.0000 WHERE item_id = 38 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 109.0000 WHERE item_id = 39 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 120.0000 WHERE item_id = 40 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 41 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 42 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 43 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 65.0000 WHERE item_id = 44 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 76.0000 WHERE item_id = 45 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 46 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 65.0000 WHERE item_id = 47 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 65.0000 WHERE item_id = 48 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 65.0000 WHERE item_id = 49 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 274.0000 WHERE item_id = 50 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 285.0000 WHERE item_id = 51 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 296.0000 WHERE item_id = 52 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 252.0000 WHERE item_id = 53 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 329.0000 WHERE item_id = 54 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 252.0000 WHERE item_id = 55 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 56 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 105.0000 WHERE item_id = 57 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 58 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 124.0000 WHERE item_id = 59 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 60 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 61 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 71.0000 WHERE item_id = 62 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 63 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 113.0000 WHERE item_id = 64 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 131.0000 WHERE item_id = 65 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 98.0000 WHERE item_id = 66 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 120.0000 WHERE item_id = 67 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 27.0000 WHERE item_id = 68 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 47.0000 WHERE item_id = 69 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 65.0000 WHERE item_id = 70 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 85.0000 WHERE item_id = 71 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 98.0000 WHERE item_id = 72 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 120.0000 WHERE item_id = 73 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 58.0000 WHERE item_id = 74 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 91.0000 WHERE item_id = 75 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 124.0000 WHERE item_id = 76 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 157.0000 WHERE item_id = 77 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 58.0000 WHERE item_id = 78 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 98.0000 WHERE item_id = 79 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 65.0000 WHERE item_id = 80 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 38.0000 WHERE item_id = 81 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 54.0000 WHERE item_id = 82 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 80.0000 WHERE item_id = 83 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 104.0000 WHERE item_id = 84 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 43.0000 WHERE item_id = 85 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 65.0000 WHERE item_id = 86 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 87.0000 WHERE item_id = 87 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 50.0000 WHERE item_id = 88 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 50.0000 WHERE item_id = 89 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 50.0000 WHERE item_id = 90 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 50.0000 WHERE item_id = 91 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 50.0000 WHERE item_id = 92 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 30.0000 WHERE item_id = 93 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 36.0000 WHERE item_id = 94 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 37.0000 WHERE item_id = 95 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 37.0000 WHERE item_id = 96 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 37.0000 WHERE item_id = 97 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 37.0000 WHERE item_id = 98 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 38.0000 WHERE item_id = 99 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 38.0000 WHERE item_id = 100 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 38.0000 WHERE item_id = 101 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 7.0000 WHERE item_id = 102 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 7.0000 WHERE item_id = 103 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 7.0000 WHERE item_id = 104 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 7.0000 WHERE item_id = 105 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 7.0000 WHERE item_id = 106 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 7.0000 WHERE item_id = 107 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 7.0000 WHERE item_id = 108 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 7.0000 WHERE item_id = 109 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 5.0000 WHERE item_id = 110 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 5.0000 WHERE item_id = 111 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 5.0000 WHERE item_id = 112 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 5.0000 WHERE item_id = 113 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 22.0000 WHERE item_id = 114 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 22.0000 WHERE item_id = 115 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 28.0000 WHERE item_id = 116 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 28.0000 WHERE item_id = 117 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 28.0000 WHERE item_id = 118 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 28.0000 WHERE item_id = 119 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 28.0000 WHERE item_id = 120 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 36.0000 WHERE item_id = 121 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 36.0000 WHERE item_id = 122 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 22.0000 WHERE item_id = 123 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 32.0000 WHERE item_id = 124 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 32.0000 WHERE item_id = 125 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 21.0000 WHERE item_id = 126 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 32.0000 WHERE item_id = 127 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 32.0000 WHERE item_id = 128 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 32.0000 WHERE item_id = 129 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 32.0000 WHERE item_id = 130 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 32.0000 WHERE item_id = 131 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 32.0000 WHERE item_id = 132 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 30.0000 WHERE item_id = 133 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 36.0000 WHERE item_id = 134 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 30.0000 WHERE item_id = 135 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 36.0000 WHERE item_id = 136 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 30.0000 WHERE item_id = 137 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 36.0000 WHERE item_id = 138 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 30.0000 WHERE item_id = 139 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 36.0000 WHERE item_id = 140 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 30.0000 WHERE item_id = 141 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 36.0000 WHERE item_id = 142 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 30.0000 WHERE item_id = 143 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 36.0000 WHERE item_id = 144 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 21.0000 WHERE item_id = 145 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 28.0000 WHERE item_id = 146 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 42.0000 WHERE item_id = 147 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 42.0000 WHERE item_id = 148 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 32.0000 WHERE item_id = 149 AND merchant_id = 1;
+UPDATE st_item_relationship_size SET price = 17.0000 WHERE item_id = 150 AND merchant_id = 1;
 
--- ========== ITEMS ==========
-DELETE FROM st_item WHERE merchant_id = 1;
-DELETE FROM st_item_relationship_category WHERE merchant_id = 1;
-DELETE FROM st_item_relationship_size WHERE merchant_id = 1;
-INSERT INTO st_item (item_id, merchant_id, item_name, slug, item_description, item_short_description, status, photo, path, sequence, is_featured, featured_priority, non_taxable, available, points_earned, points_enabled, packaging_fee, packaging_incremental, item_token, sku, track_stock, supplier_id, meta_title, meta_description, meta_keywords, meta_image, meta_image_path, cooking_ref_required, ingredients_preselected, available_at_specific, not_for_sale, color_hex, visible, preparation_time, extra_preparation_time, unavailable_until, is_promo_free_item, date_created, date_modified, ip_address) VALUES
-(1,1,'O\'ring Cheese Burger','beef-burger-o-ring-cheese-burger','Oksebøf, cheddar, iceberg, onion rings, algérienne, brioche burgerbolle','','publish','o-ring-cheese-burger.png','upload/item/1/',1,'',NULL,1,1,0,1,0.0000,0,'12f26200-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(2,1,'O\'ring Cheese Burger Meal','beef-burger-o-ring-cheese-burger-meal','Oksebøf 56g, cheddar, iceberg, onion rings, algérienne, brioche burgerbolle\nPomfritter og sodavand','','publish','o-ring-cheese-burger-meal.png','upload/item/2/',2,'',NULL,1,1,0,1,0.0000,0,'12f262dc-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(3,1,'Double Cheese Menu','beef-burger-double-cheese-menu','Dobbelt oksebøf, dobbelt cheddar, tomat, iceberg, biggy dressing','','publish','double-cheese-menu.png','upload/item/3/',3,'',NULL,1,1,0,1,0.0000,0,'12f26336-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(4,1,'Triple Cheese Burger Menu','beef-burger-triple-cheese-burger-menu','Tredobbelt oksebøf, tredobbelt cheddar, tomat, iceberg, biggy dressing','','publish','triple-cheese-burger-menu.png','upload/item/4/',4,'',NULL,1,1,0,1,0.0000,0,'12f2637c-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(5,1,'Grand Beef Menu','beef-burger-grand-beef-menu','Stor oksebøf, dobbelt cheddar, tomat, iceberg, biggy dressing, brioche burgerbolle\nPomfritter og sodavand','','publish','grand-beef-menu.png','upload/item/5/',5,'',NULL,1,1,0,1,0.0000,0,'12f263d6-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(6,1,'Mega Beef Parmesan Menu','beef-burger-mega-beef-parmesan-menu','Stor oksebøf, parmesan ost, tomat, iceberg, jalapeños, biggy dressing, brioche burgerbolle\nPomfritter og sodavand','','publish','mega-beef-parmesan-menu.png','upload/item/6/',6,'',NULL,1,1,0,1,0.0000,0,'12f26426-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(7,1,'Cheese Burger','beef-burger-cheese-burger','Oksebøf, cheddar, iceberg, mayonnaise, ketchup','','publish','cheese-burger.png','upload/item/7/',7,'',NULL,1,1,0,1,0.0000,0,'12f26480-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(8,1,'Double Cheese','beef-burger-double-cheese','Dobbelt oksebøf, dobbelt cheddar, tomat, iceberg, biggy dressing','','publish','double-cheese.png','upload/item/8/',8,'',NULL,1,1,0,1,0.0000,0,'12f264d0-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(9,1,'Triple Cheese Burger','beef-burger-triple-cheese-burger','Tredobbelt oksebøf, tredobbelt cheddar, tomat, iceberg, biggy dressing','','publish','triple-cheese-burger.png','upload/item/9/',9,'',NULL,1,1,0,1,0.0000,0,'12f2652a-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(10,1,'Grand Beef','beef-burger-grand-beef','Stor oksebøf 113g, dobbelt cheddar, tomat, iceberg, biggy dressing, brioche burgerbolle','','publish','grand-beef.png','upload/item/10/',10,'',NULL,1,1,0,1,0.0000,0,'12f26570-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(11,1,'Mega Beef Parmesan','beef-burger-mega-beef-parmesan','Stor oksebøf 113g, parmesan ost, tomat, iceberg, jalapeños, biggy dressing, brioche burgerbolle','','publish','mega-beef-parmesan.png','upload/item/11/',11,'',NULL,1,1,0,1,0.0000,0,'12f265ac-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(12,1,'Chuckle Chickpea','chicken-fish-burgers-chuckle-chickpea','Vegetarbøf, tomat, iceberg, tahini dressing, brioche burgerbolle','','publish','chuckle-chickpea.png','upload/item/12/',1,'',NULL,1,1,0,1,0.0000,0,'12f265f2-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(13,1,'Chuckle Chickpea Menu','chicken-fish-burgers-chuckle-chickpea-menu','Vegetarbøf, tomat, iceberg, tahini dressing, brioche burgerbolle','','publish','chuckle-chickpea-menu.png','upload/item/13/',2,'',NULL,1,1,0,1,0.0000,0,'12f26642-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(14,1,'Chicken Royal Menu','chicken-fish-burgers-chicken-royal-menu','Frisk paneret kyllingefilet, cheddar, hash brown kartoffel, iceberg, mayonnaise','','publish','chicken-royal-menu.png','upload/item/14/',3,'',NULL,1,1,0,1,0.0000,0,'12f2667e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(15,1,'Chicken Special Menu','chicken-fish-burgers-chicken-special-menu','Frisk paneret kyllingefilet, iceberg, mayonnaise','','publish','chicken-special-menu.png','upload/item/15/',4,'',NULL,1,1,0,1,0.0000,0,'12f266ce-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(16,1,'Naan Grill Tikka Menu','chicken-fish-burgers-naan-grill-tikka-menu','Grillet tandoorimarineret kyllingefilet, grillet løg, tomat, iceberg, algérienne dressing','','publish','naan-grill-tikka-menu.png','upload/item/16/',5,'',NULL,1,1,0,1,0.0000,0,'12f2670a-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(17,1,'Big Chicken Menu','chicken-fish-burgers-big-chicken-menu','Grillet citronmarineret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise, sesam bolle\nPomfritter og sodavand','','publish','big-chicken-menu.png','upload/item/17/',6,'',NULL,1,1,0,1,0.0000,0,'12f26746-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(18,1,'Tikka Burger Menu','chicken-fish-burgers-tikka-burger-menu','Grillet tandoorimarineret kyllingefilet, cheddar, iceberg, mayonnaise','','publish','tikka-burger-menu.png','upload/item/18/',7,'',NULL,1,1,0,1,0.0000,0,'12f267a0-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(19,1,'Texas Crispy Chicken Menu','chicken-fish-burgers-texas-crispy-chicken-menu','Frisk paneret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise','','publish','texas-crispy-chicken-menu.png','upload/item/19/',8,'',NULL,1,1,0,1,0.0000,0,'12f267dc-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(20,1,'Tikka Baguette Menu','chicken-fish-burgers-tikka-baguette-menu','Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise','','publish','tikka-baguette-menu.png','upload/item/20/',9,'',NULL,1,1,0,1,0.0000,0,'12f2680e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(21,1,'Chicken Baguette Menu','chicken-fish-burgers-chicken-baguette-menu','Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise','','publish','chicken-baguette-menu.png','upload/item/21/',10,'',NULL,1,1,0,1,0.0000,0,'12f26868-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(22,1,'Mega Chicken Parmesan Menu','chicken-fish-burgers-mega-chicken-parmesan-menu','Grillet citronmarineret kyllingefilet, parmesan ost, tomat, iceberg, jalapeños, mayonnaise, brioche burgerbolle\nPomfritter og s...','','publish','mega-chicken-parmesan-menu.png','upload/item/22/',11,'',NULL,1,1,0,1,0.0000,0,'12f268ae-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(23,1,'Fishy De Fish Menu','chicken-fish-burgers-fishy-de-fish-menu','Frisk paneret fiskefilet, cheddar, iceberg, fiske dressing','','publish','fishy-de-fish-menu.png','upload/item/23/',12,'',NULL,1,1,0,1,0.0000,0,'12f268ea-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(24,1,'Chicken Royal','chicken-fish-burgers-chicken-royal','Frisk paneret kyllingefilet, cheddar, hash brown kartoffel, iceberg, mayonnaise','','publish','chicken-royal.png','upload/item/24/',13,'',NULL,1,1,0,1,0.0000,0,'12f26944-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(25,1,'Chicken Special','chicken-fish-burgers-chicken-special','Frisk paneret kyllingefilet, iceberg, mayonnaise','','publish','chicken-special.png','upload/item/25/',14,'',NULL,1,1,0,1,0.0000,0,'12f26976-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(26,1,'Naan Grill Tikka','chicken-fish-burgers-naan-grill-tikka','Grillet tandoorimarineret kyllingefilet, grillet løg, tomat, iceberg, algérienne dressing','','publish','naan-grill-tikka.png','upload/item/26/',15,'',NULL,1,1,0,1,0.0000,0,'12f269d0-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(27,1,'Big Chicken','chicken-fish-burgers-big-chicken','Grillet citronmarineret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise, sesam bolle','','publish','big-chicken.png','upload/item/27/',16,'',NULL,1,1,0,1,0.0000,0,'12f26a0c-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(28,1,'Tikka Burger','chicken-fish-burgers-tikka-burger','Grillet tandoorimarineret kyllingefilet, cheddar, iceberg, mayonnaise','','publish','tikka-burger.png','upload/item/28/',17,'',NULL,1,1,0,1,0.0000,0,'12f26a48-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(29,1,'Texas Crispy Chicken','chicken-fish-burgers-texas-crispy-chicken','Frisk paneret kyllingefilet, dobbelt cheddar, tomat, iceberg, mayonnaise','','publish','texas-crispy-chicken.png','upload/item/29/',18,'',NULL,1,1,0,1,0.0000,0,'12f26a7a-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(30,1,'Tikka Baguette','chicken-fish-burgers-tikka-baguette','Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise','','publish','tikka-baguette.png','upload/item/30/',19,'',NULL,1,1,0,1,0.0000,0,'12f26ad4-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(31,1,'Chicken Baguette','chicken-fish-burgers-chicken-baguette','Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise','','publish','chicken-baguette.png','upload/item/31/',20,'',NULL,1,1,0,1,0.0000,0,'12f26b10-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(32,1,'Mega Chicken Parmesan','chicken-fish-burgers-mega-chicken-parmesan','Grillet citronmarineret kyllingefilet, parmesan ost, tomat, iceberg, jalapeños, mayonnaise, brioche burgerbolle','','publish','mega-chicken-parmesan.png','upload/item/32/',21,'',NULL,1,1,0,1,0.0000,0,'12f26b4c-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(33,1,'Fishy De Fish','chicken-fish-burgers-fishy-de-fish','Frisk paneret fiskefilet, cheddar, iceberg, fiske dressing','','publish','fishy-de-fish.png','upload/item/33/',22,'',NULL,1,1,0,1,0.0000,0,'12f26b7e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(34,1,'Veggie Salad','vegi-s-salad-veggie-salad','Iceberg, tomat, fetaost, gulerod, jalapeños, rødløg, rucola, grøn oliven','','publish','veggie-salad.png','upload/item/34/',1,'',NULL,1,1,0,1,0.0000,0,'12f26bba-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(35,1,'Chicken Strips Salad','vegi-s-salad-chicken-strips-salad','Frisk paneret kyllingefilet, iceberg, tomat, fetaost, gulerod, jalapeños, grøn oliven','','publish','chicken-strips-salad.png','upload/item/35/',2,'',NULL,1,1,0,1,0.0000,0,'12f26bf6-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(36,1,'Chicken Tikka Salad','vegi-s-salad-chicken-tikka-salad','Grillet tandoorimarineret kyllingefilet, iceberg, tomat, fetaost, gulerod, jalapeños, grøn oliven','','publish','chicken-tikka-salad.png','upload/item/36/',3,'',NULL,1,1,0,1,0.0000,0,'12f26c32-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(37,1,'Corn','vegi-s-salad-corn','Corn','','publish','corn.png','upload/item/37/',4,'',NULL,1,1,0,1,0.0000,0,'12f26c64-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(38,1,'Taco M Menu','wraps-tacos-taco-m-menu','Pålæg, fromage smørrelse, pomfritter\n1 stk. pålæg efter eget valg. inkl. pomfritter + sodavand','','publish','taco-m-menu.png','upload/item/38/',1,'',NULL,1,1,0,1,0.0000,0,'12f26ca0-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(39,1,'Taco L Menu','wraps-tacos-taco-l-menu','Pålæg, fromage smørrelse, pomfritter\n2 stk. pålæg efter eget valg. inkl. pomfritter + sodavand','','publish','taco-l-menu.png','upload/item/39/',2,'',NULL,1,1,0,1,0.0000,0,'12f26cdc-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(40,1,'Taco XL Menu','wraps-tacos-taco-xl-menu','Pålæg, fromage smørrelse, pomfritter\n3 stk. pålæg efter eget valg. inkl. pomfritter + sodavand','','publish','taco-xl-menu.png','upload/item/40/',3,'',NULL,1,1,0,1,0.0000,0,'12f26d0e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(41,1,'Chicken Fillet Wrap Menu','wraps-tacos-chicken-fillet-wrap-menu','Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise','','publish','chicken-fillet-wrap-menu.png','upload/item/41/',4,'',NULL,1,1,0,1,0.0000,0,'12f26d4a-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(42,1,'Chicken Tikka Wrap Menu','wraps-tacos-chicken-tikka-wrap-menu','Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise','','publish','chicken-tikka-wrap-menu.png','upload/item/42/',5,'',NULL,1,1,0,1,0.0000,0,'12f26d90-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(43,1,'Kebab Wrap Menu','wraps-tacos-kebab-wrap-menu','Kyllinge shawarma, løg, tomat, iceberg, kebab dressing','','publish','kebab-wrap-menu.png','upload/item/43/',6,'',NULL,1,1,0,1,0.0000,0,'12f26dcc-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(44,1,'Taco M','wraps-tacos-taco-m','','','publish','taco-m.png','upload/item/44/',7,'',NULL,1,1,0,1,0.0000,0,'12f26e26-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(45,1,'Taco L','wraps-tacos-taco-l','','','publish','taco-l.png','upload/item/45/',8,'',NULL,1,1,0,1,0.0000,0,'12f26e58-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(46,1,'Taco XL','wraps-tacos-taco-xl','','','publish','taco-xl.png','upload/item/46/',9,'',NULL,1,1,0,1,0.0000,0,'12f26e94-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(47,1,'Chicken Fillet Wrap','wraps-tacos-chicken-fillet-wrap','Frisk paneret kyllingefilet, tomat, iceberg, mayonnaise','','publish','chicken-fillet-wrap.png','upload/item/47/',10,'',NULL,1,1,0,1,0.0000,0,'12f26ee4-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(48,1,'Chicken Tikka Wrap','wraps-tacos-chicken-tikka-wrap','Grillet tandoorimarineret kyllingefilet, tomat, iceberg, mayonnaise','','publish','chicken-tikka-wrap.png','upload/item/48/',11,'',NULL,1,1,0,1,0.0000,0,'12f26f20-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(49,1,'Kebab Wrap','wraps-tacos-kebab-wrap','Kyllinge shawarma, løg, tomat, iceberg, kebab dressing','','publish','kebab-wrap.png','upload/item/49/',12,'',NULL,1,1,0,1,0.0000,0,'12f26f52-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(50,1,'Family 1','family-social-bucket-family-1','10 stk. Drumsticks','','publish','family-1.png','upload/item/50/',1,'',NULL,1,1,0,1,0.0000,0,'12f26fa2-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(51,1,'Family 2','family-social-bucket-family-2','6 stk. Drumsticks + 12 stk. Hot Spicy Wings','','publish','family-2.png','upload/item/51/',2,'',NULL,1,1,0,1,0.0000,0,'12f26fde-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(52,1,'Family 3','family-social-bucket-family-3','4 stk. Drumsticks + 16 stk. Hot Spicy Wings + 10 stk. Chicken Strips','','publish','family-3.png','upload/item/52/',3,'',NULL,1,1,0,1,0.0000,0,'12f27010-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(53,1,'Family 4','family-social-bucket-family-4','24 stk. Hot Spicy Wings','','publish','family-4.png','upload/item/53/',4,'',NULL,1,1,0,1,0.0000,0,'12f27060-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(54,1,'Family 5','family-social-bucket-family-5','15 stk. Chicken Strips + 22 stk. Hot Spicy Wings','','publish','family-5.png','upload/item/54/',5,'',NULL,1,1,0,1,0.0000,0,'12f2709c-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(55,1,'Family 6','family-social-bucket-family-6','22 stk. Chicken Strips','','publish','family-6.png','upload/item/55/',6,'',NULL,1,1,0,1,0.0000,0,'12f270e2-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(56,1,'2 stk. Chicken Drumstick Menu','chicken-n-chicken-2-stk-chicken-drumstick-menu','Kyllingestykker håndpaneret i den unikke "Chicken n Chicken" panering.\nVores kyllingestykker er håndpanerede med vores blanding...','','publish','2-stk-chicken-drumstick-menu.png','upload/item/56/',1,'',NULL,1,1,0,1,0.0000,0,'12f27128-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(57,1,'3 stk. Chicken Drumsticks Menu','chicken-n-chicken-3-stk-chicken-drumsticks-menu','Kyllingestykker håndpaneret i den unikke "Chicken n Chicken" panering.\nVores kyllingestykker er håndpanerede med vores blanding...','','publish','3-stk-chicken-drumsticks-menu.png','upload/item/57/',2,'',NULL,1,1,0,1,0.0000,0,'12f2716e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(58,1,'8 stk. Hot Spicy Wings Menu','chicken-n-chicken-8-stk-hot-spicy-wings-menu','Kyllingevinger, som er marineret i en krydret chili-marinade.','','publish','8-stk-hot-spicy-wings-menu.png','upload/item/58/',3,'',NULL,1,1,0,1,0.0000,0,'12f271c8-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(59,1,'12 stk. Hot Spicy Wings Menu','chicken-n-chicken-12-stk-hot-spicy-wings-menu','Kyllingevinger, som er marineret i en krydret chili-marinade.','','publish','12-stk-hot-spicy-wings-menu.png','upload/item/59/',4,'',NULL,1,1,0,1,0.0000,0,'12f27204-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(60,1,'6 stk. Chicken Strips Menu','chicken-n-chicken-6-stk-chicken-strips-menu','Kyllingefileter, håndpaneret i "Chicken N Chicken" paneringen','','publish','6-stk-chicken-strips-menu.png','upload/item/60/',5,'',NULL,1,1,0,1,0.0000,0,'12f27240-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(61,1,'6 stk. Chicken Tikka Menu','chicken-n-chicken-6-stk-chicken-tikka-menu','Kyllingefileter, håndpaneret i "Chicken N Chicken" paneringen','','publish','6-stk-chicken-tikka-menu.png','upload/item/61/',6,'',NULL,1,1,0,1,0.0000,0,'12f2729a-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(62,1,'6 stk. Chicken Nuggets Menu','chicken-n-chicken-6-stk-chicken-nuggets-menu','Gyldne og sprøde nuggets er perfekte til både børn og voksne','','publish','6-stk-chicken-nuggets-menu.png','upload/item/62/',7,'',NULL,1,1,0,1,0.0000,0,'12f272d6-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(63,1,'10 stk. Chicken Nuggets Menu','chicken-n-chicken-10-stk-chicken-nuggets-menu','Gyldne og sprøde nuggets er perfekte til både børn og voksne','','publish','10-stk-chicken-nuggets-menu.png','upload/item/63/',8,'',NULL,1,1,0,1,0.0000,0,'12f27326-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(64,1,'15 stk. Chicken Nuggets Menu','chicken-n-chicken-15-stk-chicken-nuggets-menu','Gyldne og sprøde nuggets er perfekte til både børn og voksne','','publish','15-stk-chicken-nuggets-menu.png','upload/item/64/',9,'',NULL,1,1,0,1,0.0000,0,'12f27362-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(65,1,'20 stk. Chicken Nuggets Menu','chicken-n-chicken-20-stk-chicken-nuggets-menu','Gyldne og sprøde nuggets er perfekte til både børn og voksne','','publish','20-stk-chicken-nuggets-menu.png','upload/item/65/',10,'',NULL,1,1,0,1,0.0000,0,'12f2739e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(66,1,'12 stk. Chicken Pop Corn Menu','chicken-n-chicken-12-stk-chicken-pop-corn-menu','','','publish','12-stk-chicken-pop-corn-menu.png','upload/item/66/',11,'',NULL,1,1,0,1,0.0000,0,'12f273f8-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(67,1,'20 stk. Chicken Pop Corn Menu','chicken-n-chicken-20-stk-chicken-pop-corn-menu','','','publish','20-stk-chicken-pop-corn-menu.png','upload/item/67/',12,'',NULL,1,1,0,1,0.0000,0,'12f27434-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(68,1,'1 stk. Chicken Drumstick','chicken-n-chicken-1-stk-chicken-drumstick','','','publish','1-stk-chicken-drumstick.png','upload/item/68/',13,'',NULL,1,1,0,1,0.0000,0,'12f2748e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(69,1,'2 stk. Chicken Drumsticks','chicken-n-chicken-2-stk-chicken-drumsticks','','','publish','2-stk-chicken-drumsticks.png','upload/item/69/',14,'',NULL,1,1,0,1,0.0000,0,'12f274c0-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(70,1,'3 stk. Chicken Drumsticks','chicken-n-chicken-3-stk-chicken-drumsticks','','','publish','3-stk-chicken-drumsticks.png','upload/item/70/',15,'',NULL,1,1,0,1,0.0000,0,'12f274fc-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(71,1,'4 stk. Chicken Drumsticks','chicken-n-chicken-4-stk-chicken-drumsticks','','','publish','4-stk-chicken-drumsticks.png','upload/item/71/',16,'',NULL,1,1,0,1,0.0000,0,'12f2754c-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(72,1,'5 stk. Chicken Drumsticks','chicken-n-chicken-5-stk-chicken-drumsticks','','','publish','5-stk-chicken-drumsticks.png','upload/item/72/',17,'',NULL,1,1,0,1,0.0000,0,'12f27588-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(73,1,'6 stk. Chicken Drumsticks','chicken-n-chicken-6-stk-chicken-drumsticks','','','publish','6-stk-chicken-drumsticks.png','upload/item/73/',18,'',NULL,1,1,0,1,0.0000,0,'12f275c4-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(74,1,'8 stk. Hot Spicy Wings','chicken-n-chicken-8-stk-hot-spicy-wings','','','publish','8-stk-hot-spicy-wings.png','upload/item/74/',19,'',NULL,1,1,0,1,0.0000,0,'12f275f6-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(75,1,'12 stk. Hot Spicy Wings','chicken-n-chicken-12-stk-hot-spicy-wings','','','publish','12-stk-hot-spicy-wings.png','upload/item/75/',20,'',NULL,1,1,0,1,0.0000,0,'12f27650-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(76,1,'17 stk. Hot Spicy Wings','chicken-n-chicken-17-stk-hot-spicy-wings','','','publish','17-stk-hot-spicy-wings.png','upload/item/76/',21,'',NULL,1,1,0,1,0.0000,0,'12f27682-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(77,1,'22 stk. Hot Spicy Wings','chicken-n-chicken-22-stk-hot-spicy-wings','','','publish','22-stk-hot-spicy-wings.png','upload/item/77/',22,'',NULL,1,1,0,1,0.0000,0,'12f276dc-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(78,1,'6 stk. Chicken Strips','chicken-n-chicken-6-stk-chicken-strips','','','publish','6-stk-chicken-strips.png','upload/item/78/',23,'',NULL,1,1,0,1,0.0000,0,'12f27718-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(79,1,'10 stk. Chicken Strips','chicken-n-chicken-10-stk-chicken-strips','','','publish','10-stk-chicken-strips.png','upload/item/79/',24,'',NULL,1,1,0,1,0.0000,0,'12f27768-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(80,1,'6 stk. Chicken Tikka','chicken-n-chicken-6-stk-chicken-tikka','','','publish','6-stk-chicken-tikka.png','upload/item/80/',25,'',NULL,1,1,0,1,0.0000,0,'12f277b8-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(81,1,'6 stk. Chicken Nuggets','chicken-n-chicken-6-stk-chicken-nuggets','','','publish','6-stk-chicken-nuggets.png','upload/item/81/',26,'',NULL,1,1,0,1,0.0000,0,'12f277f4-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(82,1,'10 stk. Chicken Nuggets','chicken-n-chicken-10-stk-chicken-nuggets','','','publish','10-stk-chicken-nuggets.png','upload/item/82/',27,'',NULL,1,1,0,1,0.0000,0,'12f27844-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(83,1,'15 stk. Chicken Nuggets','chicken-n-chicken-15-stk-chicken-nuggets','','','publish','15-stk-chicken-nuggets.png','upload/item/83/',28,'',NULL,1,1,0,1,0.0000,0,'12f27880-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(84,1,'20 stk. Chicken Nuggets','chicken-n-chicken-20-stk-chicken-nuggets','','','publish','20-stk-chicken-nuggets.png','upload/item/84/',29,'',NULL,1,1,0,1,0.0000,0,'12f278b2-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(85,1,'6 stk. Chicken Pop Corn','chicken-n-chicken-6-stk-chicken-pop-corn','','','publish','6-stk-chicken-pop-corn.png','upload/item/85/',30,'',NULL,1,1,0,1,0.0000,0,'12f2790c-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(86,1,'12 stk. Chicken Pop Corn','chicken-n-chicken-12-stk-chicken-pop-corn','','','publish','12-stk-chicken-pop-corn.png','upload/item/86/',31,'',NULL,1,1,0,1,0.0000,0,'12f27948-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(87,1,'20 stk. Chicken Pop Corn','chicken-n-chicken-20-stk-chicken-pop-corn','','','publish','20-stk-chicken-pop-corn.png','upload/item/87/',32,'',NULL,1,1,0,1,0.0000,0,'12f279a2-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(88,1,'Kids Meal 1 - Hamburger','kids-meal-kids-meal-1-hamburger','Hamburger indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets','','publish','kids-meal-1-hamburger.png','upload/item/88/',1,'',NULL,1,1,0,1,0.0000,0,'12f279de-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(89,1,'Kids Meal 2 - Chicken Strips 2 Stk.','kids-meal-kids-meal-2-chicken-strips-2-stk','Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets','','publish','kids-meal-2-chicken-strips-2-stk.png','upload/item/89/',2,'',NULL,1,1,0,1,0.0000,0,'12f27a24-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(90,1,'Kids Meal 3 - 5 stk. Chicken Pop Corn','kids-meal-kids-meal-3-5-stk-chicken-pop-corn','Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets','','publish','kids-meal-3-5-stk-chicken-pop-corn.png','upload/item/90/',3,'',NULL,1,1,0,1,0.0000,0,'12f27a7e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(91,1,'Kids Meal 4 - 4 stk. Chicken Nuggets','kids-meal-kids-meal-4-4-stk-chicken-nuggets','Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets','','publish','kids-meal-4-4-stk-chicken-nuggets.png','upload/item/91/',4,'',NULL,1,1,0,1,0.0000,0,'12f27ac4-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(92,1,'Kids Meal 5 - 1 stk. Drumstick','kids-meal-kids-meal-5-1-stk-drumstick','Indeholder: 1 x Capri Sonne + 1 x Pomfrit + 1 x 3d widgets','','publish','kids-meal-5-1-stk-drumstick.png','upload/item/92/',5,'',NULL,1,1,0,1,0.0000,0,'12f27b14-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(93,1,'Pommes Frites (medium)','sides-dips-pommes-frites-medium','Pommes Frites (medium)','','publish','pommes-frites-medium.png','upload/item/93/',1,'',NULL,1,1,0,1,0.0000,0,'12f27b50-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(94,1,'Pommes Frites (large)','sides-dips-pommes-frites-large','Pommes Frites (large)','','publish','pommes-frites-large.png','upload/item/94/',2,'',NULL,1,1,0,1,0.0000,0,'12f27b8c-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(95,1,'Potatoes Wedges','sides-dips-potatoes-wedges','Potatoes Wedges','','publish','potatoes-wedges.png','upload/item/95/',3,'',NULL,1,1,0,1,0.0000,0,'12f27be6-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(96,1,'Frites Spirales','sides-dips-frites-spirales','Frites Spirales','','publish','frites-spirales.png','upload/item/96/',4,'',NULL,1,1,0,1,0.0000,0,'12f27c18-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(97,1,'Frites Dippers','sides-dips-frites-dippers','Frites Dippers','','publish','frites-dippers.png','upload/item/97/',5,'',NULL,1,1,0,1,0.0000,0,'12f27c54-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(98,1,'6 Onion Rings','sides-dips-6-onion-rings','6 Onion Rings','','publish','6-onion-rings.png','upload/item/98/',6,'',NULL,1,1,0,1,0.0000,0,'12f27ca4-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(99,1,'10 Chili Cheese Nuggets','sides-dips-10-chili-cheese-nuggets','10 Chili Cheese Nuggets','','publish','10-chili-cheese-nuggets.png','upload/item/99/',7,'',NULL,1,1,0,1,0.0000,0,'12f27cea-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(100,1,'6 Mozzarella Sticks','sides-dips-6-mozzarella-sticks','6 Mozzarella Sticks','','publish','6-mozzarella-sticks.png','upload/item/100/',8,'',NULL,1,1,0,1,0.0000,0,'12f27d3a-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(101,1,'12 Cream Cheese Nuggets','sides-dips-12-cream-cheese-nuggets','12 Cream Cheese Nuggets','','publish','12-cream-cheese-nuggets.png','upload/item/101/',9,'',NULL,1,1,0,1,0.0000,0,'12f27d80-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(102,1,'Ketchup 25g','sides-dips-ketchup-25g','','','publish','ketchup-25g.png','upload/item/102/',10,'',NULL,1,1,0,1,0.0000,0,'12f27db2-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(103,1,'Mayonnaise 25g','sides-dips-mayonnaise-25g','','','publish','mayonnaise-25g.png','upload/item/103/',11,'',NULL,1,1,0,1,0.0000,0,'12f27e02-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(104,1,'Barbecue 25g','sides-dips-barbecue-25g','','','publish','barbecue-25g.png','upload/item/104/',12,'',NULL,1,1,0,1,0.0000,0,'12f27e3e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(105,1,'Honey Mustard 25g','sides-dips-honey-mustard-25g','','','publish','honey-mustard-25g.png','upload/item/105/',13,'',NULL,1,1,0,1,0.0000,0,'12f27e70-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(106,1,'Sweet & Sour 25g','sides-dips-sweet-sour-25g','','','publish','sweet-sour-25g.png','upload/item/106/',14,'',NULL,1,1,0,1,0.0000,0,'12f27ec0-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(107,1,'Pomfrit Sauce 25g','sides-dips-pomfrit-sauce-25g','','','publish','pomfrit-sauce-25g.png','upload/item/107/',15,'',NULL,1,1,0,1,0.0000,0,'12f27efc-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(108,1,'Curry Mango 25g','sides-dips-curry-mango-25g','','','publish','curry-mango-25g.png','upload/item/108/',16,'',NULL,1,1,0,1,0.0000,0,'12f27f2e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(109,1,'Peri Peri 30ml','sides-dips-peri-peri-30ml','','','publish','peri-peri-30ml.png','upload/item/109/',17,'',NULL,1,1,0,1,0.0000,0,'12f27f7e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(110,1,'Algérienne 10g','sides-dips-algerienne-10g','','','publish','algerienne-10g.png','upload/item/110/',18,'',NULL,1,1,0,1,0.0000,0,'12f27fc4-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(111,1,'Biggy Burger 10g','sides-dips-biggy-burger-10g','','','publish','biggy-burger-10g.png','upload/item/111/',19,'',NULL,1,1,0,1,0.0000,0,'12f28014-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(112,1,'Ketchup 10g','sides-dips-ketchup-10g','','','publish','ketchup-10g.png','upload/item/112/',20,'',NULL,1,1,0,1,0.0000,0,'12f28050-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(113,1,'Mayonnaise 10g','sides-dips-mayonnaise-10g','','','publish','mayonnaise-10g.png','upload/item/113/',21,'',NULL,1,1,0,1,0.0000,0,'12f28082-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(114,1,'Americano','coffee-cake-americano','Americano','','publish','americano.png','upload/item/114/',1,'',NULL,1,1,0,1,0.0000,0,'12f280be-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(115,1,'Tea','coffee-cake-tea','Tea','','publish','tea.png','upload/item/115/',2,'',NULL,1,1,0,1,0.0000,0,'12f2810e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(116,1,'Cappuccino','coffee-cake-cappuccino','Cappuccino','','publish','cappuccino.png','upload/item/116/',3,'',NULL,1,1,0,1,0.0000,0,'12f28140-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(117,1,'Caffe latte','coffee-cake-caffe-latte','Caffe latte','','publish','caffe-latte.png','upload/item/117/',4,'',NULL,1,1,0,1,0.0000,0,'12f28190-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(118,1,'Varm kakao','coffee-cake-varm-kakao','Varm kakao','','publish','varm-kakao.png','upload/item/118/',5,'',NULL,1,1,0,1,0.0000,0,'12f281c2-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(119,1,'Flat white','coffee-cake-flat-white','Flat white','','publish','flat-white.png','upload/item/119/',6,'',NULL,1,1,0,1,0.0000,0,'12f281fe-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(120,1,'Cortador','coffee-cake-cortador','Cortador','','publish','cortador.png','upload/item/120/',7,'',NULL,1,1,0,1,0.0000,0,'12f28244-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(121,1,'Is latte - Vanilla','coffee-cake-is-latte-vanilla','Is latte - Vanilla','','publish','is-latte-vanilla.png','upload/item/121/',8,'',NULL,1,1,0,1,0.0000,0,'12f28280-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(122,1,'Is latte - Caramel','coffee-cake-is-latte-caramel','','','publish','is-latte-caramel.png','upload/item/122/',9,'',NULL,1,1,0,1,0.0000,0,'12f282bc-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(123,1,'Espresso dobbelt','coffee-cake-espresso-dobbelt','Espresso dobbelt','','publish','espresso-dobbelt.png','upload/item/123/',10,'',NULL,1,1,0,1,0.0000,0,'12f28302-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(124,1,'Tiramisu - Chocolate','coffee-cake-tiramisu-chocolate','Tiramisu - Chocolate','','publish','tiramisu-chocolate.png','upload/item/124/',11,'',NULL,1,1,0,1,0.0000,0,'12f2833e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(125,1,'Tiramisu - Caramel','coffee-cake-tiramisu-caramel','Tiramisu - Caramel','','publish','tiramisu-caramel.png','upload/item/125/',12,'',NULL,1,1,0,1,0.0000,0,'12f28370-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(126,1,'Chocolate Muffin','coffee-cake-chocolate-muffin','Chocolate muffin','','publish','chocolate-muffin.png','upload/item/126/',13,'',NULL,1,1,0,1,0.0000,0,'12f283c0-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(127,1,'SUNDAE - Karamel Toffee','ice-cream-shakes-sundae-karamel-toffee','SUNDAE - Karamel Toffee','','publish','sundae-karamel-toffee.png','upload/item/127/',1,'',NULL,1,1,0,1,0.0000,0,'12f283fc-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(128,1,'SUNDAE - Jordbær','ice-cream-shakes-sundae-jordbaer','SUNDAE - Jordbær','','publish','sundae-jordbaer.png','upload/item/128/',2,'',NULL,1,1,0,1,0.0000,0,'12f28456-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(129,1,'SUNDAE - Chokolade','ice-cream-shakes-sundae-chokolade','SUNDAE - Chokolade','','publish','sundae-chokolade.png','upload/item/129/',3,'',NULL,1,1,0,1,0.0000,0,'12f28488-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(130,1,'SUNDAE - Vanilje','ice-cream-shakes-sundae-vanilje','SUNDAE - Vanilje','','publish','sundae-vanilje.png','upload/item/130/',4,'',NULL,1,1,0,1,0.0000,0,'12f284c4-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(131,1,'SUNDAE - Oreo','ice-cream-shakes-sundae-oreo','SUNDAE - Oreo','','publish','sundae-oreo.png','upload/item/131/',5,'',NULL,1,1,0,1,0.0000,0,'12f28500-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(132,1,'SUNDAE - Smartis','ice-cream-shakes-sundae-smartis','SUNDAE - Smartis','','publish','sundae-smartis.png','upload/item/132/',6,'',NULL,1,1,0,1,0.0000,0,'12f28550-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(133,1,'Pepsi','cold-drinks-pepsi','Pepsi','','publish','pepsi.png','upload/item/133/',1,'',NULL,1,1,0,1,0.0000,0,'12f28582-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(134,1,'Pepsi Large','cold-drinks-pepsi-large','Pepsi Large','','publish','pepsi-large.png','upload/item/134/',2,'',NULL,1,1,0,1,0.0000,0,'12f285d2-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(135,1,'Pepsi Max','cold-drinks-pepsi-max','Pepsi Max','','publish','pepsi-max.png','upload/item/135/',3,'',NULL,1,1,0,1,0.0000,0,'12f28604-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(136,1,'Pepsi Max Large','cold-drinks-pepsi-max-large','Pepsi Max Large','','publish','pepsi-max-large.png','upload/item/136/',4,'',NULL,1,1,0,1,0.0000,0,'12f2865e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(137,1,'Faxe Kondi','cold-drinks-faxe-kondi','Faxe Kondi','','publish','faxe-kondi.png','upload/item/137/',5,'',NULL,1,1,0,1,0.0000,0,'12f2869a-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(138,1,'Faxe Kondi  Large','cold-drinks-faxe-kondi-large','Faxe Kondi  Large','','publish','faxe-kondi-large.png','upload/item/138/',6,'',NULL,1,1,0,1,0.0000,0,'12f286d6-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(139,1,'Faxe Kondi Zero','cold-drinks-faxe-kondi-zero','Faxe Kondi Zero','','publish','faxe-kondi-zero.png','upload/item/139/',7,'',NULL,1,1,0,1,0.0000,0,'12f28708-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(140,1,'Faxe Kondi Zero Large','cold-drinks-faxe-kondi-zero-large','Faxe Kondi Zero Large','','publish','faxe-kondi-zero-large.png','upload/item/140/',8,'',NULL,1,1,0,1,0.0000,0,'12f28758-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(141,1,'Faxe Kondi Appelsin','cold-drinks-faxe-kondi-appelsin','Faxe Kondi Appelsin','','publish','faxe-kondi-appelsin.png','upload/item/141/',9,'',NULL,1,1,0,1,0.0000,0,'12f28794-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(142,1,'Faxe Kondi Appelsin Large','cold-drinks-faxe-kondi-appelsin-large','Faxe Kondi Appelsin Large','','publish','faxe-kondi-appelsin-large.png','upload/item/142/',10,'',NULL,1,1,0,1,0.0000,0,'12f287d0-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(143,1,'Mirinda lemon','cold-drinks-mirinda-lemon','Mirinda lemon','','publish','mirinda-lemon.png','upload/item/143/',11,'',NULL,1,1,0,1,0.0000,0,'12f2882a-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(144,1,'Mirinda lemon Large','cold-drinks-mirinda-lemon-large','Mirinda lemon Large','','publish','mirinda-lemon-large.png','upload/item/144/',12,'',NULL,1,1,0,1,0.0000,0,'12f28866-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(145,1,'Kildevand 0.5l','cold-drinks-kildevand-0-5l','Kildevand 0.5l','','publish','kildevand-0-5l.png','upload/item/145/',13,'',NULL,1,1,0,1,0.0000,0,'12f288b6-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(146,1,'Danskvand 0.5l','cold-drinks-danskvand-0-5l','Danskvand 0.5l','','publish','danskvand-0-5l.png','upload/item/146/',14,'',NULL,1,1,0,1,0.0000,0,'12f288f2-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(147,1,'Faxe Kondi 1.5l','cold-drinks-faxe-kondi-1-5l','Faxe Kondi 1.5l','','publish','faxe-kondi-1-5l.png','upload/item/147/',15,'',NULL,1,1,0,1,0.0000,0,'12f2892e-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(148,1,'Pepsi Max 1.5l','cold-drinks-pepsi-max-1-5l','Pepsi Max 1.5l','','publish','pepsi-max-1-5l.png','upload/item/148/',16,'',NULL,1,1,0,1,0.0000,0,'12f28960-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(149,1,'Red Bull','cold-drinks-red-bull','Red Bull','','publish','red-bull.png','upload/item/149/',17,'',NULL,1,1,0,1,0.0000,0,'12f289b0-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(150,1,'Capri-Sun','cold-drinks-capri-sun','Capri-Sun','','publish','capri-sun.png','upload/item/150/',18,'',NULL,1,1,0,1,0.0000,0,'12f289ec-3179-11f1-9f3b-1a3dac98ec63','',1,0,'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'2026-04-06 07:25:50','2026-04-06 07:25:50','');
+-- ========== ADDON OPTION PRICES ==========
+UPDATE st_subcategory_item SET price = '17.0' WHERE sub_item_id = 1 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '17.0' WHERE sub_item_id = 2 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '17.0' WHERE sub_item_id = 3 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '17.0' WHERE sub_item_id = 4 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '17.0' WHERE sub_item_id = 5 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '17.0' WHERE sub_item_id = 6 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '17.0' WHERE sub_item_id = 7 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '17.0' WHERE sub_item_id = 8 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '17.0' WHERE sub_item_id = 9 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '9.0' WHERE sub_item_id = 10 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '9.0' WHERE sub_item_id = 11 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '9.0' WHERE sub_item_id = 12 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '11.0' WHERE sub_item_id = 13 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '11.0' WHERE sub_item_id = 14 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '9.0' WHERE sub_item_id = 15 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '9.0' WHERE sub_item_id = 16 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '9.0' WHERE sub_item_id = 17 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '9.0' WHERE sub_item_id = 18 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '9.0' WHERE sub_item_id = 19 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '9.0' WHERE sub_item_id = 20 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '9.0' WHERE sub_item_id = 21 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '6.0' WHERE sub_item_id = 22 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '6.0' WHERE sub_item_id = 23 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '6.0' WHERE sub_item_id = 24 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '5.0' WHERE sub_item_id = 25 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '5.0' WHERE sub_item_id = 26 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '32.0' WHERE sub_item_id = 33 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '30.0' WHERE sub_item_id = 34 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '30.0' WHERE sub_item_id = 35 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '30.0' WHERE sub_item_id = 36 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '30.0' WHERE sub_item_id = 37 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '30.0' WHERE sub_item_id = 38 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '30.0' WHERE sub_item_id = 39 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '36.0' WHERE sub_item_id = 40 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '36.0' WHERE sub_item_id = 41 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '36.0' WHERE sub_item_id = 42 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '36.0' WHERE sub_item_id = 43 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '36.0' WHERE sub_item_id = 44 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '36.0' WHERE sub_item_id = 45 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '42.0' WHERE sub_item_id = 46 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '42.0' WHERE sub_item_id = 47 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '31.0' WHERE sub_item_id = 48 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '31.0' WHERE sub_item_id = 49 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '17.0' WHERE sub_item_id = 50 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '33.0' WHERE sub_item_id = 72 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 75 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 76 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 77 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 78 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 79 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '6.0' WHERE sub_item_id = 80 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 85 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 86 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 87 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 88 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 89 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 90 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 91 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 92 AND merchant_id = 1;
+UPDATE st_subcategory_item SET price = '7.0' WHERE sub_item_id = 93 AND merchant_id = 1;
 
-INSERT INTO st_item_relationship_category (id, merchant_id, item_id, cat_id, sequence) VALUES
-(1,1,1,1,1),
-(2,1,2,1,2),
-(3,1,3,1,3),
-(4,1,4,1,4),
-(5,1,5,1,5),
-(6,1,6,1,6),
-(7,1,7,1,7),
-(8,1,8,1,8),
-(9,1,9,1,9),
-(10,1,10,1,10),
-(11,1,11,1,11),
-(12,1,12,2,1),
-(13,1,13,2,2),
-(14,1,14,2,3),
-(15,1,15,2,4),
-(16,1,16,2,5),
-(17,1,17,2,6),
-(18,1,18,2,7),
-(19,1,19,2,8),
-(20,1,20,2,9),
-(21,1,21,2,10),
-(22,1,22,2,11),
-(23,1,23,2,12),
-(24,1,24,2,13),
-(25,1,25,2,14),
-(26,1,26,2,15),
-(27,1,27,2,16),
-(28,1,28,2,17),
-(29,1,29,2,18),
-(30,1,30,2,19),
-(31,1,31,2,20),
-(32,1,32,2,21),
-(33,1,33,2,22),
-(34,1,34,3,1),
-(35,1,35,3,2),
-(36,1,36,3,3),
-(37,1,37,3,4),
-(38,1,38,4,1),
-(39,1,39,4,2),
-(40,1,40,4,3),
-(41,1,41,4,4),
-(42,1,42,4,5),
-(43,1,43,4,6),
-(44,1,44,4,7),
-(45,1,45,4,8),
-(46,1,46,4,9),
-(47,1,47,4,10),
-(48,1,48,4,11),
-(49,1,49,4,12),
-(50,1,50,5,1),
-(51,1,51,5,2),
-(52,1,52,5,3),
-(53,1,53,5,4),
-(54,1,54,5,5),
-(55,1,55,5,6),
-(56,1,56,6,1),
-(57,1,57,6,2),
-(58,1,58,6,3),
-(59,1,59,6,4),
-(60,1,60,6,5),
-(61,1,61,6,6),
-(62,1,62,6,7),
-(63,1,63,6,8),
-(64,1,64,6,9),
-(65,1,65,6,10),
-(66,1,66,6,11),
-(67,1,67,6,12),
-(68,1,68,6,13),
-(69,1,69,6,14),
-(70,1,70,6,15),
-(71,1,71,6,16),
-(72,1,72,6,17),
-(73,1,73,6,18),
-(74,1,74,6,19),
-(75,1,75,6,20),
-(76,1,76,6,21),
-(77,1,77,6,22),
-(78,1,78,6,23),
-(79,1,79,6,24),
-(80,1,80,6,25),
-(81,1,81,6,26),
-(82,1,82,6,27),
-(83,1,83,6,28),
-(84,1,84,6,29),
-(85,1,85,6,30),
-(86,1,86,6,31),
-(87,1,87,6,32),
-(88,1,88,7,1),
-(89,1,89,7,2),
-(90,1,90,7,3),
-(91,1,91,7,4),
-(92,1,92,7,5),
-(93,1,93,8,1),
-(94,1,94,8,2),
-(95,1,95,8,3),
-(96,1,96,8,4),
-(97,1,97,8,5),
-(98,1,98,8,6),
-(99,1,99,8,7),
-(100,1,100,8,8),
-(101,1,101,8,9),
-(102,1,102,8,10),
-(103,1,103,8,11),
-(104,1,104,8,12),
-(105,1,105,8,13),
-(106,1,106,8,14),
-(107,1,107,8,15),
-(108,1,108,8,16),
-(109,1,109,8,17),
-(110,1,110,8,18),
-(111,1,111,8,19),
-(112,1,112,8,20),
-(113,1,113,8,21),
-(114,1,114,9,1),
-(115,1,115,9,2),
-(116,1,116,9,3),
-(117,1,117,9,4),
-(118,1,118,9,5),
-(119,1,119,9,6),
-(120,1,120,9,7),
-(121,1,121,9,8),
-(122,1,122,9,9),
-(123,1,123,9,10),
-(124,1,124,9,11),
-(125,1,125,9,12),
-(126,1,126,9,13),
-(127,1,127,10,1),
-(128,1,128,10,2),
-(129,1,129,10,3),
-(130,1,130,10,4),
-(131,1,131,10,5),
-(132,1,132,10,6),
-(133,1,133,11,1),
-(134,1,134,11,2),
-(135,1,135,11,3),
-(136,1,136,11,4),
-(137,1,137,11,5),
-(138,1,138,11,6),
-(139,1,139,11,7),
-(140,1,140,11,8),
-(141,1,141,11,9),
-(142,1,142,11,10),
-(143,1,143,11,11),
-(144,1,144,11,12),
-(145,1,145,11,13),
-(146,1,146,11,14),
-(147,1,147,11,15),
-(148,1,148,11,16),
-(149,1,149,11,17),
-(150,1,150,11,18);
+-- ========== CLEAR CACHES ==========
+UPDATE st_cache SET date_modified = NOW() WHERE id = 1;
+FLUSH TABLES;
 
-INSERT INTO st_item_relationship_size (item_size_id, merchant_id, item_token, item_id, size_id, price, cost_price, discount, discount_type, discount_start, discount_end, sequence, sku, barcode, available, low_stock, created_at, updated_at) VALUES
-(1,1,'12f26200-3179-11f1-9f3b-1a3dac98ec63',1,0,52.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(2,1,'12f262dc-3179-11f1-9f3b-1a3dac98ec63',2,0,82.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(3,1,'12f26336-3179-11f1-9f3b-1a3dac98ec63',3,0,85.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(4,1,'12f2637c-3179-11f1-9f3b-1a3dac98ec63',4,0,93.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(5,1,'12f263d6-3179-11f1-9f3b-1a3dac98ec63',5,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(6,1,'12f26426-3179-11f1-9f3b-1a3dac98ec63',6,0,98.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(7,1,'12f26480-3179-11f1-9f3b-1a3dac98ec63',7,0,32.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(8,1,'12f264d0-3179-11f1-9f3b-1a3dac98ec63',8,0,52.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(9,1,'12f2652a-3179-11f1-9f3b-1a3dac98ec63',9,0,60.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(10,1,'12f26570-3179-11f1-9f3b-1a3dac98ec63',10,0,60.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(11,1,'12f265ac-3179-11f1-9f3b-1a3dac98ec63',11,0,71.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(12,1,'12f265f2-3179-11f1-9f3b-1a3dac98ec63',12,0,60.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(13,1,'12f26642-3179-11f1-9f3b-1a3dac98ec63',13,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(14,1,'12f2667e-3179-11f1-9f3b-1a3dac98ec63',14,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(15,1,'12f266ce-3179-11f1-9f3b-1a3dac98ec63',15,0,85.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(16,1,'12f2670a-3179-11f1-9f3b-1a3dac98ec63',16,0,104.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(17,1,'12f26746-3179-11f1-9f3b-1a3dac98ec63',17,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(18,1,'12f267a0-3179-11f1-9f3b-1a3dac98ec63',18,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(19,1,'12f267dc-3179-11f1-9f3b-1a3dac98ec63',19,0,98.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(20,1,'12f2680e-3179-11f1-9f3b-1a3dac98ec63',20,0,98.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(21,1,'12f26868-3179-11f1-9f3b-1a3dac98ec63',21,0,98.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(22,1,'12f268ae-3179-11f1-9f3b-1a3dac98ec63',22,0,98.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(23,1,'12f268ea-3179-11f1-9f3b-1a3dac98ec63',23,0,86.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(24,1,'12f26944-3179-11f1-9f3b-1a3dac98ec63',24,0,54.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(25,1,'12f26976-3179-11f1-9f3b-1a3dac98ec63',25,0,52.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(26,1,'12f269d0-3179-11f1-9f3b-1a3dac98ec63',26,0,71.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(27,1,'12f26a0c-3179-11f1-9f3b-1a3dac98ec63',27,0,60.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(28,1,'12f26a48-3179-11f1-9f3b-1a3dac98ec63',28,0,60.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(29,1,'12f26a7a-3179-11f1-9f3b-1a3dac98ec63',29,0,65.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(30,1,'12f26ad4-3179-11f1-9f3b-1a3dac98ec63',30,0,65.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(31,1,'12f26b10-3179-11f1-9f3b-1a3dac98ec63',31,0,65.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(32,1,'12f26b4c-3179-11f1-9f3b-1a3dac98ec63',32,0,71.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(33,1,'12f26b7e-3179-11f1-9f3b-1a3dac98ec63',33,0,53.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(34,1,'12f26bba-3179-11f1-9f3b-1a3dac98ec63',34,0,76.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(35,1,'12f26bf6-3179-11f1-9f3b-1a3dac98ec63',35,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(36,1,'12f26c32-3179-11f1-9f3b-1a3dac98ec63',36,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(37,1,'12f26c64-3179-11f1-9f3b-1a3dac98ec63',37,0,22.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(38,1,'12f26ca0-3179-11f1-9f3b-1a3dac98ec63',38,0,98.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(39,1,'12f26cdc-3179-11f1-9f3b-1a3dac98ec63',39,0,109.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(40,1,'12f26d0e-3179-11f1-9f3b-1a3dac98ec63',40,0,120.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(41,1,'12f26d4a-3179-11f1-9f3b-1a3dac98ec63',41,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(42,1,'12f26d90-3179-11f1-9f3b-1a3dac98ec63',42,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(43,1,'12f26dcc-3179-11f1-9f3b-1a3dac98ec63',43,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(44,1,'12f26e26-3179-11f1-9f3b-1a3dac98ec63',44,0,65.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(45,1,'12f26e58-3179-11f1-9f3b-1a3dac98ec63',45,0,76.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(46,1,'12f26e94-3179-11f1-9f3b-1a3dac98ec63',46,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(47,1,'12f26ee4-3179-11f1-9f3b-1a3dac98ec63',47,0,65.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(48,1,'12f26f20-3179-11f1-9f3b-1a3dac98ec63',48,0,65.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(49,1,'12f26f52-3179-11f1-9f3b-1a3dac98ec63',49,0,65.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(50,1,'12f26fa2-3179-11f1-9f3b-1a3dac98ec63',50,0,274.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(51,1,'12f26fde-3179-11f1-9f3b-1a3dac98ec63',51,0,285.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(52,1,'12f27010-3179-11f1-9f3b-1a3dac98ec63',52,0,296.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(53,1,'12f27060-3179-11f1-9f3b-1a3dac98ec63',53,0,252.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(54,1,'12f2709c-3179-11f1-9f3b-1a3dac98ec63',54,0,329.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(55,1,'12f270e2-3179-11f1-9f3b-1a3dac98ec63',55,0,252.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(56,1,'12f27128-3179-11f1-9f3b-1a3dac98ec63',56,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(57,1,'12f2716e-3179-11f1-9f3b-1a3dac98ec63',57,0,105.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(58,1,'12f271c8-3179-11f1-9f3b-1a3dac98ec63',58,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(59,1,'12f27204-3179-11f1-9f3b-1a3dac98ec63',59,0,124.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(60,1,'12f27240-3179-11f1-9f3b-1a3dac98ec63',60,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(61,1,'12f2729a-3179-11f1-9f3b-1a3dac98ec63',61,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(62,1,'12f272d6-3179-11f1-9f3b-1a3dac98ec63',62,0,71.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(63,1,'12f27326-3179-11f1-9f3b-1a3dac98ec63',63,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(64,1,'12f27362-3179-11f1-9f3b-1a3dac98ec63',64,0,113.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(65,1,'12f2739e-3179-11f1-9f3b-1a3dac98ec63',65,0,131.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(66,1,'12f273f8-3179-11f1-9f3b-1a3dac98ec63',66,0,98.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(67,1,'12f27434-3179-11f1-9f3b-1a3dac98ec63',67,0,120.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(68,1,'12f2748e-3179-11f1-9f3b-1a3dac98ec63',68,0,27.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(69,1,'12f274c0-3179-11f1-9f3b-1a3dac98ec63',69,0,47.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(70,1,'12f274fc-3179-11f1-9f3b-1a3dac98ec63',70,0,65.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(71,1,'12f2754c-3179-11f1-9f3b-1a3dac98ec63',71,0,85.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(72,1,'12f27588-3179-11f1-9f3b-1a3dac98ec63',72,0,98.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(73,1,'12f275c4-3179-11f1-9f3b-1a3dac98ec63',73,0,120.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(74,1,'12f275f6-3179-11f1-9f3b-1a3dac98ec63',74,0,58.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(75,1,'12f27650-3179-11f1-9f3b-1a3dac98ec63',75,0,91.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(76,1,'12f27682-3179-11f1-9f3b-1a3dac98ec63',76,0,124.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(77,1,'12f276dc-3179-11f1-9f3b-1a3dac98ec63',77,0,157.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(78,1,'12f27718-3179-11f1-9f3b-1a3dac98ec63',78,0,58.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(79,1,'12f27768-3179-11f1-9f3b-1a3dac98ec63',79,0,98.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(80,1,'12f277b8-3179-11f1-9f3b-1a3dac98ec63',80,0,65.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(81,1,'12f277f4-3179-11f1-9f3b-1a3dac98ec63',81,0,38.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(82,1,'12f27844-3179-11f1-9f3b-1a3dac98ec63',82,0,54.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(83,1,'12f27880-3179-11f1-9f3b-1a3dac98ec63',83,0,80.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(84,1,'12f278b2-3179-11f1-9f3b-1a3dac98ec63',84,0,104.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(85,1,'12f2790c-3179-11f1-9f3b-1a3dac98ec63',85,0,43.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(86,1,'12f27948-3179-11f1-9f3b-1a3dac98ec63',86,0,65.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(87,1,'12f279a2-3179-11f1-9f3b-1a3dac98ec63',87,0,87.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(88,1,'12f279de-3179-11f1-9f3b-1a3dac98ec63',88,0,50.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(89,1,'12f27a24-3179-11f1-9f3b-1a3dac98ec63',89,0,50.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(90,1,'12f27a7e-3179-11f1-9f3b-1a3dac98ec63',90,0,50.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(91,1,'12f27ac4-3179-11f1-9f3b-1a3dac98ec63',91,0,50.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(92,1,'12f27b14-3179-11f1-9f3b-1a3dac98ec63',92,0,50.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(93,1,'12f27b50-3179-11f1-9f3b-1a3dac98ec63',93,0,30.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(94,1,'12f27b8c-3179-11f1-9f3b-1a3dac98ec63',94,0,36.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(95,1,'12f27be6-3179-11f1-9f3b-1a3dac98ec63',95,0,37.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(96,1,'12f27c18-3179-11f1-9f3b-1a3dac98ec63',96,0,37.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(97,1,'12f27c54-3179-11f1-9f3b-1a3dac98ec63',97,0,37.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(98,1,'12f27ca4-3179-11f1-9f3b-1a3dac98ec63',98,0,37.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(99,1,'12f27cea-3179-11f1-9f3b-1a3dac98ec63',99,0,38.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(100,1,'12f27d3a-3179-11f1-9f3b-1a3dac98ec63',100,0,38.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(101,1,'12f27d80-3179-11f1-9f3b-1a3dac98ec63',101,0,38.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(102,1,'12f27db2-3179-11f1-9f3b-1a3dac98ec63',102,0,7.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(103,1,'12f27e02-3179-11f1-9f3b-1a3dac98ec63',103,0,7.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(104,1,'12f27e3e-3179-11f1-9f3b-1a3dac98ec63',104,0,7.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(105,1,'12f27e70-3179-11f1-9f3b-1a3dac98ec63',105,0,7.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(106,1,'12f27ec0-3179-11f1-9f3b-1a3dac98ec63',106,0,7.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(107,1,'12f27efc-3179-11f1-9f3b-1a3dac98ec63',107,0,7.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(108,1,'12f27f2e-3179-11f1-9f3b-1a3dac98ec63',108,0,7.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(109,1,'12f27f7e-3179-11f1-9f3b-1a3dac98ec63',109,0,7.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(110,1,'12f27fc4-3179-11f1-9f3b-1a3dac98ec63',110,0,5.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(111,1,'12f28014-3179-11f1-9f3b-1a3dac98ec63',111,0,5.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(112,1,'12f28050-3179-11f1-9f3b-1a3dac98ec63',112,0,5.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(113,1,'12f28082-3179-11f1-9f3b-1a3dac98ec63',113,0,5.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(114,1,'12f280be-3179-11f1-9f3b-1a3dac98ec63',114,0,22.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(115,1,'12f2810e-3179-11f1-9f3b-1a3dac98ec63',115,0,22.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(116,1,'12f28140-3179-11f1-9f3b-1a3dac98ec63',116,0,28.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(117,1,'12f28190-3179-11f1-9f3b-1a3dac98ec63',117,0,28.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(118,1,'12f281c2-3179-11f1-9f3b-1a3dac98ec63',118,0,28.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(119,1,'12f281fe-3179-11f1-9f3b-1a3dac98ec63',119,0,28.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(120,1,'12f28244-3179-11f1-9f3b-1a3dac98ec63',120,0,28.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(121,1,'12f28280-3179-11f1-9f3b-1a3dac98ec63',121,0,36.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(122,1,'12f282bc-3179-11f1-9f3b-1a3dac98ec63',122,0,36.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(123,1,'12f28302-3179-11f1-9f3b-1a3dac98ec63',123,0,22.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(124,1,'12f2833e-3179-11f1-9f3b-1a3dac98ec63',124,0,32.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(125,1,'12f28370-3179-11f1-9f3b-1a3dac98ec63',125,0,32.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(126,1,'12f283c0-3179-11f1-9f3b-1a3dac98ec63',126,0,21.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(127,1,'12f283fc-3179-11f1-9f3b-1a3dac98ec63',127,0,32.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(128,1,'12f28456-3179-11f1-9f3b-1a3dac98ec63',128,0,32.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(129,1,'12f28488-3179-11f1-9f3b-1a3dac98ec63',129,0,32.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(130,1,'12f284c4-3179-11f1-9f3b-1a3dac98ec63',130,0,32.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(131,1,'12f28500-3179-11f1-9f3b-1a3dac98ec63',131,0,32.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(132,1,'12f28550-3179-11f1-9f3b-1a3dac98ec63',132,0,32.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(133,1,'12f28582-3179-11f1-9f3b-1a3dac98ec63',133,0,30.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(134,1,'12f285d2-3179-11f1-9f3b-1a3dac98ec63',134,0,36.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(135,1,'12f28604-3179-11f1-9f3b-1a3dac98ec63',135,0,30.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(136,1,'12f2865e-3179-11f1-9f3b-1a3dac98ec63',136,0,36.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(137,1,'12f2869a-3179-11f1-9f3b-1a3dac98ec63',137,0,30.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(138,1,'12f286d6-3179-11f1-9f3b-1a3dac98ec63',138,0,36.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(139,1,'12f28708-3179-11f1-9f3b-1a3dac98ec63',139,0,30.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(140,1,'12f28758-3179-11f1-9f3b-1a3dac98ec63',140,0,36.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(141,1,'12f28794-3179-11f1-9f3b-1a3dac98ec63',141,0,30.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(142,1,'12f287d0-3179-11f1-9f3b-1a3dac98ec63',142,0,36.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(143,1,'12f2882a-3179-11f1-9f3b-1a3dac98ec63',143,0,30.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(144,1,'12f28866-3179-11f1-9f3b-1a3dac98ec63',144,0,36.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(145,1,'12f288b6-3179-11f1-9f3b-1a3dac98ec63',145,0,21.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(146,1,'12f288f2-3179-11f1-9f3b-1a3dac98ec63',146,0,28.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(147,1,'12f2892e-3179-11f1-9f3b-1a3dac98ec63',147,0,42.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(148,1,'12f28960-3179-11f1-9f3b-1a3dac98ec63',148,0,42.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(149,1,'12f289b0-3179-11f1-9f3b-1a3dac98ec63',149,0,32.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50'),
-(150,1,'12f289ec-3179-11f1-9f3b-1a3dac98ec63',150,0,17.0000,0.0000,0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'2026-04-06 07:25:50','2026-04-06 07:25:50');
-
--- ========== ADDON GROUPS (subcategories) ==========
-DELETE FROM st_subcategory WHERE merchant_id = 1;
-DELETE FROM st_subcategory_item WHERE merchant_id = 1;
-DELETE FROM st_subcategory_item_relationships WHERE merchant_id = 1;
-DELETE FROM st_item_relationship_subcategory WHERE merchant_id = 1;
-INSERT INTO st_subcategory (subcat_id, merchant_id, subcategory_name, subcategory_description, featured_image, available, path, discount, sequence, status, date_created, date_modified, ip_address) VALUES
-(1,1,'Extras','Vælg ekstra toppings, tilbehør eller dyppelse for en mere tilfredsstillende oplevelse','',1,'','',1,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(2,1,'Size','','',1,'','',2,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(3,1,'Dip','Vælg din dip','',1,'','',3,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(4,1,'Menu Drinks','','',1,'','',4,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(5,1,'Drikkevarer','Vælg mellem en række forskellige drikkevarer til din mad','',1,'','',5,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(6,1,'Salad Dip','','',1,'','',6,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(7,1,'Taco pålæg','Vælg mellem adskillige pålæg til dine tacos','',1,'','',7,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(8,1,'Taco dressing','Vælg en dressing for dine tacos','',1,'','',8,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(9,1,'Family Size','','',1,'','',9,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(10,1,'Family Drink','','',1,'','',10,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(11,1,'Extras Coffee','','',1,'','',11,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(12,1,'Coffee size','','',1,'','',12,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(13,1,'Tea','','',1,'','',13,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(14,1,'Extras icecream','','',1,'','',14,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50','');
-
--- ========== ADDON OPTIONS (subcategory items) ==========
-INSERT INTO st_subcategory_item (sub_item_id, merchant_id, sub_item_name, item_description, category, price, available, photo, path, sequence, status, date_created, date_modified, ip_address) VALUES
-(1,1,'Vegetarbøf','','','17.0',1,'vegetarbof.png','upload/subcategory_item/1/',1,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(2,1,'Oksekødsbøf','','','17.0',1,'oksekodsbof.png','upload/subcategory_item/2/',2,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(3,1,'Cordon Bleu','Kød viklet rundt om ost/med ostefyld','','17.0',1,'cordon-bleu.png','upload/subcategory_item/3/',3,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(4,1,'Karrykylling','','','17.0',1,'karrykylling.png','upload/subcategory_item/4/',4,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(5,1,'Kyllinge nuggets','','','17.0',1,'kyllinge-nuggets.png','upload/subcategory_item/5/',5,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(6,1,'Kyllingeinderfilet','','','17.0',1,'kyllingeinderfilet.png','upload/subcategory_item/6/',6,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(7,1,'Tikka kylling','Kylling marineret i tikka krydderier','','17.0',1,'tikka-kylling.png','upload/subcategory_item/7/',7,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(8,1,'Kyllingekebab','','','17.0',1,'kyllingekebab.png','upload/subcategory_item/8/',8,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(9,1,'Hash Brown kartoffel','','','17.0',1,'hash-brown-kartoffel.png','upload/subcategory_item/9/',9,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(10,1,'Løg','','','9.0',1,'log.png','upload/subcategory_item/10/',10,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(11,1,'Tomat','','','9.0',1,'tomat.png','upload/subcategory_item/11/',11,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(12,1,'Iceberg','Iceberg salat','','9.0',1,'iceberg.png','upload/subcategory_item/12/',12,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(13,1,'Cheddar','Cheddar ost','','11.0',1,'cheddar.png','upload/subcategory_item/13/',13,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(14,1,'Large Upgrade','','','11.0',1,'large-upgrade.png','upload/subcategory_item/14/',14,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(15,1,'Curry Mango 25g','Dyppelse/dressing','','9.0',1,'curry-mango-25g.png','upload/subcategory_item/15/',15,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(16,1,'Mayonnaise 25g','Dyppelse/dressing','','9.0',1,'mayonnaise-25g.png','upload/subcategory_item/16/',16,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(17,1,'Ketchup 25g','Dyppelse/dressing','','9.0',1,'ketchup-25g.png','upload/subcategory_item/17/',17,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(18,1,'Barbecue 25g','Dyppelse/dressing','','9.0',1,'barbecue-25g.png','upload/subcategory_item/18/',18,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(19,1,'Sweet & Sour 25g','Dyppelse/dressing','','9.0',1,'sweet-sour-25g.png','upload/subcategory_item/19/',19,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(20,1,'Hvidløg 25g','Dyppelse/dressing','','9.0',1,'hvidlog-25g.png','upload/subcategory_item/20/',20,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(21,1,'Peri Peri 30ml','Dyppelse/dressing','','9.0',1,'peri-peri-30ml.png','upload/subcategory_item/21/',21,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(22,1,'Algérienne 10g','Dyppelse/dressing','','6.0',1,'algerienne-10g.png','upload/subcategory_item/22/',22,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(23,1,'Biggy Burger 10g','Dyppelse/dressing','','6.0',1,'biggy-burger-10g.png','upload/subcategory_item/23/',23,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(24,1,'Samourai 10g','Dyppelse/dressing','','6.0',1,'samourai-10g.png','upload/subcategory_item/24/',24,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(25,1,'Mayonaise 10g','Dyppelse/dressing','','5.0',1,'mayonaise-10g.png','upload/subcategory_item/25/',25,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(26,1,'Ketchup 10g','Dyppelse/dressing','','5.0',1,'ketchup-10g.png','upload/subcategory_item/26/',26,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(27,1,'Pepsi','','','0.0',1,'pepsi.png','upload/subcategory_item/27/',27,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(28,1,'Pepsi Max','','','0.0',1,'pepsi-max.png','upload/subcategory_item/28/',28,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(29,1,'Faxe Kondi','','','0.0',1,'faxe-kondi.png','upload/subcategory_item/29/',29,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(30,1,'Faxe Kondi Zero','','','0.0',1,'faxe-kondi-zero.png','upload/subcategory_item/30/',30,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(31,1,'Faxe Kondi Appelsin','','','0.0',1,'faxe-kondi-appelsin.png','upload/subcategory_item/31/',31,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(32,1,'Mirinda lemon','','','0.0',1,'mirinda-lemon.png','upload/subcategory_item/32/',32,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(33,1,'Red Bull','Energi drink','','32.0',1,'red-bull.png','upload/subcategory_item/33/',33,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(34,1,'Pepsi 0.4l','Sodavand','','30.0',1,'pepsi-0-4l.png','upload/subcategory_item/34/',34,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(35,1,'Pepsi Max 0.4 l','Sodavand','','30.0',1,'pepsi-max-0-4-l.png','upload/subcategory_item/35/',35,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(36,1,'Faxe Kondi 0.4 l','Sodavand','','30.0',1,'faxe-kondi-0-4-l.png','upload/subcategory_item/36/',36,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(37,1,'Faxe Kondi Zero 0.4 l','Sodavand','','30.0',1,'faxe-kondi-zero-0-4-l.png','upload/subcategory_item/37/',37,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(38,1,'Faxe Kondi Appelsin 0.4 l','Sodavand','','30.0',1,'faxe-kondi-appelsin-0-4-l.png','upload/subcategory_item/38/',38,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(39,1,'Mirinda lemon 0.4 l','Sodavand','','30.0',1,'mirinda-lemon-0-4-l.png','upload/subcategory_item/39/',39,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(40,1,'Pepsi 0.5 l','Sodavand','','36.0',1,'pepsi-0-5-l.png','upload/subcategory_item/40/',40,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(41,1,'Pepsi Max 0.5 l','Sodavand','','36.0',1,'pepsi-max-0-5-l.png','upload/subcategory_item/41/',41,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(42,1,'Faxe Kondi 0.5 l','Sodavand','','36.0',1,'faxe-kondi-0-5-l.png','upload/subcategory_item/42/',42,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(43,1,'Faxe Kondi Zero 0.5 l','Sodavand','','36.0',1,'faxe-kondi-zero-0-5-l.png','upload/subcategory_item/43/',43,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(44,1,'Faxe Kondi Appelsin 0.5 l','Sodavand','','36.0',1,'faxe-kondi-appelsin-0-5-l.png','upload/subcategory_item/44/',44,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(45,1,'Mirinda lemon 0.5 l','Sodavand','','36.0',1,'mirinda-lemon-0-5-l.png','upload/subcategory_item/45/',45,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(46,1,'Pepsi Max 1.5 l','Sodavand','','42.0',1,'pepsi-max-1-5-l.png','upload/subcategory_item/46/',46,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(47,1,'Faxe Kondi 1.5l','Sodavand','','42.0',1,'faxe-kondi-1-5l.png','upload/subcategory_item/47/',47,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(48,1,'Danskvand 0.5l','Vand','','31.0',1,'danskvand-0-5l.png','upload/subcategory_item/48/',48,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(49,1,'Kildevand 0.5l','Vand','','31.0',1,'kildevand-0-5l.png','upload/subcategory_item/49/',49,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(50,1,'Capri-Sun','Juice','','17.0',1,'capri-sun.png','upload/subcategory_item/50/',50,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(51,1,'Vegetarbøf','','','0.0',1,'vegetarbof.png','upload/subcategory_item/51/',51,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(52,1,'Oksekødsbøf','','','0.0',1,'oksekodsbof.png','upload/subcategory_item/52/',52,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(53,1,'Cordon Bleu','','','0.0',1,'cordon-bleu.png','upload/subcategory_item/53/',53,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(54,1,'Karrykylling','','','0.0',1,'karrykylling.png','upload/subcategory_item/54/',54,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(55,1,'Kyllinge nuggets','','','0.0',1,'kyllinge-nuggets.png','upload/subcategory_item/55/',55,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(56,1,'Kyllingeinderfilet','','','0.0',1,'kyllingeinderfilet.png','upload/subcategory_item/56/',56,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(57,1,'Tikka kylling','Kylling marineret i tikka krydderier','','0.0',1,'tikka-kylling.png','upload/subcategory_item/57/',57,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(58,1,'Kyllingekebab','','','0.0',1,'kyllingekebab.png','upload/subcategory_item/58/',58,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(59,1,'Hash Brown kartoffel','','','0.0',1,'hash-brown-kartoffel.png','upload/subcategory_item/59/',59,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(60,1,'Cheddar','Cheddar ost','','0.0',1,'cheddar.png','upload/subcategory_item/60/',60,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(61,1,'Iceberg','Iceberg salat','','0.0',1,'iceberg.png','upload/subcategory_item/61/',61,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(62,1,'Tomat','','','0.0',1,'tomat.png','upload/subcategory_item/62/',62,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(63,1,'Løg','','','0.0',1,'log.png','upload/subcategory_item/63/',63,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(64,1,'Algérienne','Dyppelse/dressing','','0.0',1,'algerienne.png','upload/subcategory_item/64/',64,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(65,1,'Biggy Burger','Dyppelse/dressing','','0.0',1,'biggy-burger.png','upload/subcategory_item/65/',65,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(66,1,'Peri Peri','Dyppelse/dressing','','0.0',1,'peri-peri.png','upload/subcategory_item/66/',66,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(67,1,'Marocaine','Dyppelse/dressing','','0.0',1,'marocaine.png','upload/subcategory_item/67/',67,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(68,1,'Pitta Kebab','Dyppelse/dressing','','0.0',1,'pitta-kebab.png','upload/subcategory_item/68/',68,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(69,1,'Curry Mango','Dyppelse/dressing','','0.0',1,'curry-mango.png','upload/subcategory_item/69/',69,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(70,1,'Barbecue','Dyppelse/dressing','','0.0',1,'barbecue.png','upload/subcategory_item/70/',70,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(71,1,'Samourai','Dyppelse/dressing','','0.0',1,'samourai.png','upload/subcategory_item/71/',71,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(72,1,'Large Upgrade','','','33.0',1,'large-upgrade.png','upload/subcategory_item/72/',72,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(73,1,'Faxe Kondi','','','0.0',1,'faxe-kondi.png','upload/subcategory_item/73/',73,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(74,1,'Pepsi Max','','','0.0',1,'pepsi-max.png','upload/subcategory_item/74/',74,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(75,1,'Ektra - Ekstra espresso shot','Kaffe','','7.0',1,'ektra-ekstra-espresso-shot.png','upload/subcategory_item/75/',75,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(76,1,'Ekstra - Monin Chocolate','Sirup','','7.0',1,'ekstra-monin-chocolate.png','upload/subcategory_item/76/',76,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(77,1,'Ekstra - Monin Karamel Sukkerfri','Sirup','','7.0',1,'ekstra-monin-karamel-sukkerfri.png','upload/subcategory_item/77/',77,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(78,1,'Ekstra - Monin Vanilje Sukkerfri','Sirup','','7.0',1,'ekstra-monin-vanilje-sukkerfri.png','upload/subcategory_item/78/',78,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(79,1,'Ekstra - Monin Pumpkin Spice','Sirup','','7.0',1,'ekstra-monin-pumpkin-spice.png','upload/subcategory_item/79/',79,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(80,1,'Large Upgrade','','','6.0',1,'large-upgrade.png','upload/subcategory_item/80/',80,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(81,1,'Pukka - After Dinner','','','0.0',1,'pukka-after-dinner.png','upload/subcategory_item/81/',81,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(82,1,'Pukka - Green Collection','','','0.0',1,'pukka-green-collection.png','upload/subcategory_item/82/',82,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(83,1,'Pukka - Supreme Matcha Green','','','0.0',1,'pukka-supreme-matcha-green.png','upload/subcategory_item/83/',83,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(84,1,'Pukka - Winter Warmer','','','0.0',1,'pukka-winter-warmer.png','upload/subcategory_item/84/',84,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(85,1,'Ekstra - Monin Chocolate','Sirup','','7.0',1,'ekstra-monin-chocolate.png','upload/subcategory_item/85/',85,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(86,1,'Ekstra - Monin Karamel Sukkerfri','Sirup','','7.0',1,'ekstra-monin-karamel-sukkerfri.png','upload/subcategory_item/86/',86,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(87,1,'Ekstra - Monin Vanilje Sukkerfri','Sirup','','7.0',1,'ekstra-monin-vanilje-sukkerfri.png','upload/subcategory_item/87/',87,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(88,1,'Ekstra - Monin Pumpkin Spice','Sirup','','7.0',1,'ekstra-monin-pumpkin-spice.png','upload/subcategory_item/88/',88,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(89,1,'Ekstra - Tivoli Drys','Drys','','7.0',1,'ekstra-tivoli-drys.png','upload/subcategory_item/89/',89,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(90,1,'Ekstra - Smarties Drys','Drys','','7.0',1,'ekstra-smarties-drys.png','upload/subcategory_item/90/',90,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(91,1,'Ekstra - Oreo Drys','Drys','','7.0',1,'ekstra-oreo-drys.png','upload/subcategory_item/91/',91,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(92,1,'Ekstra - Flødeskum','','','7.0',1,'ekstra-flodeskum.png','upload/subcategory_item/92/',92,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50',''),
-(93,1,'Ekstra - Kinder Maxi','Chokolade','','7.0',1,'ekstra-kinder-maxi.png','upload/subcategory_item/93/',93,'publish','2026-04-06 07:25:50','2026-04-06 07:25:50','');
-
-INSERT INTO st_subcategory_item_relationships (id, merchant_id, subcat_id, sub_item_id, sequence) VALUES
-(1,1,1,1,1),
-(2,1,1,2,2),
-(3,1,1,3,3),
-(4,1,1,4,4),
-(5,1,1,5,5),
-(6,1,1,6,6),
-(7,1,1,7,7),
-(8,1,1,8,8),
-(9,1,1,9,9),
-(10,1,1,10,10),
-(11,1,1,11,11),
-(12,1,1,12,12),
-(13,1,1,13,13),
-(14,1,2,14,14),
-(15,1,3,15,15),
-(16,1,3,16,16),
-(17,1,3,17,17),
-(18,1,3,18,18),
-(19,1,3,19,19),
-(20,1,3,20,20),
-(21,1,3,21,21),
-(22,1,3,22,22),
-(23,1,3,23,23),
-(24,1,3,24,24),
-(25,1,3,25,25),
-(26,1,3,26,26),
-(27,1,4,27,27),
-(28,1,4,28,28),
-(29,1,4,29,29),
-(30,1,4,30,30),
-(31,1,4,31,31),
-(32,1,4,32,32),
-(33,1,5,33,33),
-(34,1,5,34,34),
-(35,1,5,35,35),
-(36,1,5,36,36),
-(37,1,5,37,37),
-(38,1,5,38,38),
-(39,1,5,39,39),
-(40,1,5,40,40),
-(41,1,5,41,41),
-(42,1,5,42,42),
-(43,1,5,43,43),
-(44,1,5,44,44),
-(45,1,5,45,45),
-(46,1,5,46,46),
-(47,1,5,47,47),
-(48,1,5,48,48),
-(49,1,5,49,49),
-(50,1,5,50,50),
-(51,1,7,51,51),
-(52,1,7,52,52),
-(53,1,7,53,53),
-(54,1,7,54,54),
-(55,1,7,55,55),
-(56,1,7,56,56),
-(57,1,7,57,57),
-(58,1,7,58,58),
-(59,1,7,59,59),
-(60,1,7,60,60),
-(61,1,7,61,61),
-(62,1,7,62,62),
-(63,1,7,63,63),
-(64,1,8,64,64),
-(65,1,8,65,65),
-(66,1,8,66,66),
-(67,1,8,67,67),
-(68,1,8,68,68),
-(69,1,8,69,69),
-(70,1,8,70,70),
-(71,1,8,71,71),
-(72,1,9,72,72),
-(73,1,10,73,73),
-(74,1,10,74,74),
-(75,1,11,75,75),
-(76,1,11,76,76),
-(77,1,11,77,77),
-(78,1,11,78,78),
-(79,1,11,79,79),
-(80,1,12,80,80),
-(81,1,13,81,81),
-(82,1,13,82,82),
-(83,1,13,83,83),
-(84,1,13,84,84),
-(85,1,14,85,85),
-(86,1,14,86,86),
-(87,1,14,87,87),
-(88,1,14,88,88),
-(89,1,14,89,89),
-(90,1,14,90,90),
-(91,1,14,91,91),
-(92,1,14,92,92),
-(93,1,14,93,93);
-
--- ========== ITEM ↔ ADDON GROUP LINKS ==========
-INSERT INTO st_item_relationship_subcategory (id, merchant_id, item_id, item_size_id, subcat_id, multi_option, multi_option_min, multi_option_value, require_addon, pre_selected, sequence) VALUES
-(1,1,1,1,1,'multiple',0,'20',0,0,1),
-(2,1,2,2,2,'single',0,'1',0,0,1),
-(3,1,2,2,1,'multiple',0,'15',0,0,2),
-(4,1,2,2,3,'multiple',0,'20',0,0,3),
-(5,1,2,2,4,'single',0,'1',1,0,4),
-(6,1,3,3,2,'single',0,'1',0,0,1),
-(7,1,3,3,1,'multiple',0,'20',0,0,2),
-(8,1,3,3,3,'multiple',0,'20',0,0,3),
-(9,1,3,3,4,'single',0,'1',1,0,4),
-(10,1,4,4,2,'single',0,'1',0,0,1),
-(11,1,4,4,1,'multiple',0,'20',0,0,2),
-(12,1,4,4,3,'multiple',0,'20',0,0,3),
-(13,1,4,4,4,'single',0,'1',1,0,4),
-(14,1,5,5,2,'single',0,'1',0,0,1),
-(15,1,5,5,1,'multiple',0,'20',0,0,2),
-(16,1,5,5,3,'multiple',0,'20',0,0,3),
-(17,1,5,5,4,'single',0,'1',1,0,4),
-(18,1,6,6,2,'single',0,'1',0,0,1),
-(19,1,6,6,1,'multiple',0,'20',0,0,2),
-(20,1,6,6,3,'multiple',0,'20',0,0,3),
-(21,1,6,6,4,'single',0,'1',1,0,4),
-(22,1,7,7,1,'multiple',0,'20',0,0,1),
-(23,1,8,8,1,'multiple',0,'20',0,0,1),
-(24,1,9,9,1,'multiple',0,'20',0,0,1),
-(25,1,10,10,1,'multiple',0,'20',0,0,1),
-(26,1,11,11,1,'multiple',0,'20',0,0,1),
-(27,1,12,12,1,'multiple',0,'20',0,0,1),
-(28,1,13,13,2,'single',0,'1',0,0,1),
-(29,1,13,13,1,'multiple',0,'20',0,0,2),
-(30,1,13,13,3,'multiple',0,'20',0,0,3),
-(31,1,13,13,4,'single',0,'1',1,0,4),
-(32,1,14,14,2,'single',0,'1',0,0,1),
-(33,1,14,14,1,'multiple',0,'20',0,0,2),
-(34,1,14,14,3,'multiple',0,'20',0,0,3),
-(35,1,14,14,4,'single',0,'1',1,0,4),
-(36,1,15,15,2,'single',0,'1',0,0,1),
-(37,1,15,15,1,'multiple',0,'20',0,0,2),
-(38,1,15,15,3,'multiple',0,'20',0,0,3),
-(39,1,15,15,4,'single',0,'1',1,0,4),
-(40,1,16,16,2,'single',0,'1',0,0,1),
-(41,1,16,16,1,'multiple',0,'20',0,0,2),
-(42,1,16,16,3,'multiple',0,'20',0,0,3),
-(43,1,16,16,4,'single',0,'1',1,0,4),
-(44,1,17,17,2,'single',0,'1',0,0,1),
-(45,1,17,17,1,'multiple',0,'20',0,0,2),
-(46,1,17,17,3,'multiple',0,'20',0,0,3),
-(47,1,17,17,4,'single',0,'1',1,0,4),
-(48,1,18,18,2,'single',0,'1',0,0,1),
-(49,1,18,18,1,'multiple',0,'20',0,0,2),
-(50,1,18,18,3,'multiple',0,'20',0,0,3),
-(51,1,18,18,4,'single',0,'1',1,0,4),
-(52,1,19,19,2,'single',0,'1',0,0,1),
-(53,1,19,19,1,'multiple',0,'20',0,0,2),
-(54,1,19,19,3,'multiple',0,'20',0,0,3),
-(55,1,19,19,4,'single',0,'1',1,0,4),
-(56,1,20,20,2,'single',0,'1',0,0,1),
-(57,1,20,20,1,'multiple',0,'20',0,0,2),
-(58,1,20,20,3,'multiple',0,'20',0,0,3),
-(59,1,20,20,4,'single',0,'1',1,0,4),
-(60,1,21,21,2,'single',0,'1',0,0,1),
-(61,1,21,21,1,'multiple',0,'20',0,0,2),
-(62,1,21,21,3,'multiple',0,'20',0,0,3),
-(63,1,21,21,4,'single',0,'1',1,0,4),
-(64,1,22,22,2,'single',0,'1',0,0,1),
-(65,1,22,22,1,'multiple',0,'20',0,0,2),
-(66,1,22,22,3,'multiple',0,'20',0,0,3),
-(67,1,22,22,4,'single',0,'1',1,0,4),
-(68,1,23,23,2,'single',0,'1',0,0,1),
-(69,1,23,23,1,'multiple',0,'20',0,0,2),
-(70,1,23,23,3,'multiple',0,'20',0,0,3),
-(71,1,23,23,4,'single',0,'1',1,0,4),
-(72,1,24,24,1,'multiple',0,'20',0,0,1),
-(73,1,25,25,1,'multiple',0,'20',0,0,1),
-(74,1,26,26,1,'multiple',0,'20',0,0,1),
-(75,1,27,27,1,'multiple',0,'20',0,0,1),
-(76,1,28,28,1,'multiple',0,'20',0,0,1),
-(77,1,29,29,1,'multiple',0,'20',0,0,1),
-(78,1,30,30,1,'multiple',0,'20',0,0,1),
-(79,1,31,31,1,'multiple',0,'20',0,0,1),
-(80,1,32,32,1,'multiple',0,'20',0,0,1),
-(81,1,33,33,1,'multiple',0,'20',0,0,1),
-(82,1,34,34,1,'multiple',0,'20',0,0,1),
-(83,1,34,34,5,'multiple',0,'20',0,0,2),
-(84,1,34,34,6,'multiple',0,'20',0,0,3),
-(85,1,35,35,1,'multiple',0,'20',0,0,1),
-(86,1,35,35,5,'multiple',0,'20',0,0,2),
-(87,1,35,35,6,'multiple',0,'6',0,0,3),
-(88,1,36,36,1,'multiple',0,'20',0,0,1),
-(89,1,36,36,5,'multiple',0,'20',0,0,2),
-(90,1,36,36,6,'multiple',0,'6',0,0,3),
-(91,1,38,38,7,'single',0,'1',1,0,1),
-(92,1,38,38,8,'single',0,'1',1,0,2),
-(93,1,38,38,4,'single',0,'1',1,0,3),
-(94,1,38,38,3,'multiple',0,'20',0,0,4),
-(95,1,39,39,7,'multiple',0,'2',1,0,1),
-(96,1,39,39,8,'single',0,'1',1,0,2),
-(97,1,39,39,3,'multiple',0,'20',0,0,3),
-(98,1,39,39,4,'single',0,'1',1,0,4),
-(99,1,40,40,7,'multiple',0,'3',1,0,1),
-(100,1,40,40,8,'single',0,'1',1,0,2),
-(101,1,40,40,3,'multiple',0,'20',0,0,3),
-(102,1,40,40,4,'single',0,'1',1,0,4),
-(103,1,41,41,1,'multiple',0,'20',0,0,1),
-(104,1,41,41,2,'single',0,'1',0,0,2),
-(105,1,41,41,3,'multiple',0,'20',0,0,3),
-(106,1,41,41,4,'single',0,'1',1,0,4),
-(107,1,42,42,2,'single',0,'1',0,0,1),
-(108,1,42,42,1,'multiple',0,'20',0,0,2),
-(109,1,42,42,3,'multiple',0,'20',0,0,3),
-(110,1,42,42,4,'single',0,'1',1,0,4),
-(111,1,43,43,2,'single',0,'1',0,0,1),
-(112,1,43,43,1,'multiple',0,'20',0,0,2),
-(113,1,43,43,3,'multiple',0,'20',0,0,3),
-(114,1,43,43,4,'single',0,'1',1,0,4),
-(115,1,44,44,7,'single',0,'1',1,0,1),
-(116,1,44,44,8,'single',0,'1',1,0,2),
-(117,1,45,45,7,'multiple',0,'2',1,0,1),
-(118,1,45,45,8,'single',0,'1',1,0,2),
-(119,1,46,46,7,'multiple',0,'3',1,0,1),
-(120,1,46,46,8,'single',0,'1',1,0,2),
-(121,1,47,47,1,'multiple',0,'20',0,0,1),
-(122,1,48,48,1,'multiple',0,'20',0,0,1),
-(123,1,49,49,1,'multiple',0,'20',0,0,1),
-(124,1,50,50,3,'multiple',0,'20',0,0,1),
-(125,1,50,50,9,'single',0,'1',0,0,2),
-(126,1,50,50,10,'single',0,'1',1,0,3),
-(127,1,51,51,3,'multiple',0,'20',0,0,1),
-(128,1,51,51,9,'single',0,'1',0,0,2),
-(129,1,51,51,10,'single',0,'1',1,0,3),
-(130,1,52,52,3,'multiple',0,'20',0,0,1),
-(131,1,52,52,9,'single',0,'1',0,0,2),
-(132,1,52,52,10,'single',0,'1',1,0,3),
-(133,1,53,53,3,'multiple',0,'20',0,0,1),
-(134,1,53,53,9,'single',0,'1',0,0,2),
-(135,1,53,53,10,'single',0,'1',1,0,3),
-(136,1,54,54,3,'multiple',0,'20',0,0,1),
-(137,1,54,54,9,'single',0,'1',0,0,2),
-(138,1,54,54,10,'single',0,'1',1,0,3),
-(139,1,55,55,3,'multiple',0,'20',0,0,1),
-(140,1,55,55,9,'single',0,'1',0,0,2),
-(141,1,55,55,10,'single',0,'1',1,0,3),
-(142,1,56,56,3,'multiple',0,'20',0,0,1),
-(143,1,56,56,2,'single',0,'1',0,0,2),
-(144,1,56,56,4,'single',0,'1',1,0,3),
-(145,1,57,57,3,'multiple',0,'20',0,0,1),
-(146,1,57,57,2,'single',0,'1',0,0,2),
-(147,1,57,57,4,'single',0,'1',1,0,3),
-(148,1,58,58,2,'single',0,'1',0,0,1),
-(149,1,58,58,3,'multiple',0,'20',0,0,2),
-(150,1,58,58,4,'single',0,'1',1,0,3),
-(151,1,59,59,3,'multiple',0,'20',0,0,1),
-(152,1,59,59,2,'single',0,'1',0,0,2),
-(153,1,59,59,4,'single',0,'1',1,0,3),
-(154,1,60,60,3,'multiple',0,'20',0,0,1),
-(155,1,60,60,2,'single',0,'1',0,0,2),
-(156,1,60,60,4,'single',0,'1',1,0,3),
-(157,1,61,61,3,'multiple',0,'20',0,0,1),
-(158,1,61,61,2,'single',0,'1',0,0,2),
-(159,1,61,61,4,'single',0,'1',1,0,3),
-(160,1,62,62,2,'single',0,'1',0,0,1),
-(161,1,62,62,3,'multiple',0,'20',0,0,2),
-(162,1,62,62,4,'single',0,'1',1,0,3),
-(163,1,63,63,2,'single',0,'1',0,0,1),
-(164,1,63,63,3,'multiple',0,'20',0,0,2),
-(165,1,63,63,4,'single',0,'1',1,0,3),
-(166,1,64,64,3,'multiple',0,'20',0,0,1),
-(167,1,64,64,2,'single',0,'1',0,0,2),
-(168,1,64,64,4,'single',0,'1',1,0,3),
-(169,1,65,65,3,'multiple',0,'20',0,0,1),
-(170,1,65,65,2,'single',0,'1',0,0,2),
-(171,1,65,65,4,'single',0,'1',1,0,3),
-(172,1,66,66,3,'multiple',0,'20',0,0,1),
-(173,1,66,66,2,'single',0,'1',0,0,2),
-(174,1,66,66,4,'single',0,'1',1,0,3),
-(175,1,67,67,3,'multiple',0,'20',0,0,1),
-(176,1,67,67,2,'single',0,'1',0,0,2),
-(177,1,67,67,4,'single',0,'1',1,0,3),
-(178,1,68,68,3,'multiple',0,'20',0,0,1),
-(179,1,69,69,3,'multiple',0,'20',0,0,1),
-(180,1,70,70,3,'multiple',0,'20',0,0,1),
-(181,1,71,71,3,'multiple',0,'20',0,0,1),
-(182,1,72,72,3,'multiple',0,'20',0,0,1),
-(183,1,73,73,3,'multiple',0,'20',0,0,1),
-(184,1,74,74,3,'multiple',0,'20',0,0,1),
-(185,1,75,75,3,'multiple',0,'20',0,0,1),
-(186,1,76,76,3,'multiple',0,'20',0,0,1),
-(187,1,77,77,3,'multiple',0,'20',0,0,1),
-(188,1,78,78,3,'multiple',0,'20',0,0,1),
-(189,1,79,79,3,'multiple',0,'20',0,0,1),
-(190,1,80,80,3,'multiple',0,'20',0,0,1),
-(191,1,81,81,3,'multiple',0,'20',0,0,1),
-(192,1,82,82,3,'multiple',0,'20',0,0,1),
-(193,1,83,83,3,'multiple',0,'20',0,0,1),
-(194,1,84,84,3,'multiple',0,'20',0,0,1),
-(195,1,85,85,3,'multiple',0,'20',0,0,1),
-(196,1,86,86,3,'multiple',0,'20',0,0,1),
-(197,1,87,87,3,'multiple',0,'20',0,0,1),
-(198,1,88,88,3,'multiple',0,'20',0,0,1),
-(199,1,89,89,3,'multiple',0,'20',0,0,1),
-(200,1,89,89,1,'multiple',0,'20',0,0,2),
-(201,1,90,90,3,'multiple',0,'20',0,0,1),
-(202,1,90,90,1,'multiple',0,'20',0,0,2),
-(203,1,91,91,3,'multiple',0,'20',0,0,1),
-(204,1,91,91,1,'multiple',0,'20',0,0,2),
-(205,1,92,92,3,'multiple',0,'20',0,0,1),
-(206,1,92,92,1,'multiple',0,'20',0,0,2),
-(207,1,93,93,3,'multiple',0,'20',0,0,1),
-(208,1,93,93,5,'multiple',0,'20',0,0,2),
-(209,1,94,94,3,'multiple',0,'20',0,0,1),
-(210,1,94,94,5,'multiple',0,'20',0,0,2),
-(211,1,95,95,3,'multiple',0,'20',0,0,1),
-(212,1,95,95,5,'multiple',0,'20',0,0,2),
-(213,1,96,96,3,'multiple',0,'20',0,0,1),
-(214,1,96,96,5,'multiple',0,'20',0,0,2),
-(215,1,97,97,3,'multiple',0,'20',0,0,1),
-(216,1,97,97,5,'multiple',0,'20',0,0,2),
-(217,1,98,98,3,'multiple',0,'20',0,0,1),
-(218,1,98,98,5,'multiple',0,'20',0,0,2),
-(219,1,99,99,3,'multiple',0,'20',0,0,1),
-(220,1,99,99,5,'multiple',0,'20',0,0,2),
-(221,1,100,100,3,'multiple',0,'20',0,0,1),
-(222,1,100,100,5,'multiple',0,'20',0,0,2),
-(223,1,101,101,3,'multiple',0,'20',0,0,1),
-(224,1,101,101,5,'multiple',0,'20',0,0,2),
-(225,1,114,114,11,'single',0,'1',0,0,1),
-(226,1,114,114,12,'single',0,'1',0,0,2),
-(227,1,115,115,13,'single',0,'1',1,0,1),
-(228,1,115,115,12,'single',0,'1',0,0,2),
-(229,1,116,116,11,'single',0,'1',0,0,1),
-(230,1,116,116,12,'single',0,'1',0,0,2),
-(231,1,117,117,11,'single',0,'1',0,0,1),
-(232,1,117,117,12,'single',0,'1',0,0,2),
-(233,1,118,118,11,'single',0,'1',0,0,1),
-(234,1,118,118,12,'single',0,'1',0,0,2),
-(235,1,119,119,11,'single',0,'1',0,0,1),
-(236,1,119,119,12,'single',0,'1',0,0,2),
-(237,1,120,120,11,'single',0,'1',0,0,1),
-(238,1,120,120,12,'single',0,'1',0,0,2),
-(239,1,121,121,11,'single',0,'1',0,0,1),
-(240,1,122,122,11,'multiple',0,'20',0,0,1),
-(241,1,123,123,11,'single',0,'1',0,0,1),
-(242,1,127,127,14,'multiple',0,'20',0,0,1),
-(243,1,128,128,14,'single',0,'1',0,0,1),
-(244,1,129,129,14,'single',0,'1',0,0,1),
-(245,1,130,130,14,'single',0,'1',0,0,1),
-(246,1,131,131,14,'single',0,'1',0,0,1),
-(247,1,132,132,14,'multiple',0,'20',0,0,1);
-
-SET FOREIGN_KEY_CHECKS = 1;
-
--- Summary: 11 categories, 150 items, 14 addon groups, 93 addon options, 247 item-addon links
+-- Updated 150 items, 93 addon options
 -- Price markup: 1.1x (10% increase)
 
 -- ========== FIX OPENING HOURS (10:00-22:00 Copenhagen) ==========
@@ -8023,17 +7300,3 @@ INSERT INTO st_opening_hours (merchant_id, time_config_type, transaction_type, d
 (1,'transaction_type','pickup','Friday',5,'open','10:00','22:00'),
 (1,'transaction_type','pickup','Saturday',6,'open','10:00','22:00'),
 (1,'transaction_type','pickup','Sunday',0,'open','10:00','22:00');
-
--- ========== RECREATE VIEW (ensure addon sub-items resolve) ==========
-DROP VIEW IF EXISTS st_view_item_relationship_subcategory_item;
-CREATE VIEW st_view_item_relationship_subcategory_item AS
-SELECT b.merchant_id, b.item_id,
-  (SELECT st_item.item_token FROM st_item WHERE st_item.item_id = b.item_id LIMIT 1) AS item_token,
-  b.item_size_id, a.subcat_id, a.sub_item_id
-FROM st_subcategory_item_relationships a
-LEFT JOIN st_item_relationship_subcategory b ON a.subcat_id = b.subcat_id
-WHERE a.merchant_id IS NOT NULL;
-
--- ========== FLUSH QUERY CACHE ==========
-RESET QUERY CACHE;
-FLUSH TABLES;
