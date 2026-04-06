@@ -2075,8 +2075,10 @@ class CMerchantListingV1
 							//echo "Remaining time: {$remaining_hours} hour(s) and {$remaining_minutes} minute(s).";
 							if($remaining_hours<=0){
 								$time_is_valid = false;
-							} else {								
-								$start_time = self::blockMinutesRound($time_now, intval($interval) ); 
+							} else {
+								$rounded_now = self::blockMinutesRound($time_now, intval($interval) );
+								// Never start before the store actually opens
+								$start_time = (strtotime($rounded_now) > strtotime($start_time)) ? $rounded_now : $start_time;
 							}
 						}
 					}										
