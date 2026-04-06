@@ -8012,3 +8012,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 -- Summary: 11 categories, 150 items, 14 addon groups, 93 addon options, 247 item↔addon links
 -- Price markup: 1.1x (10% increase)
+
+-- ========== FIX OPENING HOURS (10:00–22:00 Copenhagen) ==========
+-- Global admin hours (merchant_id=0): were 1:00–23:55
+UPDATE st_opening_hours SET start_time = '10:00', end_time = '22:00' WHERE merchant_id = 0;
+-- Merchant regular + pickup hours (merchant_id=1): were 11:00–22:00
+UPDATE st_opening_hours SET start_time = '10:00', end_time = '22:00' WHERE merchant_id = 1;
