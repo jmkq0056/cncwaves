@@ -44,6 +44,22 @@ object SyncEngine {
         }
 
         return try {
+            // Correct device clock drift using server time (burst sync depends on it)
+            val serverTime = serverData.optLong("serverTime", 0L)
+            if (serverTime > 0) {
+                val drift = serverTime - System.currentTimeMillis()
+                if (Math.abs(drift) > 2000) {
+                    Log.w(TAG, "Clock drift ${drift}ms — correcting via su")
+                    try {
+                        val proc = Runtime.getRuntime().exec(arrayOf("su", "0", "date", "@${serverTime / 1000}"))
+                        proc.waitFor()
+                        Log.i(TAG, "Clock corrected, drift was ${drift}ms")
+                    } catch (e: Exception) {
+                        Log.w(TAG, "Clock correction failed: ${e.message}")
+                    }
+                }
+            }
+
             // Always save config from server
             config.setScreenOnTime(serverData.optString("screenOnTime", ""))
             config.setScreenOffTime(serverData.optString("screenOffTime", ""))

@@ -468,7 +468,7 @@ class MainActivity : AppCompatActivity() {
                 val duration = config.getBurstDuration().coerceIn(3, 120)
 
                 // Trigger once per interval window, not every second
-                if (minute % interval == 0 && second < 2 && !isBursting && minute != lastBurstMinute) {
+                if (minute % interval == 0 && second < 5 && !isBursting && minute != lastBurstMinute) {
                     lastBurstMinute = minute
                     showBurst(duration)
                 }

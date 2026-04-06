@@ -35,6 +35,7 @@ export async function GET(
           interval: screen.burstInterval || 3,
           duration: screen.burstDuration || 10,
         },
+        serverTime: Date.now(),
         images: [],
       });
     }
@@ -53,6 +54,7 @@ export async function GET(
         interval: screen.burstInterval || 3,
         duration: screen.burstDuration || 10,
       },
+      serverTime: Date.now(),
       images: screen.images.map((img: any) => ({
         filename: img.filename,
         url: img.url,
