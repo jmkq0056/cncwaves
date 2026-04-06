@@ -1256,7 +1256,11 @@ label.btn del {
   .menu-left {
     background: var(--cnc-dark) !important;
     padding-top: 20px !important;
-    min-height: 100vh;
+    min-height: 100%;
+    align-self: stretch;
+  }
+  .section-menu > .container > .row {
+    align-items: stretch !important;
   }
   .menu-left h5 {
     color: #fff !important;
