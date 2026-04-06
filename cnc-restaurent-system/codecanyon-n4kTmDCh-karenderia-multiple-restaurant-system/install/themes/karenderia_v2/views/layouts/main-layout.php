@@ -17,7 +17,7 @@
     'data'=>Yii::app()->params['settings']
 ));?>
 </head>
-<body class="position-relative <?php echo $this->getBodyClasses(); ?>" data-spy="scroll" data-target="#menu-category" data-offset="75" >
+<body class="position-relative <?php echo $this->getBodyClasses(); ?>" data-spy="scroll" data-target="#menu-category" data-offset="200" >
 <script>
 // Fix broken choosen_delivery cookie before Karenderia JS loads
 // Karenderia setCookie stores raw value (no encoding), getCookie reads raw then JSON.parse
