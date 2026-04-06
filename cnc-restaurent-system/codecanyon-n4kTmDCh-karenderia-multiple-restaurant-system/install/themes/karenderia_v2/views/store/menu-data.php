@@ -57,10 +57,10 @@
                     <label v-for="(price, index) in items.price" class="btn" :class="{ active: index==0 }">	                           
                         <input :value="price.item_size_id" name="size" id="size" type="radio" :class="'item_size_id_'+ items.item_uuid"  > 
                         <template v-if="price.discount <=0">
-                        {{price.size_name}} {{price.pretty_price}}
+                        <template v-if="items.price.length > 1">{{price.size_name}}</template> {{price.pretty_price}}
                         </template><!-- v-if-->
                         <template v-else>
-                        {{price.size_name}} <del>{{price.pretty_price}}</del> {{price.pretty_price_after_discount}}
+                        <template v-if="items.price.length > 1">{{price.size_name}}</template> <del>{{price.pretty_price}}</del> {{price.pretty_price_after_discount}}
                         </template> <!--v-else-->
                     </label>
                     </div> <!--btn-group-->
@@ -69,8 +69,12 @@
                 
                 <template v-else>
                     <p class="bold m-0 prices" :class="{ 'text-success' : isEligible(items) }">
-                    <template v-if="items.lowest_price_raw>0">                      
-                      {{ isEligible(items) ? '<?php echo t('Free!')?>' : items.lowest_price_label }}
+                    <template v-if="items.lowest_price_raw>0">
+                      <template v-if="isEligible(items)"><?php echo t('Free!')?></template>
+                      <template v-else-if="items.price && items.price.length > 0 && items.price[0].discount > 0">
+                        <del>{{ items.price[0].pretty_price }}</del> {{ items.price[0].pretty_price_after_discount }}
+                      </template>
+                      <template v-else>{{ items.lowest_price_label }}</template>
                     </template>            
                     <template v-else>
                         <template  v-for="(price, index) in items.price">

@@ -84,6 +84,54 @@ Yii::app()->clientScript->registerMetaTag('da_DK', null, null, array('property'=
   max-width: 900px;
   margin: 0 auto;
 }
+/* ── 10% Promo Banner ── */
+.cnc-promo-banner {
+  background: linear-gradient(135deg, #f17d00, #ff9a2e);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.cnc-promo-badge {
+  background: #3d0d0f;
+  color: #fff;
+  font-weight: 800;
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  letter-spacing: 1.5px;
+}
+.cnc-promo-text {
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+}
+.cnc-promo-cta {
+  background: #fff;
+  color: #3d0d0f;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 8px 24px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.cnc-promo-cta:hover {
+  background: #3d0d0f;
+  color: #fff;
+  text-decoration: none;
+}
+@media (max-width: 600px) {
+  .cnc-promo-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 14px 16px;
+  }
+  .cnc-promo-text { font-size: 15px; }
+}
+
 .cnc-feature {
   text-align: center;
   max-width: 220px;
@@ -198,6 +246,13 @@ Yii::app()->clientScript->registerMetaTag('da_DK', null, null, array('property'=
   <h2 class="location-name"><span>Waves</span> <span class="location-dot">&middot;</span> Greve</h2>
   <p class="tagline"><?php echo t("Fresh burgers, crispy chicken and much more")?></p>
   <a href="<?php echo Yii::app()->createUrl('/chicken-n-chicken')?>" class="cta"><?php echo t("Order online")?></a>
+</div>
+
+<!-- 10% ONLINE TILBUD BANNER -->
+<div class="cnc-promo-banner">
+  <span class="cnc-promo-badge"><?php echo t("TILBUD")?></span>
+  <span class="cnc-promo-text"><?php echo t("10% online rabat på hele menuen!")?></span>
+  <a href="<?php echo Yii::app()->createUrl('/chicken-n-chicken')?>" class="cnc-promo-cta"><?php echo t("Bestil nu")?></a>
 </div>
 
 <!-- FEATURES -->

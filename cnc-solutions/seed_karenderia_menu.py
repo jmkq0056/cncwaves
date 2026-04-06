@@ -37,7 +37,7 @@ def round_price(price: float, markup: float) -> int:
     return math.ceil(price * markup)
 
 
-def build_sql(categories: list[dict], markup: float) -> str:
+def build_sql(categories: list[dict], markup: float, discount: float = 0) -> str:
     lines: list[str] = []
     lines.append(f"-- Karenderia price update (markup: {markup}x)")
     lines.append(f"-- Generated: {NOW}")
@@ -55,8 +55,17 @@ def build_sql(categories: list[dict], markup: float) -> str:
             base_price = float(item.get("price", 0))
             if base_price > 0:
                 new_price = round_price(base_price, markup)
+                if discount > 0:
+                    # Fixed discount = markup amount, so after-discount = original yammi price
+                    discount_amount = new_price - base_price
+                    discount_sql = (
+                        f", discount = {discount_amount:.4f}, discount_type = 'fixed'"
+                        f", discount_start = '2026-01-01', discount_end = '2030-12-31'"
+                    )
+                else:
+                    discount_sql = ""
                 lines.append(
-                    f"UPDATE st_item_relationship_size SET price = {new_price:.4f} "
+                    f"UPDATE st_item_relationship_size SET price = {new_price:.4f}{discount_sql} "
                     f"WHERE item_id = {item_id} AND merchant_id = 1;"
                 )
 
@@ -95,7 +104,15 @@ def build_sql(categories: list[dict], markup: float) -> str:
 
     lines.append("")
 
-    # ── 3. Clear caches ──────────────────────────────────────────────────────
+    # ── 3. Copy descriptions to short_description for menu listing ─────────
+    lines.append("-- ========== COPY DESCRIPTIONS ==========")
+    lines.append(
+        "UPDATE st_item SET item_short_description = LEFT(item_description, 130) "
+        "WHERE merchant_id = 1 AND (item_short_description = '' OR item_short_description IS NULL);"
+    )
+    lines.append("")
+
+    # ── 4. Clear caches ──────────────────────────────────────────────────────
     lines.append("-- ========== CLEAR CACHES ==========")
     lines.append("UPDATE st_cache SET date_modified = NOW() WHERE id = 1;")
     lines.append("FLUSH TABLES;")
@@ -103,6 +120,8 @@ def build_sql(categories: list[dict], markup: float) -> str:
 
     lines.append(f"-- Updated {item_id} items, {sub_item_id} addon options")
     lines.append(f"-- Price markup: {markup}x ({(markup - 1) * 100:.0f}% increase)")
+    if discount > 0:
+        lines.append(f"-- Discount: {discount}% (strikethrough original, customer pays discounted)")
 
     return "\n".join(lines) + "\n"
 
@@ -111,6 +130,7 @@ def main():
     parser = argparse.ArgumentParser(description="Generate Karenderia price update SQL")
     parser.add_argument("--prod", action="store_true", help="Apply 10%% price increase")
     parser.add_argument("--markup", type=float, default=None, help="Custom price multiplier")
+    parser.add_argument("--discount", type=float, default=0, help="Percentage discount (e.g. 10 for 10%%)")
     args = parser.parse_args()
 
     if args.markup:
@@ -123,7 +143,7 @@ def main():
     menu = json.loads(MENU_FILE.read_text(encoding="utf-8"))
     categories = menu["categories"]
 
-    sql = build_sql(categories, markup)
+    sql = build_sql(categories, markup, args.discount)
 
     suffix = "prod" if markup > 1.0 else "dev"
     out_path = OUTPUT_DIR / f"karenderia_seed_{suffix}.sql"
