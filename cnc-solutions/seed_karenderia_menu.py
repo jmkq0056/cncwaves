@@ -19,6 +19,7 @@ import argparse
 import json
 import math
 import re
+import uuid
 from datetime import datetime
 from pathlib import Path
 
@@ -42,7 +43,11 @@ def slugify(text: str) -> str:
 
 def esc(val: str) -> str:
     """Escape a string for MySQL single-quoted literal."""
-    return val.replace("\\", "\\\\").replace("'", "\\'")
+    return val.replace("\\", "\\\\").replace("'", "\\'").replace("\n", "\\n")
+
+
+def make_uuid() -> str:
+    return str(uuid.uuid1())
 
 
 def round_price(price: float, markup: float) -> float:
@@ -55,7 +60,7 @@ def collect_addon_groups(categories: list[dict]) -> list[dict]:
     Deduplicate addon groups across all items.
     Returns list of unique groups with their options.
     """
-    seen: dict[str, dict] = {}  # group_name → group dict
+    seen: dict[str, dict] = {}
 
     for cat in categories:
         for item in cat.get("items", []):
@@ -67,7 +72,6 @@ def collect_addon_groups(categories: list[dict]) -> list[dict]:
                         "description": addon.get("description", ""),
                         "options": {},
                     }
-                # Merge options (deduplicate by name)
                 for opt in addon.get("options", []):
                     opt_name = opt["name"].strip()
                     if opt_name not in seen[name]["options"]:
@@ -82,6 +86,8 @@ def build_sql(categories: list[dict], markup: float) -> str:
     lines.append(f"-- Generated: {NOW}")
     lines.append("-- Source: full-menu.json (scraped + enriched from yammi.dk)")
     lines.append("")
+    lines.append("SET NAMES utf8mb4;")
+    lines.append("SET CHARACTER SET utf8mb4;")
     lines.append("SET FOREIGN_KEY_CHECKS = 0;")
     lines.append("")
 
@@ -92,6 +98,7 @@ def build_sql(categories: list[dict], markup: float) -> str:
     for i, cat in enumerate(categories):
         cat_id = i + 1
         cat["_id"] = cat_id
+        cat["_slug"] = slugify(cat["name"])
         name = esc(cat["name"])
         desc = esc(cat.get("description", ""))
         seq = cat.get("sort_order", i + 1)
@@ -119,27 +126,30 @@ def build_sql(categories: list[dict], markup: float) -> str:
     item_cat_id = 0
     item_size_id = 0
 
-    # Map item_name → item_id for addon linking later
-    item_name_to_id: dict[str, int] = {}
+    # Map item_id → first item_size_id (for addon relationship linking)
+    item_to_size_id: dict[int, int] = {}
     # Track which addon groups each item uses
     item_addon_map: dict[int, list[dict]] = {}
 
     for cat in categories:
         cat_id = cat["_id"]
+        cat_slug = cat["_slug"]
         for item_seq, item in enumerate(cat.get("items", []), 1):
             item_id += 1
             item_name = item["name"].strip()
-            item_name_to_id[item_name] = item_id
             item["_id"] = item_id
 
-            slug = slugify(item_name)
+            item_slug = slugify(item_name)
+            # Category-prefixed slug like Karenderia expects
+            full_slug = f"{cat_slug}-{item_slug}"
             desc = esc(item.get("description", ""))
-            photo = f"{slug}.png"
+            photo = f"{item_slug}.png"
             path = f"upload/item/{item_id}/"
+            token = make_uuid()
 
             item_values.append(
-                f"({item_id},{MERCHANT_ID},'{esc(item_name)}','{slug}','{desc}','','publish',"
-                f"'{photo}','{path}',{item_seq},'',NULL,1,1,0,1,0.0000,0,'','',1,0,"
+                f"({item_id},{MERCHANT_ID},'{esc(item_name)}','{full_slug}','{desc}','','publish',"
+                f"'{photo}','{path}',{item_seq},'',NULL,1,1,0,1,0.0000,0,'{token}','',1,0,"
                 f"'','',NULL,'','',0,0,0,0,'',1,0,0,NULL,0,'{NOW}','{NOW}','')"
             )
 
@@ -153,21 +163,26 @@ def build_sql(categories: list[dict], markup: float) -> str:
             base_price = float(item.get("price", 0))
             final_price = round_price(base_price, markup) if base_price > 0 else 0
 
+            # Record the first size ID for this item (used in addon links)
+            first_size_id = item_size_id + 1
+
             variants = item.get("variants", [])
             if variants:
                 for vi, var in enumerate(variants):
                     item_size_id += 1
                     vp = round_price(float(var.get("price", 0)), markup)
                     item_size_values.append(
-                        f"({item_size_id},{MERCHANT_ID},'',{item_id},0,{vp:.4f},0.0000,"
+                        f"({item_size_id},{MERCHANT_ID},'{token}',{item_id},0,{vp:.4f},0.0000,"
                         f"0.0000,'fixed',NULL,NULL,{vi},'','',1,0.00,'{NOW}','{NOW}')"
                     )
             else:
                 item_size_id += 1
                 item_size_values.append(
-                    f"({item_size_id},{MERCHANT_ID},'',{item_id},0,{final_price:.4f},0.0000,"
+                    f"({item_size_id},{MERCHANT_ID},'{token}',{item_id},0,{final_price:.4f},0.0000,"
                     f"0.0000,'fixed',NULL,NULL,0,'','',1,0.00,'{NOW}','{NOW}')"
                 )
+
+            item_to_size_id[item_id] = first_size_id
 
             # Track addons for this item
             if item.get("addons"):
@@ -234,7 +249,6 @@ def build_sql(categories: list[dict], markup: float) -> str:
     sub_item_rel_values = []
     sub_item_id = 0
 
-    # Track sub_item by (group_name, option_name) to avoid duplicates
     sub_item_key_to_id: dict[tuple[str, str], int] = {}
 
     for group in addon_groups:
@@ -251,7 +265,6 @@ def build_sql(categories: list[dict], markup: float) -> str:
 
             opt_desc = esc(opt.get("description", ""))
             opt_price = float(opt.get("price", 0))
-            # Apply markup to addon prices too (but not to 0.0 — included items stay free)
             if opt_price > 0:
                 opt_price = round_price(opt_price, markup)
 
@@ -288,6 +301,7 @@ def build_sql(categories: list[dict], markup: float) -> str:
     link_id = 0
 
     for iid, addons in item_addon_map.items():
+        size_id = item_to_size_id.get(iid, iid)
         for addon_seq, addon in enumerate(addons, 1):
             aname = addon["name"].strip()
             subcat_id = subcat_name_to_id.get(aname)
@@ -308,7 +322,7 @@ def build_sql(categories: list[dict], markup: float) -> str:
             multi_min = int(addon.get("min", 0))
 
             item_subcat_values.append(
-                f"({link_id},{MERCHANT_ID},{iid},{iid},{subcat_id},"
+                f"({link_id},{MERCHANT_ID},{iid},{size_id},{subcat_id},"
                 f"'{multi_option}',{multi_min},'{multi_option_value}',{require},0,{addon_seq})"
             )
 
@@ -323,10 +337,9 @@ def build_sql(categories: list[dict], markup: float) -> str:
     lines.append("SET FOREIGN_KEY_CHECKS = 1;")
     lines.append("")
 
-    # ── Summary comment ──────────────────────────────────────────────────────
     lines.append(f"-- Summary: {len(categories)} categories, {item_id} items, "
                  f"{len(addon_groups)} addon groups, {sub_item_id} addon options, "
-                 f"{link_id} item↔addon links")
+                 f"{link_id} item-addon links")
     lines.append(f"-- Price markup: {markup}x ({(markup - 1) * 100:.0f}% increase)")
 
     return "\n".join(lines) + "\n"
