@@ -1199,11 +1199,16 @@ button.add_to_cart:active,
   padding: 0 !important;
   margin-top: auto !important;
 }
+.list-item-rows .col-lg-4.col-md-4 .quantity-wrapper,
+.list-item-rows .col-lg-4.col-md-4 .position-relative {
+  width: 100% !important;
+}
 .list-item-rows .col-lg-4.col-md-4 .el-button,
 .list-item-rows .col-lg-4.col-md-4 .el-button.white-color,
 .list-item-rows .col-lg-4.col-md-4 button.add_to_cart,
 .list-item-rows .col-lg-4.col-md-4 .add_to_cart,
 .list-item-rows .col-lg-4.col-md-4 .btn-grey.quantity-add-cart,
+.list-item-rows .col-lg-4.col-md-4 a.btn-grey.quantity-add-cart,
 .list-item-rows .col-lg-4.col-md-4 button {
   width: 100% !important;
   max-width: 100% !important;
