@@ -1,0 +1,146 @@
+/* ═══════════════════════════════════════════════════════════
+   CNC WAVES — Backoffice Brand Theme
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --cnc-red: #9d292b;
+  --cnc-orange: #f17d00;
+  --cnc-dark: #3d0d0f;
+  --cnc-light: #fff8f0;
+  --cnc-red-hover: #7a2022;
+  --el-color-primary: #f17d00;
+  --el-color-success: #9d292b;
+}
+
+/* ═══ LINKS ═══ */
+a { color: var(--cnc-red); }
+a:hover { color: var(--cnc-orange) !important; }
+.link, .list-group a { color: var(--cnc-red) !important; }
+.text-success { color: var(--cnc-red) !important; }
+i.green { color: var(--cnc-orange) !important; }
+.pagination .page-link { color: var(--cnc-red) !important; }
+
+/* ═══ BUTTONS ═══ */
+.btn-green {
+  background: var(--cnc-red) !important;
+  border-color: var(--cnc-red) !important;
+  color: #fff !important;
+}
+.btn-green:hover, .btn-green:focus {
+  background: var(--cnc-red-hover) !important;
+  border-color: var(--cnc-red-hover) !important;
+  color: #fff !important;
+}
+.frm_search button.submit,
+.frm_search_filter button[type="submit"] {
+  background: var(--cnc-red) !important;
+  color: #fff !important;
+}
+
+/* ═══ SIDEBAR ═══ */
+.sidebar-panel {
+  background: var(--cnc-dark) !important;
+  border-right: none !important;
+}
+.sidebar-panel .sidebar-logo {
+  border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+}
+.siderbar-menu ul li a { color: rgba(255,255,255,0.7) !important; }
+.siderbar-menu ul li a:hover { color: #fff !important; }
+.siderbar-menu ul li.active > a { color: var(--cnc-orange) !important; }
+.siderbar-menu ul li.active { border-right: 3px solid var(--cnc-orange) !important; }
+.siderbar-menu i { color: rgba(255,255,255,0.5) !important; }
+.siderbar-menu ul li.active i { color: var(--cnc-orange) !important; }
+.siderbar-menu li > a:not(:only-child):after { color: rgba(255,255,255,0.4) !important; }
+.siderbar-menu ul .sidebar-nav-sub-menu a { color: rgba(255,255,255,0.6) !important; }
+.siderbar-menu ul .sidebar-nav-sub-menu li.active a { color: var(--cnc-orange) !important; }
+.sidebar-profile h6, .sidebar-profile .text-dark { color: #fff !important; }
+.sidebar-profile p.dim, .sidebar-profile .dim { color: rgba(255,255,255,0.5) !important; }
+.sidebar-panel .pl-4.mt-3 p { color: rgba(255,255,255,0.3) !important; }
+
+/* ═══ TOP NAV ═══ */
+.top-container.scrolled {
+  background: #fff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+}
+.top-menu-nav .line-bottom { border-bottom-color: var(--cnc-red) !important; }
+
+/* ═══ TABS & PILLS ═══ */
+.nav-pills .nav-link { color: var(--cnc-red) !important; }
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: var(--cnc-red) !important;
+  color: #fff !important;
+}
+.list-group-item.active {
+  background-color: var(--cnc-red) !important;
+  border-color: var(--cnc-red) !important;
+}
+.attributes-menu-wrap ul li.active a {
+  background: var(--cnc-red) !important;
+  color: #fff !important;
+}
+
+/* ═══ CHECKBOXES ═══ */
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before,
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: var(--cnc-red) !important;
+  border-color: var(--cnc-red) !important;
+}
+
+/* ═══ CARDS ═══ */
+.card.with-border .card-header {
+  background: var(--cnc-red) !important;
+  color: #fff !important;
+}
+
+/* ═══ BADGES ═══ */
+.bg-new { background-color: var(--cnc-orange) !important; }
+.badge-green { background-color: var(--cnc-red) !important; }
+.ronded-green { background: var(--cnc-red) !important; }
+
+/* ═══ TIMELINE ═══ */
+.timeline li:before {
+  border-color: var(--cnc-red) !important;
+  box-shadow: 3px 3px 0px var(--cnc-red) !important;
+}
+
+/* ═══ FILE SELECTION ═══ */
+.file_wrapper li:before { background: var(--cnc-red) !important; }
+.file_wrapper li.selected img { box-shadow: 0 0 0 4px var(--cnc-red) !important; }
+button.send.selected { background: var(--cnc-red) !important; }
+
+/* ═══ ACCENT ELEMENTS ═══ */
+.rounded-button-icon:hover { background: var(--cnc-red) !important; }
+.btn-group-actions button:hover i,
+.btn-group-actions a:hover i { color: var(--cnc-orange) !important; }
+
+/* ═══ MOBILE NAV ═══ */
+.dropdown-menu-mobile ul li.active a,
+.dropdown-menu-mobile ul li a:hover { color: var(--cnc-orange) !important; }
+
+/* ═══ ELEMENT PLUS ═══ */
+.el-button--success, .el-button--primary {
+  background-color: var(--cnc-red) !important;
+  border-color: var(--cnc-red) !important;
+}
+.el-button--success:hover, .el-button--primary:hover {
+  background-color: var(--cnc-red-hover) !important;
+}
+.el-switch.is-checked .el-switch__core {
+  background-color: var(--cnc-red) !important;
+}
+.el-tabs__active-bar { background-color: var(--cnc-orange) !important; }
+.el-tabs__item.is-active { color: var(--cnc-orange) !important; }
+
+/* ═══ LOGIN PAGE ═══ */
+.login-wrapper .btn-green {
+  background: var(--cnc-red) !important;
+  border-color: var(--cnc-red) !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+}
+.login-wrapper .btn-green:hover {
+  background: var(--cnc-red-hover) !important;
+}
+.login-wrapper .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: var(--cnc-red) !important;
+}

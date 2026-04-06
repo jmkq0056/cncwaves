@@ -31,6 +31,7 @@ class AssetsBundle
 			   'baseUrl' => Yii::app()->theme->baseUrl,
 			   'css'=>array(
 			      "assets/css/login.css?time=".time(),
+			      "assets/css/custom.css?time=".time(),
 			   ),
 			   'depends'=>array('core','google-font')
 			),			
