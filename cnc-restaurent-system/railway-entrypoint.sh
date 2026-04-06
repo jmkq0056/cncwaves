@@ -53,6 +53,30 @@ EOSQL
     mysql -u root "$DB_NAME" < /opt/db-seed.sql
     echo "✓ Database seeded with all CNC data"
 
+    # Fix addon multi_option enum + recreate views without DEFINER dependency
+    mysql -u root "$DB_NAME" <<'FIXSQL'
+UPDATE st_item_relationship_subcategory SET multi_option='one' WHERE multi_option='single';
+DROP VIEW IF EXISTS st_view_item_relationship_subcategory;
+CREATE VIEW st_view_item_relationship_subcategory AS
+  SELECT a.id, a.merchant_id, a.item_id,
+    IFNULL(c.item_token,'') AS item_token, a.item_size_id,
+    IFNULL(b.item_token,'') AS size_uuid, a.subcat_id, a.multi_option,
+    a.multi_option_min, a.multi_option_value, a.require_addon, a.pre_selected, a.sequence
+  FROM st_item_relationship_subcategory a
+  LEFT JOIN st_item_relationship_size b ON a.item_size_id = b.item_size_id
+  LEFT JOIN st_item c ON a.item_id = c.item_id
+  WHERE a.item_size_id > 0;
+DROP VIEW IF EXISTS st_view_item_relationship_subcategory_item;
+CREATE VIEW st_view_item_relationship_subcategory_item AS
+  SELECT b.merchant_id, b.item_id,
+    (SELECT item_token FROM st_item WHERE item_id = b.item_id LIMIT 1) AS item_token,
+    b.item_size_id, a.subcat_id, a.sub_item_id
+  FROM st_subcategory_item_relationships a
+  LEFT JOIN st_item_relationship_subcategory b ON a.subcat_id = b.subcat_id
+  WHERE a.merchant_id IS NOT NULL;
+FIXSQL
+    echo "✓ Addon data fixed + views recreated"
+
     # Clear Yii file cache (stale query results)
     rm -rf /var/www/html/protected/runtime/cache/* 2>/dev/null
     rm -rf /var/www/html/backoffice/protected/runtime/cache/* 2>/dev/null
@@ -87,10 +111,11 @@ else
     if [ "$NEW_HASH" != "$OLD_HASH" ]; then
         echo "⏳ New DB seed detected — re-importing..."
         mysql -u root "$DB_NAME" < "$SEED_FILE" && \
+            mysql -u root "$DB_NAME" -e "UPDATE st_item_relationship_subcategory SET multi_option='one' WHERE multi_option='single';" && \
             echo "$NEW_HASH" > "$SEED_MARKER" && \
             rm -rf /var/www/html/protected/runtime/cache/* 2>/dev/null && \
             rm -rf /var/www/html/backoffice/protected/runtime/cache/* 2>/dev/null && \
-            echo "✓ Database re-seeded + cache cleared" || \
+            echo "✓ Database re-seeded + addon fix + cache cleared" || \
             echo "⚠ DB seed failed"
     else
         echo "✓ DB seed unchanged — skipping"
