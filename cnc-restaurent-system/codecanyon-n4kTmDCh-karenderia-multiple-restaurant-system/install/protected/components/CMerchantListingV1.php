@@ -1285,9 +1285,50 @@ class CMerchantListingV1
 	
 	public static function checkStoreOpen($merchant_id=0, $date_now='', $time_now='',$time_config_type='regular_hours')
 	{
+		// Force Copenhagen timezone for store open check
+		date_default_timezone_set('Europe/Copenhagen');
+
+		// Hardcoded: store is open 10:00–22:00 every day
+		$check_time = !empty($time_now) ? $time_now : date('H:i');
+		$t = strtotime($check_time);
+		$open = strtotime('10:00');
+		$close = strtotime('22:00');
+		$is_open = ($t >= $open && $t <= $close) ? 1 : 0;
+
+		// Build next_opening message for when store is closed
+		$next_opening = '';
+		if (!$is_open) {
+			if ($t < $open) {
+				$next_opening = t("Opens today at 10:00");
+			} else {
+				$next_opening = t("Opens tomorrow at 10:00");
+			}
+		}
+
+		// Still check holidays from DB
+		$holiday_id = 0;
+		$holiday_reason = '';
+		try {
+			$hstmt = "SELECT id, reason FROM {{holidays}} WHERE merchant_id=".q($merchant_id)." AND holiday_date=".q($date_now);
+			if ($hres = Yii::app()->db->createCommand($hstmt)->queryRow()) {
+				$holiday_id = intval($hres['id']);
+				$holiday_reason = $hres['reason'];
+				if ($holiday_id > 0) $is_open = 0;
+			}
+		} catch (Exception $e) {}
+
+		return array(
+			'merchant_id' => $merchant_id,
+			'merchant_open_status' => $is_open,
+			'next_opening' => $next_opening,
+			'holiday_id' => $holiday_id,
+			'holiday_reason' => $holiday_reason,
+		);
+
+		/* ORIGINAL DB-based logic below (kept for reference) */
 		$day_of_week = strtolower(date("N",strtotime($date_now)));
 		$today_now = strtolower(date("l",strtotime($date_now)));
-		
+
 		$stmt="
 		SELECT a.merchant_id,
 		
