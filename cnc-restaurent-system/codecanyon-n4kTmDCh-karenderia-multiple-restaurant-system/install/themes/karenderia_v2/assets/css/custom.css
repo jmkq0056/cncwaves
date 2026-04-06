@@ -1287,7 +1287,7 @@ label.btn del {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   SIZE BUTTONS IN MENU — plain text, not orange pills
+   SIZE BUTTONS — plain text everywhere (menu cards + modal)
    ═══════════════════════════════════════════════════════════ */
 .list-item-rows .btn-group-toggle {
   background: none !important;
@@ -1318,6 +1318,41 @@ label.btn del {
   text-decoration-color: var(--cnc-red) !important;
   text-decoration-thickness: 2px !important;
   margin-right: 4px;
+}
+/* Modal size buttons — same plain text style */
+.modal .btn-group-toggle,
+#itemModal .btn-group-toggle {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+.modal .btn-group-toggle label.btn,
+.modal .btn-group-toggle label.btn.active,
+#itemModal .btn-group-toggle label.btn,
+#itemModal .btn-group-toggle label.btn.active {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 4px 0 0 !important;
+  margin: 0 !important;
+  color: var(--cnc-orange) !important;
+  -webkit-text-fill-color: var(--cnc-orange) !important;
+  font-weight: 800 !important;
+  font-size: 1.2em !important;
+}
+.modal .btn-group-toggle label.btn del,
+#itemModal .btn-group-toggle label.btn del {
+  color: var(--cnc-dark) !important;
+  -webkit-text-fill-color: var(--cnc-dark) !important;
+  background: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-size: 0.95em !important;
+  font-weight: 600 !important;
+  opacity: 0.8 !important;
+  text-decoration-color: var(--cnc-red) !important;
+  text-decoration-thickness: 2px !important;
+  margin-right: 6px;
 }
 
 /* ═══════════════════════════════════════════════════════════

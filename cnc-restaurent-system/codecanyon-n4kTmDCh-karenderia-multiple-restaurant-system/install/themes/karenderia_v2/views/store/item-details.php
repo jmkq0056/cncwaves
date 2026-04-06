@@ -98,10 +98,10 @@ id="itemModal" tabindex="-1" role="dialog" aria-labelledby="itemModal" aria-hidd
 	          :value="price.item_size_id" v-model="size_id"      
 	          >
               <template v-if="price.discount <=0">
-                {{price.size_name}} {{price.pretty_price}}
+                <template v-if="items.price.length > 1">{{price.size_name}}</template> {{price.pretty_price}}
               </template><!-- v-if-->
               <template v-else>
-                {{price.size_name}} <del>{{price.pretty_price}}</del> {{price.pretty_price_after_discount}}
+                <template v-if="items.price.length > 1">{{price.size_name}}</template> <del>{{price.pretty_price}}</del> {{price.pretty_price_after_discount}}
               </template> <!--v-else-->   
                                                      
            </label>
