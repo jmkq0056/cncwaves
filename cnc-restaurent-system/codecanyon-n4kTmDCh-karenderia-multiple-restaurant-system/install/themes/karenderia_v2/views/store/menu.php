@@ -41,12 +41,8 @@
 				<?php echo t("Pickup later")?>
 			</button>
 			<div class="cnc-chat-wrapper">
-				<button class="btn cnc-btn-contact" title="<?php echo t("Contact us")?>" onclick="if(typeof Tawk_API!=='undefined'){Tawk_API.showWidget();Tawk_API.maximize()}; var b=document.querySelector('.cnc-chat-bubble'); if(b) b.style.display='none';"><i class="zmdi zmdi-comment-text"></i></button>
-				<div class="cnc-chat-bubble" onclick="if(typeof Tawk_API!=='undefined'){Tawk_API.showWidget();Tawk_API.maximize()}; this.style.display='none';">
-					<span class="cnc-chat-bubble-text"></span>
-					<span class="cnc-chat-bubble-close" onclick="event.stopPropagation(); this.parentElement.style.display='none';">&times;</span>
-					<div class="cnc-chat-bubble-arrow"></div>
-				</div>
+				<button class="btn cnc-btn-contact" title="<?php echo t("Contact us")?>" onclick="if(typeof Tawk_API!=='undefined'){Tawk_API.showWidget();Tawk_API.maximize()}"><i class="zmdi zmdi-comment-text"></i></button>
+				<span class="cnc-chat-tooltip"><span class="cnc-chat-bubble-text"></span></span>
 			</div>
 		</div>
 		<p class="cnc-pickup-status mt-2 mb-0" id="cnc-pickup-status"></p>
