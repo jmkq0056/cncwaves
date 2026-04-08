@@ -39,8 +39,9 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-av
 # Fix permissions for runtime/upload directories
 RUN mkdir -p /var/www/html && chown -R www-data:www-data /var/www/html
 
-# Copy DB seed for Railway re-seeding
-COPY db-seed.sql /var/www/html/db-seed.sql
+# Copy DB seed + views SQL (to /opt/ so volume mount doesn't override)
+COPY db-seed.sql /opt/db-seed.sql
+COPY create_views.sql /opt/create_views.sql
 
 # Copy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/

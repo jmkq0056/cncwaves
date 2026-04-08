@@ -1,0 +1,7 @@
+chickenwaves.dk {
+    reverse_proxy web:80
+}
+
+www.chickenwaves.dk {
+    redir https://chickenwaves.dk{uri} permanent
+}

@@ -23,8 +23,8 @@ echo "✓ Timezone set to Europe/Copenhagen"
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Re-seed database on deploy (uses PHP — works with any DB config from k-config.php)
-SEED_FILE="/var/www/html/db-seed.sql"
-SEED_MARKER="/var/www/html/protected/runtime/.seed_hash"
+SEED_FILE="/opt/db-seed.sql"
+SEED_MARKER="/opt/.seed_hash"
 if [ -f "$SEED_FILE" ]; then
     NEW_HASH=$(md5sum "$SEED_FILE" | cut -d' ' -f1)
     OLD_HASH=""
@@ -43,13 +43,40 @@ if [ -f "$SEED_FILE" ]; then
             echo '⚠ DB seed: ' . \$e->getMessage() . PHP_EOL;
         }
         " && echo "$NEW_HASH" > "$SEED_MARKER"
+
+        # Apply addon enum fix + recreate views (same as Railway entrypoint)
+        echo "⏳ Applying addon fix + recreating views..."
+        php -r "
+        require '/var/www/html/k-config.php';
+        try {
+            \$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
+            \$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            \$pdo->exec(\"UPDATE st_item_relationship_subcategory SET multi_option='one' WHERE multi_option='single'\");
+            echo '✓ Addon multi_option fix applied' . PHP_EOL;
+            \$viewsFile = '/opt/create_views.sql';
+            if (file_exists(\$viewsFile)) {
+                \$sql = file_get_contents(\$viewsFile);
+                \$pdo->exec(\$sql);
+                echo '✓ Views recreated' . PHP_EOL;
+            }
+        } catch (Exception \$e) {
+            echo '⚠ Post-seed fix: ' . \$e->getMessage() . PHP_EOL;
+        }
+        "
+
+        # Clear Yii file cache
+        rm -rf /var/www/html/protected/runtime/cache/* 2>/dev/null
+        rm -rf /var/www/html/backoffice/protected/runtime/cache/* 2>/dev/null
+        echo "✓ Yii cache cleared"
     else
         echo "✓ DB seed unchanged — skipping"
     fi
 fi
 
 # Ensure writable directories
+mkdir -p /var/www/html/protected/runtime/cache /var/www/html/backoffice/protected/runtime/cache 2>/dev/null || true
 chmod -R 777 /var/www/html/protected/runtime 2>/dev/null || true
+chmod -R 777 /var/www/html/backoffice/protected/runtime 2>/dev/null || true
 chmod -R 777 /var/www/html/upload 2>/dev/null || true
 chmod -R 777 /var/www/html/assets 2>/dev/null || true
 chmod -R 777 /var/www/html/backoffice/assets 2>/dev/null || true

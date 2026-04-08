@@ -1,0 +1,53 @@
+services:
+  caddy:
+    image: caddy:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+    restart: unless-stopped
+
+  web:
+    build: .
+    expose:
+      - "80"
+    volumes:
+      - ./codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_NAME=karenderia
+      - DB_USER=karenderia
+      - DB_PASSWORD=karenderia123
+    restart: unless-stopped
+
+  db:
+    image: mariadb:10.6
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: karenderia
+      MYSQL_USER: karenderia
+      MYSQL_PASSWORD: karenderia123
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install/karenderia.sql:/docker-entrypoint-initdb.d/01-karenderia.sql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  db_data:
+  caddy_data:
+  caddy_config:
