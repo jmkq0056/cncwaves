@@ -40,7 +40,14 @@
 			<button class="btn cnc-btn-pickup-later" onclick="setCncPickup('later')">
 				<?php echo t("Pickup later")?>
 			</button>
-			<button class="btn cnc-btn-contact" title="<?php echo t("Contact us")?>" onclick="if(typeof Tawk_API!=='undefined'){Tawk_API.showWidget();Tawk_API.maximize()}"><i class="zmdi zmdi-comment-text"></i></button>
+			<div class="cnc-chat-wrapper">
+				<button class="btn cnc-btn-contact" title="<?php echo t("Contact us")?>" onclick="if(typeof Tawk_API!=='undefined'){Tawk_API.showWidget();Tawk_API.maximize()}; var b=document.querySelector('.cnc-chat-bubble'); if(b) b.style.display='none';"><i class="zmdi zmdi-comment-text"></i></button>
+				<div class="cnc-chat-bubble" onclick="if(typeof Tawk_API!=='undefined'){Tawk_API.showWidget();Tawk_API.maximize()}; this.style.display='none';">
+					<span class="cnc-chat-bubble-text"></span>
+					<span class="cnc-chat-bubble-close" onclick="event.stopPropagation(); this.parentElement.style.display='none';">&times;</span>
+					<div class="cnc-chat-bubble-arrow"></div>
+				</div>
+			</div>
 		</div>
 		<p class="cnc-pickup-status mt-2 mb-0" id="cnc-pickup-status"></p>
 		<?php if($home_search_mode=="address"):?>
@@ -332,6 +339,15 @@ var _cncPickupInit = setInterval(function() {
     cncUpdatePickupStatus(cncPrettyTime(e));
   };
 }, 200);
+
+/* Chat bubble — set text based on language cookie */
+(function() {
+  var lang = 'da';
+  var m = document.cookie.match(/(?:^|;\s*)language=([^;]*)/);
+  if (m && m[1]) lang = m[1].trim();
+  var txt = (lang === 'en') ? 'Chat with us!' : 'Chat med os!';
+  document.querySelectorAll('.cnc-chat-bubble-text').forEach(function(el) { el.textContent = txt; });
+})();
 </script>
 	    
 	  </div> <!--row-->

@@ -634,24 +634,83 @@ button.add_to_cart:disabled,
   border-color: var(--cnc-dark);
   color: #fff;
 }
+/* Chat button wrapper */
+.cnc-chat-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
 .cnc-btn-contact {
-  width: 42px;
-  height: 42px;
+  width: 46px;
+  height: 46px;
   border-radius: 50% !important;
-  background: var(--cnc-dark) !important;
-  color: #fff !important;
-  border: 2px solid var(--cnc-dark) !important;
+  background: var(--cnc-orange) !important;
+  color: #000 !important;
+  border: 2px solid var(--cnc-orange) !important;
   display: flex !important;
   align-items: center;
   justify-content: center;
   padding: 0 !important;
-  font-size: 18px;
-  transition: all 0.2s;
+  font-size: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: cnc-chat-pulse 2s infinite;
+  box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.7);
+  cursor: pointer !important;
+  z-index: 2;
 }
 .cnc-btn-contact:hover {
-  background: var(--cnc-orange) !important;
+  background: #fff !important;
   border-color: var(--cnc-orange) !important;
-  color: #000 !important;
+  color: var(--cnc-orange) !important;
+  transform: scale(1.1);
+  animation: none;
+}
+@keyframes cnc-chat-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 165, 0, 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(255, 165, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 165, 0, 0); }
+}
+/* Chat popup bubble */
+.cnc-chat-bubble {
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--cnc-orange);
+  color: #000;
+  padding: 8px 14px;
+  border-radius: 18px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  animation: cnc-bubble-in 0.4s ease-out 3s both;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.cnc-chat-bubble-arrow {
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid var(--cnc-orange);
+}
+.cnc-chat-bubble-close {
+  margin-left: 8px;
+  font-size: 15px;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.cnc-chat-bubble-close:hover {
+  opacity: 1;
+}
+@keyframes cnc-bubble-in {
+  0% { opacity: 0; transform: translateY(-50%) translateX(-8px); }
+  100% { opacity: 1; transform: translateY(-50%) translateX(0); }
 }
 .cnc-pickup-status {
   font-size: 13px;
@@ -857,9 +916,16 @@ section[data-cat_id] + section[data-cat_id] {
   color: #fff !important;
 }
 .merchant-top-header .cnc-btn-contact {
-  background: rgba(255,255,255,0.15) !important;
-  border-color: rgba(255,255,255,0.4) !important;
-  color: #fff !important;
+  background: var(--cnc-orange) !important;
+  border-color: var(--cnc-orange) !important;
+  color: #000 !important;
+}
+.merchant-top-header .cnc-chat-bubble {
+  background: #fff;
+  color: #000;
+}
+.merchant-top-header .cnc-chat-bubble-arrow {
+  border-right-color: #fff;
 }
 .merchant-top-header .cnc-pickup-status {
   color: rgba(255,255,255,0.7) !important;
