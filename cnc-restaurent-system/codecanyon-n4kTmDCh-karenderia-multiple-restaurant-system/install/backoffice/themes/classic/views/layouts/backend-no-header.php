@@ -9,13 +9,17 @@
 <link rel="icon" type="image/png" sizes="32x32" href="<?php echo Yii::app()->theme->baseUrl?>/assets/icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="<?php echo Yii::app()->theme->baseUrl?>/assets/icons/favicon-16x16.png">
 <link rel="manifest" href="<?php echo Yii::app()->theme->baseUrl?>/assets/icons/site.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#3d0d0f">
 <link rel="mask-icon" href="<?php echo Yii::app()->theme->baseUrl?>/assets/icons/safari-pinned-tab.svg" color="#5bbad5">
 <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 <body>
 
 <div class="container-fluid m-0 p-0">
- 
+
  <div class="sidebar-panel nice-scroll">
 	 <div class="sidebar-wrap">
 	 
@@ -81,5 +85,6 @@
  
 </div><!--container-->
 
+<script src="<?php echo Yii::app()->baseUrl?>/assets/js/pwa-register.js"></script>
 </body>
-</html> 
+</html>

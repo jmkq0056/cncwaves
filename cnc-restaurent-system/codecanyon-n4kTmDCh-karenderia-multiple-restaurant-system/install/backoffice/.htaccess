@@ -6,3 +6,15 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /backoffice/index.php [L]
 </IfModule>
+
+# PWA: service worker must never be cached by the browser
+<IfModule mod_headers.c>
+<FilesMatch "sw\.js$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Content-Type "application/javascript"
+</FilesMatch>
+<FilesMatch "site\.webmanifest$">
+    Header set Cache-Control "no-cache, must-revalidate"
+    Header set Content-Type "application/manifest+json"
+</FilesMatch>
+</IfModule>
