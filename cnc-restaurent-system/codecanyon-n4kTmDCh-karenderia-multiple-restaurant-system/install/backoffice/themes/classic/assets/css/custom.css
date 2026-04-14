@@ -236,3 +236,59 @@ button.send.selected { background: var(--cnc-red) !important; }
     padding-top: 60px !important;
   }
 }
+
+/* ═══ DASHBOARD STAT CARDS — compact red gradient, no dummy images ═══ */
+.rounded-status-report,
+.rounded-status-report.r1,
+.rounded-status-report.r2,
+.rounded-status-report.r3,
+.rounded-status-report.r4 {
+  background: linear-gradient(135deg, var(--cnc-dark) 0%, var(--cnc-red) 100%) !important;
+  min-height: 110px !important;
+  max-width: 100% !important;
+  padding: 18px 20px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(61, 13, 15, 0.15) !important;
+}
+.rounded-status-report .report-inner {
+  position: static !important;
+  padding: 0 !important;
+  top: auto !important;
+}
+.rounded-status-report .report-inner h5 {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  margin: 0 0 8px 0 !important;
+}
+.rounded-status-report .report-inner p {
+  color: #fff !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+/* Slight accent variation so the four cards aren't identical */
+.rounded-status-report.r2 {
+  background: linear-gradient(135deg, var(--cnc-red) 0%, var(--cnc-dark) 100%) !important;
+}
+.rounded-status-report.r3 {
+  background: linear-gradient(135deg, var(--cnc-dark) 0%, #6b1518 50%, var(--cnc-red) 100%) !important;
+}
+.rounded-status-report.r4 {
+  background: linear-gradient(135deg, var(--cnc-red) 0%, #c94048 100%) !important;
+}
+@media (max-width: 640px) {
+  .rounded-status-report,
+  .rounded-status-report.r1,
+  .rounded-status-report.r2,
+  .rounded-status-report.r3,
+  .rounded-status-report.r4 {
+    min-height: 90px !important;
+    padding: 14px 16px !important;
+  }
+  .rounded-status-report .report-inner h5 { font-size: 11px !important; }
+  .rounded-status-report .report-inner p { font-size: 22px !important; }
+}
