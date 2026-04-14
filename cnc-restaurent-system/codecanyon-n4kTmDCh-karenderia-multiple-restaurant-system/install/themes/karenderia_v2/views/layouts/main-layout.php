@@ -37,8 +37,12 @@
 <?php echo $content; ?>
 
 <!--Start of Tawk.to Script — only on landing + menu pages, minimized by default -->
+<!-- DISABLED: Tawk.to is kept in code for future re-enable but not loaded for users.
+     Chat bubble button now redirects to the on-site contact form (#contact).
+     To re-enable, remove the early `return;` below. -->
 <script type="text/javascript">
 (function(){
+  return; /* Tawk.to disabled — chat button routes to #contact instead */
   var path = window.location.pathname;
   if (path === '/' || path.indexOf('/chicken-n-chicken') === 0) {
     var Tawk_API = window.Tawk_API || {};

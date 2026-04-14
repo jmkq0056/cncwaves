@@ -288,7 +288,7 @@ Yii::app()->clientScript->registerMetaTag('da_DK', null, null, array('property'=
 </div>
 
 <!-- CONTACT FORM -->
-<div class="cnc-contact">
+<div id="contact" class="cnc-contact" style="scroll-margin-top:80px;">
   <h2><?php echo t("Kontakt os")?></h2>
   <p class="contact-sub"><?php echo t("Har du spørgsmål? Skriv til os herunder.")?></p>
 

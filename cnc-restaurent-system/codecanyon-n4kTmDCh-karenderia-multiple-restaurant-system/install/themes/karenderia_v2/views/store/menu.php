@@ -41,7 +41,7 @@
 				<?php echo t("Pickup later")?>
 			</button>
 			<div class="cnc-chat-wrapper">
-				<button class="btn cnc-btn-contact" title="<?php echo t("Contact us")?>" onclick="if(typeof Tawk_API!=='undefined'){Tawk_API.showWidget();Tawk_API.maximize()}"><i class="zmdi zmdi-comment-text"></i></button>
+				<a class="btn cnc-btn-contact" title="<?php echo t("Contact us")?>" href="<?php echo CMedia::homeUrl()?>/#contact"><i class="zmdi zmdi-comment-text"></i></a>
 				<span class="cnc-chat-tooltip"><span class="cnc-chat-bubble-text"></span></span>
 			</div>
 		</div>
