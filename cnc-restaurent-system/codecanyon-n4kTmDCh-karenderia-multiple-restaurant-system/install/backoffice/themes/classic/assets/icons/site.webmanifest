@@ -1,7 +1,7 @@
 {
-    "name": "CNC Merchant Dashboard",
-    "short_name": "CNC Merchant",
-    "description": "Chicken N Chicken — Merchant Dashboard",
+    "name": "Chicken Waves",
+    "short_name": "Chicken Waves",
+    "description": "Chicken Waves — Merchant Dashboard",
     "start_url": "/backoffice/merchant/dashboard",
     "scope": "/backoffice/",
     "display": "standalone",

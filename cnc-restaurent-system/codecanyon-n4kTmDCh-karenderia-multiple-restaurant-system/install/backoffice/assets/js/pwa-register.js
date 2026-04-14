@@ -30,7 +30,7 @@
 
     var left = document.createElement('div');
     left.innerHTML =
-      '<strong style="font-size:14px;">Install CNC Merchant</strong>' +
+      '<strong style="font-size:14px;">Install Chicken Waves</strong>' +
       '<br><span style="font-size:12px;opacity:0.8;">Add to home screen for quick access</span>';
 
     var right = document.createElement('div');
