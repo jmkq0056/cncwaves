@@ -118,12 +118,35 @@ button.send.selected { background: var(--cnc-red) !important; }
 .dropdown-menu-mobile ul li a:hover { color: var(--cnc-orange) !important; }
 
 /* ═══ ELEMENT PLUS ═══ */
-.el-button--success, .el-button--primary {
+.el-button--success:not(.is-plain):not(.is-text),
+.el-button--primary:not(.is-plain):not(.is-text) {
   background-color: var(--cnc-red) !important;
   border-color: var(--cnc-red) !important;
+  color: #fff !important;
 }
-.el-button--success:hover, .el-button--primary:hover {
+.el-button--success:not(.is-plain):not(.is-text):hover,
+.el-button--primary:not(.is-plain):not(.is-text):hover {
   background-color: var(--cnc-red-hover) !important;
+  border-color: var(--cnc-red-hover) !important;
+}
+/* Plain (outline) variant — white bg, red text + border */
+.el-button--success.is-plain,
+.el-button--primary.is-plain {
+  background-color: #fff !important;
+  border-color: var(--cnc-red) !important;
+  color: var(--cnc-red) !important;
+}
+.el-button--success.is-plain:hover,
+.el-button--primary.is-plain:hover {
+  background-color: var(--cnc-red) !important;
+  border-color: var(--cnc-red) !important;
+  color: #fff !important;
+}
+/* Text variant — just red text */
+.el-button--success.is-text,
+.el-button--primary.is-text {
+  color: var(--cnc-red) !important;
+  background-color: transparent !important;
 }
 .el-switch.is-checked .el-switch__core {
   background-color: var(--cnc-red) !important;
