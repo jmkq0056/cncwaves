@@ -1,5 +1,24 @@
 <DIV id="vue-dashboard" class="dashboard-desktopx">
 
+<div class="row mb-4" v-if="hasPermission('merchant.dashboard.last_5_orders')">
+  <div class="col-12">
+    <div class="position-relative">
+    <components-last-orders
+    ref="last_order"
+    ajax_url="<?php echo $ajax_url?>"
+    :orders_tab='<?php echo json_encode($orders_tab)?>'
+    :limit="<?php echo intval($limit)?>"
+    :label="{
+      title : '<?php echo CJavaScript::quote(t("Last Orders"));?>',
+      sub_title : '<?php echo CJavaScript::quote(t("Quick management of the last {{limit}} orders", array('{{limit}}'=>$limit) ));?>',
+    }"
+    @view-customer="viewCustomer"
+    >
+    </components-last-orders>
+    </div>
+  </div>
+</div>
+
 <div class="row m-0 p-0" v-if="hasPermission('merchant.dashboard.order_summary')">
 <div class="col p-0 col-lg-3 col-md-3 col-sm-6 col-6  mb-3 mb-xl-0"> 
    <div class="rounded-status-report rounded r1">   
@@ -79,21 +98,6 @@
      </components-daily-statistic>            
      </div>     
       
-      <div class="position-relative mb-3" v-if="hasPermission('merchant.dashboard.last_5_orders')" >
-      <components-last-orders
-      ref="last_order"
-      ajax_url="<?php echo $ajax_url?>"       
-      :orders_tab='<?php echo json_encode($orders_tab)?>'
-      :limit="<?php echo intval($limit)?>"
-      :label="{    
-	    title : '<?php echo CJavaScript::quote(t("Last Orders"));?>',    
-	    sub_title : '<?php echo CJavaScript::quote(t("Quick management of the last {{limit}} orders", array('{{limit}}'=>$limit) ));?>',    	    
-	  }"  
-	  @view-customer="viewCustomer"
-      >
-      </components-last-orders>
-      </div>
-            
 	 <components-customer-details
 	  ref="customer"    
 	  :client_id="client_id"
