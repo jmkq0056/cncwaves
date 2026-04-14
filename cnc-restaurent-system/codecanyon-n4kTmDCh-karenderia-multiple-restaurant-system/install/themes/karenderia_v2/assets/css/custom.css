@@ -901,8 +901,8 @@ section[data-cat_id] + section[data-cat_id] {
   color: #000 !important;
 }
 .merchant-top-header .cnc-chat-tooltip {
-  background: #fff;
-  color: #000;
+  background: var(--cnc-dark);
+  color: #fff;
 }
 .merchant-top-header .cnc-pickup-status {
   color: rgba(255,255,255,0.7) !important;

@@ -341,7 +341,7 @@ var _cncPickupInit = setInterval(function() {
   var lang = 'da';
   var m = document.cookie.match(/(?:^|;\s*)language=([^;]*)/);
   if (m && m[1]) lang = m[1].trim();
-  var txt = (lang === 'en') ? 'Chat with us!' : 'Chat med os!';
+  var txt = (lang === 'en') ? 'Contact us' : 'Kontakt os';
   document.querySelectorAll('.cnc-chat-bubble-text').forEach(function(el) { el.textContent = txt; });
 })();
 </script>
