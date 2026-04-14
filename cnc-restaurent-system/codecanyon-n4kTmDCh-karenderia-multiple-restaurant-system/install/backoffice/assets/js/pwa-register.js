@@ -90,16 +90,8 @@
     dismissBanner();
   });
 
-  // --- Floating back button (PWA mode only) ---
-  function isPWAMode() {
-    return window.matchMedia('(display-mode: standalone)').matches ||
-           window.matchMedia('(display-mode: fullscreen)').matches ||
-           window.matchMedia('(display-mode: minimal-ui)').matches ||
-           window.navigator.standalone === true;
-  }
-
+  // --- Floating back button (always visible) ---
   function mountBackButton() {
-    if (!isPWAMode()) return;
     if (document.getElementById('pwa-back-button')) return;
 
     var btn = document.createElement('button');
