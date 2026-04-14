@@ -89,4 +89,55 @@
     deferredPrompt = null;
     dismissBanner();
   });
+
+  // --- Floating back button (PWA mode only) ---
+  function isPWAMode() {
+    return window.matchMedia('(display-mode: standalone)').matches ||
+           window.matchMedia('(display-mode: fullscreen)').matches ||
+           window.matchMedia('(display-mode: minimal-ui)').matches ||
+           window.navigator.standalone === true;
+  }
+
+  function mountBackButton() {
+    if (!isPWAMode()) return;
+    if (document.getElementById('pwa-back-button')) return;
+
+    var btn = document.createElement('button');
+    btn.id = 'pwa-back-button';
+    btn.setAttribute('aria-label', 'Go back');
+    btn.innerHTML =
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" ' +
+      'stroke="currentColor" stroke-width="2.5" stroke-linecap="round" ' +
+      'stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
+    btn.style.cssText =
+      'position:fixed;top:12px;left:12px;width:44px;height:44px;' +
+      'border-radius:50%;background:#3d0d0f;color:#fff;border:none;' +
+      'display:flex;align-items:center;justify-content:center;' +
+      'cursor:pointer;z-index:99998;padding:0;outline:none;' +
+      '-webkit-tap-highlight-color:transparent;' +
+      'box-shadow:0 2px 10px rgba(0,0,0,0.35);' +
+      'transition:transform 0.15s ease, background 0.15s ease;';
+
+    btn.onmousedown = function () { btn.style.transform = 'scale(0.92)'; };
+    btn.onmouseup = function () { btn.style.transform = 'scale(1)'; };
+    btn.onmouseleave = function () { btn.style.transform = 'scale(1)'; };
+    btn.ontouchstart = function () { btn.style.transform = 'scale(0.92)'; };
+    btn.ontouchend = function () { btn.style.transform = 'scale(1)'; };
+
+    btn.onclick = function () {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '/backoffice/merchant/dashboard';
+      }
+    };
+
+    document.body.appendChild(btn);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mountBackButton);
+  } else {
+    mountBackButton();
+  }
 })();
