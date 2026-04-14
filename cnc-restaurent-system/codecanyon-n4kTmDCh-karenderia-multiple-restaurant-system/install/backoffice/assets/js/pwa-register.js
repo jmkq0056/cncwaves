@@ -98,17 +98,28 @@
     btn.id = 'pwa-back-button';
     btn.setAttribute('aria-label', 'Go back');
     btn.innerHTML =
-      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" ' +
-      'stroke="currentColor" stroke-width="2.5" stroke-linecap="round" ' +
-      'stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
+      '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" ' +
+      'stroke="currentColor" stroke-width="3" stroke-linecap="round" ' +
+      'stroke-linejoin="round" style="flex-shrink:0;">' +
+      '<path d="M15 18l-6-6 6-6"/></svg>' +
+      '<span style="letter-spacing:0.5px;">Back</span>';
     btn.style.cssText =
-      'position:fixed;top:12px;left:12px;width:44px;height:44px;' +
-      'border-radius:50%;background:#3d0d0f;color:#fff;border:none;' +
-      'display:flex;align-items:center;justify-content:center;' +
-      'cursor:pointer;z-index:99998;padding:0;outline:none;' +
+      'position:fixed;top:0;left:0;width:240px;height:76px;' +
+      'background:#ea7a1f;color:#fff;border:none;' +
+      'display:flex;align-items:center;justify-content:center;gap:10px;' +
+      'cursor:pointer;z-index:99999;padding:0;outline:none;' +
+      'font-size:20px;font-weight:800;text-transform:uppercase;' +
+      'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,' +
+      '"Helvetica Neue",Arial,sans-serif;' +
       '-webkit-tap-highlight-color:transparent;' +
-      'box-shadow:0 2px 10px rgba(0,0,0,0.35);' +
-      'transition:transform 0.15s ease, background 0.15s ease;';
+      'box-shadow:2px 2px 12px rgba(0,0,0,0.35);' +
+      'transition:background 0.15s ease, transform 0.12s ease;';
+
+    if (window.matchMedia('(max-width: 640px)').matches) {
+      btn.style.width = '140px';
+      btn.style.height = '56px';
+      btn.style.fontSize = '16px';
+    }
 
     btn.onmousedown = function () { btn.style.transform = 'scale(0.92)'; };
     btn.onmouseup = function () { btn.style.transform = 'scale(1)'; };
