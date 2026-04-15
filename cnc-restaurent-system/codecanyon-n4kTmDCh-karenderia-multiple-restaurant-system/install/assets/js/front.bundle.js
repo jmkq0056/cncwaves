@@ -1704,7 +1704,7 @@
 	  >
 	   <div class="d-flex justify-content-between">
 	     <div>{{label.go_checkout}}</div>
-	     <div v-if="!update_cart_loading">{{subtotal.value}}</div>
+	     <div v-if="!update_cart_loading">{{ (cart_total && cart_total.value) ? cart_total.value : (subtotal && subtotal.value) }}</div>
 		 <div class="m-auto circle-loader" data-loader="circle-side"></div>
 	   </div>	   
 	  </a>

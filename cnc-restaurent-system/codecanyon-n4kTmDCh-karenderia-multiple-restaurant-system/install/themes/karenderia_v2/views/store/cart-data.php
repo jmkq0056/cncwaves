@@ -207,7 +207,7 @@
     :href="hasError?'javascript:;':'<?php echo isset($checkout_link)?$checkout_link:'';?>'"
     >
     <div class="flex-col"><?php echo t("Checkout")?></div>
-    <div class="flex-col">{{cart_subtotal.value}}</div>
+    <div class="flex-col">{{ (cart_total && cart_total.value) ? cart_total.value : (cart_subtotal && cart_subtotal.value) }}</div>
     <div class="fixed-loader">
         <div class="m-auto circle-loader" data-loader="circle-side"></div> 
     </div>
