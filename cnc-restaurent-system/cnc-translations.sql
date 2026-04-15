@@ -9,10 +9,16 @@
 
 SET NAMES utf8mb4;
 
--- ─── ADMIN PASSWORD — overrides the "admin123" hash from db-seed.sql ──
--- Without this, every container rebuild would revert the admin login
--- to the default admin / admin123. Hash = MD5('Basharat0036').
-UPDATE st_admin_user SET password = '0d6bbea382283bae9f2da8f098353237' WHERE username = 'admin';
+-- ─── ADMIN PASSWORD + EMAIL — overrides db-seed.sql defaults ────────
+-- Without this, every rebuild of a fresh DB would revert to:
+--   admin / admin123 / admin@chickennchicken.dk
+-- Hash = MD5('Basharat0036'). Email uses a Gmail +alias so the admin
+-- can receive reset emails but the address doesn't collide with the
+-- same user's client account (jawa0056@gmail.com on the customer side).
+UPDATE st_admin_user
+   SET password = '0d6bbea382283bae9f2da8f098353237',
+       email_address = 'jawa0056+cncadmin@gmail.com'
+ WHERE username = 'admin';
 
 -- ─── ASYNC TASK TRANSPORT — fix forgot-password email delivery ──────
 -- The framework's runActions() helper posts to /task/* endpoints to do
