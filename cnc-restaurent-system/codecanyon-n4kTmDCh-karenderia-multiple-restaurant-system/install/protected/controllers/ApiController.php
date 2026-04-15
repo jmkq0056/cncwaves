@@ -4689,20 +4689,35 @@ class ApiController extends SiteCommon
 	public function actionrequestResetPassword()
 	{
 		try {
-			
-			$email_address = isset($this->data['email_address'])?$this->data['email_address']:'';			
-			$model = AR_clientsignup::model()->find('email_address=:email_address AND status=:status AND merchant_id=:merchant_id', 
+
+			$email_address = isset($this->data['email_address'])?$this->data['email_address']:'';
+			$model = AR_clientsignup::model()->find('email_address=:email_address AND status=:status AND merchant_id=:merchant_id',
 		    array(
 				':email_address'=>$email_address,
 				':status'=>'active',
 				':merchant_id'=>0
-			)); 
-		    if($model){				
+			));
+		    if($model){
 		    	if($model->status=="active"){
 		    		$model->scenario = "reset_password";
 		    		$model->reset_password_request = 1;
 					$model->mobile_verification_code =  CommonUtility::generateNumber(4,true);
-		    		if($model->save()){											
+		    		if($model->save()){
+						/* Directly invoke the task logic synchronously — the
+						   afterSave async HTTP call to /task/after_requestresetpassword
+						   was losing query params in transit under the Docker+Caddy
+						   setup, so the task received an empty client_uuid and the
+						   email never rendered. Calling the method here guarantees
+						   delivery. */
+						try {
+							$taskCtrl = new TaskController('task');
+							$_GET['client_uuid'] = $model->client_uuid;
+							$_GET['key'] = CommonUtility::getCronKey();
+							$_GET['language'] = Yii::app()->language;
+							$taskCtrl->after_requestresetpassword();
+						} catch (Exception $e) {
+							Yii::log('Inline reset-password task failed: '.$e->getMessage(), CLogger::LEVEL_ERROR);
+						}
 						$this->code = 1;
 						$this->msg = t("Check {{email_address}} for an email to reset your password.",array(
 						'{{email_address}}'=>$model->email_address
@@ -4713,14 +4728,14 @@ class ApiController extends SiteCommon
 						);
 					} else {
 						$this->msg = CommonUtility::parseError($model->getErrors());
-					}							    				    	
+					}
 		    	} else $this->msg[] = t("Your account is either inactive or not verified.");
 		    } else $this->msg[] = t("No email address found in our records. please verify your email.");
-			
-		} catch (Exception $e) {							
+
+		} catch (Exception $e) {
 		    $this->msg[] = t($e->getMessage());
 		}
-		$this->responseJson();	
+		$this->responseJson();
 	}
 
 	public function actionrequestResetpasswordsms()
