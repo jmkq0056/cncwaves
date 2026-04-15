@@ -23,6 +23,15 @@ UPDATE st_admin_user SET password = '0d6bbea382283bae9f2da8f098353237' WHERE use
 DELETE FROM st_option WHERE merchant_id=0 AND option_name='runactions_method';
 INSERT INTO st_option (merchant_id, option_name, option_value) VALUES (0, 'runactions_method', 'fastRequest');
 
+-- Disable "runInBackground" mode for task actions. The framework's
+-- ERunActions::runBackground() uses fastcgi_finish_request() / output
+-- flushing tricks that don't fire reliably under Apache+mod_php inside
+-- Docker. With runactions_enabled=0 the task actions execute
+-- synchronously inside the incoming /task/* request — slower by a
+-- second or two but guaranteed to complete the email send.
+DELETE FROM st_option WHERE merchant_id=0 AND option_name='runactions_enabled';
+INSERT INTO st_option (merchant_id, option_name, option_value) VALUES (0, 'runactions_enabled', '0');
+
 -- ─── BACKFILL admin_id_token for seeded admin rows ──────────────────
 -- db-seed.sql seeds the admin user with admin_id_token=''. The token is
 -- only generated on isNewRecord=true (first insert), so existing seeded
