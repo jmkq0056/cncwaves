@@ -1684,11 +1684,11 @@
              <div><h6 class="m-0">{{summary.value}}</h6></div>
            </template>
            <template v-else-if="summary.type=='bag_fee'">
-             <div class="d-flex align-items-center cnc-bag-trigger" data-toggle="modal" data-target="#cncBagInfoModal" style="cursor:pointer;">
+             <div class="d-flex align-items-center cnc-bag-trigger" style="cursor:pointer;" onclick="if(window.jQuery){jQuery('#cncBagInfoModal').appendTo('body').modal('show');}">
                <img src="/themes/karenderia_v2/assets/images/shopping-bag.png" class="cnc-bag-icon mr-2" alt="" />
                <span><strong>{{summary.name}}</strong><br><small style="opacity:0.7;">Tryk for info · Lovpligtigt</small></span>
              </div>
-             <div class="cnc-bag-trigger" data-toggle="modal" data-target="#cncBagInfoModal" style="cursor:pointer;">{{summary.value}}</div>
+             <div class="cnc-bag-trigger" style="cursor:pointer;" onclick="if(window.jQuery){jQuery('#cncBagInfoModal').appendTo('body').modal('show');}">{{summary.value}}</div>
            </template>
            <template v-else>
              <div>{{summary.name}}</div>
