@@ -6,7 +6,7 @@ ref="childref"
 @after-drawerclose="afterDrawerclose"
 cart_preview="<?php echo $cart_preview?>"
 :drawer="drawer_preview_cart"
-:payload="['items','subtotal','distance_local_new','merchant_info','go_checkout','items_count']"
+:payload="['items','subtotal','distance_local_new','merchant_info','go_checkout','items_count','packaging','summary','tax']"
 :label="<?php 
 echo CommonUtility::safeJsonEncode([
   'your_cart'=>t("Your cart from"),

@@ -103,7 +103,7 @@ class MenuController extends SiteCommon
 							
 							
 				$payload = array(
-				  'items','subtotal','distance_local_new','merchant_info','items_count','delivery_fee'
+				  'items','subtotal','distance_local_new','merchant_info','items_count','delivery_fee','packaging','summary','tax'
 				);			
 				
 				ScriptUtility::registerScript(array(

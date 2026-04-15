@@ -344,21 +344,23 @@ if(in_array('packaging',(array)$payload)){
 		  //'tax'=>isset($tax_settings['tax'])?$tax_settings['tax']:'',
 		));
 	}
+}
 
-	/* MANDATORY DELIVERY BAG (Danish Plastposeloven 2020) — flat 4 DKK per
-	   order, charged automatically when the cart has at least one item.
-	   Inclusive of 25% Danish moms. Cannot be removed by the customer. */
-	$bag_items = CCart::getItems();
-	if(is_array($bag_items) && count($bag_items) > 0){
-		CCart::addCondition(array(
-		  'name'=>t("Bæredygtig Leveringspose"),
-		  'type'=>"bag_fee",
-		  'target'=>"total",
-		  'value'=>4.00 * $exchange_rate,
-		  'taxable'=>true,
-		  'tax'=>$tax_delivery,
-		));
-	}
+/* MANDATORY DELIVERY BAG (Danish Plastposeloven 2020) — flat 4 DKK per
+   order, charged automatically when the cart has at least one item.
+   Inclusive of 25% Danish moms. Cannot be removed by the customer.
+   Injected unconditionally (independent of payload) so EVERY cart surface
+   — preview popup, sticky sidebar, full checkout — sees the same line. */
+$bag_items = CCart::getItems();
+if(is_array($bag_items) && count($bag_items) > 0){
+	CCart::addCondition(array(
+	  'name'=>t("Bæredygtig Leveringspose"),
+	  'type'=>"bag_fee",
+	  'target'=>"total",
+	  'value'=>4.00 * $exchange_rate,
+	  'taxable'=>true,
+	  'tax'=>$tax_delivery,
+	));
 }
 
 /*TAX*/
