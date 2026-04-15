@@ -1463,8 +1463,38 @@ label.btn del {
 .cnc-bag-fee-row .cnc-bag-trigger { transition: opacity 0.15s; }
 .cnc-bag-fee-row .cnc-bag-trigger:active { opacity: 0.7; }
 
-/* Bag info modal — universal across mobile / tablet / desktop */
-#cncBagInfoModal .modal-dialog { max-width: 460px; }
+/* Bag info modal — universal across mobile / tablet / desktop.
+   Hardened against theme overrides: forces white bg + readable text. */
+#cncBagInfoModal { z-index: 100000 !important; }
+#cncBagInfoModal .modal-dialog { max-width: 440px; }
+#cncBagInfoModal .modal-content {
+  background: #ffffff !important;
+  color: #222 !important;
+  border-radius: 14px !important;
+  border: none !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3) !important;
+}
+#cncBagInfoModal .modal-header {
+  background: linear-gradient(135deg, #3d0d0f, #9d292b) !important;
+  border-bottom: none !important;
+  color: #ffffff !important;
+}
+#cncBagInfoModal .modal-header *,
+#cncBagInfoModal .modal-title { color: #ffffff !important; }
+#cncBagInfoModal .modal-body {
+  background: #ffffff !important;
+  color: #222 !important;
+}
+#cncBagInfoModal .modal-body p,
+#cncBagInfoModal .modal-body span,
+#cncBagInfoModal .modal-body em,
+#cncBagInfoModal .modal-body strong,
+#cncBagInfoModal .modal-body h6 { background: transparent !important; }
+#cncBagInfoModal .close,
+#cncBagInfoModal .close span,
+#cncBagInfoModal button.close { color: #ffffff !important; opacity: 1 !important; }
+.modal-backdrop.show { opacity: 0.7 !important; }
 @media (max-width: 480px) {
-  #cncBagInfoModal .modal-dialog { margin: 12px; max-width: calc(100vw - 24px); }
+  #cncBagInfoModal .modal-dialog { margin: 16px; max-width: calc(100vw - 32px); }
+  #cncBagInfoModal .modal-body img { max-width: 200px !important; }
 }

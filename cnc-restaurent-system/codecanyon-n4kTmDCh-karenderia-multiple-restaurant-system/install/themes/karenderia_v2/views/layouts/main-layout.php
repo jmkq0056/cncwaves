@@ -37,29 +37,29 @@
 <?php echo $content; ?>
 
 <!-- Bæredygtig Leveringspose — info modal triggered by tapping the bag fee line -->
-<div class="modal fade" id="cncBagInfoModal" tabindex="-1" role="dialog" aria-labelledby="cncBagInfoModalLabel" aria-hidden="true">
+<div class="modal fade cnc-bag-modal" id="cncBagInfoModal" tabindex="-1" role="dialog" aria-labelledby="cncBagInfoModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content" style="border:none; border-radius:14px; overflow:hidden;">
-      <div class="modal-header" style="background:linear-gradient(135deg,#3d0d0f,#9d292b); color:#fff; border-bottom:none;">
-        <h5 class="modal-title" id="cncBagInfoModalLabel" style="font-weight:700;">Bæredygtig Leveringspose</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff; opacity:0.9; text-shadow:none;">
-          <span aria-hidden="true">&times;</span>
+    <div class="modal-content" style="border:none !important; border-radius:14px !important; overflow:hidden !important; background:#ffffff !important; color:#222 !important;">
+      <div class="modal-header" style="background:linear-gradient(135deg,#3d0d0f,#9d292b) !important; border-bottom:none !important; padding:16px 20px !important;">
+        <h5 class="modal-title" id="cncBagInfoModalLabel" style="font-weight:700 !important; color:#ffffff !important; margin:0 !important; font-size:18px !important;">Bæredygtig Leveringspose</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#ffffff !important; opacity:1 !important; text-shadow:none !important; font-size:28px !important; font-weight:300 !important; padding:0 8px !important; margin:0 !important;">
+          <span aria-hidden="true" style="color:#ffffff !important;">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-center" style="padding:24px 24px 28px;">
+      <div class="modal-body text-center" style="padding:24px 20px 26px !important; background:#ffffff !important; color:#222 !important;">
         <img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/shopping-bag.png"
              alt="Chicken N Chicken bag"
-             style="max-width:280px; width:80%; height:auto; margin:0 auto 16px;" />
-        <div style="display:inline-block; background:#f17d00; color:#fff; padding:6px 18px; border-radius:20px; font-weight:700; font-size:18px; margin-bottom:14px;">
+             style="max-width:240px; width:70%; height:auto; margin:0 auto 14px; display:block;" />
+        <div style="display:inline-block; background:#f17d00; color:#ffffff !important; padding:8px 22px; border-radius:22px; font-weight:800; font-size:20px; margin-bottom:16px; letter-spacing:0.3px;">
           4,00 kr
         </div>
-        <h6 style="font-weight:700; color:#3d0d0f; margin-bottom:8px;">Vores genbrugelige papirpose</h6>
-        <p style="margin-bottom:12px; color:#444; font-size:14px; line-height:1.5;">
+        <h6 style="font-weight:700 !important; color:#3d0d0f !important; margin:0 0 8px 0 !important; font-size:16px !important;">Vores genbrugelige papirpose</h6>
+        <p style="margin:0 0 14px 0 !important; color:#444 !important; font-size:14px !important; line-height:1.5 !important;">
           Vi pakker din mad i en kraftig pose med Chicken N&nbsp;Chicken-logo, så du nemt kan tage den med hjem eller modtage den til døren.
         </p>
-        <div style="background:#fff8f0; border-left:3px solid #f17d00; padding:10px 14px; text-align:left; border-radius:4px; font-size:12px; color:#5a1a1d;">
-          <strong>Lovpligtigt iht. dansk lovgivning</strong><br>
-          I henhold til <em>Plastposeloven</em> (2020) skal alle bæreposer prissættes separat med minimum 4 kr inkl. moms. Beløbet er allerede inkluderet i din ordre og kan ikke fravælges.
+        <div style="background:#fff5e8 !important; border-left:3px solid #f17d00; padding:10px 14px; text-align:left; border-radius:4px; font-size:12px !important; color:#3d0d0f !important; line-height:1.5 !important;">
+          <strong style="color:#3d0d0f !important;">Lovpligtigt iht. dansk lovgivning</strong><br>
+          <span style="color:#444 !important;">I henhold til <em>Plastposeloven</em> (2020) skal alle bæreposer prissættes separat med minimum 4 kr inkl. moms. Beløbet er allerede inkluderet i din ordre og kan ikke fravælges.</span>
         </div>
       </div>
     </div>
