@@ -354,7 +354,7 @@ if(in_array('packaging',(array)$payload)){
 $bag_items = CCart::getItems();
 if(is_array($bag_items) && count($bag_items) > 0){
 	CCart::addCondition(array(
-	  'name'=>t("Bæredygtig Leveringspose"),
+	  'name'=>t("Bæredygtig Bærepose"),
 	  'type'=>"bag_fee",
 	  'target'=>"total",
 	  'value'=>4.00 * $exchange_rate,

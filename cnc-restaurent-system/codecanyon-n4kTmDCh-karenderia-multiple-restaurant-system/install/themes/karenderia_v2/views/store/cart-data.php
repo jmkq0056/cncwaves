@@ -145,7 +145,7 @@
         <template v-else-if=" summary.type=='bag_fee' ">
             <div class="d-flex align-items-center cnc-bag-trigger" style="cursor:pointer;" onclick="if(window.jQuery){jQuery('#cncBagInfoModal').appendTo('body').modal('show');}">
                 <img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/shopping-bag.png" class="cnc-bag-icon mr-2" alt="" />
-                <span><strong>{{ summary.name }}</strong><br><small style="opacity:0.7;">Tryk for info · Lovpligtigt</small></span>
+                <span><strong>{{ summary.name }}</strong><br><small style="opacity:0.7;"><?php echo t("Tryk for info · Lovpligtigt")?></small></span>
             </div>
             <div class="cnc-bag-trigger" style="cursor:pointer;" onclick="if(window.jQuery){jQuery('#cncBagInfoModal').appendTo('body').modal('show');}">{{ summary.value }}</div>
         </template>

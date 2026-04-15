@@ -613,7 +613,7 @@ ajax_url="<?php echo $ajax_url;?>"
              </div>
              <div class="col-6 d-flex justify-content-start flex-column">
                <strong>{{ summary.name }}</strong>
-               <small style="opacity:0.7;">Lovpligtig — skal pakkes med</small>
+               <small style="opacity:0.7;"><?php echo t("Lovpligtig — skal pakkes med")?></small>
              </div>
              <div class="col-3 d-flex justify-content-start flex-column text-right">{{ summary.value }}</div>
            </div>

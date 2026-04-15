@@ -7,7 +7,7 @@ ref="childref"
 cart_preview="<?php echo $cart_preview?>"
 :drawer="drawer_preview_cart"
 :payload="['items','subtotal','distance_local_new','merchant_info','go_checkout','items_count','packaging','summary','tax']"
-:label="<?php 
+:label="<?php
 echo CommonUtility::safeJsonEncode([
   'your_cart'=>t("Your cart from"),
   'summary'=>t("Summary"),
@@ -15,7 +15,8 @@ echo CommonUtility::safeJsonEncode([
   'lets_change_that'=>t("let's change that!"),
   'cart'=>t("Cart"),
   'go_checkout'=>t("Go to checkout"),
-  'free'=>t("Free")
+  'free'=>t("Free"),
+  'bag_subline'=>t("Tryk for info · Lovpligtigt")
 ])
 ?>"
 >

@@ -36,12 +36,13 @@
 
 <?php echo $content; ?>
 
-<!-- Bæredygtig Leveringspose — info modal triggered by tapping the bag fee line -->
+<!-- Bæredygtig Bærepose — info modal triggered by tapping the bag fee line.
+     All strings translated via t() so language switcher works (da + en in DB). -->
 <div class="modal fade cnc-bag-modal" id="cncBagInfoModal" tabindex="-1" role="dialog" aria-labelledby="cncBagInfoModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content" style="border:none !important; border-radius:14px !important; overflow:hidden !important; background:#ffffff !important; color:#222 !important;">
       <div class="modal-header" style="background:linear-gradient(135deg,#3d0d0f,#9d292b) !important; border-bottom:none !important; padding:16px 20px !important;">
-        <h5 class="modal-title" id="cncBagInfoModalLabel" style="font-weight:700 !important; color:#ffffff !important; margin:0 !important; font-size:18px !important;">Bæredygtig Leveringspose</h5>
+        <h5 class="modal-title" id="cncBagInfoModalLabel" style="font-weight:700 !important; color:#ffffff !important; margin:0 !important; font-size:18px !important;"><?php echo t("Bæredygtig Bærepose")?></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#ffffff !important; opacity:1 !important; text-shadow:none !important; font-size:28px !important; font-weight:300 !important; padding:0 8px !important; margin:0 !important;">
           <span aria-hidden="true" style="color:#ffffff !important;">&times;</span>
         </button>
@@ -53,13 +54,13 @@
         <div style="display:inline-block; background:#f17d00; color:#ffffff !important; padding:8px 22px; border-radius:22px; font-weight:800; font-size:20px; margin-bottom:16px; letter-spacing:0.3px;">
           4,00 kr
         </div>
-        <h6 style="font-weight:700 !important; color:#3d0d0f !important; margin:0 0 8px 0 !important; font-size:16px !important;">Vores genbrugelige papirpose</h6>
+        <h6 style="font-weight:700 !important; color:#3d0d0f !important; margin:0 0 8px 0 !important; font-size:16px !important;"><?php echo t("Vores genbrugelige papirpose")?></h6>
         <p style="margin:0 0 14px 0 !important; color:#444 !important; font-size:14px !important; line-height:1.5 !important;">
-          Vi pakker din mad i en kraftig pose med Chicken N&nbsp;Chicken-logo, så du nemt kan tage den med hjem eller modtage den til døren.
+          <?php echo t("Vi pakker din mad i en kraftig pose med Chicken N Chicken-logo, så du nemt kan tage den med.")?>
         </p>
         <div style="background:#fff5e8 !important; border-left:3px solid #f17d00; padding:10px 14px; text-align:left; border-radius:4px; font-size:12px !important; color:#3d0d0f !important; line-height:1.5 !important;">
-          <strong style="color:#3d0d0f !important;">Lovpligtigt iht. dansk lovgivning</strong><br>
-          <span style="color:#444 !important;">I henhold til <em>Plastposeloven</em> (2020) skal alle bæreposer prissættes separat med minimum 4 kr inkl. moms. Beløbet er allerede inkluderet i din ordre og kan ikke fravælges.</span>
+          <strong style="color:#3d0d0f !important;"><?php echo t("Lovpligtigt iht. dansk lovgivning")?></strong><br>
+          <span style="color:#444 !important;"><?php echo t("I henhold til Plastposeloven (2020) skal alle bæreposer prissættes separat med minimum 4 kr inkl. moms. Beløbet er allerede inkluderet i din ordre og kan ikke fravælges.")?></span>
         </div>
       </div>
     </div>
