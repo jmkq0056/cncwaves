@@ -48,6 +48,18 @@ UPDATE st_admin_user
    SET admin_id_token = SHA1(CONCAT(admin_id, NOW(6), RAND()))
  WHERE admin_id_token = '' OR admin_id_token IS NULL;
 
+-- ─── BACKFILL bag_fee into packaging_fee for legacy orders ──────────
+-- Orders placed before the ApiController bag_fee→packaging_fee mapping
+-- fix had packaging_fee=0 but total=subtotal+4 (bag was tracked only
+-- as a cart condition, not persisted). Rehydrate packaging_fee=4 on
+-- those orders so the merchant view + receipt show the bag line.
+-- Idempotent: only affects rows where the unaccounted delta is
+-- exactly 4.00 (i.e. the silent bag fee with nothing else stored).
+UPDATE st_ordernew
+   SET packaging_fee = 4.0
+ WHERE packaging_fee = 0
+   AND (total - sub_total - delivery_fee - packaging_fee - tax_total - courier_tip - card_fee - service_fee - small_order_fee + total_discount) = 4.0;
+
 -- ─── POINT backend_forgot_password_tpl at the correct template ──────
 -- Seed defaults it to template 50 ("Complete registration"), which is
 -- the wrong email. Template 29 ("Forgot password") is the actual reset

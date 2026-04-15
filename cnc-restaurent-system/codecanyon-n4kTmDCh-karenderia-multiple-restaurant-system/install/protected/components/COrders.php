@@ -1642,16 +1642,42 @@ class COrders
 				));
 			}
 			
-			/*PACKAGING*/			
+			/*PACKAGING / BAG FEE*/
 			if($model->packaging_fee>0){
-				COrders::addCondition(array(
-				   'name'=>t("Packaging fee"),
-		           'type'=>"packaging_fee",
-		           'target'=>"total",
-		           'value'=>$model->packaging_fee * $exchange_rate,
-		           'taxable'=>isset($tax_settings['tax_packaging'])?$tax_settings['tax_packaging']:false,
-		           'tax'=>$tax_delivery,		           
-				));
+				// Danish Plastposeloven: every order has a mandatory 4 DKK bag
+				// charge. Render that portion as a distinct "bag_fee" line so
+				// the merchant view shows the Chicken N Chicken bag icon +
+				// "Lovpligtig — skal pakkes med" subline. Any amount above
+				// 4 DKK is genuine packaging and stays labelled as such.
+				$bag_portion = 4.00;
+				$packaging_remainder = floatval($model->packaging_fee) - $bag_portion;
+				if($packaging_remainder < 0){
+					// Order stored only real packaging (pre-bag-law) — show as-is.
+					$bag_portion = 0;
+					$packaging_remainder = floatval($model->packaging_fee);
+				}
+
+				if($bag_portion > 0){
+					COrders::addCondition(array(
+					   'name'=>t("Bæredygtig Bærepose"),
+			           'type'=>"bag_fee",
+			           'target'=>"total",
+			           'value'=>$bag_portion * $exchange_rate,
+			           'taxable'=>true,
+			           'tax'=>$tax_delivery,
+					));
+				}
+
+				if($packaging_remainder > 0){
+					COrders::addCondition(array(
+					   'name'=>t("Packaging fee"),
+			           'type'=>"packaging_fee",
+			           'target'=>"total",
+			           'value'=>$packaging_remainder * $exchange_rate,
+			           'taxable'=>isset($tax_settings['tax_packaging'])?$tax_settings['tax_packaging']:false,
+			           'tax'=>$tax_delivery,
+					));
+				}
 			}
 			
 			/*TAX*/			

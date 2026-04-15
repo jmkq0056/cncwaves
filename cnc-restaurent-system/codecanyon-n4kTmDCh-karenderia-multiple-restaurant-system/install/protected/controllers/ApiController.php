@@ -2733,8 +2733,15 @@ class ApiController extends SiteCommon
 								break;	
 							
 							case "packaging_fee":
-								$packagin_fee = CCart::cleanNumber($summary_item['raw']);
-								break;			
+								$packagin_fee += CCart::cleanNumber($summary_item['raw']);
+								break;
+
+							case "bag_fee":
+								// Mandatory 4 DKK bag fee — persist to packaging_fee
+								// column so merchant summary reconciles and total
+								// matches the amount charged to Stripe.
+								$packagin_fee += CCart::cleanNumber($summary_item['raw']);
+								break;
 								
 							case "tip":
 								$tip = CCart::cleanNumber($summary_item['raw']);
