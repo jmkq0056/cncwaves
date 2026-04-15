@@ -22,55 +22,71 @@ echo "✓ Timezone set to Europe/Copenhagen"
 # Fix Apache ServerName warning
 echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# Re-seed database on deploy (uses PHP — works with any DB config from k-config.php)
+# Re-seed database ONLY on a genuinely fresh DB (no admin user exists).
+# Previously this was gated on /opt/.seed_hash inside the container filesystem,
+# but a --build rebuild resets that file → seed re-ran and WIPED production
+# data (Stripe keys, merchant/menu, customers, orders, email provider).
+# New check: query st_admin_user — if rows exist, the DB has real data, skip.
 SEED_FILE="/opt/db-seed.sql"
 SEED_MARKER="/opt/.seed_hash"
+SHOULD_SEED="no"
 if [ -f "$SEED_FILE" ]; then
+    SHOULD_SEED=$(php -r "
+    try {
+        require '/var/www/html/k-config.php';
+        \$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
+        \$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        \$row = \$pdo->query('SELECT COUNT(*) FROM st_admin_user')->fetch(PDO::FETCH_NUM);
+        echo (\$row && intval(\$row[0]) > 0) ? 'no' : 'yes';
+    } catch (Exception \$e) {
+        // Table missing → fresh DB → seed
+        echo 'yes';
+    }
+    ")
+fi
+
+if [ "$SHOULD_SEED" = "yes" ]; then
     NEW_HASH=$(md5sum "$SEED_FILE" | cut -d' ' -f1)
-    OLD_HASH=""
-    [ -f "$SEED_MARKER" ] && OLD_HASH=$(cat "$SEED_MARKER")
-    if [ "$NEW_HASH" != "$OLD_HASH" ]; then
-        echo "⏳ New DB seed detected — importing..."
-        php -r "
-        require '/var/www/html/k-config.php';
-        try {
-            \$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
-            \$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            \$sql = file_get_contents('$SEED_FILE');
+    echo "⏳ Fresh database detected — importing seed (first-run only)..."
+    php -r "
+    require '/var/www/html/k-config.php';
+    try {
+        \$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
+        \$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        \$sql = file_get_contents('$SEED_FILE');
+        \$pdo->exec(\$sql);
+        echo '✓ Database seeded successfully' . PHP_EOL;
+    } catch (Exception \$e) {
+        echo '⚠ DB seed: ' . \$e->getMessage() . PHP_EOL;
+    }
+    " && echo "$NEW_HASH" > "$SEED_MARKER"
+
+    # Apply addon enum fix + recreate views (first-run only)
+    echo "⏳ Applying addon fix + recreating views..."
+    php -r "
+    require '/var/www/html/k-config.php';
+    try {
+        \$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
+        \$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        \$pdo->exec(\"UPDATE st_item_relationship_subcategory SET multi_option='one' WHERE multi_option='single'\");
+        echo '✓ Addon multi_option fix applied' . PHP_EOL;
+        \$viewsFile = '/opt/create_views.sql';
+        if (file_exists(\$viewsFile)) {
+            \$sql = file_get_contents(\$viewsFile);
             \$pdo->exec(\$sql);
-            echo '✓ Database seeded successfully' . PHP_EOL;
-        } catch (Exception \$e) {
-            echo '⚠ DB seed: ' . \$e->getMessage() . PHP_EOL;
+            echo '✓ Views recreated' . PHP_EOL;
         }
-        " && echo "$NEW_HASH" > "$SEED_MARKER"
+    } catch (Exception \$e) {
+        echo '⚠ Post-seed fix: ' . \$e->getMessage() . PHP_EOL;
+    }
+    "
 
-        # Apply addon enum fix + recreate views (same as Railway entrypoint)
-        echo "⏳ Applying addon fix + recreating views..."
-        php -r "
-        require '/var/www/html/k-config.php';
-        try {
-            \$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
-            \$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            \$pdo->exec(\"UPDATE st_item_relationship_subcategory SET multi_option='one' WHERE multi_option='single'\");
-            echo '✓ Addon multi_option fix applied' . PHP_EOL;
-            \$viewsFile = '/opt/create_views.sql';
-            if (file_exists(\$viewsFile)) {
-                \$sql = file_get_contents(\$viewsFile);
-                \$pdo->exec(\$sql);
-                echo '✓ Views recreated' . PHP_EOL;
-            }
-        } catch (Exception \$e) {
-            echo '⚠ Post-seed fix: ' . \$e->getMessage() . PHP_EOL;
-        }
-        "
-
-        # Clear Yii file cache
-        rm -rf /var/www/html/protected/runtime/cache/* 2>/dev/null
-        rm -rf /var/www/html/backoffice/protected/runtime/cache/* 2>/dev/null
-        echo "✓ Yii cache cleared"
-    else
-        echo "✓ DB seed unchanged — skipping"
-    fi
+    # Clear Yii file cache
+    rm -rf /var/www/html/protected/runtime/cache/* 2>/dev/null
+    rm -rf /var/www/html/backoffice/protected/runtime/cache/* 2>/dev/null
+    echo "✓ Yii cache cleared"
+else
+    echo "✓ DB already contains data — skipping seed (production data preserved)"
 fi
 
 # Apply CNC custom translations on EVERY container start (idempotent, ON DUPLICATE KEY UPDATE).

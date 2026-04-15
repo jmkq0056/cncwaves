@@ -14,6 +14,15 @@ SET NAMES utf8mb4;
 -- to the default admin / admin123. Hash = MD5('Basharat0036').
 UPDATE st_admin_user SET password = '0d6bbea382283bae9f2da8f098353237' WHERE username = 'admin';
 
+-- ─── ASYNC TASK TRANSPORT — fix forgot-password email delivery ──────
+-- The framework's runActions() helper posts to /task/* endpoints to do
+-- async work like sending the password-reset email. Without this option,
+-- it defaults to touchUrl() using fsockopen — which doesn't do TLS on
+-- its own and silently fails behind a Caddy HTTPS proxy in Docker.
+-- Switch to fastRequest which uses curl for HTTPS URLs.
+DELETE FROM st_option WHERE merchant_id=0 AND option_name='runactions_method';
+INSERT INTO st_option (merchant_id, option_name, option_value) VALUES (0, 'runactions_method', 'fastRequest');
+
 -- ─── BAG FEE — Bæredygtig Bærepose ──────────────────────────────
 INSERT INTO st_sourcemessage (id, category, message) VALUES
  (5001, 'front', 'Bæredygtig Bærepose'),
