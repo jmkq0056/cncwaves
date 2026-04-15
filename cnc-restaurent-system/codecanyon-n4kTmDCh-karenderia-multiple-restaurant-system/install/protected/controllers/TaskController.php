@@ -1324,15 +1324,10 @@ class TaskController extends SiteCommon
 	}
 	
 	public function actionafter_requestresetpassword()
-	{		
-		Yii::import('ext.runactions.components.ERunActions');
-		if($this->runactions_enabled){
-			if (ERunActions::runBackground()) {
-				$this->after_requestresetpassword();
-			}		
-		} else {
-			$this->after_requestresetpassword();
-		}
+	{
+		// Same fix as actionadminpassword — bypass ERunActions::runBackground()
+		// which fsockopen-self-calls and fails TLS behind Caddy in Docker.
+		$this->after_requestresetpassword();
 	}
 
 	public function after_requestresetpassword()
