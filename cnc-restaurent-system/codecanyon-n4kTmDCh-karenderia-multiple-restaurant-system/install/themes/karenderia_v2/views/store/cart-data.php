@@ -136,11 +136,18 @@
 
 <div class="cart-summary mt-2 mb-3 ">
 
-    <template v-for="summary in cart_summary">      
-    <div class="d-flex justify-content-between align-items-center mb-1">
+    <template v-for="summary in cart_summary">
+    <div class="d-flex justify-content-between align-items-center mb-1" :class="summary.type=='bag_fee' ? 'cnc-bag-fee-row' : ''">
         <template v-if=" summary.type=='total' ">
             <div><h6 class="m-0">{{ summary.name }}</h6></div>
             <div><h6 class="m-0">{{ summary.value }}</h6></div>
+        </template>
+        <template v-else-if=" summary.type=='bag_fee' ">
+            <div class="d-flex align-items-center">
+                <img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/shopping-bag.png" class="cnc-bag-icon mr-2" alt="" />
+                <span><strong>{{ summary.name }}</strong><br><small style="opacity:0.7;">Lovpligtigt iht. dansk lovgivning</small></span>
+            </div>
+            <div>{{ summary.value }}</div>
         </template>
         <template v-else>
             <div>{{ summary.name }}</div>

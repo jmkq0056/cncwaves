@@ -1440,3 +1440,20 @@ label.btn del {
 .section-menu ~ div.container:not(.section-menu) {
   display: none !important;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   MANDATORY DELIVERY BAG (Danish Plastposeloven)
+   ═══════════════════════════════════════════════════════════ */
+.cnc-bag-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.cnc-bag-fee-row {
+  background: rgba(241, 125, 0, 0.08);
+  border-left: 3px solid var(--cnc-orange);
+  padding: 8px 12px !important;
+  border-radius: 6px;
+  margin: 6px 0 !important;
+}

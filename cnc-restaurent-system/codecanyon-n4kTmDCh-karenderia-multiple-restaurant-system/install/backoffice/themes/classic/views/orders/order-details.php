@@ -605,7 +605,20 @@ ajax_url="<?php echo $ajax_url;?>"
            <div class="col-3 d-flex justify-content-start flex-column text-right"><h6 class="m-0">{{summary.value}}</h6></div>
          </div>
          </template>
-         
+
+         <template v-else-if=" summary.type=='bag_fee' ">
+           <div class="row mb-1" style="background:rgba(241,125,0,0.10);border-left:3px solid #f17d00;padding:6px 0;border-radius:4px;margin:4px 0;">
+             <div class="col-2 d-flex justify-content-center align-items-center">
+               <img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/shopping-bag.png" style="width:28px;height:28px;object-fit:contain;" alt="bag" />
+             </div>
+             <div class="col-6 d-flex justify-content-start flex-column">
+               <strong>{{ summary.name }}</strong>
+               <small style="opacity:0.7;">Lovpligtig — skal pakkes med</small>
+             </div>
+             <div class="col-3 d-flex justify-content-start flex-column text-right">{{ summary.value }}</div>
+           </div>
+         </template>
+
          <template v-else>
            <div class="row mb-1">
              <div class="col-2 d-flex justify-content-center"></div>
