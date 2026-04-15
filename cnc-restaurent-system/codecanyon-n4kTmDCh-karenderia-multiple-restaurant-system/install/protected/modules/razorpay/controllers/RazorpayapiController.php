@@ -249,12 +249,21 @@ class RazorpayapiController extends SiteCommon
 			   
 			   
 			   $transaction_id = $razorpay_payment_id;
-			   $data->scenario = "new_order";
-	    	   $data->status = COrders::newOrderStatus();
-	    	   $data->payment_status = CPayments::paidStatus();
-	    	   $data->cart_uuid = $cart_uuid;
-	    	   $data->save();
-	    	   
+
+	    	   /* IDEMPOTENCY: if this order was already marked paid by a prior
+	    	      verifyPayment call, do NOT re-save status fields. Otherwise a
+	    	      retry would reset status to "new_order", wiping any merchant
+	    	      action (complete, ready, cancelled) that happened in between. */
+	    	   $already_paid_rzp = ($data->payment_status == CPayments::paidStatus());
+
+	    	   if(!$already_paid_rzp){
+	    	      $data->scenario = "new_order";
+	    	      $data->status = COrders::newOrderStatus();
+	    	      $data->payment_status = CPayments::paidStatus();
+	    	      $data->cart_uuid = $cart_uuid;
+	    	      $data->save();
+	    	   }
+
 	    	   $model = new AR_ordernew_transaction;
 			   $model->order_id = $data->order_id;
 			   $model->merchant_id = $data->merchant_id;

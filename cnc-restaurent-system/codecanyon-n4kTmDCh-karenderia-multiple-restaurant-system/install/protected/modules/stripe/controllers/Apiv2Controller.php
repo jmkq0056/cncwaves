@@ -300,14 +300,19 @@ class Apiv2Controller extends CController
 					'description'=> $payment_description
 				]);
 
-				$transaction_id = $payment_intent->id;		      	  
-		      
-				$data->scenario = "new_order";
-				$data->status = COrders::newOrderStatus();
-				$data->payment_status = CPayments::paidStatus();
-				$data->cart_uuid = $cart_uuid;
-				$data->save();
+				$transaction_id = $payment_intent->id;
 
+				/* IDEMPOTENCY: skip status reset if already paid by a prior call.
+				   Prevents a retry from wiping merchant status changes. */
+				$already_paid_stripe_v2 = ($data->payment_status == CPayments::paidStatus());
+
+				if(!$already_paid_stripe_v2){
+					$data->scenario = "new_order";
+					$data->status = COrders::newOrderStatus();
+					$data->payment_status = CPayments::paidStatus();
+					$data->cart_uuid = $cart_uuid;
+					$data->save();
+				}
 
 				$model = new AR_ordernew_transaction;
 				$model->order_id = $data->order_id;

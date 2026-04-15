@@ -60,13 +60,22 @@ class PaypalapiController extends SiteCommon
 			    CPaypal::setProduction($is_live);
 		    	CPaypal::setToken($token);		    	
 		    	$resp = CPaypal::getOrders($order_id);
-		    	
-		    	$data->scenario = "new_order";
-		    	$data->status = COrders::newOrderStatus();
-		    	$data->payment_status = CPayments::paidStatus();
-		    	$data->cart_uuid = $cart_uuid;
-		    	$data->save();
-		    			    			    	
+
+		    	/* IDEMPOTENCY: if this order was already verified as paid by a
+		    	   prior call (network retry, double-click, browser back),
+		    	   skip resetting status/payment_status. Otherwise the second
+		    	   call would wipe any merchant-side status change (complete,
+		    	   ready, cancelled) by re-setting status to "new_order". */
+		    	$already_paid = ($data->payment_status == CPayments::paidStatus());
+
+		    	if(!$already_paid){
+		    		$data->scenario = "new_order";
+		    		$data->status = COrders::newOrderStatus();
+		    		$data->payment_status = CPayments::paidStatus();
+		    		$data->cart_uuid = $cart_uuid;
+		    		$data->save();
+		    	}
+
 		    	$model = new AR_ordernew_transaction;
 				$model->order_id = $data->order_id;
 				$model->merchant_id = $data->merchant_id;
