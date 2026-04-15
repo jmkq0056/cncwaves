@@ -150,7 +150,15 @@ class COrders
 		   $meta_cooking = COrders::getMetaCooking($model->order_id,$lang);
 		   $meta_ingredients = COrders::getMetaIngredients($model->order_id,$lang);		
 		   		   
-		   $model->packaging_fee = self::$packaging_fee;
+		   // Only overwrite packaging_fee with the per-item accumulator
+		   // when per-item packaging actually produced a value. Otherwise
+		   // keep the DB column value (which holds the mandatory bag fee
+		   // persisted at order-save time). Without this guard the bag
+		   // fee disappears from the backoffice summary even though it
+		   // was correctly charged.
+		   if (self::$packaging_fee > 0) {
+		       $model->packaging_fee = self::$packaging_fee;
+		   }
 		   
 		   COrders::getUseTax();
 		   
