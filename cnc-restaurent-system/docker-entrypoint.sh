@@ -73,6 +73,29 @@ if [ -f "$SEED_FILE" ]; then
     fi
 fi
 
+# Apply CNC custom translations on EVERY container start (idempotent, ON DUPLICATE KEY UPDATE).
+# This must run regardless of the seed-hash gate above, because a container rebuild wipes
+# /opt/.seed_hash → re-imports db-seed.sql → erases translations added in past deploys.
+TRANSLATIONS_FILE="/opt/cnc-translations.sql"
+if [ -f "$TRANSLATIONS_FILE" ]; then
+    echo "⏳ Applying CNC custom translations..."
+    php -r "
+    require '/var/www/html/k-config.php';
+    try {
+        \$pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHARSET, DB_USER, DB_PASSWORD);
+        \$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        \$sql = file_get_contents('$TRANSLATIONS_FILE');
+        \$pdo->exec(\$sql);
+        echo '✓ CNC translations applied' . PHP_EOL;
+    } catch (Exception \$e) {
+        echo '⚠ CNC translations: ' . \$e->getMessage() . PHP_EOL;
+    }
+    "
+    # Clear Yii's translation cache so the new strings are picked up immediately
+    rm -rf /var/www/html/protected/runtime/cache/* 2>/dev/null
+    rm -rf /var/www/html/backoffice/protected/runtime/cache/* 2>/dev/null
+fi
+
 # Ensure writable directories
 mkdir -p /var/www/html/protected/runtime/cache /var/www/html/backoffice/protected/runtime/cache 2>/dev/null || true
 chmod -R 777 /var/www/html/protected/runtime 2>/dev/null || true

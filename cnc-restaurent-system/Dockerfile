@@ -42,6 +42,7 @@ RUN mkdir -p /var/www/html && chown -R www-data:www-data /var/www/html
 # Copy DB seed + views SQL (to /opt/ so volume mount doesn't override)
 COPY db-seed.sql /opt/db-seed.sql
 COPY create_views.sql /opt/create_views.sql
+COPY cnc-translations.sql /opt/cnc-translations.sql
 
 # Copy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
