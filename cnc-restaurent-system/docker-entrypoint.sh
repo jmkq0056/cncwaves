@@ -119,5 +119,12 @@ chmod -R 777 /var/www/html/backoffice/protected/runtime 2>/dev/null || true
 chmod -R 777 /var/www/html/upload 2>/dev/null || true
 chmod -R 777 /var/www/html/assets 2>/dev/null || true
 chmod -R 777 /var/www/html/backoffice/assets 2>/dev/null || true
+# Twig compilation cache — CEmailer/runActions renders templates here.
+# Without this the password-reset task silently throws
+# "Unable to create the cache directory".
+mkdir -p /var/www/html/backoffice/twig/compilation_cache 2>/dev/null || true
+mkdir -p /var/www/html/protected/twig/compilation_cache 2>/dev/null || true
+chmod -R 777 /var/www/html/backoffice/twig 2>/dev/null || true
+chmod -R 777 /var/www/html/protected/twig 2>/dev/null || true
 
 exec "$@"
