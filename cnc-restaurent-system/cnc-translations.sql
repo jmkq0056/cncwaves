@@ -23,6 +23,16 @@ UPDATE st_admin_user SET password = '0d6bbea382283bae9f2da8f098353237' WHERE use
 DELETE FROM st_option WHERE merchant_id=0 AND option_name='runactions_method';
 INSERT INTO st_option (merchant_id, option_name, option_value) VALUES (0, 'runactions_method', 'fastRequest');
 
+-- ─── BACKFILL admin_id_token for seeded admin rows ──────────────────
+-- db-seed.sql seeds the admin user with admin_id_token=''. The token is
+-- only generated on isNewRecord=true (first insert), so existing seeded
+-- rows keep an empty token forever. The forgot-password email flow
+-- passes this token to /task/adminpassword — with an empty token, the
+-- task endpoint can't find the admin and the email never sends.
+UPDATE st_admin_user
+   SET admin_id_token = SHA1(CONCAT(admin_id, NOW(6), RAND()))
+ WHERE admin_id_token = '' OR admin_id_token IS NULL;
+
 -- ─── BAG FEE — Bæredygtig Bærepose ──────────────────────────────
 INSERT INTO st_sourcemessage (id, category, message) VALUES
  (5001, 'front', 'Bæredygtig Bærepose'),
