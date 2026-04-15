@@ -2104,15 +2104,15 @@ class TaskController extends SiteCommon
 	}
 	
 	public function actionadminpassword()
-	{		
-		Yii::import('ext.runactions.components.ERunActions');
-		if($this->runactions_enabled){
-			if (ERunActions::runBackground()) {
-				$this->adminpassword();
-			}		
-		} else {
-			$this->adminpassword();
-		}
+	{
+		/* Always run synchronously. ERunActions::runBackground()'s
+		   "respond fast, run in background" trick does a self-HTTP-call
+		   via fsockopen, which doesn't do TLS behind the Caddy HTTPS
+		   proxy in Docker — the background call fails silently and the
+		   password-reset email never sends. Calling adminpassword()
+		   directly costs an extra ~1s of response time but guarantees
+		   delivery. */
+		$this->adminpassword();
 	}
 
 	public function adminpassword()
@@ -2155,15 +2155,10 @@ class TaskController extends SiteCommon
 	}
 	
 	public function actionmerchantpassword()
-	{		
-		Yii::import('ext.runactions.components.ERunActions');
-		if($this->runactions_enabled){
-			if (ERunActions::runBackground()) {
-				$this->merchantpassword();
-			}		
-		} else {
-			$this->merchantpassword();
-		}
+	{
+		// See actionadminpassword() — run synchronously to bypass the
+		// fsockopen-based background trick that fails behind Caddy HTTPS.
+		$this->merchantpassword();
 	}
 
 	public function merchantpassword()
