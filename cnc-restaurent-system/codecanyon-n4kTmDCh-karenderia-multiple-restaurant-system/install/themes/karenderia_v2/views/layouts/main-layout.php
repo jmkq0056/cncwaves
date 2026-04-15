@@ -36,6 +36,36 @@
 
 <?php echo $content; ?>
 
+<!-- Bæredygtig Leveringspose — info modal triggered by tapping the bag fee line -->
+<div class="modal fade" id="cncBagInfoModal" tabindex="-1" role="dialog" aria-labelledby="cncBagInfoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border:none; border-radius:14px; overflow:hidden;">
+      <div class="modal-header" style="background:linear-gradient(135deg,#3d0d0f,#9d292b); color:#fff; border-bottom:none;">
+        <h5 class="modal-title" id="cncBagInfoModalLabel" style="font-weight:700;">Bæredygtig Leveringspose</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff; opacity:0.9; text-shadow:none;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center" style="padding:24px 24px 28px;">
+        <img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/shopping-bag.png"
+             alt="Chicken N Chicken bag"
+             style="max-width:280px; width:80%; height:auto; margin:0 auto 16px;" />
+        <div style="display:inline-block; background:#f17d00; color:#fff; padding:6px 18px; border-radius:20px; font-weight:700; font-size:18px; margin-bottom:14px;">
+          4,00 kr
+        </div>
+        <h6 style="font-weight:700; color:#3d0d0f; margin-bottom:8px;">Vores genbrugelige papirpose</h6>
+        <p style="margin-bottom:12px; color:#444; font-size:14px; line-height:1.5;">
+          Vi pakker din mad i en kraftig pose med Chicken N&nbsp;Chicken-logo, så du nemt kan tage den med hjem eller modtage den til døren.
+        </p>
+        <div style="background:#fff8f0; border-left:3px solid #f17d00; padding:10px 14px; text-align:left; border-radius:4px; font-size:12px; color:#5a1a1d;">
+          <strong>Lovpligtigt iht. dansk lovgivning</strong><br>
+          I henhold til <em>Plastposeloven</em> (2020) skal alle bæreposer prissættes separat med minimum 4 kr inkl. moms. Beløbet er allerede inkluderet i din ordre og kan ikke fravælges.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!--Start of Tawk.to Script — only on landing + menu pages, minimized by default -->
 <!-- DISABLED: Tawk.to is kept in code for future re-enable but not loaded for users.
      Chat bubble button now redirects to the on-site contact form (#contact).

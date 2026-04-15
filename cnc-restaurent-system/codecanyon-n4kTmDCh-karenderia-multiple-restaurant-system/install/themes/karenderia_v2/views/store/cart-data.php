@@ -143,11 +143,11 @@
             <div><h6 class="m-0">{{ summary.value }}</h6></div>
         </template>
         <template v-else-if=" summary.type=='bag_fee' ">
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center cnc-bag-trigger" data-toggle="modal" data-target="#cncBagInfoModal" style="cursor:pointer;">
                 <img src="<?php echo Yii::app()->theme->baseUrl?>/assets/images/shopping-bag.png" class="cnc-bag-icon mr-2" alt="" />
-                <span><strong>{{ summary.name }}</strong><br><small style="opacity:0.7;">Lovpligtigt iht. dansk lovgivning</small></span>
+                <span><strong>{{ summary.name }}</strong><br><small style="opacity:0.7;">Tryk for info · Lovpligtigt</small></span>
             </div>
-            <div>{{ summary.value }}</div>
+            <div class="cnc-bag-trigger" data-toggle="modal" data-target="#cncBagInfoModal" style="cursor:pointer;">{{ summary.value }}</div>
         </template>
         <template v-else>
             <div>{{ summary.name }}</div>

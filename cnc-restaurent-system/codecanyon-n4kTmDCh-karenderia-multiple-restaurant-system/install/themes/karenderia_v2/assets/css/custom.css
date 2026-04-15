@@ -1457,3 +1457,14 @@ label.btn del {
   border-radius: 6px;
   margin: 6px 0 !important;
 }
+
+/* Bag fee row hover affordance — make it feel tappable */
+.cnc-bag-fee-row:hover { background: rgba(241, 125, 0, 0.15); }
+.cnc-bag-fee-row .cnc-bag-trigger { transition: opacity 0.15s; }
+.cnc-bag-fee-row .cnc-bag-trigger:active { opacity: 0.7; }
+
+/* Bag info modal — universal across mobile / tablet / desktop */
+#cncBagInfoModal .modal-dialog { max-width: 460px; }
+@media (max-width: 480px) {
+  #cncBagInfoModal .modal-dialog { margin: 12px; max-width: calc(100vw - 24px); }
+}
