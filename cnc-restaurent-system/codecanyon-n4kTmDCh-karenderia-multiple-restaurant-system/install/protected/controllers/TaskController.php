@@ -2117,19 +2117,24 @@ class TaskController extends SiteCommon
 
 	public function adminpassword()
 	{
+		$__log = function($msg){ @file_put_contents('/tmp/fp_debug.log', '['.date('c').'] '.$msg."\n", FILE_APPEND); };
+		$__log("adminpassword() entered");
 		// Yii::import('ext.runactions.components.ERunActions');
 		// if (ERunActions::runBackground()) {
 			try {
 
 				$options = OptionsTools::find(array('backend_forgot_password_tpl'));
-				$template_id = isset($options['backend_forgot_password_tpl'])?$options['backend_forgot_password_tpl']:'';				
-				
+				$template_id = isset($options['backend_forgot_password_tpl'])?$options['backend_forgot_password_tpl']:'';
+				$__log("template_id=".var_export($template_id,true));
+
 				$admin_token = Yii::app()->input->get("admin_token");
+				$__log("admin_token='".$admin_token."'");
 				$model = AR_AdminUser::model()->find("admin_id_token=:admin_id_token AND status=:status",[
 					':admin_id_token'=>$admin_token,
 					':status'=>'active'
-				]);				
-				if($model){					
+				]);
+				$__log("model_found=".($model?'yes':'no'));
+				if($model){
 					$site = CNotifications::getSiteData();
 					$data = array(		
 						'first_name'=>$model->first_name,
@@ -2143,17 +2148,21 @@ class TaskController extends SiteCommon
 						'youtube'=>isset($site['youtube'])?$site['youtube']:'',
 						'reset_password_link'=>websiteUrl()."/".BACKOFFICE_FOLDER."/forgotpassword/reset?token=".$model->admin_id_token
 					);							
-					$this->runActions($template_id, $data , array('email') , array(					     
+					$__log("calling runActions with email=".$model->email_address);
+					$this->runActions($template_id, $data , array('email') , array(
 						'email'=>$model->email_address,
 					));
+					$__log("runActions returned");
 				}
-				
+
 			} catch (Exception $e) {
-			    $this->msg[] = t($e->getMessage());			    			    			    
-			}				
+			    $this->msg[] = t($e->getMessage());
+			    $__log("EXCEPTION: ".$e->getMessage());
+			}
 		//}
+		$__log("adminpassword() exiting");
 	}
-	
+
 	public function actionmerchantpassword()
 	{
 		// See actionadminpassword() — run synchronously to bypass the
