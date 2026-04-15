@@ -1674,9 +1674,31 @@
 
   </DIV>
   
-   <template v-if="cart_items.length>0">     
-     <div class="divider"></div>   
-	  <a class="btn btn-green w-100 pointer position-relative" :disabled="hasError" 
+   <template v-if="cart_items.length>0">
+     <div class="divider"></div>
+     <div class="cart-summary mt-2 mb-2">
+       <template v-for="summary in cart_summary">
+         <div class="d-flex justify-content-between align-items-center mb-1" :class="summary.type=='bag_fee' ? 'cnc-bag-fee-row' : ''">
+           <template v-if="summary.type=='total'">
+             <div><h6 class="m-0">{{summary.name}}</h6></div>
+             <div><h6 class="m-0">{{summary.value}}</h6></div>
+           </template>
+           <template v-else-if="summary.type=='bag_fee'">
+             <div class="d-flex align-items-center cnc-bag-trigger" data-toggle="modal" data-target="#cncBagInfoModal" style="cursor:pointer;">
+               <img src="/themes/karenderia_v2/assets/images/shopping-bag.png" class="cnc-bag-icon mr-2" alt="" />
+               <span><strong>{{summary.name}}</strong><br><small style="opacity:0.7;">Tryk for info · Lovpligtigt</small></span>
+             </div>
+             <div class="cnc-bag-trigger" data-toggle="modal" data-target="#cncBagInfoModal" style="cursor:pointer;">{{summary.value}}</div>
+           </template>
+           <template v-else>
+             <div>{{summary.name}}</div>
+             <div>{{summary.value}}</div>
+           </template>
+         </div>
+       </template>
+     </div>
+     <div class="divider"></div>
+	  <a class="btn btn-green w-100 pointer position-relative" :disabled="hasError"
 	  :href="hasError?'javascript:;':go_checkout.link"
 	  :class="{ loading: update_cart_loading }"
 	  >
