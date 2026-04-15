@@ -33,6 +33,15 @@ UPDATE st_admin_user
    SET admin_id_token = SHA1(CONCAT(admin_id, NOW(6), RAND()))
  WHERE admin_id_token = '' OR admin_id_token IS NULL;
 
+-- ─── POINT backend_forgot_password_tpl at the correct template ──────
+-- Seed defaults it to template 50 ("Complete registration"), which is
+-- the wrong email. Template 29 ("Forgot password") is the actual reset
+-- email (has both da + en content). Without this fix, the forgot-
+-- password flow looks up template 50, template 29 body is never
+-- rendered, and CEmailer has nothing to send.
+DELETE FROM st_option WHERE merchant_id=0 AND option_name='backend_forgot_password_tpl';
+INSERT INTO st_option (merchant_id, option_name, option_value) VALUES (0, 'backend_forgot_password_tpl', '29');
+
 -- ─── BAG FEE — Bæredygtig Bærepose ──────────────────────────────
 INSERT INTO st_sourcemessage (id, category, message) VALUES
  (5001, 'front', 'Bæredygtig Bærepose'),
