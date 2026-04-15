@@ -1,12 +1,18 @@
 -- ═══════════════════════════════════════════════════════════════
--- CNC custom translations (idempotent — applied on every deploy)
+-- CNC custom post-seed SQL (idempotent — applied on every deploy)
 -- Survives db-seed.sql re-imports because it runs AFTER the main
--- seed and uses INSERT ... ON DUPLICATE KEY UPDATE.
+-- seed and uses INSERT ... ON DUPLICATE KEY UPDATE / UPDATE.
 --
--- Allocate IDs in the 5000+ range to stay clear of vendor seeds.
+-- Allocate translation IDs in the 5000+ range to stay clear of
+-- vendor seeds.
 -- ═══════════════════════════════════════════════════════════════
 
 SET NAMES utf8mb4;
+
+-- ─── ADMIN PASSWORD — overrides the "admin123" hash from db-seed.sql ──
+-- Without this, every container rebuild would revert the admin login
+-- to the default admin / admin123. Hash = MD5('Basharat0036').
+UPDATE st_admin_user SET password = '0d6bbea382283bae9f2da8f098353237' WHERE username = 'admin';
 
 -- ─── BAG FEE — Bæredygtig Bærepose ──────────────────────────────
 INSERT INTO st_sourcemessage (id, category, message) VALUES
