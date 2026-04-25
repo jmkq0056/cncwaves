@@ -15,6 +15,13 @@ class Config(private val context: Context) {
 
     fun setServerUrl(url: String) = prefs.edit().putString("server_url", url).commit()
 
+    // WebSocket URL for burst sync — separate from content-sync (Vercel) URL.
+    // Override via prefs if needed, otherwise defaults to Hetzner signage-server.
+    fun getBurstWsUrl(): String =
+        prefs.getString("burst_ws_url", "ws://65.108.151.129:3001/ws") ?: ""
+
+    fun setBurstWsUrl(url: String) = prefs.edit().putString("burst_ws_url", url).commit()
+
     fun getPlaylistHash(): String = prefs.getString("playlist_hash", "") ?: ""
     fun setPlaylistHash(hash: String) =
         prefs.edit().putString("playlist_hash", hash).commit()

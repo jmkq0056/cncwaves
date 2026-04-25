@@ -14,6 +14,7 @@ import android.os.Handler
 import android.os.HandlerThread
 import android.os.IBinder
 import android.os.Looper
+import android.os.SystemClock
 import android.util.Log
 
 class WatchdogService : Service() {
@@ -25,16 +26,28 @@ class WatchdogService : Service() {
     private val syncInterval = 45000L           // 45s — sync content from server
     private var consecutiveFailures = 0
 
+    // Hard rate-limit: no matter how many times this Runnable is posted (leaked
+    // copies, double-scheduled, etc.) it cannot fire startActivity faster than
+    // MIN_START_INTERVAL_MS. Belt-and-suspenders after we observed 141/sec
+    // startActivity spam in v1.2.
     private val activityWatchdog = object : Runnable {
         override fun run() {
             try {
-                val config = Config(this@WatchdogService)
-                if (config.isConfigured() && !config.isAdminNavigating()) {
-                    val intent = Intent(this@WatchdogService, MainActivity::class.java).apply {
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                val now = SystemClock.elapsedRealtime()
+                val sinceLast = now - lastActivityStartMs
+                if (sinceLast < MIN_START_INTERVAL_MS) {
+                    Log.w(TAG, "Activity watchdog rate-limited (last start ${sinceLast}ms ago)")
+                } else {
+                    val config = Config(this@WatchdogService)
+                    if (config.isConfigured() && !config.isAdminNavigating()) {
+                        lastActivityStartMs = now
+                        val intent = Intent(this@WatchdogService, MainActivity::class.java).apply {
+                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                        }
+                        Log.i(TAG, "Activity watchdog → startActivity(MainActivity)")
+                        startActivity(intent)
                     }
-                    startActivity(intent)
                 }
             } catch (e: Exception) {
                 Log.w(TAG, "Activity watchdog failed: ${e.message}")
@@ -165,5 +178,7 @@ class WatchdogService : Service() {
     companion object {
         private const val TAG = "WatchdogService"
         const val EXTRA_IMMEDIATE_SYNC = "immediate_sync"
+        private const val MIN_START_INTERVAL_MS = 25_000L
+        @Volatile private var lastActivityStartMs: Long = 0L
     }
 }

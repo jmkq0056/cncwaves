@@ -1,6 +1,5 @@
 package com.cnc.signage
 
-import android.app.ActivityManager
 import android.app.AlertDialog
 import android.app.admin.DevicePolicyManager
 import android.app.role.RoleManager
@@ -14,6 +13,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.graphics.drawable.AnimatedImageDrawable
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -50,12 +50,14 @@ class MainActivity : AppCompatActivity() {
     private var retryRunnable: Runnable? = null
     private var immersiveRunnable: Runnable? = null
     private var scheduleRunnable: Runnable? = null
-    private var burstRunnable: Runnable? = null
+    private var burstWs: BurstWsClient? = null
+    private var pendingBurstFire: Runnable? = null
+    @Volatile private var preloadedBurstDrawable: Drawable? = null
+    @Volatile private var preloadedBurstBitmap: Bitmap? = null
     private var isScreenOff = false
     private var isBursting = false
     private var tapCount = 0
     private var lastTapTime = 0L
-    private var pauseRestartScheduled = false
     private var dialogShowing = false
     private var systemDialogShowing = false
 
@@ -122,7 +124,7 @@ class MainActivity : AppCompatActivity() {
         startSyncReceiver()       // Listen for WatchdogService sync broadcasts
         startImmersiveEnforcer()
         startScheduleChecker()
-        startBurstChecker()
+        startBurstSync()
 
         try {
             val intent = Intent(this, WatchdogService::class.java)
@@ -291,40 +293,22 @@ class MainActivity : AppCompatActivity() {
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
-        if (hasFocus) {
-            hideSystemUI()
-        } else if (!dialogShowing && !systemDialogShowing && !Config(this).isAdminNavigating()) {
-            handler.postDelayed({
-                if (!isFinishing && !isDestroyed && !dialogShowing && !systemDialogShowing && !Config(this).isAdminNavigating()) {
-                    hideSystemUI()
-                    bringToFront()
-                }
-            }, 500)
-        }
+        if (hasFocus) hideSystemUI()
+        // Previously called bringToFront() on focus loss. Removed — with
+        // launchMode=singleTask + HOME launcher, Android returns us. The old
+        // path fed a focus → bringToFront → focus loop that accumulated
+        // startActivity posts until the main thread was saturated.
     }
 
-    // Don't restart while any dialog (PIN, system, launcher) is showing
-    override fun onPause() {
-        super.onPause()
-        val config = Config(this)
-        if (!pauseRestartScheduled && !dialogShowing && !systemDialogShowing && !config.isAdminNavigating()) {
-            pauseRestartScheduled = true
-            handler.postDelayed({
-                pauseRestartScheduled = false
-                if (!isFinishing && !isDestroyed && !dialogShowing && !systemDialogShowing && !Config(this).isAdminNavigating()) {
-                    val intent = Intent(this, MainActivity::class.java).apply {
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    }
-                    startActivity(intent)
-                }
-            }, 1500)
-        }
-    }
+    // onPause self-restart removed. Root cause of the 141/sec startActivity
+    // storm we observed in production: each pause scheduled a restart 1500ms
+    // later, and some trigger (overlay/system dialog/focus churn) would
+    // re-enter onPause before the delayed Runnable ran, slipping past the
+    // `pauseRestartScheduled` guard and accumulating posts indefinitely.
+    // With HOME launcher + singleTask the OS brings us back on its own.
 
     override fun onResume() {
         super.onResume()
-        pauseRestartScheduled = false
         systemDialogShowing = false
         Config(this).setAdminNavigating(false)
         hideSystemUI()
@@ -434,56 +418,70 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed(scheduleRunnable!!, 5000)
     }
 
-    // === BURST: clock-synced content across all screens ===
-    private var lastBurstMinute = -1 // prevent re-triggering within same minute
-    private var burstCachedUrl = "" // track if burst image changed
+    // === BURST: server-scheduled, clock-synced across all screens via WebSocket ===
+    //
+    // The server broadcasts { fire_at: <UTC millis>, duration_ms, image_url } ~2s
+    // before each burst. We translate fire_at into local uptime (monotonic,
+    // unlike wall clock) using the ping/pong-measured server-clock offset, then
+    // Handler.postAtTime() fires the display code at that exact uptime.
+    //
+    // Crucially, the burst image is pre-downloaded AND pre-decoded in advance,
+    // so at fire time we do zero I/O — just a Drawable assignment and a
+    // visibility flip. That's what lets 9 slow RK3288 boxes sync within ms.
+    private var burstCachedUrl = ""
 
-    private fun startBurstChecker() {
-        // Pre-download burst image so it's ready when needed
-        preloadBurstImage()
+    private fun startBurstSync() {
+        val config = Config(this)
+        // Re-use a previously cached burst image if we have one — avoids a
+        // blank fire on first run after reboot before the first config arrives.
+        val existingUrl = config.getBurstImageUrl()
+        if (existingUrl.isNotEmpty()) preloadBurstImage(existingUrl)
 
-        burstRunnable = object : Runnable {
-            override fun run() {
-                if (isFinishing || isDestroyed || isScreenOff) {
-                    handler.postDelayed(this, 1000)
-                    return
+        val screenId = config.getScreenNumber()
+        if (screenId <= 0) return // not configured
+
+        burstWs = BurstWsClient(
+            screenId = screenId,
+            wsUrl = config.getBurstWsUrl(),
+            listener = object : BurstWsClient.Listener {
+                override fun onBurstConfig(
+                    enabled: Boolean,
+                    imageUrl: String,
+                    intervalMin: Int,
+                    durationS: Int
+                ) {
+                    val cfg = Config(this@MainActivity)
+                    cfg.setBurstEnabled(enabled)
+                    cfg.setBurstImageUrl(imageUrl)
+                    cfg.setBurstInterval(intervalMin)
+                    cfg.setBurstDuration(durationS)
+                    if (imageUrl.isNotEmpty() && imageUrl != burstCachedUrl) {
+                        preloadBurstImage(imageUrl)
+                    }
                 }
 
-                val config = Config(this@MainActivity)
-                if (!config.isBurstEnabled() || config.getBurstImageUrl().isEmpty()) {
-                    handler.postDelayed(this, 5000)
-                    return
+                override fun onBurstFire(
+                    fireAtUptime: Long,
+                    durationMs: Int,
+                    imageUrl: String
+                ) {
+                    if (!Config(this@MainActivity).isBurstEnabled()) return
+                    if (imageUrl.isNotEmpty() && imageUrl != burstCachedUrl) {
+                        preloadBurstImage(imageUrl)
+                    }
+                    // Replace any prior armed fire with this one
+                    pendingBurstFire?.let { handler.removeCallbacks(it) }
+                    val fire = Runnable { showBurstNow(durationMs) }
+                    pendingBurstFire = fire
+                    handler.postAtTime(fire, fireAtUptime)
                 }
-
-                // Re-download if URL changed
-                if (config.getBurstImageUrl() != burstCachedUrl) {
-                    preloadBurstImage()
-                }
-
-                val tz = TimeZone.getTimeZone("Europe/Copenhagen")
-                val now = Calendar.getInstance(tz)
-                val minute = now.get(Calendar.MINUTE)
-                val second = now.get(Calendar.SECOND)
-                val interval = config.getBurstInterval().coerceAtLeast(1)
-                val duration = config.getBurstDuration().coerceIn(3, 120)
-
-                // Trigger once per interval window, not every second
-                if (minute % interval == 0 && second < 5 && !isBursting && minute != lastBurstMinute) {
-                    lastBurstMinute = minute
-                    showBurst(duration)
-                }
-
-                handler.postDelayed(this, 1000)
             }
-        }
-        handler.postDelayed(burstRunnable!!, 3000)
+        )
+        burstWs?.start()
     }
 
-    private fun preloadBurstImage() {
-        val config = Config(this)
-        val url = config.getBurstImageUrl()
+    private fun preloadBurstImage(url: String) {
         if (url.isEmpty()) return
-
         Thread {
             try {
                 val burstFile = java.io.File(filesDir, "burst_image")
@@ -497,8 +495,9 @@ class MainActivity : AppCompatActivity() {
                                 input.copyTo(output)
                             }
                         }
+                        decodeBurstIntoMemory(burstFile)
                         burstCachedUrl = url
-                        Log.d("MainActivity", "Burst image pre-downloaded")
+                        Log.d("MainActivity", "Burst image pre-downloaded + decoded")
                     }
                 } finally {
                     connection.disconnect()
@@ -509,24 +508,39 @@ class MainActivity : AppCompatActivity() {
         }.start()
     }
 
-    private fun showBurst(durationSeconds: Int) {
-        val burstFile = java.io.File(filesDir, "burst_image")
-        if (!burstFile.exists() || burstFile.length() == 0L) return
+    private fun decodeBurstIntoMemory(file: java.io.File) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                val source = ImageDecoder.createSource(file)
+                preloadedBurstDrawable = ImageDecoder.decodeDrawable(source)
+                preloadedBurstBitmap = null
+            } else {
+                preloadedBurstBitmap = BitmapFactory.decodeFile(file.absolutePath)
+                preloadedBurstDrawable = null
+            }
+        } catch (e: Exception) {
+            Log.w("MainActivity", "Burst decode failed: ${e.message}")
+        }
+    }
+
+    private fun showBurstNow(durationMs: Int) {
+        if (isFinishing || isDestroyed || isScreenOff) return
+        val drawable = preloadedBurstDrawable
+        val bitmap = preloadedBurstBitmap
+        if (drawable == null && bitmap == null) {
+            Log.w("MainActivity", "Burst fire: no decoded image available — skipping")
+            return
+        }
 
         isBursting = true
         rotationRunnable?.let { handler.removeCallbacks(it) }
 
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                val source = ImageDecoder.createSource(burstFile)
-                val drawable = ImageDecoder.decodeDrawable(source)
+            if (drawable != null) {
                 imageView.setImageDrawable(drawable)
-                if (drawable is AnimatedImageDrawable) {
-                    drawable.start()
-                }
-            } else {
-                val bitmap = BitmapFactory.decodeFile(burstFile.absolutePath)
-                if (bitmap != null) imageView.setImageBitmap(bitmap)
+                if (drawable is AnimatedImageDrawable) drawable.start()
+            } else if (bitmap != null) {
+                imageView.setImageBitmap(bitmap)
             }
             imageView.translationX = 0f
             imageView.visibility = View.VISIBLE
@@ -537,7 +551,6 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        // End burst after duration, resume normal rotation
         handler.postDelayed({
             if (isFinishing || isDestroyed) return@postDelayed
             isBursting = false
@@ -546,7 +559,7 @@ class MainActivity : AppCompatActivity() {
                 showCurrentImage()
                 startRotation()
             }
-        }, durationSeconds * 1000L)
+        }, durationMs.toLong())
     }
 
     // === IMAGE DISPLAY: uses bitmap cache, no disk I/O ===
@@ -915,20 +928,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun bringToFront() {
-        try {
-            val am = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-            am.moveTaskToFront(taskId, ActivityManager.MOVE_TASK_WITH_HOME)
-        } catch (e: SecurityException) {
-            Log.w("MainActivity", "REORDER_TASKS denied: ${e.message}")
-        } catch (e: Exception) {
-            Log.w("MainActivity", "Could not bring to front: ${e.message}")
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         handler.removeCallbacksAndMessages(null)
+        burstWs?.stop()
+        burstWs = null
+        preloadedBurstDrawable = null
+        preloadedBurstBitmap?.recycle()
+        preloadedBurstBitmap = null
         // Unregister sync broadcast receiver
         try {
             syncReceiver?.let { unregisterReceiver(it) }

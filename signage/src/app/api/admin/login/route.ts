@@ -11,9 +11,14 @@ export async function POST(request: NextRequest) {
   }
 
   const response = NextResponse.json({ success: true });
+  // Use Secure cookies only when served over HTTPS. Plain-HTTP deployments
+  // (self-hosted by IP) need Secure=false so the browser echoes the cookie
+  // back on subsequent requests.
+  const isHttps = request.nextUrl.protocol === "https:" ||
+    request.headers.get("x-forwarded-proto") === "https";
   response.cookies.set("admin_pin", pin, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: isHttps,
     sameSite: "lax",
     maxAge: 60 * 60 * 24 * 30, // 30 days
     path: "/",

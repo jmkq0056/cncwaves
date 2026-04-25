@@ -1,0 +1,17 @@
+{
+  "name": "cnc-signage-server",
+  "version": "1.0.0",
+  "description": "WebSocket server for synchronized CNC signage bursts",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.8.0",
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
