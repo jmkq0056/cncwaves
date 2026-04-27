@@ -10,6 +10,17 @@ interface ScreenImage {
   order: number;
 }
 
+interface BurstUI {
+  id: number; // 1..3
+  name: string;
+  enabled: boolean;
+  imageUrl: string;
+  cloudinaryId: string;
+  intervalMin: number;
+  durationS: number;
+  animation: "wave" | "center-out";
+}
+
 interface ScreenData {
   _id: number;
   name: string;
@@ -21,12 +32,24 @@ interface ScreenData {
   screenOnTime: string;
   screenOffTime: string;
   screenOffMode: string;
+  // Multi-burst (new)
+  bursts?: Array<Partial<BurstUI>>;
+  // Legacy single-burst fields (still returned for backward compat)
   burstEnabled: boolean;
   burstImageUrl: string;
   burstCloudinaryId: string;
   burstInterval: number;
   burstDuration: number;
 }
+
+// Always render exactly MAX_BURSTS rows in the editor — empty slots show as
+// disabled/configurable. Keeps the UI predictable and matches the Mongo
+// default of 2 pre-seeded slots.
+const MAX_BURSTS = 3;
+const DEFAULT_BURST: BurstUI = {
+  id: 1, name: "", enabled: false, imageUrl: "", cloudinaryId: "",
+  intervalMin: 2, durationS: 10, animation: "wave",
+};
 
 interface LibraryImage {
   _id: string;
@@ -53,11 +76,7 @@ export default function EditScreen() {
   const [screenOnTime, setScreenOnTime] = useState("");
   const [screenOffTime, setScreenOffTime] = useState("");
   const [screenOffMode, setScreenOffMode] = useState("dim");
-  const [burstEnabled, setBurstEnabled] = useState(false);
-  const [burstImageUrl, setBurstImageUrl] = useState("");
-  const [burstCloudinaryId, setBurstCloudinaryId] = useState("");
-  const [burstInterval, setBurstInterval] = useState(3);
-  const [burstDuration, setBurstDuration] = useState(10);
+  const [bursts, setBursts] = useState<BurstUI[]>([]);
 
   // Library modal
   const [showLibrary, setShowLibrary] = useState(false);
@@ -65,7 +84,9 @@ export default function EditScreen() {
   const [libraryCategories, setLibraryCategories] = useState<string[]>([]);
   const [libraryCategory, setLibraryCategory] = useState<string | null>(null);
   const [libraryLoading, setLibraryLoading] = useState(false);
-  const [burstPickMode, setBurstPickMode] = useState(false);
+  // When non-null, the library modal is choosing an image for that burst id.
+  // null = normal "add screen image" mode.
+  const [burstPickFor, setBurstPickFor] = useState<number | null>(null);
   const [forceSyncing, setForceSyncing] = useState(false);
   const [forceSynced, setForceSynced] = useState(false);
 
@@ -94,11 +115,48 @@ export default function EditScreen() {
         setScreenOnTime(data.screenOnTime || "");
         setScreenOffTime(data.screenOffTime || "");
         setScreenOffMode(data.screenOffMode || "dim");
-        setBurstEnabled(data.burstEnabled || false);
-        setBurstImageUrl(data.burstImageUrl || "");
-        setBurstCloudinaryId(data.burstCloudinaryId || "");
-        setBurstInterval(data.burstInterval || 3);
-        setBurstDuration(data.burstDuration || 10);
+        // Materialize the 3 burst slots. Backend returns up to 3 in `bursts[]`
+        // (default seed has 2). If the doc is pre-migration (only legacy
+        // single-burst fields), seed slot 1 from those so the editor opens
+        // with the user's existing config visible.
+        const incoming = (data.bursts || []) as Partial<BurstUI>[];
+        const slots: BurstUI[] = [];
+        for (let i = 0; i < MAX_BURSTS; i++) {
+          const id = i + 1;
+          const found = incoming.find((b) => b?.id === id);
+          if (found) {
+            slots.push({
+              ...DEFAULT_BURST,
+              id,
+              name: found.name ?? "",
+              enabled: !!found.enabled,
+              imageUrl: found.imageUrl ?? "",
+              cloudinaryId: found.cloudinaryId ?? "",
+              intervalMin: found.intervalMin ?? 2,
+              durationS: found.durationS ?? 10,
+              animation: (found.animation === "center-out" ? "center-out" : "wave"),
+            });
+          } else if (id === 1 && incoming.length === 0 && data.burstImageUrl) {
+            // Legacy fallback — synthesize from old single-burst fields.
+            slots.push({
+              ...DEFAULT_BURST,
+              id: 1,
+              enabled: !!data.burstEnabled,
+              imageUrl: data.burstImageUrl || "",
+              cloudinaryId: data.burstCloudinaryId || "",
+              intervalMin: data.burstInterval || 3,
+              durationS: data.burstDuration || 10,
+              animation: "wave",
+            });
+          } else {
+            slots.push({
+              ...DEFAULT_BURST,
+              id,
+              animation: id === 2 ? "center-out" : "wave",
+            });
+          }
+        }
+        setBursts(slots);
       } catch (e: any) {
         setLoadError(e.message || "Failed to load screen");
       }
@@ -166,11 +224,19 @@ export default function EditScreen() {
           screenOnTime,
           screenOffTime,
           screenOffMode,
-          burstEnabled,
-          burstImageUrl,
-          burstCloudinaryId,
-          burstInterval,
-          burstDuration,
+          // New multi-burst payload. Server validates and mirrors bursts[0]
+          // into the legacy single-burst fields for any v1.3 client that may
+          // still be reading them.
+          bursts: bursts.map((b) => ({
+            id: b.id,
+            name: b.name,
+            enabled: b.enabled,
+            imageUrl: b.imageUrl,
+            cloudinaryId: b.cloudinaryId,
+            intervalMin: b.intervalMin,
+            durationS: b.durationS,
+            animation: b.animation,
+          })),
         }),
       });
       if (!res.ok) {
@@ -330,10 +396,39 @@ export default function EditScreen() {
     screenOnTime !== (screen.screenOnTime || "") ||
     screenOffTime !== (screen.screenOffTime || "") ||
     screenOffMode !== (screen.screenOffMode || "dim") ||
-    burstEnabled !== (screen.burstEnabled || false) ||
-    burstImageUrl !== (screen.burstImageUrl || "") ||
-    burstInterval !== (screen.burstInterval || 3) ||
-    burstDuration !== (screen.burstDuration || 10);
+    JSON.stringify(bursts) !==
+      JSON.stringify(
+        // Re-derive what `bursts` looked like at last load so the comparison
+        // is stable against unrelated server-side fields.
+        Array.from({ length: MAX_BURSTS }, (_, i) => {
+          const id = i + 1;
+          const found = (screen.bursts || []).find((b: any) => b?.id === id);
+          if (found) {
+            return {
+              id,
+              name: found.name ?? "",
+              enabled: !!found.enabled,
+              imageUrl: found.imageUrl ?? "",
+              cloudinaryId: found.cloudinaryId ?? "",
+              intervalMin: found.intervalMin ?? 2,
+              durationS: found.durationS ?? 10,
+              animation: found.animation === "center-out" ? "center-out" : "wave",
+            } as BurstUI;
+          }
+          if (id === 1 && (screen.bursts || []).length === 0 && screen.burstImageUrl) {
+            return {
+              id: 1, name: "",
+              enabled: !!screen.burstEnabled,
+              imageUrl: screen.burstImageUrl || "",
+              cloudinaryId: screen.burstCloudinaryId || "",
+              intervalMin: screen.burstInterval || 3,
+              durationS: screen.burstDuration || 10,
+              animation: "wave",
+            } as BurstUI;
+          }
+          return { ...DEFAULT_BURST, id, animation: id === 2 ? "center-out" : "wave" } as BurstUI;
+        })
+      );
 
   return (
     <div>
@@ -504,95 +599,136 @@ export default function EditScreen() {
           </div>
         </div>
 
-        {/* Burst */}
+        {/* Bursts (up to 3 independent synchronized sessions) */}
         <div className="mb-6">
-          <div className="flex items-center justify-between mb-3">
-            <h3 className="text-lg font-semibold">Burst</h3>
-            <button
-              onClick={() => setBurstEnabled(!burstEnabled)}
-              className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors ${
-                burstEnabled ? "bg-orange-500" : "bg-gray-700"
-              }`}
-            >
-              <span
-                className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
-                  burstEnabled ? "translate-x-6" : "translate-x-1"
-                }`}
-              />
-            </button>
-          </div>
-          <p className="text-xs text-gray-500 mb-3">
-            Synced display across screens. Upload each screen's part of an image — all screens show their slice at the same time, creating a panoramic effect. Works with GIFs too.
+          <h3 className="text-lg font-semibold mb-1">Bursts</h3>
+          <p className="text-xs text-gray-500 mb-4">
+            Up to {MAX_BURSTS} independent burst sessions. Each has its own
+            image, interval, duration, and animation pattern. All screens fire
+            in sync; the per-screen offset is determined by the animation.
           </p>
-          {burstEnabled && (
-            <>
-              {/* Burst image preview + select from library */}
-              <div className="mb-4">
-                {burstImageUrl ? (
-                  <div className="flex items-center gap-4 bg-gray-800 rounded-lg p-3">
-                    <img
-                      src={burstImageUrl}
-                      alt="Burst"
-                      className="w-24 h-16 object-cover rounded"
-                    />
-                    <div className="flex-1 text-sm text-gray-300 truncate">
-                      {burstCloudinaryId.split("/").pop() || "Burst image"}
+          <div className="space-y-4">
+            {bursts.map((burst, idx) => {
+              const setBurst = (patch: Partial<BurstUI>) =>
+                setBursts((cur) =>
+                  cur.map((b, i) => (i === idx ? { ...b, ...patch } : b))
+                );
+              return (
+                <div
+                  key={burst.id}
+                  className={`rounded-xl border p-4 transition ${
+                    burst.enabled
+                      ? "bg-gray-800/60 border-orange-500/40"
+                      : "bg-gray-800/30 border-gray-800"
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-3 gap-3">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <span className="text-xs font-bold text-gray-500 bg-gray-900 rounded px-2 py-0.5">
+                        #{burst.id}
+                      </span>
+                      <input
+                        type="text"
+                        placeholder={`Burst ${burst.id} name (optional)`}
+                        value={burst.name}
+                        onChange={(e) => setBurst({ name: e.target.value.slice(0, 64) })}
+                        className="flex-1 bg-transparent text-sm text-white placeholder-gray-600 outline-none border-b border-transparent focus:border-gray-700 px-1 py-0.5 min-w-0"
+                      />
                     </div>
                     <button
-                      onClick={() => { setBurstImageUrl(""); setBurstCloudinaryId(""); }}
-                      className="text-red-400 hover:text-red-300 text-sm"
+                      onClick={() => setBurst({ enabled: !burst.enabled })}
+                      className={`relative inline-flex h-7 w-12 shrink-0 items-center rounded-full transition-colors ${
+                        burst.enabled ? "bg-orange-500" : "bg-gray-700"
+                      }`}
                     >
-                      Remove
+                      <span
+                        className={`inline-block h-5 w-5 transform rounded-full bg-white transition-transform ${
+                          burst.enabled ? "translate-x-6" : "translate-x-1"
+                        }`}
+                      />
                     </button>
                   </div>
-                ) : (
-                  <button
-                    onClick={() => {
-                      // Reuse library loader, then set burst pick mode
-                      setBurstPickMode(true);
-                      loadLibrary();
-                    }}
-                    disabled={libraryLoading}
-                    className="w-full py-8 border-2 border-dashed border-gray-700 rounded-xl text-gray-500 hover:border-gray-500 text-sm"
-                  >
-                    {libraryLoading ? "Loading..." : "Select this screen\u2019s burst slice"}
-                  </button>
-                )}
-              </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">
-                    Every (minutes)
-                  </label>
-                  <input
-                    type="number"
-                    min="1"
-                    max="60"
-                    value={burstInterval}
-                    onChange={(e) => setBurstInterval(Math.max(1, Math.min(60, Number(e.target.value))))}
-                    className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white"
-                  />
+                  {burst.enabled && (
+                    <>
+                      <div className="mb-3">
+                        {burst.imageUrl ? (
+                          <div className="flex items-center gap-3 bg-gray-900 rounded-lg p-2">
+                            <img
+                              src={burst.imageUrl}
+                              alt={`Burst ${burst.id}`}
+                              className="w-20 h-14 object-cover rounded"
+                            />
+                            <div className="flex-1 text-xs text-gray-400 truncate">
+                              {burst.cloudinaryId.split("/").pop() || burst.imageUrl}
+                            </div>
+                            <button
+                              onClick={() => setBurst({ imageUrl: "", cloudinaryId: "" })}
+                              className="text-red-400 hover:text-red-300 text-xs"
+                            >
+                              Remove
+                            </button>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              setBurstPickFor(burst.id);
+                              loadLibrary();
+                            }}
+                            disabled={libraryLoading}
+                            className="w-full py-6 border-2 border-dashed border-gray-700 rounded-xl text-gray-500 hover:border-gray-500 text-sm"
+                          >
+                            {libraryLoading ? "Loading..." : "Pick this screen's slice"}
+                          </button>
+                        )}
+                      </div>
+
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                        <div>
+                          <label className="block text-xs text-gray-500 mb-1">Every (min)</label>
+                          <input
+                            type="number" min={1} max={60}
+                            value={burst.intervalMin}
+                            onChange={(e) => setBurst({
+                              intervalMin: Math.max(1, Math.min(60, Number(e.target.value) || 2)),
+                            })}
+                            className="w-full p-2 bg-gray-900 border border-gray-700 rounded-lg text-white text-sm"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs text-gray-500 mb-1">Duration (s)</label>
+                          <input
+                            type="number" min={3} max={120}
+                            value={burst.durationS}
+                            onChange={(e) => setBurst({
+                              durationS: Math.max(3, Math.min(120, Number(e.target.value) || 10)),
+                            })}
+                            className="w-full p-2 bg-gray-900 border border-gray-700 rounded-lg text-white text-sm"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs text-gray-500 mb-1">Animation</label>
+                          <select
+                            value={burst.animation}
+                            onChange={(e) =>
+                              setBurst({ animation: e.target.value as "wave" | "center-out" })
+                            }
+                            className="w-full p-2 bg-gray-900 border border-gray-700 rounded-lg text-white text-sm"
+                          >
+                            <option value="wave">Wave (1 → 9)</option>
+                            <option value="center-out">Center-out (5 → edges)</option>
+                          </select>
+                        </div>
+                      </div>
+                      <p className="text-xs text-gray-600 mt-2">
+                        Fires every {burst.intervalMin} min on the wall clock.
+                      </p>
+                    </>
+                  )}
                 </div>
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">
-                    Show for (seconds)
-                  </label>
-                  <input
-                    type="number"
-                    min="3"
-                    max="120"
-                    value={burstDuration}
-                    onChange={(e) => setBurstDuration(Math.max(3, Math.min(120, Number(e.target.value))))}
-                    className="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-white"
-                  />
-                </div>
-              </div>
-              <p className="text-xs text-gray-600 mt-2">
-                Synced by clock — all screens show burst when minute % {burstInterval} = 0
-              </p>
-            </>
-          )}
+              );
+            })}
+          </div>
         </div>
 
         <h3 className="text-lg font-semibold mb-3">
@@ -699,10 +835,12 @@ export default function EditScreen() {
           >
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-bold">
-                {burstPickMode ? "Select Burst Image" : "Image Library"}
+                {burstPickFor !== null
+                  ? `Select Burst ${burstPickFor} Image`
+                  : "Image Library"}
               </h3>
               <button
-                onClick={() => { setShowLibrary(false); setBurstPickMode(false); }}
+                onClick={() => { setShowLibrary(false); setBurstPickFor(null); }}
                 className="text-gray-400 hover:text-white text-2xl px-2"
               >
                 &times;
@@ -743,20 +881,37 @@ export default function EditScreen() {
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 {libraryImages.map((img) => {
-                  const alreadyAdded = !burstPickMode && images.some(
-                    (i) =>
-                      i.cloudinaryPublicId === img.cloudinaryPublicId
+                  const alreadyAdded = burstPickFor === null && images.some(
+                    (i) => i.cloudinaryPublicId === img.cloudinaryPublicId
                   );
-                  const isBurstSelected = burstPickMode && burstCloudinaryId === img.cloudinaryPublicId;
+                  // Highlight if this library image is already the chosen
+                  // slice for the burst we're picking for.
+                  const targetBurst =
+                    burstPickFor !== null
+                      ? bursts.find((b) => b.id === burstPickFor)
+                      : null;
+                  const isBurstSelected =
+                    burstPickFor !== null &&
+                    targetBurst?.cloudinaryId === img.cloudinaryPublicId;
                   return (
                     <div
                       key={img.cloudinaryPublicId}
                       onClick={() => {
-                        if (burstPickMode) {
-                          setBurstImageUrl(img.url);
-                          setBurstCloudinaryId(img.cloudinaryPublicId);
+                        if (burstPickFor !== null) {
+                          const targetId = burstPickFor;
+                          setBursts((cur) =>
+                            cur.map((b) =>
+                              b.id === targetId
+                                ? {
+                                    ...b,
+                                    imageUrl: img.url,
+                                    cloudinaryId: img.cloudinaryPublicId,
+                                  }
+                                : b
+                            )
+                          );
                           setShowLibrary(false);
-                          setBurstPickMode(false);
+                          setBurstPickFor(null);
                         } else if (!alreadyAdded) {
                           addFromLibrary(img);
                         }

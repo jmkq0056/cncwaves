@@ -112,6 +112,58 @@ export async function PUT(
     if (body.burstInterval !== undefined) update.burstInterval = Math.max(1, Math.min(60, Number(body.burstInterval) || 3));
     if (body.burstDuration !== undefined) update.burstDuration = Math.max(3, Math.min(120, Number(body.burstDuration) || 10));
 
+    // New multi-burst array. Validate shape strictly so a malformed payload
+    // can't silently corrupt the live config. We also mirror bursts[0] into
+    // the legacy single-burst fields so v1.3 APKs see the first burst.
+    if (body.bursts !== undefined) {
+      if (!Array.isArray(body.bursts) || body.bursts.length > 3) {
+        return NextResponse.json(
+          { error: "bursts must be an array of at most 3 entries" },
+          { status: 400 }
+        );
+      }
+      const seenIds = new Set<number>();
+      const cleaned: any[] = [];
+      for (const b of body.bursts) {
+        const id = Number(b?.id);
+        if (!Number.isInteger(id) || id < 1 || id > 3) {
+          return NextResponse.json(
+            { error: `burst.id must be an integer 1..3, got ${b?.id}` },
+            { status: 400 }
+          );
+        }
+        if (seenIds.has(id)) {
+          return NextResponse.json(
+            { error: `duplicate burst.id ${id}` },
+            { status: 400 }
+          );
+        }
+        seenIds.add(id);
+        cleaned.push({
+          id,
+          name: typeof b.name === "string" ? b.name.slice(0, 64) : "",
+          enabled: !!b.enabled,
+          imageUrl: typeof b.imageUrl === "string" ? b.imageUrl : "",
+          cloudinaryId: typeof b.cloudinaryId === "string" ? b.cloudinaryId : "",
+          intervalMin: Math.max(1, Math.min(60, Number(b.intervalMin) || 2)),
+          durationS: Math.max(3, Math.min(120, Number(b.durationS) || 10)),
+          animation: b.animation === "center-out" ? "center-out" : "wave",
+        });
+      }
+      cleaned.sort((a, b) => a.id - b.id);
+      update.bursts = cleaned;
+      // Legacy mirror: keep bursts[0] in the deprecated top-level fields so
+      // v1.3 APKs and the legacy /api/admin/burst toggle see consistent state.
+      const first = cleaned.find((b) => b.enabled) || cleaned[0];
+      if (first) {
+        if (update.burstEnabled === undefined) update.burstEnabled = !!first.enabled;
+        if (update.burstImageUrl === undefined) update.burstImageUrl = first.imageUrl;
+        if (update.burstCloudinaryId === undefined) update.burstCloudinaryId = first.cloudinaryId;
+        if (update.burstInterval === undefined) update.burstInterval = first.intervalMin;
+        if (update.burstDuration === undefined) update.burstDuration = first.durationS;
+      }
+    }
+
     // Handle publish toggle
     if (body.published !== undefined) {
       update.published = !!body.published;

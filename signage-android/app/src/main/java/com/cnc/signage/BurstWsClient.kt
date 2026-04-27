@@ -16,27 +16,48 @@ import kotlin.math.abs
 
 /**
  * Persistent WebSocket client that keeps the device in sync with the Hetzner
- * signage-server. Its single job is delivering synchronized burst events.
+ * signage-server. Delivers up to 3 independent burst sessions per screen,
+ * each with its own interval, duration, and image. Burst events arrive
+ * tagged with a burst_id (1..3) so the activity can keep per-burst
+ * preloaded drawables.
  *
  * Key details:
- *   - Uses NTP-style ping/pong to compute server-clock offset. The "best" RTT
- *     ping wins — we keep the offset from the roundtrip with the lowest RTT
- *     because it's the one with the least network-induced bias.
- *   - `fire_at` is wall-clock UTC millis. We translate into
- *     `SystemClock.uptimeMillis()` before posting, because wall clock can
- *     jump (NTP correction, user-set time) but uptimeMillis is monotonic.
- *   - Auto-reconnects with exponential backoff capped at 30s.
+ *   - NTP-style ping/pong measures server-clock offset. The lowest-RTT
+ *     ping wins (least network-induced bias).
+ *   - `fire_at` is wall-clock UTC ms. We translate to
+ *     SystemClock.uptimeMillis() before posting because wall clock can jump
+ *     (NTP / user-set time), but uptimeMillis is monotonic.
+ *   - Auto-reconnect with exponential backoff capped at 30s.
+ *   - Backward compatible with the v1.0 server protocol (single `burst{}`
+ *     object instead of `bursts[]`); legacy events surface as burst_id=1.
  */
 class BurstWsClient(
     private val screenId: Int,
     private val wsUrl: String,
-    private val listener: Listener
+    private val listener: Listener,
 ) {
+    /** One burst session description, mirrored from the server config. */
+    data class Config(
+        val id: Int,
+        val enabled: Boolean,
+        val imageUrl: String,
+        val intervalMin: Int,
+        val durationS: Int,
+    )
+
     interface Listener {
-        /** Called on the main thread. */
-        fun onBurstConfig(enabled: Boolean, imageUrl: String, intervalMin: Int, durationS: Int)
-        /** Called on the main thread. `fireAtUptime` is ready for Handler.postAtTime. */
-        fun onBurstFire(fireAtUptime: Long, durationMs: Int, imageUrl: String)
+        /**
+         * Full snapshot of the screen's burst configs. Replaces any previous
+         * snapshot; missing ids should be cleared (their preloaded image
+         * forgotten). Always called on the main thread.
+         */
+        fun onBurstConfigs(configs: List<Config>)
+
+        /**
+         * A specific burst is scheduled to fire at `fireAtUptime`. Pass the
+         * Runnable to Handler.postAtTime(). Always called on the main thread.
+         */
+        fun onBurstFire(burstId: Int, fireAtUptime: Long, durationMs: Int, imageUrl: String)
     }
 
     companion object {
@@ -57,8 +78,6 @@ class BurstWsClient(
     private var reconnectDelay = RECONNECT_MIN_MS
     private var closed = false
 
-    // Clock sync: offset means (server_wall - device_wall). Adding it to the
-    // device's System.currentTimeMillis gives the estimated server wall clock.
     @Volatile private var clockOffsetMs: Double = 0.0
     @Volatile private var bestRttMs: Long = Long.MAX_VALUE
     @Volatile var isOpen: Boolean = false
@@ -90,26 +109,18 @@ class BurstWsClient(
             isOpen = true
             reconnectDelay = RECONNECT_MIN_MS
             bestRttMs = Long.MAX_VALUE
-            // Subscribe
             send(webSocket, JSONObject().apply {
                 put("type", "hello")
                 put("screen_id", screenId)
             })
-            // Burst of clock-sync pings
             for (i in 0 until PING_BURST_COUNT) {
                 main.postDelayed({ sendPing() }, i * 200L)
             }
-            // Periodic re-sync keeps offset accurate even as wall clock drifts
             schedulePeriodicPing()
         }
 
-        override fun onMessage(webSocket: WebSocket, text: String) {
-            handleMessage(text)
-        }
-
-        override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
-            handleMessage(bytes.utf8())
-        }
+        override fun onMessage(webSocket: WebSocket, text: String) = handleMessage(text)
+        override fun onMessage(webSocket: WebSocket, bytes: ByteString) = handleMessage(bytes.utf8())
 
         override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
             isOpen = false
@@ -160,20 +171,47 @@ class BurstWsClient(
         }
     }
 
+    /** Parse the new `bursts[]` array, falling back to legacy `burst{}` if missing. */
+    private fun parseConfigs(payload: JSONObject?): List<Config> {
+        if (payload == null) return emptyList()
+        val arr = payload.optJSONArray("bursts")
+        if (arr != null) {
+            val out = ArrayList<Config>(arr.length())
+            for (i in 0 until arr.length()) {
+                val b = arr.optJSONObject(i) ?: continue
+                out.add(
+                    Config(
+                        id = b.optInt("id", i + 1),
+                        enabled = b.optBoolean("enabled", false),
+                        imageUrl = b.optString("image_url", ""),
+                        intervalMin = b.optInt("interval_min", 2),
+                        durationS = b.optInt("duration_s", 10),
+                    )
+                )
+            }
+            return out
+        }
+        // Legacy single-burst fallback. Keep id=1 so the activity preloads
+        // it under the same key the new protocol uses.
+        val legacy = payload.optJSONObject("burst") ?: return emptyList()
+        return listOf(
+            Config(
+                id = 1,
+                enabled = legacy.optBoolean("enabled", false),
+                imageUrl = legacy.optString("image_url", ""),
+                intervalMin = legacy.optInt("interval_min", 3),
+                durationS = legacy.optInt("duration_s", 10),
+            )
+        )
+    }
+
     private fun handleMessage(raw: String) {
         val msg = try { JSONObject(raw) } catch (_: Exception) { return }
         when (msg.optString("type")) {
             "hello_ack" -> {
-                val burst = msg.optJSONObject("config")?.optJSONObject("burst")
-                if (burst != null) {
-                    main.post {
-                        listener.onBurstConfig(
-                            burst.optBoolean("enabled", false),
-                            burst.optString("image_url", ""),
-                            burst.optInt("interval_min", 3),
-                            burst.optInt("duration_s", 10)
-                        )
-                    }
+                val configs = parseConfigs(msg.optJSONObject("config"))
+                if (configs.isNotEmpty()) {
+                    main.post { listener.onBurstConfigs(configs) }
                 }
             }
             "pong" -> {
@@ -190,22 +228,14 @@ class BurstWsClient(
                 }
             }
             "config" -> {
-                val burst = msg.optJSONObject("burst") ?: return
-                main.post {
-                    listener.onBurstConfig(
-                        burst.optBoolean("enabled", false),
-                        burst.optString("image_url", ""),
-                        burst.optInt("interval_min", 3),
-                        burst.optInt("duration_s", 10)
-                    )
-                }
+                val configs = parseConfigs(msg)
+                main.post { listener.onBurstConfigs(configs) }
             }
             "burst" -> {
+                val burstId = msg.optInt("burst_id", 1)
                 val fireAtWall = msg.optLong("fire_at")
                 val durationMs = msg.optInt("duration_ms", 10_000)
                 val imageUrl = msg.optString("image_url", "")
-                // Translate wall-clock fire instant to local uptime so the
-                // handler fires correctly even if wall clock is adjusted later.
                 val wallNow = System.currentTimeMillis()
                 val uptimeNow = SystemClock.uptimeMillis()
                 val correctedNow = wallNow + clockOffsetMs
@@ -213,7 +243,7 @@ class BurstWsClient(
                 val fireAtUptime = uptimeNow + delayMs
                 Log.i(
                     TAG,
-                    "burst received: fire_at=$fireAtWall in ${delayMs}ms " +
+                    "burst received id=$burstId fire_at=$fireAtWall in ${delayMs}ms " +
                             "(offset=${"%.1f".format(clockOffsetMs)}ms rtt=${bestRttMs}ms)"
                 )
                 if (abs(delayMs) > 60_000) {
@@ -221,7 +251,7 @@ class BurstWsClient(
                     return
                 }
                 main.post {
-                    listener.onBurstFire(fireAtUptime, durationMs, imageUrl)
+                    listener.onBurstFire(burstId, fireAtUptime, durationMs, imageUrl)
                 }
             }
         }

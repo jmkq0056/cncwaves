@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Burst animation + bucks overlay</title>
+<style>
+  :root { color-scheme: dark; font-family: -apple-system, sans-serif; }
+  body {
+    margin: 0; padding: 24px; background: #0b0b0d; color: #e7e7e9;
+    min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  }
+  h1 { font-size: 22px; font-weight: 700; margin: 0 0 4px 0; }
+  .sub { color: #888; margin-bottom: 24px; font-size: 13px; max-width: 1100px; text-align: center; }
+  .controls {
+    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    margin-bottom: 16px; max-width: 1100px;
+  }
+  .controls label { font-size: 12px; color: #888; }
+  select, button, input[type=range] {
+    background: #1c1c20; color: #e7e7e9; border: 1px solid #2a2a2f;
+    border-radius: 8px; padding: 7px 12px; font-size: 13px;
+  }
+  button { cursor: pointer; transition: background .12s; }
+  button.primary { background: #ea580c; border-color: #ea580c; color: white; font-weight: 600; }
+  button.primary:hover { background: #f97316; }
+  button.alt { background: #16a34a; border-color: #16a34a; color: white; font-weight: 600; }
+  button.alt:hover { background: #22c55e; }
+  button:hover { background: #25252b; }
+  .stat { color: #e7e7e9; font-weight: 600; min-width: 50px; font-size: 12px; }
+  .row {
+    display: grid; grid-template-columns: repeat(9, 1fr); gap: 4px;
+    width: 100%; max-width: 1100px; margin-bottom: 12px;
+  }
+  .screen {
+    aspect-ratio: 9 / 16; background: #0a0a0d; border: 1px solid #25252b;
+    border-radius: 4px; position: relative; overflow: hidden;
+  }
+  .screen .num {
+    position: absolute; top: 4px; left: 6px; font-size: 10px; color: rgba(255,255,255,0.4);
+    font-weight: 600; z-index: 10;
+  }
+  .screen .base, .screen .burst {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+  }
+  .screen .base {
+    background: linear-gradient(180deg, #1a1a22, #0e0e14);
+    color: #555; font-size: 10px; display: flex; align-items: center;
+    justify-content: center; text-align: center; padding: 8px;
+  }
+  .screen .burst {
+    opacity: 0; transition: opacity 80ms ease-out;
+  }
+  .screen.firing .burst { opacity: 1; }
+  .screen .fx-layer {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 5; overflow: hidden;
+  }
+  /* Bubble: soft, slightly transparent, with a faint inner highlight that's
+     diffuse rather than specular — "bubbly", not glassy. */
+  .bubble {
+    position: absolute; will-change: transform, opacity;
+    pointer-events: none; border-radius: 50%;
+    background:
+      radial-gradient(circle at 32% 28%,
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0.18) 40%,
+        rgba(255, 255, 255, 0.06) 70%,
+        rgba(255, 255, 255, 0.0) 100%);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.22),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+    opacity: 0;
+  }
+  @keyframes bubble-up {
+    0%   { transform: translateY(20%) translateX(0)   scale(0.7); opacity: 0; }
+    10%  { opacity: 0.9; }
+    50%  { transform: translateY(-50%) translateX(var(--wobble)) scale(1); }
+    90%  { opacity: 0.8; }
+    100% { transform: translateY(-130%) translateX(0) scale(1.05); opacity: 0; }
+  }
+  .timeline {
+    width: 100%; max-width: 1100px; height: 6px; background: #1a1a1f;
+    border-radius: 4px; overflow: hidden; position: relative; margin-bottom: 24px;
+  }
+  .timeline-bar {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 0;
+    background: linear-gradient(90deg, #ea580c, #f59e0b);
+  }
+  .info {
+    max-width: 1100px; background: #15151a; border: 1px solid #25252b;
+    border-radius: 12px; padding: 14px 16px; font-size: 12px;
+    color: #aaa; line-height: 1.6;
+  }
+  .info b { color: #e7e7e9; }
+  code { background: #1f1f25; padding: 1px 5px; border-radius: 3px; font-size: 11px; }
+  hr { border: none; border-top: 1px solid #25252b; margin: 12px 0; }
+</style>
+</head>
+<body>
+
+<h1>Burst animation + bucks overlay</h1>
+<div class="sub">
+  Each screen shows its slice (<code>burst-slices/burst-screen-{1..9}.png</code>).
+  Burst 1 = no overlay. Burst 2 = soft floating bubbles rising upward.
+</div>
+
+<div class="controls">
+  <label>Burst 1 mode:</label>
+  <select id="mode1">
+    <option value="wave" selected>Wave</option>
+    <option value="reverse-wave">Reverse wave</option>
+    <option value="center-out">Center-out</option>
+    <option value="edges-in">Edges-in</option>
+    <option value="simultaneous">Simultaneous</option>
+    <option value="bounce">Bounce</option>
+    <option value="alternating">Alternating</option>
+    <option value="random">Random</option>
+  </select>
+
+  <label>Burst 2 mode:</label>
+  <select id="mode2">
+    <option value="center-out" selected>Center-out</option>
+    <option value="wave">Wave</option>
+    <option value="reverse-wave">Reverse wave</option>
+    <option value="edges-in">Edges-in</option>
+    <option value="simultaneous">Simultaneous</option>
+    <option value="bounce">Bounce</option>
+    <option value="alternating">Alternating</option>
+    <option value="random">Random</option>
+  </select>
+
+  <label>Step:</label>
+  <input id="step" type="range" min="0" max="500" step="25" value="150">
+  <span id="stepVal" class="stat">150 ms</span>
+
+  <label>Show:</label>
+  <input id="dur" type="range" min="500" max="15000" step="500" value="10000">
+  <span id="durVal" class="stat">10000 ms</span>
+</div>
+
+<div class="controls">
+  <label>Bubbles:</label>
+  <input id="density" type="range" min="2" max="30" step="1" value="14">
+  <span id="densityVal" class="stat">14</span>
+
+  <label>Avg size:</label>
+  <input id="size" type="range" min="10" max="60" step="2" value="24">
+  <span id="sizeVal" class="stat">24 px</span>
+
+  <button id="fire1" class="primary">▶ Fire burst 1 (milkshake, no overlay)</button>
+  <button id="fire2" class="alt">▶ Fire burst 2 (discount + bubbles)</button>
+  <button id="auto">Auto-loop both every 12s</button>
+</div>
+
+<div class="row" id="screens"></div>
+<div class="timeline"><div class="timeline-bar" id="bar"></div></div>
+
+<div class="info" id="info"></div>
+
+
+<script>
+const N = 9;
+const screensEl = document.getElementById('screens');
+for (let i = 1; i <= N; i++) {
+  const s = document.createElement('div');
+  s.className = 'screen';
+  s.id = `screen-${i}`;
+  s.innerHTML = `
+    <div class="num">${i}</div>
+    <div class="base">slice ${i}</div>
+    <div class="burst" style="background-image: url('burst-slices/burst-screen-${i}.png')"></div>
+    <div class="fx-layer"></div>
+  `;
+  screensEl.appendChild(s);
+}
+
+const stepEl = document.getElementById('step');
+const stepVal = document.getElementById('stepVal');
+const durEl = document.getElementById('dur');
+const durVal = document.getElementById('durVal');
+const densityEl = document.getElementById('density');
+const densityVal = document.getElementById('densityVal');
+const sizeEl = document.getElementById('size');
+const sizeVal = document.getElementById('sizeVal');
+const mode1El = document.getElementById('mode1');
+const mode2El = document.getElementById('mode2');
+const fire1Btn = document.getElementById('fire1');
+const fire2Btn = document.getElementById('fire2');
+const autoBtn = document.getElementById('auto');
+const bar = document.getElementById('bar');
+const info = document.getElementById('info');
+
+stepEl.oninput = () => stepVal.textContent = stepEl.value + ' ms';
+durEl.oninput = () => durVal.textContent = durEl.value + ' ms';
+densityEl.oninput = () => densityVal.textContent = densityEl.value;
+sizeEl.oninput = () => sizeVal.textContent = sizeEl.value + ' px';
+
+const modeDesc = {
+  'wave': 'Wave (1 → 9)',
+  'reverse-wave': 'Reverse wave (9 → 1)',
+  'center-out': 'Center-out (5 → 4,6 → ...)',
+  'edges-in': 'Edges-in (1,9 → 2,8 → ...)',
+  'simultaneous': 'Simultaneous',
+  'bounce': 'Bounce (1 → 9 → 1)',
+  'alternating': 'Alternating (odds, then evens)',
+  'random': 'Random scatter',
+};
+
+function updateInfo() {
+  info.innerHTML = `
+    <div><b>Burst 1 (milkshake)</b> — ${modeDesc[mode1El.value]} · no overlay</div>
+    <hr>
+    <div><b>Burst 2 (discount)</b> — ${modeDesc[mode2El.value]} · soft bubbles rising</div>
+  `;
+}
+[mode1El, mode2El].forEach(el => el.onchange = updateInfo);
+updateInfo();
+
+function offsets(mode, step) {
+  const out = [];
+  switch (mode) {
+    case 'wave': for (let i = 0; i < N; i++) out.push([i, i * step]); break;
+    case 'reverse-wave': for (let i = 0; i < N; i++) out.push([N - 1 - i, i * step]); break;
+    case 'center-out': { const c = 4; for (let i = 0; i < N; i++) out.push([i, Math.abs(i - c) * step]); break; }
+    case 'edges-in': { const c = 4, m = Math.max(c, N - 1 - c); for (let i = 0; i < N; i++) out.push([i, (m - Math.abs(i - c)) * step]); break; }
+    case 'simultaneous': for (let i = 0; i < N; i++) out.push([i, 0]); break;
+    case 'bounce':
+      for (let i = 0; i < N; i++) out.push([i, i * step]);
+      for (let i = N - 2; i >= 0; i--) out.push([i, (N - 1 + (N - 1 - i)) * step]);
+      break;
+    case 'alternating': {
+      const odds = [0, 2, 4, 6, 8], evens = [1, 3, 5, 7];
+      odds.forEach((idx, k) => out.push([idx, k * step]));
+      const oe = (odds.length - 1) * step + step;
+      evens.forEach((idx, k) => out.push([idx, oe + k * step]));
+      break;
+    }
+    case 'random': {
+      const order = [...Array(N).keys()].sort(() => Math.random() - 0.5);
+      order.forEach((idx, k) => out.push([idx, k * step]));
+      break;
+    }
+  }
+  return out;
+}
+
+// Bubble spawner. Each bubble is a DOM element with a CSS keyframe animation
+// floating it upward with a sideways wobble. Bubbles are intentionally NOT
+// glossy/shiny — soft inner highlight, diffuse, "bubbly".
+function spawnBubbles(layer, durationMs, density, size) {
+  const rect = layer.getBoundingClientRect();
+  for (let i = 0; i < density; i++) {
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+    // Vary size around the slider value: 0.6x .. 1.3x
+    const px = Math.round(size * (0.6 + Math.random() * 0.7));
+    const xPct = Math.random() * 100;
+    const wobble = (Math.random() * 30 - 15) + 'px';
+    const riseMs = 2400 + Math.random() * 2200;
+    // Stagger so bubbles don't all crest at once. Capped so they all finish
+    // their first cycle within the burst window.
+    const startDelay = Math.random() * Math.min(1500, durationMs * 0.4);
+    bubble.style.cssText = `
+      left: ${xPct}%;
+      bottom: -10%;
+      width: ${px}px;
+      height: ${px}px;
+      --wobble: ${wobble};
+      animation: bubble-up ${riseMs}ms ${startDelay}ms ease-in-out infinite;
+    `;
+    layer.appendChild(bubble);
+  }
+  // Fade out + remove after the burst window ends.
+  setTimeout(() => {
+    for (const b of layer.querySelectorAll('.bubble')) {
+      b.style.transition = 'opacity 400ms';
+      b.style.opacity = '0';
+    }
+    setTimeout(() => { layer.innerHTML = ''; }, 500);
+  }, durationMs);
+}
+
+let timers = [];
+function clearAll() {
+  timers.forEach(t => clearTimeout(t));
+  timers = [];
+  for (let i = 1; i <= N; i++) {
+    const el = document.getElementById(`screen-${i}`);
+    el.classList.remove('firing');
+    el.querySelector('.fx-layer').innerHTML = '';
+  }
+}
+
+function fire(burstIdx) {
+  clearAll();
+  const step = parseInt(stepEl.value, 10);
+  const dur = parseInt(durEl.value, 10);
+  const mode = burstIdx === 1 ? mode1El.value : mode2El.value;
+  const seq = offsets(mode, step);
+  const total = Math.max(...seq.map(([, d]) => d)) + dur;
+  const showBucks = burstIdx === 2;
+  const density = parseInt(densityEl.value, 10);
+  const size = parseInt(sizeEl.value, 10);
+
+  bar.style.transition = 'none'; bar.style.width = '0%';
+  requestAnimationFrame(() => {
+    bar.style.transition = `width ${total}ms linear`;
+    bar.style.width = '100%';
+  });
+
+  for (const [idx, delay] of seq) {
+    const screenEl = document.getElementById(`screen-${idx + 1}`);
+    timers.push(setTimeout(() => {
+      screenEl.classList.add('firing');
+      if (showBucks) {
+        spawnBubbles(screenEl.querySelector('.fx-layer'), dur, density, size);
+      }
+    }, delay));
+    timers.push(setTimeout(() => {
+      screenEl.classList.remove('firing');
+    }, delay + dur));
+  }
+}
+
+fire1Btn.onclick = () => fire(1);
+fire2Btn.onclick = () => fire(2);
+
+let autoInt = null, autoToggle = 1;
+autoBtn.onclick = () => {
+  if (autoInt) {
+    clearInterval(autoInt);
+    autoInt = null;
+    autoBtn.textContent = 'Auto-loop both every 12s';
+  } else {
+    fire(autoToggle); autoToggle = autoToggle === 1 ? 2 : 1;
+    autoInt = setInterval(() => {
+      fire(autoToggle); autoToggle = autoToggle === 1 ? 2 : 1;
+    }, 12000);
+    autoBtn.textContent = 'Stop auto-loop';
+  }
+};
+</script>
+
+</body>
+</html>

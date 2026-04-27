@@ -51,9 +51,17 @@ class MainActivity : AppCompatActivity() {
     private var immersiveRunnable: Runnable? = null
     private var scheduleRunnable: Runnable? = null
     private var burstWs: BurstWsClient? = null
-    private var pendingBurstFire: Runnable? = null
-    @Volatile private var preloadedBurstDrawable: Drawable? = null
-    @Volatile private var preloadedBurstBitmap: Bitmap? = null
+
+    // Per-burst preloaded image cache. Each entry is one of the up-to-3
+    // bursts the screen runs; map key is burst_id (1..3). Drawables are
+    // decoded once per URL change so fire-time is just a visibility flip.
+    private class PreloadedBurst {
+        var url: String = ""
+        var drawable: Drawable? = null
+        var bitmap: Bitmap? = null
+        var pendingFire: Runnable? = null
+    }
+    private val burstSlots = mutableMapOf<Int, PreloadedBurst>()
     private var isScreenOff = false
     private var isBursting = false
     private var tapCount = 0
@@ -420,22 +428,22 @@ class MainActivity : AppCompatActivity() {
 
     // === BURST: server-scheduled, clock-synced across all screens via WebSocket ===
     //
-    // The server broadcasts { fire_at: <UTC millis>, duration_ms, image_url } ~2s
+    // The server broadcasts { burst_id, fire_at, duration_ms, image_url } ~2s
     // before each burst. We translate fire_at into local uptime (monotonic,
     // unlike wall clock) using the ping/pong-measured server-clock offset, then
     // Handler.postAtTime() fires the display code at that exact uptime.
     //
-    // Crucially, the burst image is pre-downloaded AND pre-decoded in advance,
-    // so at fire time we do zero I/O — just a Drawable assignment and a
-    // visibility flip. That's what lets 9 slow RK3288 boxes sync within ms.
-    private var burstCachedUrl = ""
+    // Up to 3 bursts run independently per screen, each with its own interval
+    // and image. We keep a per-burst preloaded Drawable cache (`burstSlots`)
+    // so fire-time is just a setImageDrawable + visibility flip — zero I/O.
 
     private fun startBurstSync() {
         val config = Config(this)
         // Re-use a previously cached burst image if we have one — avoids a
         // blank fire on first run after reboot before the first config arrives.
+        // This only seeds slot 1; additional slots come from the WS hello_ack.
         val existingUrl = config.getBurstImageUrl()
-        if (existingUrl.isNotEmpty()) preloadBurstImage(existingUrl)
+        if (existingUrl.isNotEmpty()) preloadBurstImage(1, existingUrl)
 
         val screenId = config.getScreenNumber()
         if (screenId <= 0) return // not configured
@@ -444,35 +452,56 @@ class MainActivity : AppCompatActivity() {
             screenId = screenId,
             wsUrl = config.getBurstWsUrl(),
             listener = object : BurstWsClient.Listener {
-                override fun onBurstConfig(
-                    enabled: Boolean,
-                    imageUrl: String,
-                    intervalMin: Int,
-                    durationS: Int
-                ) {
+                override fun onBurstConfigs(configs: List<BurstWsClient.Config>) {
                     val cfg = Config(this@MainActivity)
-                    cfg.setBurstEnabled(enabled)
-                    cfg.setBurstImageUrl(imageUrl)
-                    cfg.setBurstInterval(intervalMin)
-                    cfg.setBurstDuration(durationS)
-                    if (imageUrl.isNotEmpty() && imageUrl != burstCachedUrl) {
-                        preloadBurstImage(imageUrl)
+                    // Mirror the first enabled burst into the legacy single-burst
+                    // prefs so v1.3-style fallbacks (e.g. seed-on-boot above)
+                    // still find a usable URL. The Config getters are also still
+                    // referenced by the launcher-side admin UI on tablets.
+                    val first = configs.firstOrNull { it.enabled }
+                    if (first != null) {
+                        cfg.setBurstEnabled(true)
+                        cfg.setBurstImageUrl(first.imageUrl)
+                        cfg.setBurstInterval(first.intervalMin)
+                        cfg.setBurstDuration(first.durationS)
+                    } else {
+                        cfg.setBurstEnabled(false)
+                    }
+                    // Preload every enabled burst's image; forget any slot whose
+                    // id has been removed or disabled in the new config.
+                    val enabledIds = HashSet<Int>()
+                    for (c in configs) {
+                        if (!c.enabled || c.imageUrl.isEmpty()) continue
+                        enabledIds.add(c.id)
+                        val slot = burstSlots.getOrPut(c.id) { PreloadedBurst() }
+                        if (slot.url != c.imageUrl) preloadBurstImage(c.id, c.imageUrl)
+                    }
+                    val toRemove = burstSlots.keys.filter { it !in enabledIds }
+                    for (id in toRemove) {
+                        val slot = burstSlots.remove(id) ?: continue
+                        slot.pendingFire?.let { handler.removeCallbacks(it) }
+                        slot.bitmap?.recycle()
                     }
                 }
 
                 override fun onBurstFire(
+                    burstId: Int,
                     fireAtUptime: Long,
                     durationMs: Int,
                     imageUrl: String
                 ) {
-                    if (!Config(this@MainActivity).isBurstEnabled()) return
-                    if (imageUrl.isNotEmpty() && imageUrl != burstCachedUrl) {
-                        preloadBurstImage(imageUrl)
+                    val slot = burstSlots.getOrPut(burstId) { PreloadedBurst() }
+                    if (imageUrl.isNotEmpty() && slot.url != imageUrl) {
+                        // Late URL change between config and fire — kick off a
+                        // download but don't drop the fire; if decode finishes
+                        // in time we render the new image, else we render the
+                        // current one (or skip if slot was empty).
+                        preloadBurstImage(burstId, imageUrl)
                     }
-                    // Replace any prior armed fire with this one
-                    pendingBurstFire?.let { handler.removeCallbacks(it) }
-                    val fire = Runnable { showBurstNow(durationMs) }
-                    pendingBurstFire = fire
+                    // Replace any prior armed fire on the same burst slot.
+                    slot.pendingFire?.let { handler.removeCallbacks(it) }
+                    val fire = Runnable { showBurstNow(burstId, durationMs) }
+                    slot.pendingFire = fire
                     handler.postAtTime(fire, fireAtUptime)
                 }
             }
@@ -480,11 +509,13 @@ class MainActivity : AppCompatActivity() {
         burstWs?.start()
     }
 
-    private fun preloadBurstImage(url: String) {
+    private fun preloadBurstImage(burstId: Int, url: String) {
         if (url.isEmpty()) return
         Thread {
             try {
-                val burstFile = java.io.File(filesDir, "burst_image")
+                // One file per burst id so concurrent preloads don't trample
+                // each other's bytes mid-decode.
+                val burstFile = java.io.File(filesDir, "burst_image_$burstId")
                 val connection = java.net.URL(url).openConnection() as java.net.HttpURLConnection
                 connection.connectTimeout = 15000
                 connection.readTimeout = 15000
@@ -495,40 +526,44 @@ class MainActivity : AppCompatActivity() {
                                 input.copyTo(output)
                             }
                         }
-                        decodeBurstIntoMemory(burstFile)
-                        burstCachedUrl = url
-                        Log.d("MainActivity", "Burst image pre-downloaded + decoded")
+                        decodeBurstIntoSlot(burstId, url, burstFile)
+                        Log.d("MainActivity", "Burst $burstId pre-downloaded + decoded")
                     }
                 } finally {
                     connection.disconnect()
                 }
             } catch (e: Exception) {
-                Log.w("MainActivity", "Burst preload failed: ${e.message}")
+                Log.w("MainActivity", "Burst $burstId preload failed: ${e.message}")
             }
         }.start()
     }
 
-    private fun decodeBurstIntoMemory(file: java.io.File) {
+    private fun decodeBurstIntoSlot(burstId: Int, url: String, file: java.io.File) {
         try {
+            val slot = burstSlots.getOrPut(burstId) { PreloadedBurst() }
+            // Recycle any stale bitmap for this slot before swapping.
+            slot.bitmap?.recycle()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 val source = ImageDecoder.createSource(file)
-                preloadedBurstDrawable = ImageDecoder.decodeDrawable(source)
-                preloadedBurstBitmap = null
+                slot.drawable = ImageDecoder.decodeDrawable(source)
+                slot.bitmap = null
             } else {
-                preloadedBurstBitmap = BitmapFactory.decodeFile(file.absolutePath)
-                preloadedBurstDrawable = null
+                slot.bitmap = BitmapFactory.decodeFile(file.absolutePath)
+                slot.drawable = null
             }
+            slot.url = url
         } catch (e: Exception) {
-            Log.w("MainActivity", "Burst decode failed: ${e.message}")
+            Log.w("MainActivity", "Burst $burstId decode failed: ${e.message}")
         }
     }
 
-    private fun showBurstNow(durationMs: Int) {
+    private fun showBurstNow(burstId: Int, durationMs: Int) {
         if (isFinishing || isDestroyed || isScreenOff) return
-        val drawable = preloadedBurstDrawable
-        val bitmap = preloadedBurstBitmap
+        val slot = burstSlots[burstId]
+        val drawable = slot?.drawable
+        val bitmap = slot?.bitmap
         if (drawable == null && bitmap == null) {
-            Log.w("MainActivity", "Burst fire: no decoded image available — skipping")
+            Log.w("MainActivity", "Burst $burstId fire: no decoded image — skipping")
             return
         }
 
@@ -546,7 +581,7 @@ class MainActivity : AppCompatActivity() {
             imageView.visibility = View.VISIBLE
             imageViewNext.visibility = View.GONE
         } catch (e: Exception) {
-            Log.w("MainActivity", "Burst display failed: ${e.message}")
+            Log.w("MainActivity", "Burst $burstId display failed: ${e.message}")
             isBursting = false
             return
         }
@@ -933,9 +968,11 @@ class MainActivity : AppCompatActivity() {
         handler.removeCallbacksAndMessages(null)
         burstWs?.stop()
         burstWs = null
-        preloadedBurstDrawable = null
-        preloadedBurstBitmap?.recycle()
-        preloadedBurstBitmap = null
+        for (slot in burstSlots.values) {
+            slot.pendingFire?.let { handler.removeCallbacks(it) }
+            slot.bitmap?.recycle()
+        }
+        burstSlots.clear()
         // Unregister sync broadcast receiver
         try {
             syncReceiver?.let { unregisterReceiver(it) }
