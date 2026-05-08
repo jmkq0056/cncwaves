@@ -42,10 +42,22 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col text-center">
-        <a href="<?php echo Yii::app()->createUrl('/privacy')?>" class="mr-3"><?php echo t("Privacy policy")?></a>
-        <a href="<?php echo Yii::app()->createUrl('/terms')?>" class="mr-3"><?php echo t("Terms and conditions")?></a>
-        <a href="<?php echo Yii::app()->createUrl('/cookies')?>"><?php echo t("Cookiepolitik")?></a>
+        <a href="<?php echo Yii::app()->createUrl('/privacy')?>" class="cnc-footer-link"><?php echo t("Privacy policy")?></a>
+        <a href="<?php echo Yii::app()->createUrl('/terms')?>" class="cnc-footer-link"><?php echo t("Terms and conditions")?></a>
+        <a href="<?php echo Yii::app()->createUrl('/cookies')?>" class="cnc-footer-link"><?php echo t("Cookiepolitik")?></a>
+        <a href="https://www.findsmiley.dk/1519975" target="_blank" rel="noopener" class="cnc-footer-link"><?php echo t("Kontrolrapporter")?></a>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col text-center" style="font-size:12px; color:#777;">
+        2talRent ApS &middot; CVR 38272543 &middot; Over B&oslash;lgen 3, st. 1, 2670 Greve
       </div>
     </div>
   </div>
 </div>
+<style>
+.sub-footer .cnc-footer-link { display: inline-block; margin: 4px 10px; }
+@media (max-width: 575px) {
+  .sub-footer .cnc-footer-link { display: block; margin: 6px 0; }
+}
+</style>

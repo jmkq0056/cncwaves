@@ -3,7 +3,7 @@
 <p class="legal-meta">Sidst opdateret: <?php echo date('d. F Y')?> &middot; 2talRent ApS</p>
 
 <h2>1. Generelt</h2>
-<p>Disse vilk&aring;r g&aelig;lder for brug af chickenwaves.dk og bestilling af mad fra Chicken N Chicken Waves, drevet af 2talRent ApS (CVR: [inds&aelig;t CVR]). Ved at benytte vores hjemmeside og bestille varer accepterer du disse vilk&aring;r.</p>
+<p>Disse vilk&aring;r g&aelig;lder for brug af chickenwaves.dk og bestilling af mad fra Chicken N Chicken Waves, drevet af 2talRent ApS (CVR: 38272543). Ved at benytte vores hjemmeside og bestille varer accepterer du disse vilk&aring;r.</p>
 
 <h2>2. Bestilling og betaling</h2>
 <p>N&aring;r du afgiver en bestilling via vores hjemmeside, indg&aring;r du en aftale om k&oslash;b af de valgte produkter. Alle priser er angivet i danske kroner (DKK) og inkluderer moms.</p>
@@ -42,7 +42,9 @@
 
 <h2>12. Kontakt</h2>
 <p>2talRent ApS<br>
+CVR: 38272543<br>
 Over B&oslash;lgen 3, st. 1<br>
 2670 Greve<br>
-E-mail: <a href="mailto:contact@chickenwaves.dk">contact@chickenwaves.dk</a></p>
+E-mail: <a href="mailto:contact@chickenwaves.dk">contact@chickenwaves.dk</a><br>
+Web: <a href="https://chickenwaves.dk">chickenwaves.dk</a></p>
 </div>

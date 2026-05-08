@@ -77,7 +77,8 @@ INSERT INTO st_sourcemessage (id, category, message) VALUES
  (5004, 'front', 'Lovpligtigt iht. dansk lovgivning'),
  (5005, 'front', 'I henhold til Plastposeloven (2020) skal alle bæreposer prissættes separat med minimum 4 kr inkl. moms. Beløbet er allerede inkluderet i din ordre og kan ikke fravælges.'),
  (5006, 'front', 'Tryk for info · Lovpligtigt'),
- (5007, 'front', 'Lovpligtig — skal pakkes med')
+ (5007, 'front', 'Lovpligtig — skal pakkes med'),
+ (5010, 'front', 'Kontrolrapporter')
 ON DUPLICATE KEY UPDATE message = VALUES(message), category = VALUES(category);
 
 INSERT INTO st_message (id, language, translation) VALUES
@@ -94,5 +95,7 @@ INSERT INTO st_message (id, language, translation) VALUES
  (5006, 'da', 'Tryk for info · Lovpligtigt'),
  (5006, 'en', 'Tap for info · Required'),
  (5007, 'da', 'Lovpligtig — skal pakkes med'),
- (5007, 'en', 'Required — must be packed with order')
+ (5007, 'en', 'Required — must be packed with order'),
+ (5010, 'da', 'Kontrolrapporter'),
+ (5010, 'en', 'Inspection reports')
 ON DUPLICATE KEY UPDATE translation = VALUES(translation);
