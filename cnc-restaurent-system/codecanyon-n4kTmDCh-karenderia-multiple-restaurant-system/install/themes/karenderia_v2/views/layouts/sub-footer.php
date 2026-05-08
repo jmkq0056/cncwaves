@@ -11,7 +11,7 @@
                onclick="cncLoadMap()"
                onkeypress="if(event.key==='Enter'||event.key===' '){cncLoadMap();}"
                style="height:300px; background:#eef1f5; display:flex; align-items:center; justify-content:center; flex-direction:column; cursor:pointer; padding:20px; text-align:center;">
-            <div style="font-size:48px; line-height:1; margin-bottom:12px;">&#128205;</div>
+            <i class="fas fa-map-marker-alt" aria-hidden="true" style="font-size:48px; line-height:1; margin-bottom:12px; color:#9d292b;"></i>
             <p style="margin:0 0 6px; color:#3d0d0f; font-weight:700; font-size:18px;">Over B&oslash;lgen 3, st. 1, 2670 Greve</p>
             <p style="margin:0 0 14px; color:#666; font-size:13px; max-width:380px;">
               Kortet indl&aelig;ses fra Google Maps og kan s&aelig;tte cookies samt sende din IP-adresse til Google.
@@ -62,7 +62,12 @@
         <a href="<?php echo Yii::app()->createUrl('/privacy')?>" class="cnc-footer-link"><?php echo t("Privacy policy")?></a>
         <a href="<?php echo Yii::app()->createUrl('/terms')?>" class="cnc-footer-link"><?php echo t("Terms and conditions")?></a>
         <a href="<?php echo Yii::app()->createUrl('/cookies')?>" class="cnc-footer-link"><?php echo t("Cookiepolitik")?></a>
-        <a href="https://www.findsmiley.dk/1519975" target="_blank" rel="noopener" class="cnc-footer-link"><?php echo t("Kontrolrapporter")?></a>
+        <a href="https://www.findsmiley.dk/1519975" target="_blank" rel="noopener" class="cnc-footer-link cnc-smiley-link" title="<?php echo t("Se kontrolrapport")?>">
+          <img src="<?php echo Yii::app()->theme->baseUrl?>/assets/img/findsmiley-badge.gif"
+               alt="<?php echo t("Se kontrolrapport")?> &mdash; findsmiley.dk"
+               width="847" height="274" loading="lazy"
+               style="height:54px; width:auto; vertical-align:middle;">
+        </a>
       </div>
     </div>
     <div class="row mt-2">
@@ -73,8 +78,10 @@
   </div>
 </div>
 <style>
-.sub-footer .cnc-footer-link { display: inline-block; margin: 4px 10px; }
+.sub-footer .cnc-footer-link { display: inline-block; margin: 4px 10px; vertical-align: middle; }
+.sub-footer .cnc-smiley-link { padding: 2px 4px; }
 @media (max-width: 575px) {
-  .sub-footer .cnc-footer-link { display: block; margin: 6px 0; }
+  .sub-footer .cnc-footer-link { display: block; margin: 6px auto; }
+  .sub-footer .cnc-smiley-link { margin-top: 10px; }
 }
 </style>
