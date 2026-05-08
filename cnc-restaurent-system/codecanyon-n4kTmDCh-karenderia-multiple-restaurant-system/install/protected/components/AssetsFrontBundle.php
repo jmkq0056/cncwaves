@@ -104,7 +104,7 @@ class AssetsFrontBundle
             'google-font'=>array(
 			    'baseUrl'=>'/',
 			    'css'=>array(
-			      "/fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap",				  
+			      "/fonts.bunny.net/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap",				  
 			    ),
 			    'js'=>array(					  
 			    )
@@ -230,7 +230,7 @@ class AssetsFrontBundle
 				  '/cdn.jsdelivr.net/npm/gmap-vue@1.2.2/dist/gmap-vue.js'     
 			    ),
 				'css'=>array(				  
-				  "/fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons",
+				  "/fonts.bunny.net/css?family=Roboto:100,300,400,500,700,900|Material+Icons",
 				  "/cdn.jsdelivr.net/npm/animate.css@^4.0.0/animate.min.css",
 				  "/cdn.jsdelivr.net/npm/quasar@2.7.5/dist/quasar.prod.css",
 				)
