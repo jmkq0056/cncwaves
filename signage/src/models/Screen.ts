@@ -10,15 +10,19 @@ const ImageSchema = new mongoose.Schema(
   { _id: false }
 );
 
-// One burst session. A screen can run up to 3 in parallel, each with its own
-// interval and image. The id (1..3) is stable so clients (Android) can keep
-// per-burst preloaded drawables without re-decoding on every fire.
+// One burst in the rotation. A screen can run up to 3, each with its own
+// gap, image, animation, and duration. The id (1..3) is stable so clients
+// (Android) can keep per-burst preloaded drawables without re-decoding on
+// every fire.
+//
+// `intervalMin` is the gap from THIS burst to the NEXT burst in rotation.
+// After the last enabled burst fires, rotation wraps back to id=1, so the
+// total cycle length is sum(intervalMin for enabled bursts).
 //
 // `animation` controls how the burst ripples across the 9 physical screens:
-//   - "wave"        : 1 -> 2 -> ... -> 9 (default, current behavior)
+//   - "wave"        : 1 -> 2 -> ... -> 9 (default)
 //   - "center-out"  : 5 -> 4,6 -> 3,7 -> 2,8 -> 1,9
-// The actual offset per screen is computed server-side; clients only see a
-// fire_at timestamp.
+// The per-screen offset is computed server-side; clients only see a fire_at.
 const BurstSchema = new mongoose.Schema(
   {
     id: { type: Number, required: true },
@@ -57,12 +61,6 @@ const ScreenSchema = new mongoose.Schema(
         { id: 2, name: "", enabled: false, imageUrl: "", cloudinaryId: "", intervalMin: 2, durationS: 10, animation: "center-out" },
       ],
     },
-    // Burst session: how often (in minutes) the next burst in the rotation
-    // fires. The server picks bursts[slot % enabled.length] at each slot
-    // boundary, so all enabled bursts cycle through in order without
-    // colliding. Backfills from the legacy `burstInterval` field on read
-    // for screens that haven't been re-saved through the new admin UI yet.
-    burstSessionIntervalMin: { type: Number, default: 2 },
     // --- Legacy single-burst fields (deprecated, do not delete during the
     // mixed-version rollout window). v1.3 APK and the old admin UI still
     // read/write these. Any updates to bursts[0] must mirror these so older

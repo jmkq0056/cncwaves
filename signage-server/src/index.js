@@ -96,6 +96,7 @@ function effectiveBursts(screen) {
     return fromArray.map((b) => ({
       id: b.id,
       imageUrl: b.imageUrl,
+      intervalMin: Math.max(1, Number(b.intervalMin) || 2),
       durationS: b.durationS || 10,
       animation: b.animation === "center-out" ? "center-out" : "wave",
     }));
@@ -105,6 +106,7 @@ function effectiveBursts(screen) {
       {
         id: 1,
         imageUrl: screen.burstImageUrl,
+        intervalMin: Math.max(1, Number(screen.burstInterval) || 3),
         durationS: screen.burstDuration || 10,
         animation: "wave",
       },
@@ -113,16 +115,24 @@ function effectiveBursts(screen) {
   return [];
 }
 
-// Session interval: how often *some* burst fires on this screen. The active
-// burst at each tick is bursts[slot % bursts.length], so all enabled bursts
-// rotate through in id-order. Backfills from the legacy `burstInterval` for
-// screens that haven't been re-saved through the multi-burst admin yet.
-function sessionIntervalMin(screen) {
-  const v = Number(screen.burstSessionIntervalMin);
-  if (Number.isFinite(v) && v >= 1) return v;
-  const legacy = Number(screen.burstInterval);
-  if (Number.isFinite(legacy) && legacy >= 1) return legacy;
-  return 2;
+// Compute the rotation cycle from a list of bursts. `intervalMin` on each
+// burst is the gap from THAT burst to the NEXT burst in the rotation. The
+// total cycle length is the sum of those gaps. Each burst's "slot offset"
+// within the cycle is the cumulative sum of preceding gaps starting from
+// burst 1 at offset 0.
+//
+// e.g. burst1.intervalMin=3, burst2.intervalMin=2:
+//   cycle = 5 minutes
+//   burst1 at offset 0 (T+0, T+5, T+10, ...)
+//   burst2 at offset 3 (T+3, T+8, T+13, ...)
+function rotationCycle(bursts) {
+  let totalMs = 0;
+  const slots = [];
+  for (const b of bursts) {
+    slots.push({ burst: b, offsetMs: totalMs });
+    totalMs += Math.max(1, b.intervalMin) * 60_000;
+  }
+  return { slots, totalMs };
 }
 
 // Map a screen id (1..9) to its animation step index for a given mode.
@@ -146,36 +156,42 @@ function scheduleTick() {
     const bursts = effectiveBursts(screen);
     if (bursts.length === 0) continue;
 
-    // Session model: ONE burst per slot, round-robin across bursts[] in
-    // id-order. Slot index is global (epoch-aligned) so all 9 screens agree
-    // on which burst is "current" without needing any coordination.
-    const intervalMs = sessionIntervalMin(screen) * 60_000;
-    const due = Math.ceil(t / intervalMs) * intervalMs;
-    const timeUntil = due - t;
-    if (timeUntil > FIRE_AHEAD_MS) continue;
+    const { slots, totalMs } = rotationCycle(bursts);
+    if (totalMs <= 0) continue;
 
-    const slot = Math.floor(due / intervalMs);
-    const burst = bursts[slot % bursts.length];
+    // Find the next slot that fires within the announcement window. Each
+    // cycle is anchored to the Unix epoch, so all 9 screens compute the same
+    // fire instants without any cross-screen coordination.
+    const cycleBase = Math.floor(t / totalMs) * totalMs;
+    for (let cycle = 0; cycle < 2; cycle++) {
+      // We may need to look one cycle ahead to catch a fire near the boundary
+      const base = cycleBase + cycle * totalMs;
+      for (const slot of slots) {
+        const due = base + slot.offsetMs;
+        const timeUntil = due - t;
+        if (timeUntil < 0) continue; // already past
+        if (timeUntil > FIRE_AHEAD_MS) break; // future slots in this cycle even further
+        const key = `${screen._id}:${due}:${slot.burst.id}`;
+        if (announcedFireAt.has(key)) continue;
+        announcedFireAt.set(key, due);
 
-    const key = `${screen._id}:${due}`;
-    if (announcedFireAt.has(key)) continue;
-    announcedFireAt.set(key, due);
-
-    const step = animationStep(burst.animation, screen._id);
-    const waveOffset = step * BURST_WAVE_OFFSET_MS;
-    const fireAt = due + waveOffset;
-    // image_url + duration_ms kept top-level for v1.3-APK backward compat
-    // (it ignores burst_id and treats each event as a single burst).
-    const sent = broadcastToScreen(screen._id, {
-      type: "burst",
-      burst_id: burst.id,
-      fire_at: fireAt,
-      duration_ms: burst.durationS * 1000,
-      image_url: burst.imageUrl,
-    });
-    log(
-      `burst screen=${screen._id} burst=${burst.id} (slot ${slot % bursts.length}/${bursts.length}) fire_at=${fireAt} (+${waveOffset}ms ${burst.animation}) in ${timeUntil + waveOffset}ms -> ${sent} clients`
-    );
+        const step = animationStep(slot.burst.animation, screen._id);
+        const waveOffset = step * BURST_WAVE_OFFSET_MS;
+        const fireAt = due + waveOffset;
+        // image_url + duration_ms kept top-level for v1.3-APK backward compat
+        // (it ignores burst_id and treats each event as a single burst).
+        const sent = broadcastToScreen(screen._id, {
+          type: "burst",
+          burst_id: slot.burst.id,
+          fire_at: fireAt,
+          duration_ms: slot.burst.durationS * 1000,
+          image_url: slot.burst.imageUrl,
+        });
+        log(
+          `burst screen=${screen._id} burst=${slot.burst.id} fire_at=${fireAt} (+${waveOffset}ms ${slot.burst.animation}, cycle=${totalMs / 60_000}m) in ${timeUntil + waveOffset}ms -> ${sent} clients`
+        );
+      }
+    }
   }
 
   // Garbage-collect old announcement keys so the map doesn't grow forever.
@@ -190,40 +206,37 @@ function burstConfigPayload(screen) {
   // Sent on hello_ack and on every config change. Includes both the new
   // bursts[] array (for v1.4+) and the legacy burst{} object (for v1.3) so
   // the same broadcast satisfies both client versions.
-  const session = sessionIntervalMin(screen);
-  const bursts = effectiveBursts(screen).map((b) => ({
+  const effective = effectiveBursts(screen);
+  const bursts = effective.map((b) => ({
     id: b.id,
     enabled: true,
     image_url: b.imageUrl,
+    interval_min: b.intervalMin,
     duration_s: b.durationS,
     animation: b.animation,
   }));
-  const legacyFirst = bursts[0] || {
-    enabled: false,
-    image_url: "",
-    duration_s: 10,
-  };
+  const legacyFirst = effective[0];
   return {
     bursts,
-    session_interval_min: session,
-    burst: {
-      enabled: !!legacyFirst.enabled,
-      image_url: legacyFirst.image_url || "",
-      interval_min: session,
-      duration_s: legacyFirst.duration_s || 10,
-    },
+    burst: legacyFirst
+      ? {
+          enabled: true,
+          image_url: legacyFirst.imageUrl,
+          interval_min: legacyFirst.intervalMin,
+          duration_s: legacyFirst.durationS,
+        }
+      : { enabled: false, image_url: "", interval_min: 3, duration_s: 10 },
   };
 }
 
 function burstSignature(screen) {
   // Fast equality check for "did the burst configuration on this screen
-  // change?" Compares both new array, the session interval, and legacy fields.
+  // change?" Compares both new array and legacy fields.
   const bursts = (screen.bursts || []).map((b) => [
-    b.id, b.enabled, b.imageUrl, b.durationS, b.animation,
+    b.id, b.enabled, b.imageUrl, b.intervalMin, b.durationS, b.animation,
   ]);
   return JSON.stringify({
     bursts,
-    session: screen.burstSessionIntervalMin,
     legacy: [
       screen.burstEnabled,
       screen.burstImageUrl,

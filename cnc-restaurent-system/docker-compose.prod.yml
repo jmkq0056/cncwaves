@@ -8,6 +8,7 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
+      - ./codecanyon-n4kTmDCh-karenderia-multiple-restaurant-system/install:/var/www/html:ro
     depends_on:
       - web
     restart: unless-stopped

@@ -55,13 +55,28 @@ class MainActivity : AppCompatActivity() {
     // Per-burst preloaded image cache. Each entry is one of the up-to-3
     // bursts the screen runs; map key is burst_id (1..3). Drawables are
     // decoded once per URL change so fire-time is just a visibility flip.
+    //
+    // Memory budget: each preloaded image is a 1080x1920 RGBA bitmap (~8 MB).
+    // With MAX_BURSTS=3 the worst case is ~24 MB of burst memory plus the
+    // separate MAX_CACHED_BITMAPS=8 playlist cache. Bursts beyond MAX_BURSTS
+    // are silently ignored; the server is the source of truth for how many
+    // are configured but we cap on the client side as a hard safety net.
     private class PreloadedBurst {
         var url: String = ""
         var drawable: Drawable? = null
         var bitmap: Bitmap? = null
         var pendingFire: Runnable? = null
+        @Volatile var inFlightUrl: String = "" // url currently being downloaded
     }
     private val burstSlots = mutableMapOf<Int, PreloadedBurst>()
+
+    // Per-fire token: every time showBurstNow displays a burst it bumps this
+    // counter. The end-runnable captures the token before scheduling itself
+    // and only resets to normal rotation if the token is still current. This
+    // prevents an earlier burst's "end" callback from killing a later burst
+    // mid-show when bursts overlap (rare but possible at cycle boundaries).
+    private var burstFireToken: Int = 0
+
     private var isScreenOff = false
     private var isBursting = false
     private var tapCount = 0
@@ -83,6 +98,7 @@ class MainActivity : AppCompatActivity() {
     private var cachedImagePaths = listOf<String>()
     private companion object {
         const val MAX_CACHED_BITMAPS = 8 // ~8MB each at 1080p ARGB = ~64MB max
+        const val MAX_BURSTS = 3 // hard client-side cap on burst preload slots
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -472,15 +488,35 @@ class MainActivity : AppCompatActivity() {
                     val enabledIds = HashSet<Int>()
                     for (c in configs) {
                         if (!c.enabled || c.imageUrl.isEmpty()) continue
+                        if (c.id !in 1..MAX_BURSTS) {
+                            Log.w("MainActivity", "Ignoring burst id ${c.id} (out of 1..$MAX_BURSTS)")
+                            continue
+                        }
                         enabledIds.add(c.id)
                         val slot = burstSlots.getOrPut(c.id) { PreloadedBurst() }
-                        if (slot.url != c.imageUrl) preloadBurstImage(c.id, c.imageUrl)
+                        // Skip preload if URL hasn't changed AND we already
+                        // started/finished downloading the same URL — avoids
+                        // a thundering herd of duplicate threads on rapid
+                        // hello_ack/config bursts (WS reconnect storms).
+                        if (slot.url != c.imageUrl && slot.inFlightUrl != c.imageUrl) {
+                            preloadBurstImage(c.id, c.imageUrl)
+                        }
                     }
                     val toRemove = burstSlots.keys.filter { it !in enabledIds }
                     for (id in toRemove) {
                         val slot = burstSlots.remove(id) ?: continue
                         slot.pendingFire?.let { handler.removeCallbacks(it) }
+                        // Stop any animated drawable so its decoder thread
+                        // can be reclaimed.
+                        (slot.drawable as? AnimatedImageDrawable)?.stop()
+                        slot.drawable = null
                         slot.bitmap?.recycle()
+                        slot.bitmap = null
+                        // Drop the on-disk file too — small but adds up if
+                        // bursts are reconfigured often.
+                        try {
+                            java.io.File(filesDir, "burst_image_$id").delete()
+                        } catch (_: Exception) {}
                     }
                 }
 
@@ -511,6 +547,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun preloadBurstImage(burstId: Int, url: String) {
         if (url.isEmpty()) return
+        if (burstId !in 1..MAX_BURSTS) return
+        val slot = burstSlots.getOrPut(burstId) { PreloadedBurst() }
+        // Mark this URL as in-flight so concurrent onBurstConfigs / onBurstFire
+        // calls in the next ~seconds skip starting another download for the
+        // same URL. Cleared in the finally block below regardless of outcome.
+        if (slot.inFlightUrl == url) return
+        slot.inFlightUrl = url
         Thread {
             try {
                 // One file per burst id so concurrent preloads don't trample
@@ -526,14 +569,20 @@ class MainActivity : AppCompatActivity() {
                                 input.copyTo(output)
                             }
                         }
-                        decodeBurstIntoSlot(burstId, url, burstFile)
-                        Log.d("MainActivity", "Burst $burstId pre-downloaded + decoded")
+                        // Don't decode if the activity is dead — saves CPU
+                        // and avoids mutating a stale slot map.
+                        if (!isFinishing && !isDestroyed) {
+                            decodeBurstIntoSlot(burstId, url, burstFile)
+                            Log.d("MainActivity", "Burst $burstId pre-downloaded + decoded")
+                        }
                     }
                 } finally {
                     connection.disconnect()
                 }
             } catch (e: Exception) {
                 Log.w("MainActivity", "Burst $burstId preload failed: ${e.message}")
+            } finally {
+                if (slot.inFlightUrl == url) slot.inFlightUrl = ""
             }
         }.start()
     }
@@ -541,19 +590,59 @@ class MainActivity : AppCompatActivity() {
     private fun decodeBurstIntoSlot(burstId: Int, url: String, file: java.io.File) {
         try {
             val slot = burstSlots.getOrPut(burstId) { PreloadedBurst() }
+            // If a newer URL arrived while we were downloading, this decode
+            // is stale — silently drop it instead of overwriting the slot.
+            // (slot.url == url is fine; slot.url == newer would mean stale.)
+            if (slot.url.isNotEmpty() && slot.url != url && slot.inFlightUrl != url) {
+                Log.d("MainActivity", "Burst $burstId decode stale, dropping")
+                return
+            }
+            // Stop any animated drawable so its decoding thread releases the
+            // surface before we swap. AnimatedImageDrawable holds native
+            // resources that don't get freed until stop() + GC.
+            (slot.drawable as? AnimatedImageDrawable)?.stop()
             // Recycle any stale bitmap for this slot before swapping.
             slot.bitmap?.recycle()
+            slot.bitmap = null
+            slot.drawable = null
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                val source = ImageDecoder.createSource(file)
-                slot.drawable = ImageDecoder.decodeDrawable(source)
-                slot.bitmap = null
+                try {
+                    val source = ImageDecoder.createSource(file)
+                    slot.drawable = ImageDecoder.decodeDrawable(source)
+                } catch (oom: OutOfMemoryError) {
+                    Log.w("MainActivity", "Burst $burstId OOM in ImageDecoder — fallback to BitmapFactory")
+                    System.gc()
+                    decodeBitmapFallback(slot, file)
+                }
             } else {
-                slot.bitmap = BitmapFactory.decodeFile(file.absolutePath)
-                slot.drawable = null
+                decodeBitmapFallback(slot, file)
             }
             slot.url = url
         } catch (e: Exception) {
             Log.w("MainActivity", "Burst $burstId decode failed: ${e.message}")
+        }
+    }
+
+    // Lower-quality fallback decode used when ImageDecoder OOMs or on pre-P
+    // devices that don't have ImageDecoder. RGB_565 + inSampleSize=2 cuts
+    // memory usage to about 1/8th vs ARGB_8888 full size.
+    private fun decodeBitmapFallback(slot: PreloadedBurst, file: java.io.File) {
+        try {
+            val full = BitmapFactory.Options().apply {
+                inPreferredConfig = Bitmap.Config.ARGB_8888
+            }
+            slot.bitmap = BitmapFactory.decodeFile(file.absolutePath, full)
+        } catch (oom: OutOfMemoryError) {
+            try {
+                System.gc()
+                val downscale = BitmapFactory.Options().apply {
+                    inSampleSize = 2
+                    inPreferredConfig = Bitmap.Config.RGB_565
+                }
+                slot.bitmap = BitmapFactory.decodeFile(file.absolutePath, downscale)
+            } catch (_: Exception) {
+                slot.bitmap = null
+            }
         }
     }
 
@@ -567,6 +656,11 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
+        // Bump fire token so any earlier burst's pending end-runnable becomes
+        // a no-op. Without this, an earlier burst that overlaps with this
+        // one would clear isBursting + restart rotation mid-show.
+        burstFireToken++
+        val myToken = burstFireToken
         isBursting = true
         rotationRunnable?.let { handler.removeCallbacks(it) }
 
@@ -588,6 +682,12 @@ class MainActivity : AppCompatActivity() {
 
         handler.postDelayed({
             if (isFinishing || isDestroyed) return@postDelayed
+            // If a later burst fired in the meantime, leave its display
+            // alone — its own end-runnable will handle the cleanup.
+            if (myToken != burstFireToken) return@postDelayed
+            // Stop animated drawables so their decoder threads release the
+            // surface before we swap back to normal rotation.
+            (drawable as? AnimatedImageDrawable)?.stop()
             isBursting = false
             val images = playlistManager.getImageFiles()
             if (images.isNotEmpty()) {

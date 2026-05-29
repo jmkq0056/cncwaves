@@ -603,9 +603,11 @@ export default function EditScreen() {
         <div className="mb-6">
           <h3 className="text-lg font-semibold mb-1">Bursts</h3>
           <p className="text-xs text-gray-500 mb-4">
-            Up to {MAX_BURSTS} independent burst sessions. Each has its own
-            image, interval, duration, and animation pattern. All screens fire
-            in sync; the per-screen offset is determined by the animation.
+            Up to {MAX_BURSTS} bursts in rotation. Each burst plays in turn:
+            burst #1 fires, waits its "gap to next", then burst #2 fires, and
+            so on. After the last enabled burst, rotation wraps back to #1.
+            All 9 physical screens stay in sync — the per-screen offset is
+            determined by the animation.
           </p>
           <div className="space-y-4">
             {bursts.map((burst, idx) => {
@@ -685,7 +687,7 @@ export default function EditScreen() {
 
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                         <div>
-                          <label className="block text-xs text-gray-500 mb-1">Every (min)</label>
+                          <label className="block text-xs text-gray-500 mb-1">Gap to next (min)</label>
                           <input
                             type="number" min={1} max={60}
                             value={burst.intervalMin}
@@ -721,7 +723,8 @@ export default function EditScreen() {
                         </div>
                       </div>
                       <p className="text-xs text-gray-600 mt-2">
-                        Fires every {burst.intervalMin} min on the wall clock.
+                        After this burst plays, waits {burst.intervalMin} min, then the next
+                        enabled burst plays. After the last burst, rotation wraps back to #1.
                       </p>
                     </>
                   )}
