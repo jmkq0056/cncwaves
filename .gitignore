@@ -112,6 +112,10 @@ signage-android/apk-archive/
 # and other secret-bearing config files. Must never be committed.
 .incident-*/
 
+# Local prod-mirror dev environment — 319 MB binaries + customer PII in dump.
+# Recreate with the instructions in cnc-restaurent-system/rsync/README.md
+cnc-restaurent-system/rsync/
+
 # Product / customer data exports (Stripe payment IDs, item names, etc.)
 exports/
 
