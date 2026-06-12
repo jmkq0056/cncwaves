@@ -112,9 +112,73 @@ signage-android/apk-archive/
 # and other secret-bearing config files. Must never be committed.
 .incident-*/
 
-# Local prod-mirror dev environment — 319 MB binaries + customer PII in dump.
-# Recreate with the instructions in cnc-restaurent-system/rsync/README.md
-cnc-restaurent-system/rsync/
+# Local prod-mirror dev environment.
+# Default: everything ignored (319 MB binaries + customer PII in dump + live
+# prod DB password in k-config.php + entrypoint scripts).
+# Selective whitelist below: only the infra-config & patched install/ files
+# we actively maintain go to git as a backup of our changes.
+# To rebuild the full directory, see cnc-restaurent-system/rsync/README.md.
+
+cnc-restaurent-system/rsync/*
+
+# Whitelist — top-level infra files (verified secret-free)
+!cnc-restaurent-system/rsync/README.md
+!cnc-restaurent-system/rsync/Dockerfile
+!cnc-restaurent-system/rsync/Caddyfile.local
+!cnc-restaurent-system/rsync/cncwaves-tuning.conf
+!cnc-restaurent-system/rsync/docker-compose.local.yml
+!cnc-restaurent-system/rsync/create_views.sql
+!cnc-restaurent-system/rsync/local-fixups.sql
+!cnc-restaurent-system/rsync/install/
+
+# Inside install/: ignore by default, drill in only to the patched files
+cnc-restaurent-system/rsync/install/*
+!cnc-restaurent-system/rsync/install/backoffice/
+!cnc-restaurent-system/rsync/install/protected/
+
+cnc-restaurent-system/rsync/install/backoffice/*
+!cnc-restaurent-system/rsync/install/backoffice/sw.js
+!cnc-restaurent-system/rsync/install/backoffice/assets/
+!cnc-restaurent-system/rsync/install/backoffice/themes/
+
+cnc-restaurent-system/rsync/install/backoffice/assets/*
+!cnc-restaurent-system/rsync/install/backoffice/assets/js/
+
+cnc-restaurent-system/rsync/install/backoffice/assets/js/*
+!cnc-restaurent-system/rsync/install/backoffice/assets/js/cnc-order-bell.js
+
+cnc-restaurent-system/rsync/install/backoffice/themes/*
+!cnc-restaurent-system/rsync/install/backoffice/themes/classic/
+
+cnc-restaurent-system/rsync/install/backoffice/themes/classic/*
+!cnc-restaurent-system/rsync/install/backoffice/themes/classic/views/
+
+cnc-restaurent-system/rsync/install/backoffice/themes/classic/views/*
+!cnc-restaurent-system/rsync/install/backoffice/themes/classic/views/layouts/
+
+cnc-restaurent-system/rsync/install/backoffice/themes/classic/views/layouts/*
+!cnc-restaurent-system/rsync/install/backoffice/themes/classic/views/layouts/backend_merchant.php
+
+cnc-restaurent-system/rsync/install/protected/*
+!cnc-restaurent-system/rsync/install/protected/components/
+!cnc-restaurent-system/rsync/install/protected/controllers/
+
+cnc-restaurent-system/rsync/install/protected/components/*
+!cnc-restaurent-system/rsync/install/protected/components/CCart.php
+
+cnc-restaurent-system/rsync/install/protected/controllers/*
+!cnc-restaurent-system/rsync/install/protected/controllers/ApiController.php
+
+# BELT-AND-SUSPENDERS — explicit re-ignore of known-secret files even if
+# someone later adds a wider whitelist. These contain live DB password,
+# Stripe live keys, customer PII, or password hashes:
+cnc-restaurent-system/rsync/karenderia-prod-dump.sql
+cnc-restaurent-system/rsync/db-seed.sql
+cnc-restaurent-system/rsync/cnc-translations.sql
+cnc-restaurent-system/rsync/docker-entrypoint.sh
+cnc-restaurent-system/rsync/railway-entrypoint.sh
+cnc-restaurent-system/rsync/install/k-config.php
+cnc-restaurent-system/rsync/.env*
 
 # Product / customer data exports (Stripe payment IDs, item names, etc.)
 exports/

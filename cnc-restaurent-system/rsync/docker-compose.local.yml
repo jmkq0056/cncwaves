@@ -1,0 +1,58 @@
+services:
+
+  # ── Caddy: localhost reverse proxy (HTTP only, no TLS) ──────────────────────
+  caddy:
+    image: caddy:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./Caddyfile.local:/etc/caddy/Caddyfile
+      - ./install:/var/www/html:ro
+    depends_on:
+      - web
+    restart: unless-stopped
+
+  # ── Web: same Karenderia container as prod, env-patched for local ──────────
+  web:
+    build: .
+    expose:
+      - "80"
+    volumes:
+      - ./install:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_NAME=karenderia
+      - DB_USER=karenderia
+      - DB_PASSWORD=localdev
+    restart: unless-stopped
+    # Lower limit for local laptop, same MaxConnectionsPerChild as prod
+    mem_limit: 800m
+
+  # ── MariaDB: same image as prod, dump loaded on FIRST boot only ────────────
+  db:
+    image: mariadb:10.6
+    expose:
+      - "3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: localdev_root
+      MARIADB_DATABASE: karenderia
+      MARIADB_USER: karenderia
+      MARIADB_PASSWORD: localdev
+    volumes:
+      - db_data_local:/var/lib/mysql
+      # This dump runs ONLY when db_data_local volume is empty (first boot).
+      # To reload prod data: docker compose -f docker-compose.local.yml down -v && up -d
+      - ./karenderia-prod-dump.sql:/docker-entrypoint-initdb.d/01-karenderia-prod.sql:ro
+      - ./local-fixups.sql:/docker-entrypoint-initdb.d/02-local-fixups.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+volumes:
+  db_data_local:
