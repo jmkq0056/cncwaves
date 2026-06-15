@@ -7,7 +7,9 @@ const DeliveryItemSchema = new mongoose.Schema({
   name: String,
   unit: String,
   image: String,
-  quantity: { type: Number, default: 1 },
+  quantity: { type: Number, default: 1 },            // original ordered qty (immutable after creation)
+  pickedQuantity: { type: Number, default: 0 },      // actually received qty (editable at pick time)
+  stockDelta: { type: Number, default: 0 },          // current applied delta to Product.qty — used for reversal on undo/cancel
   note: { type: String, default: "" },
   status: { type: String, enum: ["pending", "picked", "cancelled"], default: "pending" },
 });

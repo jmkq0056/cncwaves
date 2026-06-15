@@ -9,7 +9,10 @@ type DeliveryItem = {
   name: string;
   unit: string;
   image: string;
-  quantity: number;
+  quantity: number;          // original ordered qty
+  pickedQuantity?: number;   // what was actually received (editable)
+  stockDelta?: number;       // internal — current applied delta to Product.qty
+  currentStock?: number;     // server-enriched
   status: "pending" | "picked" | "cancelled";
 };
 
@@ -35,6 +38,9 @@ export default function DriverPickPage() {
   const [error, setError] = useState("");
   const [viewImage, setViewImage] = useState<string | null>(null);
   const [updating, setUpdating] = useState<string | null>(null);
+  // Per-item draft quantity for inline edit while pending. Falls back to
+  // delivery.quantity when nothing is in the draft map.
+  const [draftQty, setDraftQty] = useState<Record<string, number>>({});
 
   const loadDelivery = useCallback(async () => {
     const res = await fetch(`/api/deliveries/by-token/${token}`);
@@ -50,13 +56,33 @@ export default function DriverPickPage() {
     loadDelivery();
   }, [loadDelivery]);
 
+  function getDraftQty(item: DeliveryItem): number {
+    if (item._id in draftQty) return draftQty[item._id];
+    if (item.pickedQuantity && item.pickedQuantity > 0) return item.pickedQuantity;
+    return item.quantity;
+  }
+
+  function setDraft(itemId: string, qty: number) {
+    setDraftQty((m) => ({ ...m, [itemId]: Math.max(0, Math.floor(qty)) }));
+  }
+
   async function updateItem(itemId: string, action: "picked" | "cancelled" | "pending") {
     if (!delivery) return;
     setUpdating(itemId);
+    const body: any = { itemId, action, shareToken: token };
+    if (action === "picked") {
+      const item = delivery.items.find((i) => i._id === itemId);
+      if (item) body.pickedQuantity = getDraftQty(item);
+    }
     await fetch(`/api/deliveries/${delivery._id}/pick`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ itemId, action, shareToken: token }),
+      body: JSON.stringify(body),
+    });
+    // Drop the local draft so we re-read from server
+    setDraftQty((m) => {
+      const { [itemId]: _, ...rest } = m;
+      return rest;
     });
     await loadDelivery();
     setUpdating(null);
@@ -69,6 +95,7 @@ export default function DriverPickPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: "complete" }),
     });
+    setDraftQty({});
     await loadDelivery();
   }
 
@@ -102,6 +129,7 @@ export default function DriverPickPage() {
   const picked = delivery.items.filter((i) => i.status === "picked");
   const cancelled = delivery.items.filter((i) => i.status === "cancelled");
   const isCompleted = delivery.status === "completed" || remaining.length === 0;
+  const outOfStockCount = delivery.items.filter((i) => (i.currentStock ?? 0) === 0).length;
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -121,6 +149,18 @@ export default function DriverPickPage() {
               {isCompleted ? "Completed" : `${remaining.length} left`}
             </span>
           </div>
+
+          {/* Out-of-stock warning banner */}
+          {!isCompleted && outOfStockCount > 0 && (
+            <div className="mt-2 px-3 py-2 bg-red-500/15 border border-red-400/40 rounded-md flex items-start gap-2">
+              <svg className="w-4 h-4 text-red-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.732 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+              </svg>
+              <p className="text-[11px] text-red-100 leading-snug">
+                <strong>{outOfStockCount}</strong> item{outOfStockCount > 1 ? "s are" : " is"} currently <strong>out of stock</strong>. Confirm exact received quantity before picking.
+              </p>
+            </div>
+          )}
 
           {/* Complete all — always at top */}
           {!isCompleted && (
@@ -146,7 +186,9 @@ export default function DriverPickPage() {
               <ItemRow
                 key={item._id}
                 item={item}
+                draftQty={getDraftQty(item)}
                 updating={updating}
+                onChangeQty={(q) => setDraft(item._id, q)}
                 onPick={() => updateItem(item._id, "picked")}
                 onCancel={() => updateItem(item._id, "cancelled")}
                 onUndo={() => updateItem(item._id, "pending")}
@@ -182,7 +224,9 @@ export default function DriverPickPage() {
                 <ItemRow
                   key={item._id}
                   item={item}
+                  draftQty={getDraftQty(item)}
                   updating={updating}
+                  onChangeQty={() => {}}
                   onPick={() => {}}
                   onCancel={() => {}}
                   onUndo={() => updateItem(item._id, "pending")}
@@ -193,7 +237,9 @@ export default function DriverPickPage() {
                 <ItemRow
                   key={item._id}
                   item={item}
+                  draftQty={getDraftQty(item)}
                   updating={updating}
+                  onChangeQty={() => {}}
                   onPick={() => {}}
                   onCancel={() => {}}
                   onUndo={() => updateItem(item._id, "pending")}
@@ -225,14 +271,18 @@ export default function DriverPickPage() {
 
 function ItemRow({
   item,
+  draftQty,
   updating,
+  onChangeQty,
   onPick,
   onCancel,
   onUndo,
   onImageClick,
 }: {
   item: DeliveryItem;
+  draftQty: number;
   updating: string | null;
+  onChangeQty: (q: number) => void;
   onPick: () => void;
   onCancel: () => void;
   onUndo: () => void;
@@ -241,9 +291,12 @@ function ItemRow({
   const isPending = item.status === "pending";
   const isPicked = item.status === "picked";
   const isCancelled = item.status === "cancelled";
+  const currentStock = item.currentStock ?? 0;
+  const isOut = currentStock === 0;
+  const qtyDiffersFromOrder = isPending && draftQty !== item.quantity;
 
   return (
-    <div className={`flex items-center gap-3 px-4 py-3 border-b bg-white ${isCancelled ? "opacity-50" : ""}`}>
+    <div className={`flex items-center gap-2 px-3 py-3 border-b bg-white ${isCancelled ? "opacity-50" : ""}`}>
       {/* Image */}
       <button
         onClick={onImageClick}
@@ -256,29 +309,84 @@ function ItemRow({
         )}
       </button>
 
-      {/* Qty block */}
-      <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex flex-col items-center justify-center ${
-        isCancelled ? "bg-gray-100" : "bg-gray-100 border border-gray-300"
-      }`}>
-        <span className={`text-lg font-black leading-none ${isCancelled ? "text-gray-400" : "text-gray-700"}`}>
-          {item.quantity}
-        </span>
-        <span className={`text-[8px] font-medium uppercase leading-tight mt-0.5 max-w-[44px] truncate text-center ${isCancelled ? "text-gray-400" : "text-gray-400"}`}>
-          {item.unit}
-        </span>
-      </div>
+      {/* Qty block — editable while pending, static otherwise */}
+      {isPending ? (
+        <div className="flex flex-col items-center gap-1 flex-shrink-0">
+          <div className="flex items-center gap-0.5">
+            <button
+              type="button"
+              onClick={() => onChangeQty(Math.max(0, draftQty - 1))}
+              className="w-7 h-9 rounded-l-md bg-gray-100 text-gray-700 border border-gray-300 text-base font-bold active:bg-gray-200"
+              aria-label="Decrease"
+            >
+              −
+            </button>
+            <input
+              type="number"
+              inputMode="numeric"
+              min={0}
+              step={1}
+              value={draftQty}
+              onChange={(e) => onChangeQty(parseInt(e.target.value, 10) || 0)}
+              onFocus={(e) => e.target.select()}
+              className={`w-10 h-9 text-center text-sm font-bold tabular-nums border-y border-gray-300 bg-white focus:outline-none focus:ring-2 focus:z-10 relative ${
+                qtyDiffersFromOrder ? "text-orange-600 focus:ring-orange-500" : "text-gray-800 focus:ring-brand"
+              }`}
+            />
+            <button
+              type="button"
+              onClick={() => onChangeQty(draftQty + 1)}
+              className="w-7 h-9 rounded-r-md bg-gray-100 text-gray-700 border border-gray-300 text-base font-bold active:bg-gray-200"
+              aria-label="Increase"
+            >
+              +
+            </button>
+          </div>
+          <span className="text-[8px] font-medium uppercase text-gray-400 max-w-[80px] truncate">
+            {item.unit}
+          </span>
+        </div>
+      ) : (
+        <div className={`flex-shrink-0 w-12 h-12 rounded-lg flex flex-col items-center justify-center bg-gray-100 ${
+          isCancelled ? "" : "border border-gray-300"
+        }`}>
+          <span className={`text-lg font-black leading-none ${isCancelled ? "text-gray-400" : "text-gray-700"}`}>
+            {item.pickedQuantity || item.quantity}
+          </span>
+          <span className="text-[8px] font-medium uppercase leading-tight mt-0.5 max-w-[44px] truncate text-center text-gray-400">
+            {item.unit}
+          </span>
+        </div>
+      )}
 
       {/* Info */}
       <div className="flex-1 min-w-0">
         <p className={`text-sm font-medium leading-tight ${isCancelled ? "line-through text-gray-400" : "text-gray-800"}`}>
           {item.name}
         </p>
-        <p className="text-[10px] text-gray-400 mt-0.5">{item.code}</p>
+        <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
+          <span className="text-[10px] text-gray-400">{item.code}</span>
+          {/* Stock badge */}
+          {isOut ? (
+            <span className="text-[9px] font-bold text-red-700 bg-red-100 px-1.5 py-0.5 rounded-full uppercase tracking-wide">
+              Out of stock
+            </span>
+          ) : (
+            <span className="text-[10px] text-gray-500">
+              In stock: <span className="font-semibold text-gray-700 tabular-nums">{currentStock}</span>
+            </span>
+          )}
+          {isPending && draftQty !== item.quantity && (
+            <span className="text-[9px] text-orange-700 bg-orange-50 px-1.5 py-0.5 rounded-full font-medium">
+              ordered {item.quantity}
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Actions */}
       {isPending && (
-        <div className="flex gap-2 flex-shrink-0">
+        <div className="flex gap-1.5 flex-shrink-0">
           <button
             onClick={onPick}
             disabled={updating === item._id}
