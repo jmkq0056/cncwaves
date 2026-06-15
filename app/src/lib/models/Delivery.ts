@@ -17,6 +17,9 @@ const DeliveryItemSchema = new mongoose.Schema({
 const DeliverySchema = new mongoose.Schema({
   reference: { type: String, required: true, unique: true },
   shareToken: { type: String, unique: true, default: () => crypto.randomBytes(16).toString("hex") },
+  // "out" = issuing (existing /delivery flow — picking DEDUCTS from stock)
+  // "in"  = receiving (new /receiving flow — picking ADDS to stock)
+  direction: { type: String, enum: ["out", "in"], default: "out", index: true },
   items: [DeliveryItemSchema],
   status: { type: String, enum: ["pending", "in-progress", "completed"], default: "pending" },
   createdBy: { type: String, default: "" },

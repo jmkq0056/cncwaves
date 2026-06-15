@@ -6,18 +6,23 @@ import Delivery from "@/lib/models/Delivery";
 import Setting from "@/lib/models/Setting";
 import { generatePackingListPDF } from "@/lib/generate-pdf";
 
-function generateRef() {
+function generateRef(direction: "out" | "in" = "out") {
   const now = new Date();
   const y = now.getFullYear();
   const m = String(now.getMonth() + 1).padStart(2, "0");
   const rand = String(Math.floor(Math.random() * 10000)).padStart(4, "0");
-  return `DEL${y}/${m}/${rand}`;
+  const prefix = direction === "in" ? "RCV" : "DEL";
+  return `${prefix}${y}/${m}/${rand}`;
 }
 
 export async function GET() {
   await requireAuth();
   await connectDB();
-  const deliveries = await Delivery.find().sort({ createdAt: -1 }).lean();
+  // Employees see only outgoing deliveries here. Receivings are admin-only
+  // and live under /api/receivings, so they never leak into this listing.
+  const deliveries = await Delivery.find({ direction: { $ne: "in" } })
+    .sort({ createdAt: -1 })
+    .lean();
   return NextResponse.json(deliveries);
 }
 
@@ -35,8 +40,11 @@ export async function POST(req: NextRequest) {
     status: "pending",
   }));
 
+  // This endpoint is employee-accessible — it can ONLY create outgoing
+  // deliveries. Receivings go through /api/receivings (admin-gated).
   const delivery = await Delivery.create({
-    reference: generateRef(),
+    reference: generateRef("out"),
+    direction: "out",
     items: itemsWithStatus,
     createdBy: session.email,
   });

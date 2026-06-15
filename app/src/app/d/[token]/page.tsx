@@ -10,9 +10,7 @@ type DeliveryItem = {
   unit: string;
   image: string;
   quantity: number;          // original ordered qty
-  pickedQuantity?: number;   // what was actually received (editable)
-  stockDelta?: number;       // internal — current applied delta to Product.qty
-  currentStock?: number;     // server-enriched
+  pickedQuantity?: number;   // what was actually picked (editable)
   status: "pending" | "picked" | "cancelled";
 };
 
@@ -66,43 +64,19 @@ export default function DriverPickPage() {
     setDraftQty((m) => ({ ...m, [itemId]: Math.max(0, Math.floor(qty)) }));
   }
 
-  async function updateItem(itemId: string, action: "picked" | "cancelled" | "pending", override = false) {
+  async function updateItem(itemId: string, action: "picked" | "cancelled" | "pending") {
     if (!delivery) return;
     setUpdating(itemId);
     const body: any = { itemId, action, shareToken: token };
     if (action === "picked") {
       const item = delivery.items.find((i) => i._id === itemId);
       if (item) body.pickedQuantity = getDraftQty(item);
-      if (override) body.override = true;
     }
-    const res = await fetch(`/api/deliveries/${delivery._id}/pick`, {
+    await fetch(`/api/deliveries/${delivery._id}/pick`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-
-    // 409 = insufficient stock — ask the picker to override
-    if (res.status === 409) {
-      const data = await res.json().catch(() => ({}));
-      const item = delivery.items.find((i) => i._id === itemId);
-      const name = item?.name || "this item";
-      const available = data.available ?? 0;
-      const requested = data.requested ?? getDraftQty(item || ({} as DeliveryItem));
-      const ok = window.confirm(
-        `Stock mismatch on ${name}\n\n` +
-        `System shows: ${available}\n` +
-        `You're picking: ${requested}\n\n` +
-        `Tap OK to pick anyway. Stock will go to ${available - requested} (negative = need recount).`
-      );
-      if (ok) {
-        // Recurse with override
-        await updateItem(itemId, action, true);
-        return;
-      }
-      setUpdating(null);
-      return;
-    }
-
     setDraftQty((m) => {
       const { [itemId]: _, ...rest } = m;
       return rest;
@@ -152,12 +126,7 @@ export default function DriverPickPage() {
   const picked = delivery.items.filter((i) => i.status === "picked");
   const cancelled = delivery.items.filter((i) => i.status === "cancelled");
   const isCompleted = delivery.status === "completed" || remaining.length === 0;
-  // Items where system stock is short of the qty about to be picked
-  const shortageCount = delivery.items.filter((i) => {
-    if (i.status !== "pending") return false;
-    const want = i._id in draftQty ? draftQty[i._id] : (i.pickedQuantity || i.quantity);
-    return want > (i.currentStock ?? 0);
-  }).length;
+  // (No stock awareness here — picker is intentionally stock-blind.)
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -177,18 +146,6 @@ export default function DriverPickPage() {
               {isCompleted ? "Completed" : `${remaining.length} left`}
             </span>
           </div>
-
-          {/* Stock-shortage warning — pick is allowed via override; system records the mismatch. */}
-          {!isCompleted && shortageCount > 0 && (
-            <div className="mt-2 px-3 py-2 bg-amber-500/15 border border-amber-400/40 rounded-md flex items-start gap-2">
-              <svg className="w-4 h-4 text-amber-200 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.732 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-              </svg>
-              <p className="text-[11px] text-amber-100 leading-snug">
-                <strong>{shortageCount}</strong> item{shortageCount > 1 ? "s have" : " has"} <strong>less stock than you&rsquo;re picking</strong>. You can still pick — confirm the mismatch and the system records the override.
-              </p>
-            </div>
-          )}
 
           {/* Complete all — always at top */}
           {!isCompleted && (
@@ -319,8 +276,6 @@ function ItemRow({
   const isPending = item.status === "pending";
   const isPicked = item.status === "picked";
   const isCancelled = item.status === "cancelled";
-  const currentStock = item.currentStock ?? 0;
-  const willShort = isPending && draftQty > currentStock;
   const qtyDiffersFromOrder = isPending && draftQty !== item.quantity;
 
   return (
@@ -396,15 +351,6 @@ function ItemRow({
         </p>
         <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
           <span className="text-[10px] text-gray-400">{item.code}</span>
-          {/* Stock badge */}
-          <span className={`text-[10px] ${currentStock < 0 ? "text-red-600 font-semibold" : "text-gray-500"}`}>
-            In stock: <span className={`font-semibold tabular-nums ${currentStock < 0 ? "text-red-600" : "text-gray-700"}`}>{currentStock}</span>
-          </span>
-          {willShort && (
-            <span className="text-[9px] font-bold text-amber-800 bg-amber-100 px-1.5 py-0.5 rounded-full uppercase tracking-wide">
-              Short — override needed
-            </span>
-          )}
           {isPending && qtyDiffersFromOrder && (
             <span className="text-[9px] text-orange-700 bg-orange-50 px-1.5 py-0.5 rounded-full font-medium">
               ordered {item.quantity}
