@@ -193,8 +193,12 @@ export default function ReceivingPage() {
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3">
               {filtered.map((p) => {
                 const stock = Number(p.qty) || 0;
-                const isOut = stock <= 0;
                 const inCart = cart.find((c) => c._id === p._id)?.quantity || 0;
+                // Optimistic projection: what stock will be once we save
+                // this receiving. Card "loses" its red border the instant
+                // the picker adds enough — no polling lag.
+                const projected = stock + inCart;
+                const isOut = projected <= 0;
                 return (
                   <button
                     key={p._id}
@@ -203,6 +207,8 @@ export default function ReceivingPage() {
                     className={`relative bg-white rounded-lg border text-left p-2 transition active:scale-[0.98] flex flex-col ${
                       isOut
                         ? "border-2 border-red-400 ring-1 ring-red-200"
+                        : inCart > 0
+                        ? "border-2 border-orange-400 ring-1 ring-orange-100"
                         : "border-gray-200 hover:border-orange-300"
                     }`}
                   >
@@ -213,14 +219,16 @@ export default function ReceivingPage() {
                         <span className="text-gray-300 text-xs">—</span>
                       )}
                     </div>
-                    {/* Quantity below image — clear black bold, never grey */}
+                    {/* Quantity below image — clear black bold, never grey.
+                        Shows the projected stock (current + in-cart) so the
+                        UI reflects the imminent save. */}
                     <div className="flex items-center justify-between gap-1 mt-0.5">
                       <span
                         className={`text-base font-black tabular-nums leading-none ${
                           isOut ? "text-red-700" : "text-black"
                         }`}
                       >
-                        {stock}
+                        {projected}
                       </span>
                       <span className="text-[10px] text-gray-600 font-medium truncate">
                         {p.unit}

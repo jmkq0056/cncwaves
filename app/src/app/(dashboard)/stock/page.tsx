@@ -42,6 +42,8 @@ export default function StockPage() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filterCat, setFilterCat] = useState<string>("");
+  // Stock-state filter — "all" / "in" (qty > 0) / "out" (qty ≤ 0) / "neg" (qty < 0)
+  const [filterStock, setFilterStock] = useState<"all" | "in" | "out" | "neg">("all");
   const [savingMap, setSavingMap] = useState<Record<string, SaveStatus>>({});
   const [showHistory, setShowHistory] = useState(false);
   const [snapshots, setSnapshots] = useState<SnapshotSummary[]>([]);
@@ -104,6 +106,10 @@ export default function StockPage() {
     const q = search.trim().toLowerCase();
     return products.filter((p) => {
       if (filterCat && p.category !== filterCat) return false;
+      const qty = Number(p.qty) || 0;
+      if (filterStock === "in" && qty <= 0) return false;
+      if (filterStock === "out" && qty > 0) return false;
+      if (filterStock === "neg" && qty >= 0) return false;
       if (!q) return true;
       return (
         p.name.toLowerCase().includes(q) ||
@@ -111,7 +117,7 @@ export default function StockPage() {
         p.code.toLowerCase().includes(q)
       );
     });
-  }, [products, search, filterCat]);
+  }, [products, search, filterCat, filterStock]);
 
   // Group by category for the rendered list
   const grouped = useMemo(() => {
@@ -366,11 +372,21 @@ export default function StockPage() {
           />
         </div>
         <select
+          value={filterStock}
+          onChange={(e) => setFilterStock(e.target.value as typeof filterStock)}
+          className="px-2 py-2.5 rounded-lg border border-gray-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
+        >
+          <option value="all">All stock</option>
+          <option value="in">In stock</option>
+          <option value="out">Out of stock</option>
+          <option value="neg">Negative</option>
+        </select>
+        <select
           value={filterCat}
           onChange={(e) => setFilterCat(e.target.value)}
           className="px-2 py-2.5 rounded-lg border border-gray-300 bg-white text-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
         >
-          <option value="">All</option>
+          <option value="">All categories</option>
           {categories.map((c) => (
             <option key={c} value={c}>
               {c}
