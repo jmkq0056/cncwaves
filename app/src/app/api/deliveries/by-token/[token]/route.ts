@@ -53,19 +53,21 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ toke
   if (!delivery) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   if (action === "complete") {
+    // "Pick All Remaining" implies override = true: if the picker hits this
+    // button they're confirming everything physically left the building, even
+    // if system stock disagrees. Allow Product.qty to go negative.
     for (const item of delivery.items as any[]) {
       if (item.status === "pending") {
-        // Default the picked qty to the ordered qty for batch-pick
         if (!item.pickedQuantity || item.pickedQuantity <= 0) {
           item.pickedQuantity = item.quantity;
         }
-        const targetDelta = item.pickedQuantity;
+        const targetRemoval = item.pickedQuantity;
         const currentDelta = item.stockDelta || 0;
-        const diff = targetDelta - currentDelta;
+        const diff = targetRemoval - currentDelta;
         if (diff !== 0 && item.productId) {
-          await Product.findByIdAndUpdate(item.productId, { $inc: { qty: diff } });
+          await Product.findByIdAndUpdate(item.productId, { $inc: { qty: -diff } });
         }
-        item.stockDelta = targetDelta;
+        item.stockDelta = targetRemoval;
         item.status = "picked";
       }
     }

@@ -21,15 +21,33 @@ export default function StockPage() {
   const [search, setSearch] = useState("");
   const [filterCat, setFilterCat] = useState<string>("");
   const [savingMap, setSavingMap] = useState<Record<string, SaveStatus>>({});
+  const savingMapRef = useRef<Record<string, SaveStatus>>({});
+  useEffect(() => {
+    savingMapRef.current = savingMap;
+  }, [savingMap]);
   const debounceTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
 
+  // Initial load + auto-refresh so picks from /d/[token] show up live.
+  // Skip refresh while the user is actively editing a qty (don't trample input).
   useEffect(() => {
-    fetch("/api/products")
-      .then((r) => r.json())
-      .then((data) => {
-        setProducts(data);
-        setLoading(false);
-      });
+    let alive = true;
+    async function load() {
+      const r = await fetch("/api/products", { cache: "no-store" });
+      const data = await r.json();
+      if (!alive) return;
+      setProducts(data);
+      setLoading(false);
+    }
+    load();
+    const id = setInterval(() => {
+      // If any row is currently in 'saving' state, skip this tick.
+      const busy = Object.values(savingMapRef.current).some((s) => s === "saving");
+      if (!busy) load();
+    }, 15000);
+    return () => {
+      alive = false;
+      clearInterval(id);
+    };
   }, []);
 
   const categories = useMemo(() => {
@@ -67,7 +85,11 @@ export default function StockPage() {
     [filtered]
   );
   const outOfStockCount = useMemo(
-    () => filtered.filter((p) => (p.qty ?? 0) === 0).length,
+    () => filtered.filter((p) => (p.qty ?? 0) <= 0).length,
+    [filtered]
+  );
+  const negativeStockCount = useMemo(
+    () => filtered.filter((p) => (p.qty ?? 0) < 0).length,
     [filtered]
   );
 
@@ -133,9 +155,9 @@ export default function StockPage() {
         <SummaryChip label="Items" value={String(filtered.length)} />
         <SummaryChip label="Total units" value={String(totalUnits)} />
         <SummaryChip
-          label="Out of stock"
-          value={String(outOfStockCount)}
-          accent={outOfStockCount > 0 ? "red" : "green"}
+          label={negativeStockCount > 0 ? "Negative" : "Out of stock"}
+          value={String(negativeStockCount > 0 ? negativeStockCount : outOfStockCount)}
+          accent={negativeStockCount > 0 ? "red" : outOfStockCount > 0 ? "amber" : "green"}
         />
       </div>
 
@@ -204,10 +226,16 @@ function SummaryChip({
 }: {
   label: string;
   value: string;
-  accent?: "green" | "red";
+  accent?: "green" | "red" | "amber";
 }) {
   const valueColor =
-    accent === "red" ? "text-red-600" : accent === "green" ? "text-green-600" : "text-gray-900";
+    accent === "red"
+      ? "text-red-600"
+      : accent === "amber"
+      ? "text-amber-600"
+      : accent === "green"
+      ? "text-green-600"
+      : "text-gray-900";
   return (
     <div className="bg-white border border-gray-200 rounded-lg px-3 py-2">
       <div className="text-[10px] uppercase tracking-wider text-gray-500">{label}</div>
@@ -228,7 +256,8 @@ function StockRow({
   onBump: (d: number) => void;
 }) {
   const qty = product.qty ?? 0;
-  const low = qty === 0;
+  const low = qty <= 0;
+  const negative = qty < 0;
   return (
     <div className="flex items-center gap-2 px-3 py-2.5">
       {product.image ? (
@@ -263,13 +292,14 @@ function StockRow({
         <input
           type="number"
           inputMode="numeric"
-          min={0}
           step={1}
           value={qty}
           onChange={(e) => onChange(e.target.value)}
           onFocus={(e) => e.target.select()}
           className={`w-14 h-9 text-center text-sm font-semibold tabular-nums rounded-md border bg-white focus:outline-none focus:ring-2 ${
-            low
+            negative
+              ? "border-red-500 bg-red-50 text-red-700 focus:ring-red-500"
+              : low
               ? "border-red-300 text-red-700 focus:ring-red-500"
               : "border-gray-300 text-gray-900 focus:ring-orange-500"
           }`}
