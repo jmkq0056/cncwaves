@@ -1,0 +1,16 @@
+{
+  "name": "CNC Kasse — Personale",
+  "short_name": "CNC Personale",
+  "description": "Daglig kasseopgørelse for personale",
+  "start_url": "/staff",
+  "scope": "/staff",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1e293b",
+  "theme_color": "#1e293b",
+  "categories": ["business", "finance"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

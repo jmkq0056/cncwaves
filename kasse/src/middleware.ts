@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const publicPaths = ["/login", "/api/auth/login"];
+// Staff PWA + its API authenticate themselves (PIN / bearer token), so they are
+// exempt from the admin cookie gate below.
+const publicPaths = ["/login", "/api/auth/login", "/staff", "/api/staff"];
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
