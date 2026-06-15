@@ -1,15 +1,22 @@
 // Danish krone is pegged to EUR at the central rate ≈ 7.4604.
-// This is "good-enough" for accounting/inventory-value display. Change here
-// if business policy wants a different conversion rate.
+// This is the fallback used when the live FX API (frankfurter.app) is
+// unreachable. The /api/fx endpoint fetches the live ECB rate and the
+// Price page passes that into convert() at runtime.
 export const EUR_TO_DKK = 7.4604;
 
 export type Currency = "DKK" | "EUR";
 
-export function convert(amount: number, from: Currency, to: Currency): number {
+export function convert(
+  amount: number,
+  from: Currency,
+  to: Currency,
+  eurToDkk: number = EUR_TO_DKK
+): number {
   if (!Number.isFinite(amount)) return 0;
   if (from === to) return amount;
-  if (from === "EUR" && to === "DKK") return amount * EUR_TO_DKK;
-  if (from === "DKK" && to === "EUR") return amount / EUR_TO_DKK;
+  const rate = Number.isFinite(eurToDkk) && eurToDkk > 0 ? eurToDkk : EUR_TO_DKK;
+  if (from === "EUR" && to === "DKK") return amount * rate;
+  if (from === "DKK" && to === "EUR") return amount / rate;
   return amount;
 }
 

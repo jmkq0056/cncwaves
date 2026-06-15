@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { downloadStockReportPdf } from "@/lib/stockReportPdf";
+import { EUR_TO_DKK, convert, effectiveVatRate, formatMoney, type Currency } from "@/lib/currency";
 
 type Product = {
   _id: string;
@@ -12,6 +13,17 @@ type Product = {
   unit: string;
   image: string;
   qty?: number;
+  priceNet?: number;
+  priceCurrency?: Currency;
+  vatRate?: number;
+  noVat?: boolean;
+};
+
+type FxState = {
+  eurToDkk: number;
+  source: string;
+  asOf: string | null;
+  live: boolean;
 };
 
 type SaveStatus = "idle" | "saving" | "saved" | "error";
@@ -35,11 +47,29 @@ export default function StockPage() {
   const [snapshots, setSnapshots] = useState<SnapshotSummary[]>([]);
   const [snapshotsLoading, setSnapshotsLoading] = useState(false);
   const [busyAction, setBusyAction] = useState<"" | "snapshot" | "report" | "download">("");
+  const [displayCurrency, setDisplayCurrency] = useState<Currency>("DKK");
+  const [fx, setFx] = useState<FxState>({
+    eurToDkk: EUR_TO_DKK,
+    source: "fallback constant",
+    asOf: null,
+    live: false,
+  });
   const savingMapRef = useRef<Record<string, SaveStatus>>({});
   useEffect(() => {
     savingMapRef.current = savingMap;
   }, [savingMap]);
   const debounceTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+
+  // Live FX rate (same source as Price page) so the value chips reflect ECB
+  // rates with our 7.4604 fallback.
+  useEffect(() => {
+    fetch("/api/fx")
+      .then((r) => r.json())
+      .then((d: FxState) => {
+        if (d && Number.isFinite(d.eurToDkk) && d.eurToDkk > 0) setFx(d);
+      })
+      .catch(() => {});
+  }, []);
 
   // Initial load + auto-refresh so picks from /d/[token] show up live.
   // Skip refresh while the user is actively editing a qty (don't trample input).
@@ -102,6 +132,24 @@ export default function StockPage() {
     () => filtered.filter((p) => (p.qty ?? 0) <= 0).length,
     [filtered]
   );
+
+  // Inventory value: sum each row's qty * priceNet in its own currency, then
+  // convert to the displayed currency. Gross adds each row's effective VAT.
+  const inventoryValue = useMemo(() => {
+    let net = 0;
+    let gross = 0;
+    for (const p of filtered) {
+      const qty = Number(p.qty) || 0;
+      const priceNet = Number(p.priceNet) || 0;
+      if (qty <= 0 || priceNet <= 0) continue;
+      const rowCurrency: Currency = (p.priceCurrency as Currency) || "DKK";
+      const lineNet = convert(qty * priceNet, rowCurrency, displayCurrency, fx.eurToDkk);
+      const vat = effectiveVatRate(p);
+      net += lineNet;
+      gross += lineNet * (1 + vat);
+    }
+    return { net, gross };
+  }, [filtered, displayCurrency, fx.eurToDkk]);
   const negativeStockCount = useMemo(
     () => filtered.filter((p) => (p.qty ?? 0) < 0).length,
     [filtered]
@@ -151,6 +199,8 @@ export default function StockPage() {
           title: "Stock Report (Live)",
           capturedAt: now,
           source: "live",
+          displayCurrency,
+          eurToDkk: fx.eurToDkk,
           items: products.map((p) => ({
             code: p.code,
             name: p.name,
@@ -158,6 +208,10 @@ export default function StockPage() {
             category: p.category,
             unit: p.unit,
             qty: p.qty ?? 0,
+            priceNet: p.priceNet ?? 0,
+            priceCurrency: p.priceCurrency ?? "DKK",
+            vatRate: p.vatRate ?? 0.25,
+            noVat: !!p.noVat,
           })),
         },
         `stock-live-${stamp}.pdf`
@@ -184,6 +238,8 @@ export default function StockPage() {
           source: snap.source,
           label: snap.label,
           triggeredBy: snap.triggeredBy,
+          displayCurrency,
+          eurToDkk: fx.eurToDkk,
           items: full.items || [],
         },
         `stock-${snap.source}-${stamp}.pdf`
@@ -242,7 +298,7 @@ export default function StockPage() {
   }
 
   return (
-    <div className="px-3 sm:px-6 py-4 sm:py-6 max-w-3xl mx-auto">
+    <div className="px-3 sm:px-6 py-4 sm:py-6 max-w-7xl mx-auto">
       <div className="mb-4 sm:mb-6 flex items-start gap-3 flex-wrap">
         <div className="flex-1 min-w-0">
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Stock</h1>
@@ -250,7 +306,21 @@ export default function StockPage() {
             Tap a number to edit. Changes save automatically. Live — refreshes every 15s.
           </p>
         </div>
-        <div className="flex gap-1.5 flex-wrap">
+        <div className="flex gap-1.5 flex-wrap items-center">
+          <div className="inline-flex border border-gray-300 rounded-lg overflow-hidden text-xs font-semibold mr-1">
+            {(["DKK", "EUR"] as Currency[]).map((c) => (
+              <button
+                key={c}
+                type="button"
+                onClick={() => setDisplayCurrency(c)}
+                className={`px-2.5 py-2 transition-colors ${
+                  displayCurrency === c ? "bg-orange-500 text-white" : "bg-white text-gray-700"
+                }`}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
           <ToolbarButton onClick={captureSnapshot} disabled={busyAction === "snapshot"} variant="primary">
             {busyAction === "snapshot" ? "Saving…" : "Snapshot"}
           </ToolbarButton>
@@ -262,13 +332,22 @@ export default function StockPage() {
       </div>
 
       {/* Summary chips */}
-      <div className="grid grid-cols-3 gap-2 mb-3">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-3">
         <SummaryChip label="Items" value={String(filtered.length)} />
         <SummaryChip label="Total units" value={String(totalUnits)} />
         <SummaryChip
           label={negativeStockCount > 0 ? "Negative" : "Out of stock"}
           value={String(negativeStockCount > 0 ? negativeStockCount : outOfStockCount)}
           accent={negativeStockCount > 0 ? "red" : outOfStockCount > 0 ? "amber" : "green"}
+        />
+        <SummaryChip
+          label={`Value net · ${displayCurrency}`}
+          value={formatMoney(inventoryValue.net, displayCurrency)}
+        />
+        <SummaryChip
+          label={`Value w/ MOMS · ${displayCurrency}`}
+          value={formatMoney(inventoryValue.gross, displayCurrency)}
+          accent="amber"
         />
       </div>
 
@@ -306,6 +385,16 @@ export default function StockPage() {
         <div className="py-12 text-center text-gray-400 text-sm">No items match.</div>
       ) : (
         <div className="space-y-4">
+          {/* Desktop column headers — mobile keeps the card-flow layout */}
+          <div className="hidden md:grid md:grid-cols-[44px_minmax(0,1fr)_120px_160px_140px_140px_24px] gap-3 items-center px-3 py-1.5 text-[10px] uppercase tracking-wider text-gray-500 font-semibold">
+            <span />
+            <span>Item</span>
+            <span>Unit</span>
+            <span className="text-center">Stock</span>
+            <span className="text-right">Price (gross)</span>
+            <span className="text-right">Line value</span>
+            <span />
+          </div>
           {grouped.map(([cat, items]) => (
             <section key={cat}>
               <h2 className="text-[11px] uppercase tracking-wider text-gray-500 font-semibold px-1 mb-1.5">
@@ -317,6 +406,8 @@ export default function StockPage() {
                     key={p._id}
                     product={p}
                     status={savingMap[p._id] || "idle"}
+                    displayCurrency={displayCurrency}
+                    fxRate={fx.eurToDkk}
                     onChange={(v) => onChangeQty(p._id, v)}
                     onBump={(d) => bump(p._id, d)}
                   />
@@ -452,19 +543,33 @@ function SummaryChip({
 function StockRow({
   product,
   status,
+  displayCurrency,
+  fxRate,
   onChange,
   onBump,
 }: {
   product: Product;
   status: SaveStatus;
+  displayCurrency: Currency;
+  fxRate: number;
   onChange: (v: string) => void;
   onBump: (d: number) => void;
 }) {
   const qty = product.qty ?? 0;
   const low = qty <= 0;
   const negative = qty < 0;
+  const priceNet = Number(product.priceNet) || 0;
+  const rowCurrency: Currency = (product.priceCurrency as Currency) || "DKK";
+  const vat = effectiveVatRate(product);
+  const priceGross = priceNet * (1 + vat);
+  const lineNetDisplayed = convert(qty * priceNet, rowCurrency, displayCurrency, fxRate);
+  const lineGrossDisplayed = lineNetDisplayed * (1 + vat);
+  const priceGrossDisplayed = convert(priceGross, rowCurrency, displayCurrency, fxRate);
+  const unpriced = priceNet <= 0;
+
   return (
-    <div className="flex items-center gap-2 px-3 py-2.5">
+    <div className="px-3 py-2.5 md:grid md:grid-cols-[44px_minmax(0,1fr)_120px_160px_140px_140px_24px] md:gap-3 md:items-center flex flex-wrap gap-2">
+      {/* Image */}
       {product.image ? (
         <img
           src={product.image.startsWith("http") ? product.image : `/assets/${product.image}`}
@@ -475,16 +580,23 @@ function StockRow({
         <div className="w-10 h-10 rounded bg-gray-100 border border-gray-200 flex-shrink-0" />
       )}
 
+      {/* Name + meta */}
       <div className="flex-1 min-w-0">
         <div className="text-sm font-medium text-gray-900 truncate">{product.name}</div>
         <div className="text-[11px] text-gray-500 flex items-center gap-1.5">
           {product.brand && <span>{product.brand}</span>}
-          {product.brand && product.unit && <span>·</span>}
-          {product.unit && <span>per {product.unit}</span>}
+          {product.brand && product.code && <span>·</span>}
+          {product.code && <span className="font-mono">{product.code}</span>}
         </div>
       </div>
 
-      <div className="flex items-center gap-1 flex-shrink-0">
+      {/* Unit (desktop column) — hidden on mobile, info already in meta */}
+      <div className="hidden md:block text-[11px] text-gray-500 truncate">
+        {product.unit ? `per ${product.unit}` : ""}
+      </div>
+
+      {/* Stock stepper */}
+      <div className="flex items-center gap-1 md:justify-center flex-shrink-0">
         <button
           type="button"
           onClick={() => onBump(-1)}
@@ -517,12 +629,49 @@ function StockRow({
         >
           +
         </button>
-        <span className="text-[10px] text-gray-500 w-7 text-left" aria-live="polite">
-          {status === "saving" && "…"}
-          {status === "saved" && "✓"}
-          {status === "error" && "!"}
-        </span>
       </div>
+
+      {/* Price (gross, in row's currency for accuracy) */}
+      <div className="md:text-right text-[11px] flex md:block items-baseline gap-1.5">
+        {unpriced ? (
+          <span className="text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider">
+            No price
+          </span>
+        ) : (
+          <>
+            <span className="md:hidden text-gray-500">Price:</span>
+            <span className="font-semibold tabular-nums text-gray-800">
+              {formatMoney(priceGrossDisplayed, displayCurrency)}
+            </span>
+            <span className="text-[10px] text-gray-400 ml-1">
+              {product.noVat ? "ex MOMS" : `incl. ${Math.round(vat * 100)}%`}
+            </span>
+          </>
+        )}
+      </div>
+
+      {/* Line value = qty × gross price */}
+      <div className="md:text-right text-[11px] flex md:block items-baseline gap-1.5">
+        {qty > 0 && priceNet > 0 ? (
+          <>
+            <span className="md:hidden text-gray-500">Value:</span>
+            <span className="font-bold tabular-nums text-orange-600">
+              {formatMoney(lineGrossDisplayed, displayCurrency)}
+            </span>
+            <span className="text-[10px] text-gray-400 ml-1">
+              ({qty} × {formatMoney(priceGrossDisplayed / Math.max(qty, 1), displayCurrency)})
+            </span>
+          </>
+        ) : (
+          <span className="text-gray-300">—</span>
+        )}
+      </div>
+
+      <span className="text-[10px] text-gray-500 w-6 md:text-center" aria-live="polite">
+        {status === "saving" && "…"}
+        {status === "saved" && "✓"}
+        {status === "error" && "!"}
+      </span>
     </div>
   );
 }

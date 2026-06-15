@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
   const label: string = typeof body.label === "string" ? body.label.slice(0, 120) : "";
 
   const products = await Product.find()
-    .select("_id code name brand category unit qty")
+    .select("_id code name brand category unit qty priceNet priceCurrency vatRate noVat")
     .lean();
 
   const items = products.map((p: any) => ({
@@ -63,6 +63,10 @@ export async function POST(req: NextRequest) {
     category: p.category,
     unit: p.unit,
     qty: Number(p.qty) || 0,
+    priceNet: Number(p.priceNet) || 0,
+    priceCurrency: p.priceCurrency || "DKK",
+    vatRate: typeof p.vatRate === "number" ? p.vatRate : 0.25,
+    noVat: !!p.noVat,
   }));
 
   const totalUnits = items.reduce((s, i) => s + i.qty, 0);

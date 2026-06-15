@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  EUR_TO_DKK,
   convert,
   effectiveVatRate,
   formatMoney,
@@ -9,6 +10,13 @@ import {
   netToGross,
   type Currency,
 } from "@/lib/currency";
+
+type FxState = {
+  eurToDkk: number;
+  source: string;
+  asOf: string | null;
+  live: boolean;
+};
 
 type Product = {
   _id: string;
@@ -33,12 +41,31 @@ export default function PricePage() {
   const [search, setSearch] = useState("");
   const [filterCat, setFilterCat] = useState<string>("");
   const [displayCurrency, setDisplayCurrency] = useState<Currency>("DKK");
+  const [fx, setFx] = useState<FxState>({
+    eurToDkk: EUR_TO_DKK,
+    source: "fallback constant",
+    asOf: null,
+    live: false,
+  });
   const [savingMap, setSavingMap] = useState<Record<string, SaveStatus>>({});
   const savingMapRef = useRef<Record<string, SaveStatus>>({});
   useEffect(() => {
     savingMapRef.current = savingMap;
   }, [savingMap]);
   const debounceTimers = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+
+  // Fetch live FX once on mount. The API has its own 1h CDN cache so this
+  // is cheap; we silently keep the fallback rate if anything goes wrong.
+  useEffect(() => {
+    fetch("/api/fx")
+      .then((r) => r.json())
+      .then((data: FxState) => {
+        if (data && Number.isFinite(data.eurToDkk) && data.eurToDkk > 0) {
+          setFx(data);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -101,13 +128,13 @@ export default function PricePage() {
       const priceNet = Number(p.priceNet) || 0;
       if (priceNet <= 0) unpriced++;
       const rowCurrency: Currency = (p.priceCurrency as Currency) || "DKK";
-      const lineNet = convert(qty * priceNet, rowCurrency, displayCurrency);
+      const lineNet = convert(qty * priceNet, rowCurrency, displayCurrency, fx.eurToDkk);
       const vat = effectiveVatRate(p);
       net += lineNet;
       gross += lineNet * (1 + vat);
     }
     return { net, gross, unpriced };
-  }, [filtered, displayCurrency]);
+  }, [filtered, displayCurrency, fx.eurToDkk]);
 
   function patchPrice(id: string, body: Record<string, unknown>) {
     setSavingMap((m) => ({ ...m, [id]: "saving" }));
@@ -159,9 +186,18 @@ export default function PricePage() {
   }
 
   function onToggleNoVat(p: Product) {
-    const noVat = !p.noVat;
-    setLocal(p._id, { noVat });
-    patchPrice(p._id, { noVat });
+    const newNoVat = !p.noVat;
+    // Preserve the GROSS price across the toggle. Otherwise toggling "No
+    // MOMS" silently drops the visible gross from net*(1+vat) down to net,
+    // which looks broken to the picker.
+    //   On  → noVat=true,  vat_eff=0           → net := old_gross
+    //   Off → noVat=false, vat_eff=vatRate     → net := old_gross / (1+vat)
+    const currentVat = effectiveVatRate(p);
+    const grossKept = netToGross(Number(p.priceNet) || 0, currentVat);
+    const newVat = newNoVat ? 0 : (Number(p.vatRate) || 0);
+    const newNet = Math.round((grossKept / (1 + newVat)) * 10000) / 10000;
+    setLocal(p._id, { noVat: newNoVat, priceNet: newNet });
+    patchPrice(p._id, { noVat: newNoVat, priceNet: newNet });
   }
 
   function onChangeCurrency(p: Product, cur: Currency) {
@@ -170,7 +206,7 @@ export default function PricePage() {
   }
 
   return (
-    <div className="px-3 sm:px-6 py-4 sm:py-6 max-w-3xl mx-auto">
+    <div className="px-3 sm:px-6 py-4 sm:py-6 max-w-7xl mx-auto">
       <div className="mb-4 sm:mb-6 flex items-start gap-3 flex-wrap">
         <div className="flex-1 min-w-0">
           <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Price</h1>
@@ -178,6 +214,16 @@ export default function PricePage() {
             Enter prices in either DKK or EUR per item. Edit either the net or
             the gross column — the other updates automatically.
           </p>
+          <div className="mt-1 inline-flex items-center gap-1.5 text-[10px]">
+            <span
+              className={`inline-block w-1.5 h-1.5 rounded-full ${fx.live ? "bg-green-500" : "bg-amber-500"}`}
+              aria-hidden
+            />
+            <span className="text-gray-500">
+              FX <span className="tabular-nums font-semibold text-gray-800">{fx.eurToDkk.toFixed(4)}</span>{" "}
+              EUR→DKK · {fx.live ? `live · ${fx.asOf ?? ""}` : "fallback"}
+            </span>
+          </div>
         </div>
         {/* Display currency toggle */}
         <div className="inline-flex border border-gray-300 rounded-lg overflow-hidden text-xs font-semibold">
@@ -260,6 +306,7 @@ export default function PricePage() {
                     product={p}
                     status={savingMap[p._id] || "idle"}
                     displayCurrency={displayCurrency}
+                    fxRate={fx.eurToDkk}
                     onChangeNet={(v) => onChangeNet(p, v)}
                     onChangeGross={(v) => onChangeGross(p, v)}
                     onToggleNoVat={() => onToggleNoVat(p)}
@@ -306,6 +353,7 @@ function PriceRow({
   product,
   status,
   displayCurrency,
+  fxRate,
   onChangeNet,
   onChangeGross,
   onToggleNoVat,
@@ -314,6 +362,7 @@ function PriceRow({
   product: Product;
   status: SaveStatus;
   displayCurrency: Currency;
+  fxRate: number;
   onChangeNet: (v: string) => void;
   onChangeGross: (v: string) => void;
   onToggleNoVat: () => void;
@@ -324,7 +373,7 @@ function PriceRow({
   const rowCurrency: Currency = (product.priceCurrency as Currency) || "DKK";
   const vat = effectiveVatRate(product);
   const priceGross = netToGross(priceNet, vat);
-  const lineNetDisplayed = convert(qty * priceNet, rowCurrency, displayCurrency);
+  const lineNetDisplayed = convert(qty * priceNet, rowCurrency, displayCurrency, fxRate);
   const lineGrossDisplayed = lineNetDisplayed * (1 + vat);
   const unpriced = priceNet <= 0;
 

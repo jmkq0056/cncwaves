@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-// One row per product captured at snapshot time.
+// One row per product captured at snapshot time. Includes pricing so a
+// historical PDF reflects what the price/value WAS at that moment.
 const StockSnapshotItemSchema = new mongoose.Schema(
   {
     productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
@@ -10,6 +11,10 @@ const StockSnapshotItemSchema = new mongoose.Schema(
     category: String,
     unit: String,
     qty: { type: Number, default: 0 },
+    priceNet: { type: Number, default: 0 },
+    priceCurrency: { type: String, default: "DKK" },
+    vatRate: { type: Number, default: 0.25 },
+    noVat: { type: Boolean, default: false },
   },
   { _id: false }
 );
