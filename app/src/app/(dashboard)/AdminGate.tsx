@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const ADMIN_PAGES = ["/stats", "/vacations", "/submissions", "/settings"];
+const ADMIN_PAGES = ["/stats", "/vacations", "/submissions", "/settings", "/stock"];
 
 export default function AdminGate({
   pathname,

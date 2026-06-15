@@ -150,14 +150,14 @@ export default function DriverPickPage() {
             </span>
           </div>
 
-          {/* Out-of-stock warning banner */}
+          {/* Out-of-stock info banner — pick is allowed; picking will create the stock. */}
           {!isCompleted && outOfStockCount > 0 && (
-            <div className="mt-2 px-3 py-2 bg-red-500/15 border border-red-400/40 rounded-md flex items-start gap-2">
-              <svg className="w-4 h-4 text-red-300 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+            <div className="mt-2 px-3 py-2 bg-amber-500/15 border border-amber-400/40 rounded-md flex items-start gap-2">
+              <svg className="w-4 h-4 text-amber-200 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.732 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
               </svg>
-              <p className="text-[11px] text-red-100 leading-snug">
-                <strong>{outOfStockCount}</strong> item{outOfStockCount > 1 ? "s are" : " is"} currently <strong>out of stock</strong>. Confirm exact received quantity before picking.
+              <p className="text-[11px] text-amber-100 leading-snug">
+                <strong>{outOfStockCount}</strong> item{outOfStockCount > 1 ? "s are" : " is"} <strong>not yet in stock</strong>. You can still pick — adjust the qty to what you actually received and the system will add it to inventory.
               </p>
             </div>
           )}
@@ -297,13 +297,15 @@ function ItemRow({
 
   return (
     <div className={`flex items-center gap-2 px-3 py-3 border-b bg-white ${isCancelled ? "opacity-50" : ""}`}>
-      {/* Image */}
+      {/* Image — tap to enlarge */}
       <button
+        type="button"
         onClick={onImageClick}
-        className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center border"
+        aria-label={item.image ? "View image" : "No image"}
+        className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center border active:opacity-70 transition-opacity"
       >
         {item.image ? (
-          <img src={imgSrc(item.image)} alt="" className="w-full h-full object-cover" />
+          <img src={imgSrc(item.image)} alt="" className="w-full h-full object-cover pointer-events-none" />
         ) : (
           <span className="text-gray-300 text-[8px]">--</span>
         )}
