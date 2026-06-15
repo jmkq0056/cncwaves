@@ -1,19 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Delivery from "@/lib/models/Delivery";
+import Product from "@/lib/models/Product";
 
 // Public — no auth. Driver updates item status via shareToken.
 //
-// IMPORTANT: this endpoint is stock-blind on purpose. Stock is private
-// to admins; the delivery picker (employees / drivers) only confirms
-// what was picked/cancelled. Receivings (admin-only, /api/receivings)
-// handle the stock side of inventory.
+// Stock is private to admins — the response NEVER includes stock numbers
+// and the picker UI never reads them. But under the hood every pick still
+// adjusts Product.qty atomically so the inventory equation stays correct:
+//
+//   Opening + Receiving (direction:"in") − Issuing (direction:"out") = Current
+//
+// Idempotent: stockDelta on each item tracks the currently-applied change,
+// so clicking pick twice / undo / re-pick all settle correctly without
+// double-counting.
 //
 // Body: { itemId, action, shareToken, pickedQuantity? }
 //   - action: "picked" | "cancelled" | "pending"
-//   - pickedQuantity (optional, only meaningful when action === "picked"):
-//     overrides the ordered quantity. If omitted, item.pickedQuantity stays
-//     as-is; if also unset, defaults to item.quantity.
+//   - pickedQuantity (only meaningful when picked): overrides ordered qty.
+//
+// Negative stock is allowed silently — employees never see it. Admins
+// reconcile in /stock if a recount is needed.
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   await connectDB();
   const { id } = await params;
@@ -36,6 +43,20 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       item.pickedQuantity = item.quantity;
     }
   }
+
+  // Direction decides the sign:
+  //   "out" = issuing  → deduct
+  //   "in"  = receiving → add
+  const isIncoming = (delivery as any).direction === "in";
+  const targetAmount = action === "picked" ? (item.pickedQuantity || 0) : 0;
+  const currentDelta = item.stockDelta || 0;
+  const diff = targetAmount - currentDelta; // positive = more activity, negative = restoring
+
+  if (diff !== 0 && item.productId) {
+    const sign = isIncoming ? 1 : -1;
+    await Product.findByIdAndUpdate(item.productId, { $inc: { qty: sign * diff } });
+  }
+  item.stockDelta = targetAmount;
   item.status = action;
 
   const allDone = delivery.items.every((i: any) => i.status === "picked" || i.status === "cancelled");
@@ -47,5 +68,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     success: true,
     deliveryStatus: delivery.status,
     pickedQuantity: item.pickedQuantity,
+    // intentionally NOT echoing stockDelta or Product.qty to keep employees
+    // stock-blind.
   });
 }
