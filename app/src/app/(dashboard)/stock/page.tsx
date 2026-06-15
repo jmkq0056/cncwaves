@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { downloadStockReportPdf } from "@/lib/stockReportPdf";
 
 type Product = {
   _id: string;
@@ -15,12 +16,25 @@ type Product = {
 
 type SaveStatus = "idle" | "saving" | "saved" | "error";
 
+type SnapshotSummary = {
+  _id: string;
+  capturedAt: string;
+  source: string;
+  label?: string;
+  triggeredBy?: string;
+  totals?: { itemCount?: number; totalUnits?: number; outOfStockCount?: number; negativeCount?: number };
+};
+
 export default function StockPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [filterCat, setFilterCat] = useState<string>("");
   const [savingMap, setSavingMap] = useState<Record<string, SaveStatus>>({});
+  const [showHistory, setShowHistory] = useState(false);
+  const [snapshots, setSnapshots] = useState<SnapshotSummary[]>([]);
+  const [snapshotsLoading, setSnapshotsLoading] = useState(false);
+  const [busyAction, setBusyAction] = useState<"" | "snapshot" | "report" | "download">("");
   const savingMapRef = useRef<Record<string, SaveStatus>>({});
   useEffect(() => {
     savingMapRef.current = savingMap;
@@ -93,6 +107,92 @@ export default function StockPage() {
     [filtered]
   );
 
+  async function loadSnapshots() {
+    setSnapshotsLoading(true);
+    try {
+      const r = await fetch("/api/stock/snapshots?limit=100", { cache: "no-store" });
+      if (r.ok) setSnapshots(await r.json());
+    } finally {
+      setSnapshotsLoading(false);
+    }
+  }
+
+  function openHistory() {
+    setShowHistory(true);
+    loadSnapshots();
+  }
+
+  async function captureSnapshot() {
+    setBusyAction("snapshot");
+    try {
+      const r = await fetch("/api/stock/snapshots", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ source: "manual", label: "" }),
+      });
+      if (!r.ok) {
+        alert("Snapshot failed: " + (await r.text()).slice(0, 200));
+        return;
+      }
+      // Refresh list if open
+      if (showHistory) await loadSnapshots();
+    } finally {
+      setBusyAction("");
+    }
+  }
+
+  function downloadCurrentReport() {
+    setBusyAction("report");
+    try {
+      const now = new Date();
+      const stamp = now.toISOString().replace(/[:.]/g, "-").slice(0, 16);
+      downloadStockReportPdf(
+        {
+          title: "Stock Report (Live)",
+          capturedAt: now,
+          source: "live",
+          items: products.map((p) => ({
+            code: p.code,
+            name: p.name,
+            brand: p.brand,
+            category: p.category,
+            unit: p.unit,
+            qty: p.qty ?? 0,
+          })),
+        },
+        `stock-live-${stamp}.pdf`
+      );
+    } finally {
+      setBusyAction("");
+    }
+  }
+
+  async function downloadSnapshotReport(snap: SnapshotSummary) {
+    setBusyAction("download");
+    try {
+      const r = await fetch(`/api/stock/snapshots/${snap._id}`, { cache: "no-store" });
+      if (!r.ok) {
+        alert("Could not load snapshot");
+        return;
+      }
+      const full = await r.json();
+      const stamp = new Date(snap.capturedAt).toISOString().replace(/[:.]/g, "-").slice(0, 16);
+      downloadStockReportPdf(
+        {
+          title: `Stock Report (${snap.source})`,
+          capturedAt: snap.capturedAt,
+          source: snap.source,
+          label: snap.label,
+          triggeredBy: snap.triggeredBy,
+          items: full.items || [],
+        },
+        `stock-${snap.source}-${stamp}.pdf`
+      );
+    } finally {
+      setBusyAction("");
+    }
+  }
+
   function setQtyLocal(id: string, qty: number) {
     setProducts((prev) => prev.map((p) => (p._id === id ? { ...p, qty } : p)));
   }
@@ -143,11 +243,22 @@ export default function StockPage() {
 
   return (
     <div className="px-3 sm:px-6 py-4 sm:py-6 max-w-3xl mx-auto">
-      <div className="mb-4 sm:mb-6">
-        <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Stock</h1>
-        <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
-          Tap a number to edit. Changes save automatically.
-        </p>
+      <div className="mb-4 sm:mb-6 flex items-start gap-3 flex-wrap">
+        <div className="flex-1 min-w-0">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">Stock</h1>
+          <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+            Tap a number to edit. Changes save automatically. Live — refreshes every 15s.
+          </p>
+        </div>
+        <div className="flex gap-1.5 flex-wrap">
+          <ToolbarButton onClick={captureSnapshot} disabled={busyAction === "snapshot"} variant="primary">
+            {busyAction === "snapshot" ? "Saving…" : "Snapshot"}
+          </ToolbarButton>
+          <ToolbarButton onClick={downloadCurrentReport} disabled={busyAction === "report"}>
+            {busyAction === "report" ? "…" : "Report PDF"}
+          </ToolbarButton>
+          <ToolbarButton onClick={openHistory}>History</ToolbarButton>
+        </div>
       </div>
 
       {/* Summary chips */}
@@ -215,7 +326,101 @@ export default function StockPage() {
           ))}
         </div>
       )}
+
+      {/* History modal */}
+      {showHistory && (
+        <div className="fixed inset-0 z-50 bg-black/40 flex items-end sm:items-center justify-center p-0 sm:p-4" onClick={() => setShowHistory(false)}>
+          <div
+            className="bg-white w-full sm:max-w-lg sm:rounded-2xl rounded-t-2xl shadow-2xl max-h-[90vh] flex flex-col overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b bg-white sticky top-0">
+              <div>
+                <h3 className="font-bold text-gray-900">Stock History</h3>
+                <p className="text-[11px] text-gray-500">
+                  Snapshots auto-captured by the server. Tap any to download the PDF.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowHistory(false)}
+                className="w-8 h-8 rounded-full bg-gray-100 text-gray-600 active:bg-gray-200"
+                aria-label="Close"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="flex-1 overflow-auto">
+              {snapshotsLoading ? (
+                <div className="py-12 text-center text-gray-400 text-sm">Loading…</div>
+              ) : snapshots.length === 0 ? (
+                <div className="py-12 text-center text-gray-400 text-sm">
+                  No snapshots yet. Tap “Snapshot” above or wait for the server cron.
+                </div>
+              ) : (
+                <ul className="divide-y divide-gray-100">
+                  {snapshots.map((s) => (
+                    <li key={s._id} className="px-4 sm:px-5 py-3 flex items-center gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-semibold text-gray-900">
+                          {new Date(s.capturedAt).toLocaleString("da-DK", { timeZone: "Europe/Copenhagen" })}
+                        </div>
+                        <div className="text-[11px] text-gray-500 flex flex-wrap gap-x-2 mt-0.5">
+                          <span className="uppercase tracking-wider font-medium">{s.source}</span>
+                          {s.label && <span>· {s.label}</span>}
+                          {s.totals?.itemCount != null && <span>· {s.totals.itemCount} items</span>}
+                          {s.totals?.totalUnits != null && <span>· {s.totals.totalUnits} units</span>}
+                          {s.totals?.outOfStockCount ? (
+                            <span className={s.totals.negativeCount ? "text-red-600 font-semibold" : "text-amber-700"}>
+                              · {s.totals.outOfStockCount} out{s.totals.negativeCount ? ` (${s.totals.negativeCount} neg)` : ""}
+                            </span>
+                          ) : null}
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => downloadSnapshotReport(s)}
+                        disabled={busyAction === "download"}
+                        className="px-3 py-2 rounded-md bg-orange-500 text-white text-xs font-semibold active:bg-orange-600 disabled:opacity-50"
+                      >
+                        PDF
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
+  );
+}
+
+function ToolbarButton({
+  children,
+  onClick,
+  disabled,
+  variant = "default",
+}: {
+  children: React.ReactNode;
+  onClick: () => void;
+  disabled?: boolean;
+  variant?: "default" | "primary";
+}) {
+  const cls =
+    variant === "primary"
+      ? "bg-orange-500 text-white border-orange-500 active:bg-orange-600"
+      : "bg-white text-gray-700 border-gray-300 active:bg-gray-100";
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className={`px-3 py-2 text-xs font-semibold rounded-md border shadow-sm disabled:opacity-50 ${cls}`}
+    >
+      {children}
+    </button>
   );
 }
 
