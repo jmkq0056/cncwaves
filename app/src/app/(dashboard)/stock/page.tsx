@@ -643,9 +643,6 @@ function StockRow({
             <span className="font-semibold tabular-nums text-gray-800">
               {formatMoney(priceGrossDisplayed, displayCurrency)}
             </span>
-            <span className="text-[10px] text-gray-400 ml-1">
-              {product.noVat ? "ex MOMS" : `incl. ${Math.round(vat * 100)}%`}
-            </span>
           </>
         )}
       </div>
@@ -657,9 +654,6 @@ function StockRow({
             <span className="md:hidden text-gray-500">Value:</span>
             <span className="font-bold tabular-nums text-orange-600">
               {formatMoney(lineGrossDisplayed, displayCurrency)}
-            </span>
-            <span className="text-[10px] text-gray-400 ml-1">
-              ({qty} × {formatMoney(priceGrossDisplayed / Math.max(qty, 1), displayCurrency)})
             </span>
           </>
         ) : (

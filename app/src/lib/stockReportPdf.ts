@@ -221,14 +221,17 @@ export function buildStockReportPdf(input: StockReportInput): jsPDF {
 
   const headerHeight = 7;
   const rowHeight = 7;
-  // Column x-positions (mm). pageWidth ≈ 210 for A4 portrait.
-  const colCode = left + 2;
-  const colName = left + 22;
-  const colBrand = left + 86;
-  const colUnit = left + 122;
-  const colQty = left + 145;
-  const colPrice = left + 168;
-  const colValue = right - 2;
+  // Column geometry (mm) on A4 portrait (pageWidth ≈ 210, usable 12..198 = 186mm).
+  // Text columns use a START x (left-aligned); numeric columns use an END x
+  // (right-aligned) so adjacent number columns can't bleed into each other.
+  // Spacing is generous enough for "1,234.56 kr" without collisions.
+  const colCodeStart = left + 2;
+  const colNameStart = left + 22;
+  const colBrandStart = left + 78;     // name has 56mm of room
+  const colUnitStart = left + 110;     // brand has 32mm
+  const colQtyEnd = left + 130;        // unit has 20mm; qty number ends here
+  const colPriceEnd = left + 160;      // 30mm gap from qty (room for ~14 chars)
+  const colValueEnd = right - 2;       // ~34mm gap from price
 
   function drawTableHeader(yy: number) {
     doc.setFillColor(40, 40, 50);
@@ -236,19 +239,24 @@ export function buildStockReportPdf(input: StockReportInput): jsPDF {
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(7.5);
     doc.setFont("helvetica", "bold");
-    doc.text("CODE", colCode, yy + 4.8);
-    doc.text("NAME", colName, yy + 4.8);
-    doc.text("BRAND", colBrand, yy + 4.8);
-    doc.text("UNIT", colUnit, yy + 4.8);
-    doc.text("QTY", colQty, yy + 4.8, { align: "left" });
-    doc.text("PRICE", colPrice, yy + 4.8, { align: "left" });
-    doc.text("LINE VALUE", colValue, yy + 4.8, { align: "right" });
+    doc.text("CODE", colCodeStart, yy + 4.8);
+    doc.text("NAME", colNameStart, yy + 4.8);
+    doc.text("BRAND", colBrandStart, yy + 4.8);
+    doc.text("UNIT", colUnitStart, yy + 4.8);
+    doc.text("QTY", colQtyEnd, yy + 4.8, { align: "right" });
+    doc.text("PRICE", colPriceEnd, yy + 4.8, { align: "right" });
+    doc.text("LINE VALUE", colValueEnd, yy + 4.8, { align: "right" });
   }
   drawTableHeader(y);
   y += headerHeight + 1;
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8.5);
+
+  // Tighter truncation for name + brand so they can't overflow into the
+  // numeric columns even with long product names.
+  const nameMaxChars = 30;
+  const brandMaxChars = 16;
 
   let currentCat = "";
   let rowIdx = 0;
@@ -283,16 +291,16 @@ export function buildStockReportPdf(input: StockReportInput): jsPDF {
     }
 
     doc.setTextColor(120, 120, 120);
-    doc.text(String(r.code || ""), colCode, y + 4.8);
+    doc.text(String(r.code || ""), colCodeStart, y + 4.8);
 
     doc.setTextColor(30, 30, 30);
-    const name = (r.name || "").length > 36 ? (r.name || "").slice(0, 35) + "…" : (r.name || "");
-    doc.text(name, colName, y + 4.8);
+    const name = (r.name || "").length > nameMaxChars ? (r.name || "").slice(0, nameMaxChars - 1) + "…" : (r.name || "");
+    doc.text(name, colNameStart, y + 4.8);
 
     doc.setTextColor(110, 110, 110);
-    const brand = (r.brand || "").length > 20 ? (r.brand || "").slice(0, 19) + "…" : (r.brand || "");
-    doc.text(brand, colBrand, y + 4.8);
-    doc.text(String(r.unit || ""), colUnit, y + 4.8);
+    const brand = (r.brand || "").length > brandMaxChars ? (r.brand || "").slice(0, brandMaxChars - 1) + "…" : (r.brand || "");
+    doc.text(brand, colBrandStart, y + 4.8);
+    doc.text(String(r.unit || ""), colUnitStart, y + 4.8);
 
     const isNeg = r.qty < 0;
     const isOut = r.qty === 0;
@@ -300,24 +308,24 @@ export function buildStockReportPdf(input: StockReportInput): jsPDF {
     else if (isOut) doc.setTextColor(160, 100, 0);
     else doc.setTextColor(30, 30, 30);
     doc.setFont("helvetica", "bold");
-    doc.text(String(r.qty), colQty, y + 4.8);
+    doc.text(String(r.qty), colQtyEnd, y + 4.8, { align: "right" });
     doc.setFont("helvetica", "normal");
 
     doc.setTextColor(60, 60, 60);
     if (r.priceNet > 0) {
-      doc.text(formatMoney(r.priceGrossDisplayed, displayCurrency), colPrice, y + 4.8);
+      doc.text(formatMoney(r.priceGrossDisplayed, displayCurrency), colPriceEnd, y + 4.8, { align: "right" });
     } else {
       doc.setTextColor(180, 100, 0);
-      doc.text("—", colPrice, y + 4.8);
+      doc.text("—", colPriceEnd, y + 4.8, { align: "right" });
     }
 
     doc.setTextColor(241, 125, 0);
     doc.setFont("helvetica", "bold");
     if (r.qty > 0 && r.priceNet > 0) {
-      doc.text(formatMoney(r.lineGrossDisplayed, displayCurrency), colValue, y + 4.8, { align: "right" });
+      doc.text(formatMoney(r.lineGrossDisplayed, displayCurrency), colValueEnd, y + 4.8, { align: "right" });
     } else {
       doc.setTextColor(180, 180, 180);
-      doc.text("—", colValue, y + 4.8, { align: "right" });
+      doc.text("—", colValueEnd, y + 4.8, { align: "right" });
     }
     doc.setFont("helvetica", "normal");
 
