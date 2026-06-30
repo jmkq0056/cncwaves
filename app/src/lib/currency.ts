@@ -20,9 +20,16 @@ export function convert(
   return amount;
 }
 
+// Default VAT when the field is missing on the doc (e.g. seeded via raw
+// bulk_write that didn't set vatRate). Mongoose schema default is 25% so
+// we mirror that here — otherwise undefined-as-NaN collapses to 0 and DKK
+// items look VAT-free in the UI. Pass explicit 0 + noVat=true to opt out.
+const DEFAULT_VAT_RATE = 0.25;
+
 export function effectiveVatRate(p: { vatRate?: number; noVat?: boolean }): number {
-  if (p.noVat) return 0;
-  return Number(p.vatRate) || 0;
+  if (p.noVat === true) return 0;
+  const r = Number(p.vatRate);
+  return Number.isFinite(r) ? r : DEFAULT_VAT_RATE;
 }
 
 export function netToGross(net: number, vat: number): number {
