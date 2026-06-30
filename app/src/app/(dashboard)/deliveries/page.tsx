@@ -9,9 +9,16 @@ type DeliveryItem = {
   quantity: number;
   unit: string;
   note: string;
+  image?: string;
   pickedQuantity?: number;
   status?: "pending" | "picked" | "cancelled";
 };
+
+function imgSrc(image: string | undefined): string {
+  if (!image) return "";
+  if (image.startsWith("http")) return image;
+  return `/assets/${image}`;
+}
 
 type Delivery = {
   _id: string;
@@ -166,20 +173,21 @@ export default function DeliveriesPage() {
               <th className="px-4 py-3 text-center">Items</th>
               <th className="px-4 py-3 text-right">Value</th>
               <th className="px-4 py-3 text-center">Status</th>
+              <th className="px-2 py-3"></th>
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
             {loading && (
-              <tr><td colSpan={7} className="text-center py-8 text-gray-400">Loading...</td></tr>
+              <tr><td colSpan={8} className="text-center py-8 text-gray-400">Loading...</td></tr>
             )}
             {!loading && deliveries.length === 0 && (
-              <tr><td colSpan={7} className="text-center py-8 text-gray-400">No deliveries yet</td></tr>
+              <tr><td colSpan={8} className="text-center py-8 text-gray-400">No deliveries yet</td></tr>
             )}
             {deliveries.map((d) => (
               <tr
                 key={d._id}
-                className="border-b hover:bg-gray-50 cursor-pointer"
+                className="group border-b hover:bg-gray-50 cursor-pointer"
                 onClick={() => setSelected(d)}
               >
                 <td className="px-4 py-3 text-gray-600 tabular-nums">{new Date(d.createdAt).toLocaleString("da-DK")}</td>
@@ -197,6 +205,11 @@ export default function DeliveriesPage() {
                 </td>
                 <td className="px-4 py-3 text-center">
                   <StatusPill status={d.status} />
+                </td>
+                <td className="px-2 py-3 text-center text-gray-300 group-hover:text-gray-600">
+                  <svg className="w-4 h-4 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                  </svg>
                 </td>
                 <td className="px-4 py-3 text-right" onClick={(e) => e.stopPropagation()}>
                   <div className="flex gap-1 justify-end">
@@ -251,12 +264,17 @@ export default function DeliveriesPage() {
             className="bg-white rounded-lg shadow-sm border border-gray-100 p-3 active:bg-gray-50"
             onClick={() => setSelected(d)}
           >
-            <div className="flex items-start justify-between mb-1.5">
+            <div className="flex items-start justify-between mb-1.5 gap-2">
               <div className="min-w-0 flex-1">
                 <p className="font-mono text-sm font-semibold text-gray-900 truncate">{d.reference}</p>
                 <p className="text-[11px] text-gray-400">{new Date(d.createdAt).toLocaleString("da-DK")}</p>
               </div>
-              <StatusPill status={d.status} />
+              <div className="flex items-center gap-1.5 flex-shrink-0">
+                <StatusPill status={d.status} />
+                <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </div>
             </div>
             <div className="flex items-center justify-between gap-2 mb-2">
               <div className="text-[11px] text-gray-500 truncate">
@@ -369,6 +387,7 @@ export default function DeliveriesPage() {
             <table className="hidden md:table w-full text-sm">
               <thead>
                 <tr className="bg-gray-700 text-white">
+                  <th className="px-4 py-2 text-left w-12"></th>
                   <th className="px-4 py-2 text-left">Item</th>
                   <th className="px-4 py-2 text-center">Qty</th>
                   <th className="px-4 py-2 text-left">Unit</th>
@@ -382,6 +401,17 @@ export default function DeliveriesPage() {
                   const v = value?.perItem?.find((p) => p.code === item.code || (item.productId && p.productId === item.productId));
                   return (
                     <tr key={i} className="border-b">
+                      <td className="px-3 py-2">
+                        {item.image ? (
+                          <img
+                            src={imgSrc(item.image)}
+                            alt=""
+                            className="w-9 h-9 rounded object-cover border border-gray-200"
+                          />
+                        ) : (
+                          <div className="w-9 h-9 rounded bg-gray-100 border border-gray-200" />
+                        )}
+                      </td>
                       <td className="px-4 py-2">
                         <div className="text-gray-900">{item.name}</div>
                         <div className="text-[10px] text-gray-400 font-mono">{item.code}</div>
@@ -421,6 +451,15 @@ export default function DeliveriesPage() {
                   : "bg-gray-100 text-gray-700";
                 return (
                   <div key={i} className="px-4 py-3 flex items-center gap-3">
+                    {item.image ? (
+                      <img
+                        src={imgSrc(item.image)}
+                        alt=""
+                        className="w-10 h-10 rounded object-cover border border-gray-200 flex-shrink-0"
+                      />
+                    ) : (
+                      <div className="w-10 h-10 rounded bg-gray-100 border border-gray-200 flex-shrink-0" />
+                    )}
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium truncate">{item.name}</p>
                       <p className="text-[11px] text-gray-400">{item.code} · {item.unit}</p>
