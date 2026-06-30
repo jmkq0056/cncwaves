@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type DeliveryItem = {
   productId?: string;
@@ -54,26 +55,16 @@ type ValueResp = {
 };
 
 export default function DeliveriesPage() {
+  const router = useRouter();
   const [deliveries, setDeliveries] = useState<Delivery[]>([]);
-  const [selected, setSelected] = useState<Delivery | null>(null);
-  const [value, setValue] = useState<ValueResp | null>(null);
-
-  // Whenever a delivery is opened, fetch its computed value (qty × current
-  // priceGross, FX-converted to DKK).
-  useEffect(() => {
-    if (!selected) { setValue(null); return; }
-    let alive = true;
-    setValue(null);
-    fetch(`/api/deliveries/${selected._id}/value`)
-      .then((r) => r.json())
-      .then((v) => { if (alive) setValue(v); })
-      .catch(() => {});
-    return () => { alive = false; };
-  }, [selected]);
   const [loading, setLoading] = useState(true);
   const [emailingId, setEmailingId] = useState<string | null>(null);
   const [msg, setMsg] = useState("");
   const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  function openDelivery(id: string) {
+    router.push(`/deliveries/${id}`);
+  }
 
   function handleCopyLink(d: Delivery) {
     const url = `${window.location.origin}/d/${d.shareToken}`;
@@ -99,7 +90,6 @@ export default function DeliveriesPage() {
     if (!confirm("Delete this delivery?")) return;
     await fetch(`/api/deliveries/${id}`, { method: "DELETE" });
     setDeliveries((prev) => prev.filter((d) => d._id !== id));
-    if (selected?._id === id) setSelected(null);
   }
 
   async function handleEmail(id: string) {
@@ -134,7 +124,6 @@ export default function DeliveriesPage() {
     }
     const d = await r.json();
     setDeliveries([]);
-    setSelected(null);
     setMsg(`Cleared ${d.deletedCount} delivery${d.deletedCount === 1 ? "" : "s"}.`);
   }
 
@@ -188,7 +177,7 @@ export default function DeliveriesPage() {
               <tr
                 key={d._id}
                 className="group border-b hover:bg-gray-50 cursor-pointer"
-                onClick={() => setSelected(d)}
+                onClick={() => openDelivery(d._id)}
               >
                 <td className="px-4 py-3 text-gray-600 tabular-nums">{new Date(d.createdAt).toLocaleString("da-DK")}</td>
                 <td className="px-4 py-3 font-medium text-gray-900 font-mono">{d.reference}</td>
@@ -214,7 +203,7 @@ export default function DeliveriesPage() {
                 <td className="px-4 py-3 text-right" onClick={(e) => e.stopPropagation()}>
                   <div className="flex gap-1 justify-end">
                     <button
-                      onClick={() => setSelected(d)}
+                      onClick={() => openDelivery(d._id)}
                       className="p-1.5 bg-gray-100 text-gray-600 rounded hover:bg-gray-200 transition-colors"
                       title="View packing list"
                     >
@@ -262,7 +251,7 @@ export default function DeliveriesPage() {
           <div
             key={d._id}
             className="bg-white rounded-lg shadow-sm border border-gray-100 p-3 active:bg-gray-50"
-            onClick={() => setSelected(d)}
+            onClick={() => openDelivery(d._id)}
           >
             <div className="flex items-start justify-between mb-1.5 gap-2">
               <div className="min-w-0 flex-1">
@@ -290,7 +279,7 @@ export default function DeliveriesPage() {
               </div>
               <div className="flex gap-1">
                 <button
-                  onClick={() => setSelected(d)}
+                  onClick={() => openDelivery(d._id)}
                   className="p-2 rounded-lg bg-gray-50 text-gray-600 hover:bg-gray-100 transition-colors"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
@@ -324,162 +313,6 @@ export default function DeliveriesPage() {
         ))}
       </div>
 
-      {/* Packing List Modal */}
-      {selected && (
-        <div className="fixed inset-0 bg-black/50 flex items-end md:items-center justify-center z-50">
-          <div className="bg-white rounded-t-2xl md:rounded-lg shadow-xl w-full max-w-lg max-h-[85vh] overflow-auto">
-            <div className="flex items-center justify-between p-4 border-b">
-              <h2 className="font-bold text-lg">PACKING LIST</h2>
-              <button
-                onClick={() => setSelected(null)}
-                className="p-1 text-gray-400 hover:text-gray-600"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
-              </button>
-            </div>
-
-            <div className="p-4 bg-gray-50 text-sm">
-              <p><strong>Reference:</strong> {selected.reference}</p>
-              <p><strong>Date:</strong> {new Date(selected.createdAt).toLocaleString("da-DK")}</p>
-              <p><strong>Created by:</strong> {selected.createdBy}</p>
-
-              {/* Status tallies — neutral pills, no color spam */}
-              {(() => {
-                const picked = selected.items.filter((i) => i.status === "picked").length;
-                const pending = selected.items.filter((i) => i.status === "pending" || !i.status).length;
-                const cancelled = selected.items.filter((i) => i.status === "cancelled").length;
-                return (
-                  <div className="mt-2 flex flex-wrap gap-1 text-[11px]">
-                    {picked > 0 && (
-                      <span className="px-2 py-0.5 rounded bg-gray-900 text-white font-medium">
-                        {picked} picked
-                      </span>
-                    )}
-                    {pending > 0 && (
-                      <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-700 font-medium">
-                        {pending} pending
-                      </span>
-                    )}
-                    {cancelled > 0 && (
-                      <span className="px-2 py-0.5 rounded bg-gray-50 text-gray-500 font-medium line-through">
-                        {cancelled} cancelled
-                      </span>
-                    )}
-                  </div>
-                );
-              })()}
-
-              {value ? (
-                <p className="mt-2 pt-2 border-t border-gray-200">
-                  <strong>Value:</strong>{" "}
-                  <span className="font-bold text-gray-900 tabular-nums">{value.grossDKK.toFixed(2)} kr</span>
-                  <span className="text-gray-500"> · net {value.netDKK.toFixed(2)} kr</span>
-                  <span className="text-[10px] text-gray-400 ml-2">FX {value.fxRate.toFixed(4)}</span>
-                </p>
-              ) : (
-                <p className="mt-2 pt-2 border-t border-gray-200 text-gray-400">
-                  <strong>Value:</strong> calculating…
-                </p>
-              )}
-            </div>
-
-            {/* Desktop table — per-item value from the value endpoint perItem map */}
-            <table className="hidden md:table w-full text-sm">
-              <thead>
-                <tr className="bg-gray-700 text-white">
-                  <th className="px-4 py-2 text-left w-12"></th>
-                  <th className="px-4 py-2 text-left">Item</th>
-                  <th className="px-4 py-2 text-center">Qty</th>
-                  <th className="px-4 py-2 text-left">Unit</th>
-                  <th className="px-4 py-2 text-right">Price</th>
-                  <th className="px-4 py-2 text-right">Line value (incl.)</th>
-                  <th className="px-4 py-2 text-center">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {selected.items.map((item, i) => {
-                  const v = value?.perItem?.find((p) => p.code === item.code || (item.productId && p.productId === item.productId));
-                  return (
-                    <tr key={i} className="border-b">
-                      <td className="px-3 py-2">
-                        {item.image ? (
-                          <img
-                            src={imgSrc(item.image)}
-                            alt=""
-                            className="w-9 h-9 rounded object-cover border border-gray-200"
-                          />
-                        ) : (
-                          <div className="w-9 h-9 rounded bg-gray-100 border border-gray-200" />
-                        )}
-                      </td>
-                      <td className="px-4 py-2">
-                        <div className="text-gray-900">{item.name}</div>
-                        <div className="text-[10px] text-gray-400 font-mono">{item.code}</div>
-                      </td>
-                      <td className="px-4 py-2 text-center font-bold tabular-nums">{item.quantity}</td>
-                      <td className="px-4 py-2">{item.unit}</td>
-                      <td className="px-4 py-2 text-right tabular-nums">
-                        {v && v.priceNet > 0
-                          ? `${v.priceNet.toFixed(2)} ${v.priceCurrency}`
-                          : <span className="text-amber-700 text-[10px]">No price</span>}
-                      </td>
-                      <td className="px-4 py-2 text-right font-semibold tabular-nums text-gray-900">
-                        {v && v.lineGrossDKK > 0 ? `${v.lineGrossDKK.toFixed(2)} kr` : <span className="text-gray-300">—</span>}
-                      </td>
-                      <td className="px-4 py-2 text-center text-[10px] uppercase tracking-wide">
-                        {item.status === "picked" ? <span className="text-gray-900 font-semibold">picked</span>
-                          : item.status === "cancelled" ? <span className="text-gray-400 line-through">cancelled</span>
-                          : <span className="text-gray-500">pending</span>}
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-
-            {/* Mobile list — same data, stacked */}
-            <div className="md:hidden divide-y">
-              {selected.items.map((item, i) => {
-                const v = value?.perItem?.find((p) => p.code === item.code || (item.productId && p.productId === item.productId));
-                const statusLabel =
-                  item.status === "picked" ? "picked"
-                  : item.status === "cancelled" ? "cancelled"
-                  : "pending";
-                const statusClasses =
-                  item.status === "picked" ? "bg-gray-900 text-white"
-                  : item.status === "cancelled" ? "bg-gray-50 text-gray-500 line-through"
-                  : "bg-gray-100 text-gray-700";
-                return (
-                  <div key={i} className="px-4 py-3 flex items-center gap-3">
-                    {item.image ? (
-                      <img
-                        src={imgSrc(item.image)}
-                        alt=""
-                        className="w-10 h-10 rounded object-cover border border-gray-200 flex-shrink-0"
-                      />
-                    ) : (
-                      <div className="w-10 h-10 rounded bg-gray-100 border border-gray-200 flex-shrink-0" />
-                    )}
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate">{item.name}</p>
-                      <p className="text-[11px] text-gray-400">{item.code} · {item.unit}</p>
-                      <p className="text-[11px] mt-0.5">
-                        {v && v.lineGrossDKK > 0
-                          ? <span className="font-semibold tabular-nums text-gray-900">{v.lineGrossDKK.toFixed(2)} kr</span>
-                          : <span className="text-gray-400">no price</span>}
-                        <span className={`ml-2 px-1.5 py-0.5 rounded text-[9px] font-medium tracking-wide ${statusClasses}`}>
-                          {statusLabel}
-                        </span>
-                      </p>
-                    </div>
-                    <span className="text-sm font-semibold bg-gray-100 px-2.5 py-1 rounded tabular-nums">{item.quantity}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
