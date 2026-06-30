@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Delivery from "@/lib/models/Delivery";
 import Product from "@/lib/models/Product";
+import { computeDeliveryValue } from "@/lib/deliveryValue";
 
 // Public — no auth. Picker page reads via shareToken; the response does
 // NOT include any stock numbers — stock is admin-private. Stock side
@@ -18,7 +19,11 @@ export async function GET(_req: NextRequest, { params }: { params: Promise<{ tok
     await delivery.save();
   }
 
-  return NextResponse.json(delivery);
+  // Attach the computed value so the pickup page can show it inline.
+  const value = await computeDeliveryValue((delivery.items || []) as any[]);
+  const obj = delivery.toObject();
+  (obj as any).value = value;
+  return NextResponse.json(obj);
 }
 
 // PUT — "complete all": mark every still-pending item as picked AND apply

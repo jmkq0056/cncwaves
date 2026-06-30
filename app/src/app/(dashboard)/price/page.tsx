@@ -186,18 +186,14 @@ export default function PricePage() {
   }
 
   function onToggleNoVat(p: Product) {
+    // Just flip the flag — net stays the same, gross recomputes from the
+    // new effective VAT. Ticking "No MOMS" drops gross to match net; un-
+    // ticking pushes gross back up to net*(1+vat). The line totals and
+    // summary chips re-render off the same product state in the same tick,
+    // so the change is reflected everywhere immediately.
     const newNoVat = !p.noVat;
-    // Preserve the GROSS price across the toggle. Otherwise toggling "No
-    // MOMS" silently drops the visible gross from net*(1+vat) down to net,
-    // which looks broken to the picker.
-    //   On  → noVat=true,  vat_eff=0           → net := old_gross
-    //   Off → noVat=false, vat_eff=vatRate     → net := old_gross / (1+vat)
-    const currentVat = effectiveVatRate(p);
-    const grossKept = netToGross(Number(p.priceNet) || 0, currentVat);
-    const newVat = newNoVat ? 0 : (Number(p.vatRate) || 0);
-    const newNet = Math.round((grossKept / (1 + newVat)) * 10000) / 10000;
-    setLocal(p._id, { noVat: newNoVat, priceNet: newNet });
-    patchPrice(p._id, { noVat: newNoVat, priceNet: newNet });
+    setLocal(p._id, { noVat: newNoVat });
+    patchPrice(p._id, { noVat: newNoVat });
   }
 
   function onChangeCurrency(p: Product, cur: Currency) {

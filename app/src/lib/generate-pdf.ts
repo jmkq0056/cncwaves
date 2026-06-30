@@ -1,6 +1,24 @@
 import { jsPDF } from "jspdf";
 
-export function generatePackingListPDF(delivery: any, pickUrl: string): Buffer {
+type ValueSummary = {
+  netDKK: number;
+  grossDKK: number;
+  fxRate?: number;
+};
+
+function fmt(n: number): string {
+  const safe = Number.isFinite(n) ? n : 0;
+  return new Intl.NumberFormat("da-DK", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(safe);
+}
+
+export function generatePackingListPDF(
+  delivery: any,
+  pickUrl: string,
+  value?: ValueSummary | null
+): Buffer {
   const doc = new jsPDF();
   const pageWidth = doc.internal.pageSize.getWidth();
 
@@ -63,6 +81,28 @@ export function generatePackingListPDF(delivery: any, pickUrl: string): Buffer {
     doc.rect(pageWidth - 22, y - 3.5, 4, 4);
 
     y += 8;
+  }
+
+  // Value summary block (just before the footer). Shows the total value
+  // of the delivery — net + gross (incl. MOMS) in DKK using the live FX
+  // rate at PDF-generation time.
+  if (value && Number.isFinite(value.grossDKK)) {
+    if (y > 250) { doc.addPage(); y = 15; }
+    y += 4;
+    doc.setFillColor(40, 40, 50);
+    doc.rect(14, y, pageWidth - 28, 16, "F");
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    doc.text("TOTAL VALUE", 16, y + 6.5);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(11);
+    doc.text(`${fmt(value.grossDKK)} kr  incl. MOMS`, pageWidth - 16, y + 6.5, { align: "right" });
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    doc.setTextColor(200, 200, 200);
+    doc.text(`Net: ${fmt(value.netDKK)} kr` + (value.fxRate ? `   ·   FX EUR→DKK ${value.fxRate.toFixed(4)}` : ""), 16, y + 13);
+    y += 20;
   }
 
   // Footer with pick URL

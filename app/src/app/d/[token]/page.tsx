@@ -21,6 +21,7 @@ type Delivery = {
   status: string;
   createdBy: string;
   createdAt: string;
+  value?: { netDKK: number; grossDKK: number; fxRate: number };
 };
 
 function imgSrc(image: string) {
@@ -139,6 +140,12 @@ export default function DriverPickPage() {
               <p className="text-[10px] text-gray-400">
                 {new Date(delivery.createdAt).toLocaleString("da-DK", { timeZone: "Europe/Copenhagen" })}
               </p>
+              {delivery.value && (
+                <p className="text-[10px] text-gray-300 mt-0.5">
+                  Value: <span className="font-bold text-white tabular-nums">{delivery.value.grossDKK.toFixed(2)} kr</span>
+                  <span className="text-gray-500"> · net {delivery.value.netDKK.toFixed(2)} kr</span>
+                </p>
+              )}
             </div>
             <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${
               isCompleted ? "bg-green-500" : "bg-brand"

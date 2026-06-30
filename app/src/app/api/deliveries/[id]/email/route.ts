@@ -5,6 +5,7 @@ import { requireAuth } from "@/lib/auth";
 import Delivery from "@/lib/models/Delivery";
 import Setting from "@/lib/models/Setting";
 import { generatePackingListPDF } from "@/lib/generate-pdf";
+import { computeDeliveryValue } from "@/lib/deliveryValue";
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   await requireAuth();
@@ -23,8 +24,19 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
   const baseUrl = req.headers.get("origin") || `https://${req.headers.get("host")}`;
   const pickUrl = `${baseUrl}/d/${delivery.shareToken}`;
 
-  // Generate PDF (same as auto-email on create)
-  const pdfBuffer = generatePackingListPDF(delivery, pickUrl);
+  // Compute value (qty × current priceGross, FX→DKK) for PDF + email body.
+  let value: { netDKK: number; grossDKK: number; fxRate: number } | null = null;
+  try {
+    value = await computeDeliveryValue(delivery.items as any[]);
+  } catch {}
+
+  // Generate PDF (with value block when available)
+  const pdfBuffer = generatePackingListPDF(delivery, pickUrl, value);
+
+  const valueLine = value
+    ? `<p style="color:#1e293b;font-size:14px;margin:8px 0 4px;font-weight:bold;">Value: ${value.grossDKK.toFixed(2)} kr <span style="color:#777;font-weight:normal;font-size:11px;">incl. MOMS</span></p>
+       <p style="color:#999;font-size:10px;margin:0 0 14px;">Net ${value.netDKK.toFixed(2)} kr · FX EUR→DKK ${value.fxRate.toFixed(4)}</p>`
+    : "";
 
   // Same template as the create-route auto-email: orange CNC header,
   // big "Open Pick List" button, "PDF packing list attached" footer.
@@ -35,7 +47,8 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       </div>
       <div style="border:1px solid #eee;border-top:none;border-radius:0 0 10px 10px;padding:20px;text-align:center;">
         <p style="color:#555;font-size:13px;margin:0 0 4px;">${delivery.items.length} items - ${delivery.createdBy}</p>
-        <p style="color:#999;font-size:11px;margin:0 0 20px;">${new Date(delivery.createdAt).toLocaleString("da-DK", { timeZone: "Europe/Copenhagen" })}</p>
+        <p style="color:#999;font-size:11px;margin:0 0 12px;">${new Date(delivery.createdAt).toLocaleString("da-DK", { timeZone: "Europe/Copenhagen" })}</p>
+        ${valueLine}
         <a href="${pickUrl}" style="display:inline-block;background:#f17d00;color:#fff;text-decoration:none;padding:14px 40px;border-radius:8px;font-size:15px;font-weight:bold;">
           Open Pick List
         </a>

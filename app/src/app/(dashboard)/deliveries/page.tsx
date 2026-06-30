@@ -3,11 +3,14 @@
 import { useEffect, useState } from "react";
 
 type DeliveryItem = {
+  productId?: string;
   code: string;
   name: string;
   quantity: number;
   unit: string;
   note: string;
+  pickedQuantity?: number;
+  status?: "pending" | "picked" | "cancelled";
 };
 
 type Delivery = {
@@ -20,11 +23,46 @@ type Delivery = {
   createdAt: string;
   emailSent: boolean;
   emailError: string;
+  // Server-enriched (GET /api/deliveries):
+  valueNetDKK?: number;
+  valueGrossDKK?: number;
+  pickedCount?: number;
+  pendingCount?: number;
+  cancelledCount?: number;
+};
+
+type ValueResp = {
+  netDKK: number;
+  grossDKK: number;
+  fxRate: number;
+  perItem?: Array<{
+    productId?: string;
+    code?: string;
+    name?: string;
+    quantity: number;
+    priceNet: number;
+    priceCurrency: "DKK" | "EUR";
+    lineGrossDKK: number;
+  }>;
 };
 
 export default function DeliveriesPage() {
   const [deliveries, setDeliveries] = useState<Delivery[]>([]);
   const [selected, setSelected] = useState<Delivery | null>(null);
+  const [value, setValue] = useState<ValueResp | null>(null);
+
+  // Whenever a delivery is opened, fetch its computed value (qty × current
+  // priceGross, FX-converted to DKK).
+  useEffect(() => {
+    if (!selected) { setValue(null); return; }
+    let alive = true;
+    setValue(null);
+    fetch(`/api/deliveries/${selected._id}/value`)
+      .then((r) => r.json())
+      .then((v) => { if (alive) setValue(v); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [selected]);
   const [loading, setLoading] = useState(true);
   const [emailingId, setEmailingId] = useState<string | null>(null);
   const [msg, setMsg] = useState("");
@@ -92,33 +130,41 @@ export default function DeliveriesPage() {
               <th className="px-4 py-3 text-left">Reference</th>
               <th className="px-4 py-3 text-left">Created By</th>
               <th className="px-4 py-3 text-center">Items</th>
+              <th className="px-4 py-3 text-right">Value</th>
               <th className="px-4 py-3 text-center">Status</th>
               <th className="px-4 py-3 text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
             {loading && (
-              <tr><td colSpan={6} className="text-center py-8 text-gray-400">Loading...</td></tr>
+              <tr><td colSpan={7} className="text-center py-8 text-gray-400">Loading...</td></tr>
             )}
             {!loading && deliveries.length === 0 && (
-              <tr><td colSpan={6} className="text-center py-8 text-gray-400">No deliveries yet</td></tr>
+              <tr><td colSpan={7} className="text-center py-8 text-gray-400">No deliveries yet</td></tr>
             )}
             {deliveries.map((d) => (
-              <tr key={d._id} className="border-b hover:bg-gray-50">
-                <td className="px-4 py-3">{new Date(d.createdAt).toLocaleString("da-DK")}</td>
-                <td className="px-4 py-3 font-medium">{d.reference}</td>
-                <td className="px-4 py-3">{d.createdBy}</td>
-                <td className="px-4 py-3 text-center">{d.items.length}</td>
+              <tr
+                key={d._id}
+                className="border-b hover:bg-gray-50 cursor-pointer"
+                onClick={() => setSelected(d)}
+              >
+                <td className="px-4 py-3 text-gray-600 tabular-nums">{new Date(d.createdAt).toLocaleString("da-DK")}</td>
+                <td className="px-4 py-3 font-medium text-gray-900 font-mono">{d.reference}</td>
+                <td className="px-4 py-3 text-gray-600 truncate max-w-[180px]">{d.createdBy}</td>
                 <td className="px-4 py-3 text-center">
-                  <span className={`px-2 py-1 rounded text-xs font-medium ${
-                    d.status === "completed"
-                      ? "bg-green-50 text-green-700"
-                      : "bg-gray-100 text-gray-600"
-                  }`}>
-                    {d.status}
-                  </span>
+                  <ItemsProgress d={d} />
                 </td>
                 <td className="px-4 py-3 text-right">
+                  {typeof d.valueGrossDKK === "number" && d.valueGrossDKK > 0 ? (
+                    <span className="font-bold text-orange-600 tabular-nums">{d.valueGrossDKK.toFixed(2)} kr</span>
+                  ) : (
+                    <span className="text-gray-300">—</span>
+                  )}
+                </td>
+                <td className="px-4 py-3 text-center">
+                  <StatusPill status={d.status} />
+                </td>
+                <td className="px-4 py-3 text-right" onClick={(e) => e.stopPropagation()}>
                   <div className="flex gap-1 justify-end">
                     <button
                       onClick={() => setSelected(d)}
@@ -166,25 +212,29 @@ export default function DeliveriesPage() {
         {loading && <p className="text-center py-8 text-gray-400">Loading...</p>}
         {!loading && deliveries.length === 0 && <p className="text-center py-8 text-gray-400">No deliveries yet</p>}
         {deliveries.map((d) => (
-          <div key={d._id} className="bg-white rounded-lg shadow-sm border border-gray-100 p-3">
-            <div className="flex items-start justify-between mb-2">
-              <div>
-                <p className="font-medium text-sm">{d.reference}</p>
-                <p className="text-xs text-gray-400">{new Date(d.createdAt).toLocaleString("da-DK")}</p>
+          <div
+            key={d._id}
+            className="bg-white rounded-lg shadow-sm border border-gray-100 p-3 active:bg-gray-50"
+            onClick={() => setSelected(d)}
+          >
+            <div className="flex items-start justify-between mb-1.5">
+              <div className="min-w-0 flex-1">
+                <p className="font-mono text-sm font-semibold text-gray-900 truncate">{d.reference}</p>
+                <p className="text-[11px] text-gray-400">{new Date(d.createdAt).toLocaleString("da-DK")}</p>
               </div>
-              <span className={`px-2 py-0.5 rounded text-[10px] font-medium ${
-                d.status === "completed"
-                  ? "bg-green-50 text-green-700"
-                  : "bg-gray-100 text-gray-600"
-              }`}>
-                {d.status}
-              </span>
+              <StatusPill status={d.status} />
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-2 mb-2">
+              <div className="text-[11px] text-gray-500 truncate">
+                {d.createdBy}
+              </div>
+              {typeof d.valueGrossDKK === "number" && d.valueGrossDKK > 0 && (
+                <span className="text-sm font-bold text-orange-600 tabular-nums">{d.valueGrossDKK.toFixed(2)} kr</span>
+              )}
+            </div>
+            <div className="flex items-center justify-between" onClick={(e) => e.stopPropagation()}>
               <div className="text-xs text-gray-500">
-                <span>{d.createdBy}</span>
-                <span className="mx-1.5 text-gray-300">|</span>
-                <span>{d.items.length} items</span>
+                <ItemsProgress d={d} />
               </div>
               <div className="flex gap-1">
                 <button
@@ -240,43 +290,163 @@ export default function DeliveriesPage() {
               <p><strong>Reference:</strong> {selected.reference}</p>
               <p><strong>Date:</strong> {new Date(selected.createdAt).toLocaleString("da-DK")}</p>
               <p><strong>Created by:</strong> {selected.createdBy}</p>
+
+              {/* Status pills: picked / pending / cancelled tallies */}
+              {(() => {
+                const picked = selected.items.filter((i) => i.status === "picked").length;
+                const pending = selected.items.filter((i) => i.status === "pending" || !i.status).length;
+                const cancelled = selected.items.filter((i) => i.status === "cancelled").length;
+                return (
+                  <div className="mt-2 flex flex-wrap gap-1.5 text-[11px] font-semibold">
+                    {picked > 0 && (
+                      <span className="px-2 py-0.5 rounded-full bg-green-100 text-green-800">
+                        {picked} picked
+                      </span>
+                    )}
+                    {pending > 0 && (
+                      <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
+                        {pending} pending
+                      </span>
+                    )}
+                    {cancelled > 0 && (
+                      <span className="px-2 py-0.5 rounded-full bg-red-100 text-red-800">
+                        {cancelled} cancelled
+                      </span>
+                    )}
+                  </div>
+                );
+              })()}
+
+              {value ? (
+                <p className="mt-2 pt-2 border-t border-gray-200">
+                  <strong>Value:</strong>{" "}
+                  <span className="font-bold text-gray-900 tabular-nums">{value.grossDKK.toFixed(2)} kr</span>
+                  <span className="text-gray-500"> · net {value.netDKK.toFixed(2)} kr</span>
+                  <span className="text-[10px] text-gray-400 ml-2">FX {value.fxRate.toFixed(4)}</span>
+                </p>
+              ) : (
+                <p className="mt-2 pt-2 border-t border-gray-200 text-gray-400">
+                  <strong>Value:</strong> calculating…
+                </p>
+              )}
             </div>
 
-            {/* Desktop table */}
+            {/* Desktop table — per-item value from the value endpoint perItem map */}
             <table className="hidden md:table w-full text-sm">
               <thead>
                 <tr className="bg-gray-700 text-white">
-                  <th className="px-4 py-2 text-left">Name</th>
-                  <th className="px-4 py-2 text-center">Quantity</th>
+                  <th className="px-4 py-2 text-left">Item</th>
+                  <th className="px-4 py-2 text-center">Qty</th>
                   <th className="px-4 py-2 text-left">Unit</th>
+                  <th className="px-4 py-2 text-right">Price</th>
+                  <th className="px-4 py-2 text-right">Line value (incl.)</th>
+                  <th className="px-4 py-2 text-center">Status</th>
                 </tr>
               </thead>
               <tbody>
-                {selected.items.map((item, i) => (
-                  <tr key={i} className="border-b">
-                    <td className="px-4 py-2">{item.code} - {item.name}</td>
-                    <td className="px-4 py-2 text-center">{item.quantity}</td>
-                    <td className="px-4 py-2">{item.unit}</td>
-                  </tr>
-                ))}
+                {selected.items.map((item, i) => {
+                  const v = value?.perItem?.find((p) => p.code === item.code || (item.productId && p.productId === item.productId));
+                  return (
+                    <tr key={i} className="border-b">
+                      <td className="px-4 py-2">
+                        <div className="text-gray-900">{item.name}</div>
+                        <div className="text-[10px] text-gray-400 font-mono">{item.code}</div>
+                      </td>
+                      <td className="px-4 py-2 text-center font-bold tabular-nums">{item.quantity}</td>
+                      <td className="px-4 py-2">{item.unit}</td>
+                      <td className="px-4 py-2 text-right tabular-nums">
+                        {v && v.priceNet > 0
+                          ? `${v.priceNet.toFixed(2)} ${v.priceCurrency}`
+                          : <span className="text-amber-700 text-[10px]">No price</span>}
+                      </td>
+                      <td className="px-4 py-2 text-right font-bold tabular-nums text-orange-600">
+                        {v && v.lineGrossDKK > 0 ? `${v.lineGrossDKK.toFixed(2)} kr` : "—"}
+                      </td>
+                      <td className="px-4 py-2 text-center text-[10px] uppercase tracking-wider">
+                        {item.status === "picked" ? <span className="text-green-700">picked</span>
+                          : item.status === "cancelled" ? <span className="text-red-700">cancelled</span>
+                          : <span className="text-amber-700">pending</span>}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
 
-            {/* Mobile list */}
+            {/* Mobile list — same data, stacked */}
             <div className="md:hidden divide-y">
-              {selected.items.map((item, i) => (
-                <div key={i} className="px-4 py-3 flex items-center justify-between">
-                  <div>
-                    <p className="text-sm font-medium">{item.name}</p>
-                    <p className="text-xs text-gray-400">{item.code} / {item.unit}</p>
+              {selected.items.map((item, i) => {
+                const v = value?.perItem?.find((p) => p.code === item.code || (item.productId && p.productId === item.productId));
+                const statusLabel =
+                  item.status === "picked" ? "picked"
+                  : item.status === "cancelled" ? "cancelled"
+                  : "pending";
+                const statusColor =
+                  item.status === "picked" ? "text-green-700 bg-green-100"
+                  : item.status === "cancelled" ? "text-red-700 bg-red-100"
+                  : "text-amber-700 bg-amber-100";
+                return (
+                  <div key={i} className="px-4 py-3 flex items-center gap-3">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium truncate">{item.name}</p>
+                      <p className="text-[11px] text-gray-400">{item.code} · {item.unit}</p>
+                      <p className="text-[11px] mt-0.5">
+                        {v && v.lineGrossDKK > 0
+                          ? <span className="font-bold tabular-nums text-orange-600">{v.lineGrossDKK.toFixed(2)} kr</span>
+                          : <span className="text-amber-700">no price</span>}
+                        <span className={`ml-2 px-1.5 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider ${statusColor}`}>
+                          {statusLabel}
+                        </span>
+                      </p>
+                    </div>
+                    <span className="text-sm font-bold bg-gray-100 px-2.5 py-1 rounded tabular-nums">{item.quantity}</span>
                   </div>
-                  <span className="text-sm font-bold bg-gray-100 px-2.5 py-1 rounded">{item.quantity}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+// ── Visual status helpers ─────────────────────────────────────────────
+function StatusPill({ status }: { status: string }) {
+  const map: Record<string, { bg: string; text: string; label: string; dot: string }> = {
+    completed:    { bg: "bg-green-100",  text: "text-green-800",  label: "Completed",   dot: "bg-green-500" },
+    "in-progress":{ bg: "bg-blue-100",   text: "text-blue-800",   label: "In progress", dot: "bg-blue-500" },
+    pending:      { bg: "bg-amber-100",  text: "text-amber-800",  label: "Pending",     dot: "bg-amber-500" },
+  };
+  const m = map[status] || { bg: "bg-gray-100", text: "text-gray-700", label: status, dot: "bg-gray-400" };
+  return (
+    <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider ${m.bg} ${m.text}`}>
+      <span className={`w-1.5 h-1.5 rounded-full ${m.dot}`} />
+      {m.label}
+    </span>
+  );
+}
+
+// Compact progress chip: shows picked/total + a small segmented bar
+function ItemsProgress({ d }: { d: Delivery }) {
+  const total = d.items?.length ?? 0;
+  const picked = d.pickedCount ?? d.items?.filter((i) => i.status === "picked").length ?? 0;
+  const cancelled = d.cancelledCount ?? d.items?.filter((i) => i.status === "cancelled").length ?? 0;
+  if (total === 0) return <span className="text-gray-400">—</span>;
+  const pickedPct = (picked / total) * 100;
+  const cancelledPct = (cancelled / total) * 100;
+  return (
+    <div className="inline-flex flex-col items-center gap-0.5 min-w-[60px]">
+      <span className="text-[11px] tabular-nums">
+        <span className="font-bold text-gray-900">{picked}</span>
+        <span className="text-gray-400"> / {total}</span>
+      </span>
+      <span className="block w-12 h-1 rounded-full bg-gray-200 overflow-hidden">
+        <span className="block h-full bg-green-500" style={{ width: pickedPct + "%" }} />
+        {cancelled > 0 && (
+          <span className="block h-full bg-red-400 -mt-1" style={{ marginLeft: pickedPct + "%", width: cancelledPct + "%" }} />
+        )}
+      </span>
     </div>
   );
 }
