@@ -156,7 +156,7 @@ export default function DeliveriesPage() {
                 </td>
                 <td className="px-4 py-3 text-right">
                   {typeof d.valueGrossDKK === "number" && d.valueGrossDKK > 0 ? (
-                    <span className="font-bold text-orange-600 tabular-nums">{d.valueGrossDKK.toFixed(2)} kr</span>
+                    <span className="font-semibold text-gray-900 tabular-nums">{d.valueGrossDKK.toFixed(2)} kr</span>
                   ) : (
                     <span className="text-gray-300">—</span>
                   )}
@@ -229,7 +229,7 @@ export default function DeliveriesPage() {
                 {d.createdBy}
               </div>
               {typeof d.valueGrossDKK === "number" && d.valueGrossDKK > 0 && (
-                <span className="text-sm font-bold text-orange-600 tabular-nums">{d.valueGrossDKK.toFixed(2)} kr</span>
+                <span className="text-sm font-semibold text-gray-900 tabular-nums">{d.valueGrossDKK.toFixed(2)} kr</span>
               )}
             </div>
             <div className="flex items-center justify-between" onClick={(e) => e.stopPropagation()}>
@@ -291,25 +291,25 @@ export default function DeliveriesPage() {
               <p><strong>Date:</strong> {new Date(selected.createdAt).toLocaleString("da-DK")}</p>
               <p><strong>Created by:</strong> {selected.createdBy}</p>
 
-              {/* Status pills: picked / pending / cancelled tallies */}
+              {/* Status tallies — neutral pills, no color spam */}
               {(() => {
                 const picked = selected.items.filter((i) => i.status === "picked").length;
                 const pending = selected.items.filter((i) => i.status === "pending" || !i.status).length;
                 const cancelled = selected.items.filter((i) => i.status === "cancelled").length;
                 return (
-                  <div className="mt-2 flex flex-wrap gap-1.5 text-[11px] font-semibold">
+                  <div className="mt-2 flex flex-wrap gap-1 text-[11px]">
                     {picked > 0 && (
-                      <span className="px-2 py-0.5 rounded-full bg-green-100 text-green-800">
+                      <span className="px-2 py-0.5 rounded bg-gray-900 text-white font-medium">
                         {picked} picked
                       </span>
                     )}
                     {pending > 0 && (
-                      <span className="px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
+                      <span className="px-2 py-0.5 rounded bg-gray-100 text-gray-700 font-medium">
                         {pending} pending
                       </span>
                     )}
                     {cancelled > 0 && (
-                      <span className="px-2 py-0.5 rounded-full bg-red-100 text-red-800">
+                      <span className="px-2 py-0.5 rounded bg-gray-50 text-gray-500 font-medium line-through">
                         {cancelled} cancelled
                       </span>
                     )}
@@ -359,13 +359,13 @@ export default function DeliveriesPage() {
                           ? `${v.priceNet.toFixed(2)} ${v.priceCurrency}`
                           : <span className="text-amber-700 text-[10px]">No price</span>}
                       </td>
-                      <td className="px-4 py-2 text-right font-bold tabular-nums text-orange-600">
-                        {v && v.lineGrossDKK > 0 ? `${v.lineGrossDKK.toFixed(2)} kr` : "—"}
+                      <td className="px-4 py-2 text-right font-semibold tabular-nums text-gray-900">
+                        {v && v.lineGrossDKK > 0 ? `${v.lineGrossDKK.toFixed(2)} kr` : <span className="text-gray-300">—</span>}
                       </td>
-                      <td className="px-4 py-2 text-center text-[10px] uppercase tracking-wider">
-                        {item.status === "picked" ? <span className="text-green-700">picked</span>
-                          : item.status === "cancelled" ? <span className="text-red-700">cancelled</span>
-                          : <span className="text-amber-700">pending</span>}
+                      <td className="px-4 py-2 text-center text-[10px] uppercase tracking-wide">
+                        {item.status === "picked" ? <span className="text-gray-900 font-semibold">picked</span>
+                          : item.status === "cancelled" ? <span className="text-gray-400 line-through">cancelled</span>
+                          : <span className="text-gray-500">pending</span>}
                       </td>
                     </tr>
                   );
@@ -381,10 +381,10 @@ export default function DeliveriesPage() {
                   item.status === "picked" ? "picked"
                   : item.status === "cancelled" ? "cancelled"
                   : "pending";
-                const statusColor =
-                  item.status === "picked" ? "text-green-700 bg-green-100"
-                  : item.status === "cancelled" ? "text-red-700 bg-red-100"
-                  : "text-amber-700 bg-amber-100";
+                const statusClasses =
+                  item.status === "picked" ? "bg-gray-900 text-white"
+                  : item.status === "cancelled" ? "bg-gray-50 text-gray-500 line-through"
+                  : "bg-gray-100 text-gray-700";
                 return (
                   <div key={i} className="px-4 py-3 flex items-center gap-3">
                     <div className="flex-1 min-w-0">
@@ -392,14 +392,14 @@ export default function DeliveriesPage() {
                       <p className="text-[11px] text-gray-400">{item.code} · {item.unit}</p>
                       <p className="text-[11px] mt-0.5">
                         {v && v.lineGrossDKK > 0
-                          ? <span className="font-bold tabular-nums text-orange-600">{v.lineGrossDKK.toFixed(2)} kr</span>
-                          : <span className="text-amber-700">no price</span>}
-                        <span className={`ml-2 px-1.5 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider ${statusColor}`}>
+                          ? <span className="font-semibold tabular-nums text-gray-900">{v.lineGrossDKK.toFixed(2)} kr</span>
+                          : <span className="text-gray-400">no price</span>}
+                        <span className={`ml-2 px-1.5 py-0.5 rounded text-[9px] font-medium tracking-wide ${statusClasses}`}>
                           {statusLabel}
                         </span>
                       </p>
                     </div>
-                    <span className="text-sm font-bold bg-gray-100 px-2.5 py-1 rounded tabular-nums">{item.quantity}</span>
+                    <span className="text-sm font-semibold bg-gray-100 px-2.5 py-1 rounded tabular-nums">{item.quantity}</span>
                   </div>
                 );
               })}
@@ -412,40 +412,38 @@ export default function DeliveriesPage() {
 }
 
 // ── Visual status helpers ─────────────────────────────────────────────
+// Monochrome by design — one accent (brand) for completed, neutral grays
+// for everything else. No dots, no colored dust.
 function StatusPill({ status }: { status: string }) {
-  const map: Record<string, { bg: string; text: string; label: string; dot: string }> = {
-    completed:    { bg: "bg-green-100",  text: "text-green-800",  label: "Completed",   dot: "bg-green-500" },
-    "in-progress":{ bg: "bg-blue-100",   text: "text-blue-800",   label: "In progress", dot: "bg-blue-500" },
-    pending:      { bg: "bg-amber-100",  text: "text-amber-800",  label: "Pending",     dot: "bg-amber-500" },
+  const map: Record<string, { bg: string; text: string; label: string }> = {
+    completed:     { bg: "bg-gray-900",  text: "text-white",      label: "Completed" },
+    "in-progress": { bg: "bg-gray-100",  text: "text-gray-700",   label: "In progress" },
+    pending:       { bg: "bg-gray-50",   text: "text-gray-500",   label: "Pending" },
   };
-  const m = map[status] || { bg: "bg-gray-100", text: "text-gray-700", label: status, dot: "bg-gray-400" };
+  const m = map[status] || { bg: "bg-gray-50", text: "text-gray-500", label: status };
   return (
-    <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider ${m.bg} ${m.text}`}>
-      <span className={`w-1.5 h-1.5 rounded-full ${m.dot}`} />
+    <span className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium tracking-wide ${m.bg} ${m.text}`}>
       {m.label}
     </span>
   );
 }
 
-// Compact progress chip: shows picked/total + a small segmented bar
+// Compact items-handled cell: just "N / T" with a thin progress bar.
+// Bar uses brand for picked + neutral gray for cancelled. No green/red.
 function ItemsProgress({ d }: { d: Delivery }) {
   const total = d.items?.length ?? 0;
   const picked = d.pickedCount ?? d.items?.filter((i) => i.status === "picked").length ?? 0;
   const cancelled = d.cancelledCount ?? d.items?.filter((i) => i.status === "cancelled").length ?? 0;
   if (total === 0) return <span className="text-gray-400">—</span>;
-  const pickedPct = (picked / total) * 100;
-  const cancelledPct = (cancelled / total) * 100;
+  const handledPct = ((picked + cancelled) / total) * 100;
   return (
-    <div className="inline-flex flex-col items-center gap-0.5 min-w-[60px]">
-      <span className="text-[11px] tabular-nums">
-        <span className="font-bold text-gray-900">{picked}</span>
+    <div className="inline-flex flex-col items-center gap-0.5 min-w-[56px]">
+      <span className="text-[11px] tabular-nums text-gray-700">
+        <span className="font-semibold">{picked}</span>
         <span className="text-gray-400"> / {total}</span>
       </span>
-      <span className="block w-12 h-1 rounded-full bg-gray-200 overflow-hidden">
-        <span className="block h-full bg-green-500" style={{ width: pickedPct + "%" }} />
-        {cancelled > 0 && (
-          <span className="block h-full bg-red-400 -mt-1" style={{ marginLeft: pickedPct + "%", width: cancelledPct + "%" }} />
-        )}
+      <span className="block w-12 h-0.5 rounded-full bg-gray-200 overflow-hidden">
+        <span className="block h-full bg-gray-900" style={{ width: handledPct + "%" }} />
       </span>
     </div>
   );
