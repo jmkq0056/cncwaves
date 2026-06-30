@@ -108,11 +108,45 @@ export default function DeliveriesPage() {
     setEmailingId(null);
   }
 
+  async function handleClearAll() {
+    if (deliveries.length === 0) return;
+    const phrase = `DELETE ${deliveries.length}`;
+    const typed = window.prompt(
+      `This deletes EVERY issuance delivery (${deliveries.length} rows). This cannot be undone.\n\n` +
+      `Type the phrase below to confirm:\n\n${phrase}`
+    );
+    if (typed !== phrase) {
+      setMsg("Clear cancelled — phrase did not match.");
+      return;
+    }
+    const r = await fetch("/api/deliveries/clear", { method: "DELETE" });
+    if (!r.ok) {
+      const d = await r.json().catch(() => ({}));
+      setMsg(d.error || "Failed to clear history.");
+      return;
+    }
+    const d = await r.json();
+    setDeliveries([]);
+    setSelected(null);
+    setMsg(`Cleared ${d.deletedCount} delivery${d.deletedCount === 1 ? "" : "s"}.`);
+  }
+
   return (
     <div className="p-4 md:p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-xl font-bold text-gray-800">Deliveries</h1>
-        <span className="text-sm text-gray-500">{deliveries.length} entries</span>
+      <div className="flex items-center justify-between mb-4 gap-3 flex-wrap">
+        <div className="flex items-center gap-3">
+          <h1 className="text-xl font-bold text-gray-800">Issuance</h1>
+          <span className="text-sm text-gray-500">{deliveries.length} entries</span>
+        </div>
+        <button
+          type="button"
+          onClick={handleClearAll}
+          disabled={deliveries.length === 0}
+          className="px-3 py-1.5 text-xs font-semibold text-gray-700 border border-gray-300 rounded-md hover:border-gray-900 hover:text-gray-900 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+          title="Hard-delete every issuance row (admin only)"
+        >
+          Clear history
+        </button>
       </div>
 
       {msg && (
