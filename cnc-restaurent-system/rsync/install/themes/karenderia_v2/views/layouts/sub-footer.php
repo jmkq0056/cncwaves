@@ -19,7 +19,7 @@ if (!function_exists('cnc_tt')) {
 ?>
 <div class="find-us-section" style="background:#3d0d0f; color:#f3e6d8; padding:32px 24px 28px;">
   <div class="cnc-find-inner">
-    <h4 style="text-align:center; color:#fff; font-weight:800; margin:0 0 18px; font-size:20px; letter-spacing:.02em;"><?php echo cnc_tt("Find os her")?></h4>
+    <h4 style="text-align:center; color:#fff; font-weight:900; margin:0 0 24px; font-size:clamp(24px, 3vw, 34px); letter-spacing:-.01em; line-height:1.05; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;"><?php echo cnc_tt("Find os her")?></h4>
     <div class="cnc-find-grid">
       <div class="cnc-find-map">
         <div style="overflow:hidden; border:1px solid rgba(255,255,255,0.12);">
@@ -33,9 +33,9 @@ if (!function_exists('cnc_tt')) {
             title="Chicken N Chicken Waves &mdash; Over B&oslash;lgen 3, 2670 Greve"></iframe>
         </div>
       </div>
-      <div class="cnc-find-info" style="color:#f3e6d8;">
-        <p style="margin:0 0 6px; font-weight:800; color:#fff; font-size:16px;"><strong><?php echo cnc_tt("Åbningstider")?></strong></p>
-        <p style="margin:0 0 14px; font-size:14px; line-height:1.65; color:#d9c7b3;">
+      <div class="cnc-find-info" style="color:#f3e6d8; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;">
+        <p style="margin:0 0 8px; font-weight:900; color:#fff; font-size:18px; letter-spacing:-.01em;"><?php echo cnc_tt("Åbningstider")?></p>
+        <p style="margin:0 0 18px; font-size:15px; font-weight:400; line-height:1.7; color:#d9c7b3;">
           Man&ndash;Tor 11:00&ndash;22:00<br>
           Fre&ndash;L&oslash;r 11:00&ndash;22:00<br>
           S&oslash;n 11:00&ndash;22:00
@@ -88,18 +88,21 @@ if (!function_exists('cnc_tt')) {
   display: inline-block;
   background: #f17d00;
   color: #fff !important;
-  font-weight: 700;
-  font-size: 13px;
-  padding: 10px 22px;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: .04em;
+  padding: 13px 26px;
   text-decoration: none !important;
   border: 0;
+  border-radius: 0;
   transition: background .18s, color .18s;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
 }
 .find-us-section .cnc-dir-btn:hover,
 .find-us-section .cnc-dir-btn:focus,
 .find-us-section .cnc-dir-btn:active {
-  background: #fff;
-  color: #3d0d0f !important;
+  background: #d96b00;
+  color: #fff !important;
   text-decoration: none !important;
 }
 </style>
