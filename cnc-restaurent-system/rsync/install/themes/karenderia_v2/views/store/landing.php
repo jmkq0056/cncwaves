@@ -366,24 +366,24 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
      with .cats + .find-us; right padding stays a fixed inner gutter. */
   padding: 60px 40px 70px max(24px, calc((100vw - 1280px) / 2 + 24px));
   display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
-  text-align: center;
+  justify-content: center; align-items: flex-start;
+  text-align: left;
   position: relative;
 }
 @media (max-width: 560px) { .cnc-lp .split-left { padding: 48px 22px 60px; } }
 .cnc-lp .split-left h2 {
   font-size: clamp(30px, 4.4vw, 52px);
   font-weight: 900; line-height: 1.02;
-  letter-spacing: -.02em; margin: 0 auto 22px;
+  letter-spacing: -.02em; margin: 0 0 22px;
   max-width: 520px; color: #fff;
 }
 .cnc-lp .split-left .sub {
-  margin: 0 auto 22px; font-size: 15px;
+  margin: 0 0 22px; font-size: 15px;
   color: #f3e6d8; opacity: .85; max-width: 460px;
 }
-.cnc-lp .split-left .real { width: 100%; display: flex; flex-direction: column; align-items: center; }
+.cnc-lp .split-left .real { width: 100%; display: flex; flex-direction: column; align-items: flex-start; }
 .cnc-lp .split-left .finder,
-.cnc-lp .split-left .results { margin-left: auto; margin-right: auto; }
+.cnc-lp .split-left .results { margin-left: 0; margin-right: 0; }
 .cnc-lp .finder {
   display: flex; align-items: center;
   background: #fff; color: var(--ink);
