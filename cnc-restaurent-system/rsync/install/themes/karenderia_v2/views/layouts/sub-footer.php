@@ -6,6 +6,7 @@ if (!function_exists('cnc_tt')) {
       "Åbningstider" => "Opening hours",
       "Alle dage" => "Every day",
       "Få rutevejledning" => "Get directions",
+      "Mere" => "More",
       "Privacy policy" => "Privacy policy",
       "Terms and conditions" => "Terms and conditions",
       "Cookiepolitik" => "Cookie policy",
@@ -18,72 +19,106 @@ if (!function_exists('cnc_tt')) {
   }
 }
 ?>
-<div class="find-us-section" style="background:#3d0d0f; color:#f3e6d8; padding:32px 24px 28px;">
-  <div class="cnc-find-inner">
-    <h4 style="text-align:center; color:#fff; font-weight:900; margin:0 0 24px; font-size:clamp(24px, 3vw, 34px); letter-spacing:-.01em; line-height:1.05; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;"><?php echo cnc_tt("Find os her")?></h4>
-    <div class="cnc-find-grid">
-      <div class="cnc-find-map">
-        <div style="overflow:hidden; border:1px solid rgba(255,255,255,0.12);">
-          <iframe
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCL2EoyEg7aw6rVo90aIue6fmJgm8PcIAU&amp;q=Over+B%C3%B8lgen+3,+2670+Greve,+Denmark&amp;zoom=16&amp;language=<?php echo (strpos(strtolower((string)Yii::app()->language),'en')===0 ? 'en' : 'da') ?>"
-            width="100%" height="220"
-            style="border:0; display:block;"
-            allowfullscreen
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Chicken N Chicken Waves &mdash; Over B&oslash;lgen 3, 2670 Greve"></iframe>
+<section class="cnc-footer" style="background:#3d0d0f; color:#f3e6d8; padding:42px 24px 26px;">
+  <div class="cnc-footer-inner">
+    <div class="cnc-footer-grid">
+
+      <!-- LEFT: Find os her -->
+      <div class="cnc-footer-col">
+        <h4 class="cnc-footer-title"><?php echo cnc_tt("Find os her")?></h4>
+        <div class="cnc-find-body">
+          <div class="cnc-map">
+            <iframe
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCL2EoyEg7aw6rVo90aIue6fmJgm8PcIAU&amp;q=Over+B%C3%B8lgen+3,+2670+Greve,+Denmark&amp;zoom=16&amp;language=<?php echo (strpos(strtolower((string)Yii::app()->language),'en')===0 ? 'en' : 'da') ?>"
+              width="100%" height="220"
+              style="border:0; display:block;"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Chicken N Chicken Waves &mdash; Over B&oslash;lgen 3, 2670 Greve"></iframe>
+          </div>
+          <div class="cnc-find-meta">
+            <p class="cnc-find-label"><?php echo cnc_tt("Åbningstider")?></p>
+            <p class="cnc-find-hours">
+              <?php echo cnc_tt("Alle dage")?> 11:00&ndash;22:00
+            </p>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Over+B%C3%B8lgen+3%2C+2670+Greve"
+               target="_blank" rel="noopener"
+               class="cnc-dir-btn">
+              <?php echo cnc_tt("Få rutevejledning")?>
+            </a>
+          </div>
         </div>
       </div>
-      <div class="cnc-find-info" style="color:#f3e6d8; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;">
-        <p style="margin:0 0 10px; font-weight:900; color:#fff; font-size:clamp(22px, 2.4vw, 28px); letter-spacing:-.01em; line-height:1.1;"><?php echo cnc_tt("Åbningstider")?></p>
-        <p style="margin:0 0 20px; font-size:17px; font-weight:500; line-height:1.55; color:#e6d7c6;">
-          <?php echo cnc_tt("Alle dage")?> 11:00&ndash;22:00
-        </p>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=Over+B%C3%B8lgen+3%2C+2670+Greve"
-           target="_blank" rel="noopener"
-           class="cnc-dir-btn">
-          <?php echo cnc_tt("Få rutevejledning")?>
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="sub-footer py-3">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col text-center">
-        <a href="<?php echo Yii::app()->createUrl('/privacy')?>" class="cnc-footer-link"><?php echo cnc_tt("Privacy policy")?></a>
-        <a href="<?php echo Yii::app()->createUrl('/terms')?>" class="cnc-footer-link"><?php echo cnc_tt("Terms and conditions")?></a>
-        <a href="<?php echo Yii::app()->createUrl('/cookies')?>" class="cnc-footer-link"><?php echo cnc_tt("Cookiepolitik")?></a>
-        <a href="https://www.findsmiley.dk/1519975" target="_blank" rel="noopener" class="cnc-footer-link cnc-smiley-link" title="<?php echo cnc_tt("Se kontrolrapport")?>">
+      <!-- RIGHT: Mere / More -->
+      <div class="cnc-footer-col">
+        <h4 class="cnc-footer-title"><?php echo cnc_tt("Mere")?></h4>
+        <ul class="cnc-more-links">
+          <li><a href="<?php echo Yii::app()->createUrl('/privacy')?>"><?php echo cnc_tt("Privacy policy")?></a></li>
+          <li><a href="<?php echo Yii::app()->createUrl('/terms')?>"><?php echo cnc_tt("Terms and conditions")?></a></li>
+          <li><a href="<?php echo Yii::app()->createUrl('/cookies')?>"><?php echo cnc_tt("Cookiepolitik")?></a></li>
+        </ul>
+        <a href="https://www.findsmiley.dk/1519975" target="_blank" rel="noopener" class="cnc-smiley" title="<?php echo cnc_tt("Se kontrolrapport")?>">
           <img src="<?php echo Yii::app()->theme->baseUrl?>/assets/img/findsmiley-badge.gif"
                alt="<?php echo cnc_tt("Se kontrolrapport")?> &mdash; findsmiley.dk"
-               width="847" height="274" loading="lazy"
-               style="height:54px; width:auto; vertical-align:middle;">
+               width="847" height="274" loading="lazy">
         </a>
       </div>
     </div>
-    <div class="row mt-2">
-      <div class="col text-center" style="font-size:12px; color:#777;">
-        2talRent ApS &middot; CVR 38272543
-      </div>
+
+    <hr class="cnc-footer-rule">
+    <div class="cnc-footer-bottom">
+      <span>&copy; <?php echo date("Y")?> Chicken N Chicken</span>
+      <span>2talRent ApS &middot; CVR 38272543</span>
     </div>
   </div>
-</div>
+</section>
+
 <style>
-.cnc-find-inner { max-width: 1280px; margin: 0 auto; }
-.cnc-find-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: center; }
-@media (max-width: 899px) { .cnc-find-grid { grid-template-columns: 1fr; gap: 20px; } }
-.sub-footer .cnc-footer-link { display: inline-block; margin: 4px 10px; vertical-align: middle; }
-.sub-footer .cnc-smiley-link { padding: 2px 4px; }
-@media (max-width: 575px) {
-  .sub-footer .cnc-footer-link { display: block; margin: 6px auto; }
-  .sub-footer .cnc-smiley-link { margin-top: 10px; }
+.cnc-footer, .cnc-footer * { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif; }
+.cnc-footer-inner { max-width: 1280px; margin: 0 auto; }
+.cnc-footer-grid {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr;
+  gap: 48px;
+  align-items: start;
 }
-.find-us-section .cnc-dir-btn,
-.find-us-section .cnc-dir-btn:link,
-.find-us-section .cnc-dir-btn:visited {
+@media (max-width: 899px) {
+  .cnc-footer-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+.cnc-footer-col { min-width: 0; }
+.cnc-footer-title {
+  color: #fff;
+  font-weight: 900;
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: -.01em;
+  line-height: 1.05;
+  margin: 0 0 20px;
+  text-align: left;
+}
+.cnc-find-body { display: grid; grid-template-columns: 1.35fr 1fr; gap: 28px; align-items: start; }
+@media (max-width: 559px) { .cnc-find-body { grid-template-columns: 1fr; gap: 18px; } }
+.cnc-map { overflow: hidden; border: 1px solid rgba(255,255,255,0.12); }
+.cnc-find-meta { color: #f3e6d8; }
+.cnc-find-label {
+  margin: 0 0 10px;
+  color: #fff;
+  font-weight: 900;
+  font-size: clamp(20px, 2vw, 26px);
+  letter-spacing: -.01em;
+  line-height: 1.1;
+}
+.cnc-find-hours {
+  margin: 0 0 22px;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.55;
+  color: #e6d7c6;
+}
+.cnc-dir-btn,
+.cnc-dir-btn:link,
+.cnc-dir-btn:visited {
   display: inline-block;
   background: #f17d00;
   color: #fff !important;
@@ -93,15 +128,44 @@ if (!function_exists('cnc_tt')) {
   padding: 13px 26px;
   text-decoration: none !important;
   border: 0;
-  border-radius: 0;
-  transition: background .18s, color .18s;
-  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;
+  transition: background .18s;
 }
-.find-us-section .cnc-dir-btn:hover,
-.find-us-section .cnc-dir-btn:focus,
-.find-us-section .cnc-dir-btn:active {
-  background: #d96b00;
-  color: #fff !important;
-  text-decoration: none !important;
+.cnc-dir-btn:hover,
+.cnc-dir-btn:focus,
+.cnc-dir-btn:active { background: #d96b00; color: #fff !important; text-decoration: none !important; }
+
+.cnc-more-links {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+.cnc-more-links li { margin: 0 0 12px; }
+.cnc-more-links a {
+  color: #f3e6d8;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 16px;
+  transition: color .15s;
+}
+.cnc-more-links a:hover { color: #f17d00; }
+.cnc-smiley { display: inline-block; }
+.cnc-smiley img { height: 54px; width: auto; display: block; }
+
+.cnc-footer-rule {
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,.12);
+  margin: 30px 0 18px;
+}
+.cnc-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #a89786;
+  font-size: 13px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+@media (max-width: 559px) {
+  .cnc-footer-bottom { justify-content: center; text-align: center; }
 }
 </style>
