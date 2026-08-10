@@ -24,7 +24,7 @@ if (!function_exists('cnc_tt')) {
       "Chicken tikka i varmt naanbrød med salat og sauce. Serveres frisk." => "Chicken tikka in warm naan bread with salad and sauce. Served fresh.",
       "Vores favoritter" => "Our favorites",
       "Se hele menuen" => "See full menu",
-      "Frisklavede oksebøffer" => "Freshly made beef patties",
+      "Sprøde kyllingefileter, frisklavet" => "Crispy chicken fillets, freshly made",
       "M, L, XL. Vælg dit fyld" => "M, L, XL. Choose your fillings",
       "Sprød kylling" => "Crispy chicken",
       "Vinger, drumsticks og bites" => "Wings, drumsticks and bites",
@@ -544,7 +544,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
       <div class="cats-grid">
         <?php
         $cats = array(
-          array('slug' => 'cat-burger',      'title' => 'Burgers',                     'desc' => cnc_tt("Frisklavede oksebøffer")),
+          array('slug' => 'cat-burger',      'title' => 'Burgers',                     'desc' => cnc_tt("Sprøde kyllingefileter, frisklavet")),
           array('slug' => 'cat-taco',        'title' => 'Tacos',                       'desc' => cnc_tt("M, L, XL. Vælg dit fyld")),
           array('slug' => 'cat-chicken',     'title' => cnc_tt("Sprød kylling"),       'desc' => cnc_tt("Vinger, drumsticks og bites")),
           array('slug' => 'choco-milkshake', 'title' => 'Milk shake',                  'desc' => cnc_tt("Syv smage. Altid iskold")),
