@@ -35,8 +35,8 @@ if (!function_exists('cnc_tt')) {
         </div>
       </div>
       <div class="cnc-find-info" style="color:#f3e6d8; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;">
-        <p style="margin:0 0 8px; font-weight:900; color:#fff; font-size:18px; letter-spacing:-.01em;"><?php echo cnc_tt("Åbningstider")?></p>
-        <p style="margin:0 0 18px; font-size:15px; font-weight:400; line-height:1.7; color:#d9c7b3;">
+        <p style="margin:0 0 10px; font-weight:900; color:#fff; font-size:clamp(22px, 2.4vw, 28px); letter-spacing:-.01em; line-height:1.1;"><?php echo cnc_tt("Åbningstider")?></p>
+        <p style="margin:0 0 20px; font-size:17px; font-weight:500; line-height:1.55; color:#e6d7c6;">
           <?php echo cnc_tt("Alle dage")?> 11:00&ndash;22:00
         </p>
         <a href="https://www.google.com/maps/dir/?api=1&destination=Over+B%C3%B8lgen+3%2C+2670+Greve"

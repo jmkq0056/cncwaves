@@ -75,7 +75,7 @@ $lqip = array(
   'cat-burger' => 'data:image/webp;base64,UklGRlABAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSKcAAAARb6CmbQMWF8K+GhGBpVFfziMc1NaeNomDwpmAkgEUMDLABkoChgpIACkoKSADW+Ogv5rAQEFE/ycA/amk6bquyDJCSLaDMAyXY0dB2myb5Xn+PO09PLxVHbNO1M2rBya5WmkPAm/glrEKXHL0sEBiiBwnCg/Kgy9AmlgAyEGkXYuUPot0XXcdMEiZ589YZTSHZbhwMdVcfF1XZAQA5DJVEA0A5UrFDABWUDggggAAANAEAJ0BKhgAGAA+7WalTamloyIwGAwBMB2JZgCdM47BLGXDJ4j6XSyTls8V9oUAAP6M6qLqiKWZdkRvzTUVidVYnY3+qpv4N+8cjmixk7+N/FB9HU1lJ/gsclKzAGChsXxBNSTZGltJFIuo94nGZeM662KelZIetQUyYVNPjWO8AAA=',
   'cat-taco' => 'data:image/webp;base64,UklGRjwBAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSIUAAAARb6CgbRs2VAT7fxERoPLn0IrwETjLtj2poMFGhDXAEhDBGkADC+ABjv/3EwBLMGnAl4ZrWIKI/k+AsivCMoSJSbA6Q4YTpoFFCFaQEV/74Z5FgaXpccc48OH7zWy35TDn/N/kDKRiPE8ygOcScV4ynhaIx6LfcwGMryXQLuoWUVg6LTo+AFZQOCCQAAAAsAUAnQEqGAAYAD7taKlPqaYjoigNUTAdiWwAnTLjdQeugDDLSSPqRthHLDqnPZQWWOaKqH4AAP6uqOLZHdqyJd7701p80JP8p+oHWLfE7VxlvJ9jL4BEgMPrFpFpY/4JFM4L19cgzo+P2sIHQ7wWELyTukrG1SUbmds7d6zmKaEKc+dtewbMuIsfLDxckQAA',
   'cat-chicken' => 'data:image/webp;base64,UklGRlwBAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSLUAAAARb6CgbRsWl8HdiYhAJ9f+nzaEm2rbluX9SfD9UsB3dHeYtYGvDrsWcHYt8BsF4P0SwNsGp0BE/ycA/pRp0jOWqGQCD5ga6hwGCgCImlbs7nFrCcCS1erCvdI5J0BwfFy7SMSbMsRtRCQi2sTE1oUe+wNjfHvCT/Xd/QnxzSvkz18a3Z7xTevyDId5+05EHH1vnQ2OXETvtJ71qwZLjFezfq2cCmsisGQpHdE1UQQAEDVRFOB9AFZQOCCAAAAAMAUAnQEqGAAYAD7tcLBSqaYko6gIATAdiWYAnTKDK2QkbMCrfGPZoWzBLlix0cjp8wAA/cxdrNCS4OGMtbepoFfeDcMWR0Kvqqj8qS/sInQl7RS4Wb5jjgAOlECmyBpXi2w6Lg3cbnxB7qovuZ4g3RPL7qy8AT8KPkEn72SQAAA=',
-  'choco-milkshake' => 'data:image/webp;base64,UklGRiwBAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSKoAAAARb6CgbRsWF8HbjYiA7q9yNX9NOK22bVm+nwl+G8DpDtWlQqK6VJcIie5QHQbwAXQCeKd53x9WiOj/BDDMBw2OWfJBg/2Q+kVNSVaqM29wFB9qTGMi5RidLwMPh/jM6QvXtEj0nwDvroSU5RcAFjJyrAnzP3WF5jJShqgrIb7/AXhXRKJH2IgqSlOZB8A7wSGGbnEqifwWd4CbjwrcAQ52iyNipOMIsDAZY1ZQOCBcAAAA8AMAnQEqGAAYAD7hVqZNv6Sjojf6qAPwHAllALsADfIXODYovK/bwAD8WmlEqYfU8NPMYyFEk0ujydQMK5n/+Z9fycgYYe3rabcYKBYkCQkcxdoQOUO68EcAAAA=',
+  'sberry-milkshake' => 'data:image/webp;base64,UklGRjoBAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSJ0AAAARb6CgbRsWl8HdiYgAO93/5DeG01rb3uT7MwFtgI7v6F5sHLYXjYIJOOgOOiqe7lM3yDsNX77DCBH9nwAiolRGUXiq/K9kWZO04iqsMGlnFBcZnbadGFc4uJ91ltMfAcyq+okMHeDb40YO4PcZGjrAt8fpNvCtcXUbMPPEWaIHcMtxBdkduCUkuzBDkjQCbOICX7B3vaXGRVbOZ/ADAFZQOCB2AAAAEAUAnQEqGAAYAD7tZqZNqaWjIjAYDAEwHYlAGRqB4bPv0fRfQFZZD1Qy2wie3DE4gAD90S+QbIgR/Xflx4gYxseuCL5jP72sm2Iq3QQ+oToT6qG9+IyHHiKB0jHcOzQhKpXSwGu63frkfg/HF/GxxmGSU6AAAA==',
 );
 
 /**
@@ -181,9 +181,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
 /* ── HERO ─────────────────────────────────────────────── */
 .cnc-lp .hero {
   position: relative;
-  background:
-    radial-gradient(circle at 88% 20%, rgba(241,125,0,.20) 0%, transparent 55%),
-    var(--maroon);
+  background: var(--maroon);
   color: #fff;
   padding: 50px 24px 60px;
   overflow: hidden;
@@ -269,9 +267,9 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   font-weight: 900; margin: 0 0 22px; color: #fff;
 }
 .cnc-lp .hero-copy p {
-  font-size: clamp(17px, 1.6vw, 22px);
-  color: #f3e6d8; max-width: 560px;
-  margin: 0 0 32px; line-height: 1.55;
+  font-size: clamp(18px, 1.9vw, 26px);
+  color: #f3e6d8; max-width: 620px;
+  margin: 0 0 34px; line-height: 1.55;
 }
 .cnc-lp .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .cnc-lp .hero-cta {
@@ -581,7 +579,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
           array('slug' => 'cat-burger',      'title' => 'Burgers',                     'desc' => cnc_tt("Sprøde kyllingefileter, frisklavet")),
           array('slug' => 'cat-taco',        'title' => 'Tacos',                       'desc' => cnc_tt("M, L, XL. Vælg dit fyld")),
           array('slug' => 'cat-chicken',     'title' => cnc_tt("Sprød kylling"),       'desc' => cnc_tt("Vinger, drumsticks og bites")),
-          array('slug' => 'choco-milkshake', 'title' => 'Milk shake',                  'desc' => cnc_tt("Syv smage. Altid iskold")),
+          array('slug' => 'sberry-milkshake', 'title' => 'Milk shake',                  'desc' => cnc_tt("Syv smage. Altid iskold")),
         );
         foreach ($cats as $c):
         ?>
