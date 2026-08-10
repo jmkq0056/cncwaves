@@ -282,11 +282,19 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   transition: background .18s, color .18s;
 }
 .cnc-lp .hero-cta:hover { background: #fff; color: var(--maroon); text-decoration: none; }
-.cnc-lp .hero-cta.primary {
-  background: var(--brand); border-color: var(--brand); color: #fff;
+.cnc-lp .hero-cta.primary,
+.cnc-lp .hero-cta.primary:link,
+.cnc-lp .hero-cta.primary:visited {
+  background: var(--brand); border-color: var(--brand); color: #fff !important;
   display: inline-flex; align-items: center; gap: 10px;
+  text-decoration: none;
 }
-.cnc-lp .hero-cta.primary:hover { background: var(--brand-dark); border-color: var(--brand-dark); color: #fff; }
+.cnc-lp .hero-cta.primary:hover,
+.cnc-lp .hero-cta.primary:focus,
+.cnc-lp .hero-cta.primary:active {
+  background: var(--brand-dark); border-color: var(--brand-dark);
+  color: #fff !important; text-decoration: none;
+}
 .cnc-lp .hero-cta.primary .savings {
   display: inline-block;
   background: #fff; color: var(--brand-dark);
@@ -373,12 +381,12 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
 /* ── LOCATION SPLIT ──────────────────────────────────── */
 .cnc-lp .split { display: grid; grid-template-columns: 1fr; min-height: 460px;
   content-visibility: auto; contain-intrinsic-size: 1px 460px; }
-@media (min-width: 900px) { .cnc-lp .split { grid-template-columns: 1.15fr 1fr; } }
+@media (min-width: 900px) { .cnc-lp .split { grid-template-columns: 1.55fr 1fr; } }
 .cnc-lp .split-left {
   background: var(--maroon); color: #fff;
   /* Left padding tracks the 1280px container's inner edge so content aligns
      with .cats + .find-us; right padding stays a fixed inner gutter. */
-  padding: 60px 40px 70px max(24px, calc((100vw - 1280px) / 2 + 24px));
+  padding: 60px 40px 70px max(24px, calc((100vw - 1280px) / 2));
   display: flex; flex-direction: column;
   justify-content: center; align-items: flex-start;
   text-align: left;
@@ -485,7 +493,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
 
 .cnc-lp .split-right {
   background: var(--brand); color: #fff;
-  padding: 70px max(24px, calc((100vw - 1280px) / 2 + 24px)) 70px 40px;
+  padding: 70px max(24px, calc((100vw - 1280px) / 2)) 70px 40px;
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
   text-align: center; position: relative; overflow: hidden;
