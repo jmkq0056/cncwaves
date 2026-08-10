@@ -38,6 +38,7 @@ if (!function_exists('cnc_tt')) {
       "Sulten?" => "Hungry?",
       "Bestil online, hent i butikken. Klar på 15 minutter." => "Order online, pick up in store. Ready in 15 minutes.",
       "Bestil online" => "Order online",
+      "−10%" => "−10%",
       "Få rutevejledning" => "Get directions",
       "Din nærmeste og næstnærmeste restaurant" => "Your nearest and second-nearest restaurant",
       "Finder din placering…" => "Finding your location…",
@@ -270,9 +271,10 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   color: #f3e6d8; max-width: 560px;
   margin: 0 0 32px; line-height: 1.55;
 }
+.cnc-lp .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .cnc-lp .hero-cta {
   display: inline-block;
-  padding: 15px 38px;
+  padding: 15px 32px;
   border: 2px solid #fff; color: #fff;
   font-weight: 800; font-size: 15px;
   letter-spacing: .02em;
@@ -280,6 +282,18 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   transition: background .18s, color .18s;
 }
 .cnc-lp .hero-cta:hover { background: #fff; color: var(--maroon); text-decoration: none; }
+.cnc-lp .hero-cta.primary {
+  background: var(--brand); border-color: var(--brand); color: #fff;
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.cnc-lp .hero-cta.primary:hover { background: var(--brand-dark); border-color: var(--brand-dark); color: #fff; }
+.cnc-lp .hero-cta.primary .savings {
+  display: inline-block;
+  background: #fff; color: var(--brand-dark);
+  padding: 4px 10px;
+  font-size: 12px; font-weight: 900;
+  letter-spacing: .04em;
+}
 
 /* Hero skeleton overlay (positioned to mirror .real) */
 .cnc-lp .hero-copy .sk-block {
@@ -530,7 +544,13 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
           <div class="eyebrow"><?php echo cnc_tt("NYHED")?></div>
           <h1>Chicken Tikka Naan</h1>
           <p><?php echo cnc_tt("Chicken tikka i varmt naanbrød med salat og sauce. Serveres frisk.")?></p>
+          <div class="hero-ctas">
           <a href="<?php echo $orderUrl ?>" class="hero-cta"><?php echo cnc_tt("Prøv nu")?></a>
+          <a href="<?php echo $orderUrl ?>" class="hero-cta primary">
+            <?php echo cnc_tt("Bestil online")?>
+            <span class="savings"><?php echo cnc_tt("−10%")?></span>
+          </a>
+        </div>
         </div>
       </div>
     </div>
