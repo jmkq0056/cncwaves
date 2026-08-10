@@ -316,6 +316,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   cursor: pointer;
   display: flex; flex-direction: column;
   gap: 3px;
+  height: 100%;
 }
 .cnc-lp .cat:hover { transform: translateY(-3px); }
 .cnc-lp .cat-img {
@@ -339,7 +340,8 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
   gap: 4px;
-  min-height: 68px;
+  min-height: 92px;
+  flex: 1 1 auto;
 }
 .cnc-lp .cat h4 {
   margin: 0; font-size: 17px; font-weight: 900;
