@@ -140,6 +140,13 @@ cnc-restaurent-system/rsync/install/backoffice/*
 !cnc-restaurent-system/rsync/install/backoffice/sw.js
 !cnc-restaurent-system/rsync/install/backoffice/assets/
 !cnc-restaurent-system/rsync/install/backoffice/themes/
+!cnc-restaurent-system/rsync/install/backoffice/protected/
+
+cnc-restaurent-system/rsync/install/backoffice/protected/*
+!cnc-restaurent-system/rsync/install/backoffice/protected/controllers/
+
+cnc-restaurent-system/rsync/install/backoffice/protected/controllers/*
+!cnc-restaurent-system/rsync/install/backoffice/protected/controllers/BackendmerchantController.php
 
 cnc-restaurent-system/rsync/install/backoffice/assets/*
 !cnc-restaurent-system/rsync/install/backoffice/assets/js/
@@ -162,12 +169,37 @@ cnc-restaurent-system/rsync/install/backoffice/themes/classic/views/layouts/*
 cnc-restaurent-system/rsync/install/protected/*
 !cnc-restaurent-system/rsync/install/protected/components/
 !cnc-restaurent-system/rsync/install/protected/controllers/
+!cnc-restaurent-system/rsync/install/protected/models/
 
 cnc-restaurent-system/rsync/install/protected/components/*
 !cnc-restaurent-system/rsync/install/protected/components/CCart.php
 
 cnc-restaurent-system/rsync/install/protected/controllers/*
 !cnc-restaurent-system/rsync/install/protected/controllers/ApiController.php
+
+cnc-restaurent-system/rsync/install/protected/models/*
+!cnc-restaurent-system/rsync/install/protected/models/AR_ordernew.php
+
+# ── Landing page (karenderia_v2 theme) — files we author + own ──
+!cnc-restaurent-system/rsync/install/themes/
+cnc-restaurent-system/rsync/install/themes/*
+!cnc-restaurent-system/rsync/install/themes/karenderia_v2/
+cnc-restaurent-system/rsync/install/themes/karenderia_v2/*
+!cnc-restaurent-system/rsync/install/themes/karenderia_v2/views/
+!cnc-restaurent-system/rsync/install/themes/karenderia_v2/assets/
+cnc-restaurent-system/rsync/install/themes/karenderia_v2/views/*
+!cnc-restaurent-system/rsync/install/themes/karenderia_v2/views/store/
+!cnc-restaurent-system/rsync/install/themes/karenderia_v2/views/layouts/
+cnc-restaurent-system/rsync/install/themes/karenderia_v2/views/store/*
+!cnc-restaurent-system/rsync/install/themes/karenderia_v2/views/store/landing.php
+cnc-restaurent-system/rsync/install/themes/karenderia_v2/views/layouts/*
+!cnc-restaurent-system/rsync/install/themes/karenderia_v2/views/layouts/sub-footer.php
+!cnc-restaurent-system/rsync/install/themes/karenderia_v2/views/layouts/footer.php
+cnc-restaurent-system/rsync/install/themes/karenderia_v2/assets/*
+!cnc-restaurent-system/rsync/install/themes/karenderia_v2/assets/images/
+cnc-restaurent-system/rsync/install/themes/karenderia_v2/assets/images/*
+!cnc-restaurent-system/rsync/install/themes/karenderia_v2/assets/images/landing/
+!cnc-restaurent-system/rsync/install/themes/karenderia_v2/assets/images/landing/**
 
 # BELT-AND-SUSPENDERS — explicit re-ignore of known-secret files even if
 # someone later adds a wider whitelist. These contain live DB password,

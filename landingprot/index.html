@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chicken N Chicken — Bestil online</title>
+<style>
+:root {
+  --maroon:      #3d0d0f;
+  --maroon-2:    #5a1518;
+  --maroon-ink:  #250607;
+  --brand:       #f17d00;
+  --brand-dark:  #d96b00;
+  --brand-soft:  #ffe7cc;
+  --ink:         #1a0f0a;
+  --cream:       #faf3ea;
+  --cream-line:  #efe4d0;
+  --warm-brown:  #6b4c3b;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; color: var(--ink); }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.4;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ── Existing chickenwaves top bar (kept as-is) ─────────────── */
+.topbar {
+  background: var(--maroon);
+  color: #fff;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.topbar .logo img { height: 44px; width: auto; }
+.topbar .right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 14px;
+}
+.topbar .right .flag {
+  width: 22px; height: 15px;
+  display: inline-block;
+  background: linear-gradient(#c8102e 0 45%, #fff 45% 55%, #c8102e 55%);
+  position: relative;
+}
+.topbar .right .flag::before {
+  content: ""; position: absolute;
+  left: 6px; top: 0; bottom: 0;
+  width: 3px; background: #fff;
+}
+.topbar .right .cart { position: relative; }
+.topbar .right .cart .badge {
+  position: absolute; top: -6px; right: -8px;
+  background: var(--brand); color: #fff;
+  font-size: 10px; font-weight: 800;
+  border-radius: 0; padding: 2px 6px;
+}
+.topbar .right .divider {
+  width: 1px; height: 20px; background: rgba(255,255,255,.25);
+}
+.topbar .right a { font-weight: 600; }
+.topbar .right a:hover { color: var(--brand); }
+@media (max-width: 560px) {
+  .topbar { padding: 10px 14px; gap: 10px; }
+  .topbar .logo img { height: 34px; }
+  .topbar .right { gap: 10px; font-size: 13px; }
+  .topbar .right a:not([href="#"]),
+  .topbar .right .divider:last-of-type { display: none; }
+}
+
+/* ── 1. HERO ─────────────────────────────────────────────── */
+.hero {
+  background:
+    radial-gradient(circle at 88% 20%, rgba(241,125,0,.20) 0%, transparent 55%),
+    var(--maroon);
+  color: #fff;
+  padding: 50px 24px 60px;
+  overflow: hidden;
+}
+.hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .hero-inner { grid-template-columns: 1.15fr 1fr; gap: 40px; }
+}
+.hero-photo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 380px;
+}
+.hero-photo img {
+  width: 100%;
+  max-width: 620px;
+  height: auto;
+  max-height: 620px;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,.45));
+  transform-origin: 50% 100%;
+  will-change: transform, opacity;
+  animation: hero-slam 600ms both;
+}
+@media (min-width: 900px) {
+  .hero-photo img { max-width: 720px; max-height: 640px; }
+}
+
+@keyframes hero-slam {
+  0%   { transform: translateY(-120px) scale(1.15); opacity: 0;
+         animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0); }
+  40%  { transform: translateY(0) scale(1); opacity: 1;
+         animation-timing-function: ease-out; }
+  55%  { transform: translateY(0) scaleY(0.94) scaleX(1.04);
+         animation-timing-function: ease-in-out; }
+  75%  { transform: translateY(0) scaleY(1.03) scaleX(0.98);
+         animation-timing-function: ease-out; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.hero-copy { animation: hero-shake 100ms 240ms both; }
+@keyframes hero-shake {
+  0%, 100% { transform: translateY(0); }
+  35%      { transform: translateY(1px); }
+  70%      { transform: translateY(-1px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo img,
+  .hero-copy { animation: none !important; }
+}
+.hero-copy .eyebrow {
+  color: var(--brand);
+  font-size: 13px; font-weight: 800;
+  letter-spacing: .16em; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.hero-copy h1 {
+  font-size: clamp(40px, 6.5vw, 84px);
+  line-height: .96;
+  letter-spacing: -.02em;
+  font-weight: 900;
+  margin: 0 0 18px;
+}
+.hero-copy p {
+  font-size: clamp(15px, 1.4vw, 18px);
+  color: #f3e6d8;
+  max-width: 520px;
+  margin: 0 0 28px;
+  line-height: 1.55;
+}
+.hero-cta {
+  display: inline-block;
+  padding: 15px 38px;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 0;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: .02em;
+  background: transparent;
+  cursor: pointer;
+  transition: background .18s, color .18s;
+}
+.hero-cta:hover { background: #fff; color: var(--maroon); }
+
+/* ── 2. VORES FAVORITTER ─────────────────────────────────── */
+.cats-wrap {
+  background: var(--cream);
+  padding: 80px 24px;
+}
+.cats {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.cats-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 32px; gap: 12px; flex-wrap: wrap;
+}
+.cats h2 {
+  margin: 0;
+  font-size: clamp(28px, 3.8vw, 44px);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.cats-head a {
+  color: var(--brand); font-weight: 500; font-size: 15px;
+}
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+@media (min-width: 780px) {
+  .cats-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+}
+.cat {
+  background: var(--cream);
+  padding: 0;
+  text-align: center;
+  transition: transform .2s;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  gap: 3px;
+}
+.cat:hover { transform: translateY(-3px); }
+
+.cat-img {
+  aspect-ratio: 1 / 1;
+  background: #fff;
+  display: grid; place-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+.cat-img img {
+  width: 118%; height: 118%;
+  object-fit: contain;
+  transform: scale(1.02);
+}
+.cat-text {
+  background: #fff;
+  padding: 14px 12px 16px;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  gap: 4px;
+}
+.cat h4 {
+  margin: 0;
+  font-size: 17px; font-weight: 900;
+  letter-spacing: -.01em; color: var(--maroon);
+}
+.cat p {
+  margin: 0;
+  color: var(--warm-brown);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ── 3. LOCATION SPLIT ───────────────────────────────────── */
+.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 460px;
+}
+@media (min-width: 900px) {
+  .split { grid-template-columns: 1.15fr 1fr; }
+}
+.split-left {
+  background: var(--maroon);
+  color: #fff;
+  padding: 60px 40px 70px;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: flex-start;
+}
+@media (max-width: 560px) { .split-left { padding: 48px 22px 60px; } }
+.split-left h2 {
+  font-size: clamp(30px, 4.4vw, 52px);
+  font-weight: 900;
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  margin: 0 0 22px;
+  max-width: 520px;
+}
+.split-left .sub {
+  margin: 0 0 22px;
+  font-size: 15px;
+  color: #f3e6d8;
+  opacity: .85;
+  max-width: 460px;
+}
+
+.finder {
+  display: flex; align-items: center;
+  background: #fff; color: var(--ink);
+  border-radius: 0;
+  padding: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.22);
+  width: 100%;
+  max-width: 520px;
+  gap: 6px;
+}
+.finder-field {
+  flex: 1; min-width: 0;
+  padding: 8px 12px;
+  display: flex; flex-direction: column;
+}
+.finder-field label {
+  font-size: 10px; font-weight: 800;
+  color: var(--ink);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.finder-field input {
+  border: 0; outline: 0;
+  font-size: 15px; padding: 3px 0;
+  background: transparent; color: var(--ink);
+  width: 100%;
+}
+.finder-field input::placeholder { color: #b6a99b; }
+.finder-loc {
+  width: 42px; height: 42px;
+  border-radius: 0; border: 0;
+  background: #fff; color: var(--maroon);
+  display: grid; place-items: center;
+  cursor: pointer;
+}
+.finder-loc:hover { background: #f5f0eb; }
+.finder-go {
+  background: var(--maroon); color: #fff;
+  border: 0; padding: 0 24px; height: 42px;
+  border-radius: 0;
+  font-weight: 800; font-size: 14px;
+  letter-spacing: .05em; cursor: pointer;
+}
+.finder-go:hover { background: var(--maroon-ink); }
+
+/* ── Compact results list (lives inside split-left) ─────── */
+.results {
+  width: 100%;
+  max-width: 520px;
+  margin-top: 22px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+.results.on { display: flex; }
+.results-lead {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #f3e6d8;
+  opacity: .85;
+  margin: 4px 2px 2px;
+}
+.row-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 26px;
+  background: rgba(0,0,0,.22);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 0;
+  color: #fff;
+  transition: border-color .15s;
+}
+.row-item.nearest {
+  border: 1.5px solid var(--brand);
+}
+.row-item .main {
+  min-width: 0;
+  display: flex; flex-direction: column;
+  gap: 6px;
+}
+.row-item .name {
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -.01em;
+  color: #fff;
+}
+.row-item .meta {
+  font-size: 14px;
+  color: #d9c7b3;
+  opacity: .8;
+}
+.row-item .act {
+  padding: 14px 22px;
+  border-radius: 0;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 15px;
+  background: var(--brand);
+  color: #fff;
+  border: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s;
+}
+.row-item .act:hover { background: var(--brand-dark); }
+.row-item .act.ghost {
+  background: transparent;
+  color: #fff;
+  padding: 14px 4px;
+  border-radius: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+}
+.row-item .act.ghost:hover {
+  color: var(--brand);
+}
+@media (max-width: 480px) {
+  .row-item {
+    grid-template-columns: 1fr;
+    row-gap: 14px;
+    padding: 18px 20px;
+  }
+  .row-item .act {
+    text-align: center;
+    padding: 13px 18px;
+    font-size: 14px;
+  }
+  .row-item .act.ghost {
+    text-align: left;
+    padding: 4px 0;
+  }
+}
+
+.split-right {
+  background: var(--brand);
+  color: #fff;
+  padding: 70px 40px;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+@media (max-width: 560px) { .split-right { padding: 52px 22px; } }
+.split-right::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.22) 0%, transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(0,0,0,.10) 0%, transparent 55%);
+  pointer-events: none;
+}
+.split-right > * { position: relative; z-index: 1; }
+.split-right h2 {
+  font-size: clamp(34px, 4.4vw, 56px);
+  font-weight: 900;
+  letter-spacing: -.02em;
+  margin: 0 0 18px;
+  color: #fff;
+}
+.split-right p {
+  margin: 0 0 26px;
+  font-size: 15px;
+  color: #fff;
+  max-width: 400px;
+  opacity: .95;
+  line-height: 1.55;
+}
+.split-right .btn {
+  background: var(--maroon);
+  color: #fff;
+  padding: 16px 34px;
+  border-radius: 0;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: .04em;
+  border: 0;
+  cursor: pointer;
+  transition: background .18s;
+}
+.split-right .btn:hover { background: var(--maroon-ink); }
+
+/* ── Footer (matches existing chickenwaves.dk) ──────────── */
+.foot {
+  background: var(--maroon);
+  color: #e6d7c6;
+  padding: 46px 24px 22px;
+  font-size: 14px;
+}
+.foot-top {
+  display: flex; justify-content: center; align-items: center;
+  gap: 36px; flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.foot-top a {
+  font-weight: 500;
+  color: #e6d7c6;
+  transition: color .15s;
+}
+.foot-top a:hover { color: var(--brand); }
+.smiley-badge {
+  display: inline-flex;
+  align-items: center; gap: 6px;
+  background: #fff8b3;
+  color: #0a6b6b;
+  border: 1px solid #d9ce7a;
+  padding: 6px 10px 6px 8px;
+  border-radius: 0;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.15;
+  font-family: Georgia, "Times New Roman", serif;
+  text-align: left;
+}
+.smiley-badge .smiley-txt { display: block; }
+.smiley-badge .smiley-icon {
+  display: grid; place-items: center;
+  color: #0a6b6b;
+  flex: 0 0 auto;
+}
+.foot-cvr {
+  text-align: center;
+  color: #cfbfaa;
+  font-size: 13px;
+  margin-bottom: 22px;
+}
+.foot-rule {
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,.12);
+  margin: 0 0 18px;
+}
+.foot-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px; flex-wrap: wrap;
+  font-size: 13px;
+  color: #cfbfaa;
+}
+@media (max-width: 560px) {
+  .foot-bottom { justify-content: center; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── EXISTING TOP BAR (keep) ─────────────────────────────── -->
+<header class="topbar">
+  <a class="logo" href="/"><img src="assets/logo-white.png" alt="Chicken N Chicken"></a>
+  <div class="right">
+    <span class="flag" title="Dansk"></span>
+    <span class="cart" title="Kurv">
+      🛒
+      <span class="badge">0</span>
+    </span>
+    <span class="divider"></span>
+    <a href="#">Kontakt</a>
+    <span class="divider"></span>
+    <a href="#">Log ind</a>
+  </div>
+</header>
+
+<!-- ── 1. HERO ──────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-photo">
+      <img src="assets/hero-naan-tikka.png" alt="Chicken Tikka Naan">
+    </div>
+    <div class="hero-copy">
+      <div class="eyebrow">NYHED</div>
+      <h1>Chicken Tikka Naan</h1>
+      <p>Chicken tikka i varmt naanbrød med salat og sauce. Serveres frisk.</p>
+      <a href="https://chickenwaves.dk/chicken-n-chicken" class="hero-cta">Prøv nu</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 2. VORES FAVORITTER ─────────────────────────────── -->
+<section class="cats-wrap" id="menu"><div class="cats">
+  <div class="cats-head">
+    <h2>Vores favoritter</h2>
+    <a href="#">Se hele menuen →</a>
+  </div>
+  <div class="cats-grid">
+    <div class="cat">
+      <div class="cat-img"><img src="assets/cat-burger.png" alt="Burgers"></div>
+      <div class="cat-text">
+        <h4>Burgers</h4>
+        <p>Frisklavede oksebøffer</p>
+      </div>
+    </div>
+    <div class="cat">
+      <div class="cat-img"><img src="assets/cat-taco.png" alt="Tacos"></div>
+      <div class="cat-text">
+        <h4>Tacos</h4>
+        <p>M, L, XL. Vælg dit fyld</p>
+      </div>
+    </div>
+    <div class="cat">
+      <div class="cat-img"><img src="assets/cat-chicken.png" alt="Sprød kylling"></div>
+      <div class="cat-text">
+        <h4>Sprød kylling</h4>
+        <p>Vinger, drumsticks og bites</p>
+      </div>
+    </div>
+    <div class="cat">
+      <div class="cat-img"><img src="assets/choco-milkshake.png" alt="Milk shake"></div>
+      <div class="cat-text">
+        <h4>Milk shake</h4>
+        <p>Syv smage. Altid iskold</p>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ── 3. LOCATION SPLIT ───────────────────────────────── -->
+<section class="split" id="restauranter">
+  <div class="split-left">
+    <h2>Find din nærmeste<br>Chicken N Chicken</h2>
+    <p class="sub">Skriv din adresse eller tryk på lokation. Så finder vi den nærmeste.</p>
+
+    <div class="finder">
+      <div class="finder-field">
+        <label for="addr">Din adresse</label>
+        <input id="addr" type="text" placeholder="Indsæt lokation">
+      </div>
+      <button class="finder-loc" title="Brug min lokation" onclick="detectLocation()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="12" cy="12" r="9"></circle>
+          <circle cx="12" cy="12" r="3"></circle>
+          <line x1="12" y1="2" x2="12" y2="4"></line>
+          <line x1="12" y1="20" x2="12" y2="22"></line>
+          <line x1="2" y1="12" x2="4" y2="12"></line>
+          <line x1="20" y1="12" x2="22" y2="12"></line>
+        </svg>
+      </button>
+      <button class="finder-go" onclick="detectLocation()">GO</button>
+    </div>
+
+    <div class="results" id="results">
+      <div class="results-lead" id="resultsLead">Din nærmeste restaurant</div>
+      <div id="cards"></div>
+    </div>
+  </div>
+
+  <div class="split-right">
+    <h2>Sulten?</h2>
+    <p>Bestil online, hent i butikken. Klar på 15 minutter.</p>
+    <a href="https://chickenwaves.dk/chicken-n-chicken" class="btn">Bestil online →</a>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="foot-top">
+    <a href="#">Privatlivspolitik</a>
+    <a href="#">Vilkår og betingelser</a>
+    <a href="#">Cookiepolitik</a>
+    <a href="https://www.findsmiley.dk/" target="_blank" rel="noopener" class="smiley-badge" title="Se kontrolrapport">
+      <span class="smiley-txt">Se kontrol<br>rapport</span>
+      <span class="smiley-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <circle cx="10" cy="11" r="7"></circle>
+          <circle cx="8" cy="10" r=".8" fill="currentColor"></circle>
+          <circle cx="12" cy="10" r=".8" fill="currentColor"></circle>
+          <path d="M7.5 12.5c.7 1.2 1.7 1.8 2.5 1.8s1.8-.6 2.5-1.8"></path>
+          <line x1="15" y1="16" x2="20" y2="21"></line>
+          <line x1="19" y1="20" x2="22" y2="22"></line>
+        </svg>
+      </span>
+    </a>
+  </div>
+
+  <div class="foot-cvr">2talRent ApS · CVR 38272543 · Over Bølgen 3, st. 1, 2670 Greve</div>
+
+  <hr class="foot-rule">
+
+  <div class="foot-bottom">
+    <div>© 2026 Chicken N Chicken</div>
+    <div>Over Bølgen 3, st. 1, 2670 Greve</div>
+  </div>
+</footer>
+
+<script>
+const LOCATIONS = [
+  {
+    slug: "waves",
+    name: "Chicken N Chicken Waves",
+    address: "Over Bølgen 3, st. 1",
+    city: "2670 Greve",
+    lat: 55.5989, lon: 12.3266,
+    canOrder: true,
+    orderUrl: "https://chickenwaves.dk/chicken-n-chicken",
+  },
+  {
+    slug: "horsens",
+    name: "Chicken N Chicken Horsens",
+    address: "Lilli Gyldenkildes Torv 11",
+    city: "8700 Horsens",
+    lat: 55.8617, lon: 9.8503,
+    canOrder: false,
+    orderUrl: null,
+  },
+];
+
+function distanceKm(a, b) {
+  const R = 6371;
+  const dLat = (b.lat - a.lat) * Math.PI / 180;
+  const dLon = (b.lon - a.lon) * Math.PI / 180;
+  const s = Math.sin(dLat/2)**2 +
+            Math.cos(a.lat * Math.PI/180) *
+            Math.cos(b.lat * Math.PI/180) *
+            Math.sin(dLon/2)**2;
+  return 2 * R * Math.asin(Math.sqrt(s));
+}
+function fmtKm(km) {
+  if (km < 1) return Math.round(km * 1000) + " m";
+  if (km < 10) return km.toFixed(1) + " km";
+  return Math.round(km) + " km";
+}
+function directionsUrl(loc) {
+  return `https://www.google.com/maps/dir/?api=1&destination=${loc.lat},${loc.lon}`;
+}
+
+function renderRows(sorted) {
+  const grid = document.getElementById("cards");
+  grid.innerHTML = "";
+  const box = document.getElementById("results");
+  box.classList.add("on");
+
+  sorted.forEach((loc, i) => {
+    const isNearest = i === 0;
+    const actLabel = loc.canOrder ? "Bestil online" : "Få rutevejledning";
+    const actHref  = loc.canOrder ? loc.orderUrl : directionsUrl(loc);
+    const actExtra = loc.canOrder ? "" : 'target="_blank" rel="noopener"';
+    const actClass = loc.canOrder ? "" : "ghost";
+    const meta = (loc.distanceKm != null ? fmtKm(loc.distanceKm) + " · " : "") + loc.city;
+    grid.insertAdjacentHTML("beforeend", `
+      <div class="row-item ${isNearest ? "nearest" : ""}">
+        <div class="main">
+          <div class="name">${loc.name}</div>
+          <div class="meta">${meta}</div>
+        </div>
+        <a class="act ${actClass}" href="${actHref}" ${actExtra}>${actLabel}</a>
+      </div>
+    `);
+  });
+}
+
+function detectLocation() {
+  const lead = document.getElementById("resultsLead");
+  const box  = document.getElementById("results");
+  box.classList.add("on");
+
+  if (!navigator.geolocation) {
+    lead.textContent = "Vælg din restaurant";
+    renderRows(LOCATIONS.map(l => ({ ...l, distanceKm: null })));
+    return;
+  }
+
+  lead.textContent = "Finder din placering…";
+  document.getElementById("cards").innerHTML = "";
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const me = { lat: pos.coords.latitude, lon: pos.coords.longitude };
+      const withDist = LOCATIONS
+        .map((l) => ({ ...l, distanceKm: distanceKm(me, l) }))
+        .sort((a, b) => a.distanceKm - b.distanceKm);
+      lead.textContent = "Din nærmeste og næstnærmeste restaurant";
+      renderRows(withDist);
+    },
+    () => {
+      lead.textContent = "Kunne ikke finde din placering — vælg manuelt";
+      renderRows(LOCATIONS.map(l => ({ ...l, distanceKm: null })));
+    },
+    { enableHighAccuracy: true, timeout: 8000 }
+  );
+}
+
+</script>
+</body>
+</html>

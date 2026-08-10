@@ -6,7 +6,8 @@
     "dev": "next dev --port 3001",
     "build": "next build",
     "start": "next start",
-    "seed": "npx tsx scripts/seed.ts"
+    "seed": "npx tsx scripts/seed.ts",
+    "reset:kasse": "npx tsx scripts/reset-kasse.ts"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

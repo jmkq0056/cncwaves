@@ -1,0 +1,469 @@
+{
+  "eur": [
+    {
+      "code": "CSBRE20",
+      "name": "NAYAAB CHICKEN BREADING 20KG",
+      "priceNet": 46.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "CN1",
+      "name": "CANNUCCE 500PZ 1 KG",
+      "priceNet": 12.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "CU1",
+      "name": "CUCCHIAI 2400PZ 14CM (Skeer)",
+      "priceNet": 33.0,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "BB5HT1",
+      "name": "BURGER BOX AR5 HOT N TASTY 200PZ",
+      "priceNet": 27.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "HB10C",
+      "name": "HB10 CNC BURGER BOX 300PZ",
+      "priceNet": 22.5,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "ED05",
+      "name": "CARTA ASSORBENTE BOX FC1 X 1000",
+      "priceNet": 9.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "ED06",
+      "name": "CARTA ASSORBENTE BOX FC3 X 1000",
+      "priceNet": 12.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "KMC2",
+      "name": "KIDS MEAL BOX CNC 250PZ",
+      "priceNet": 74.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "GPC5",
+      "name": "5X5 CHICKEN/CHICKEN GREASEPROOF x1000",
+      "priceNet": 22.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "GPC6",
+      "name": "6X6 CHICKEN/CHICKEN GREASEPROOF x1000",
+      "priceNet": 24.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "EPEC12",
+      "name": "TAKE AWAY R12 CHICKEN&CHICKEN 250PZ",
+      "priceNet": 17.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "TOVC2",
+      "name": "TOVAGLIETTA CHICKEN VASSOIO 2000 PZ",
+      "priceNet": 59.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "BP300",
+      "name": "BIDONE POLLO CNC 50PZ + COPERCHI FCO",
+      "priceNet": 29.9,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "FC0",
+      "name": "BOX FC0 CHICKEN N CHICKEN 400PZ",
+      "priceNet": 24.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "FC1",
+      "name": "CHICKEN N CHICKEN BOX FC1 300PZ",
+      "priceNet": 25.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "FC3",
+      "name": "CHICKEN N CHICKEN BOX FC3 200PZ",
+      "priceNet": 28.0,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "FC4",
+      "name": "CHICKEN N CHICKEN BOX FC4 100PZ",
+      "priceNet": 45.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "PBC1000",
+      "name": "PATABOXSMALL CHICKEN/CHICKEN 1000PZ",
+      "priceNet": 45.98,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "PBCL1",
+      "name": "PATABOXLARGE CHICKEN/CHICKEN 1000PZ",
+      "priceNet": 49.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "CPK01",
+      "name": "GOLD FARM CHICKEN POPCORN 1KG",
+      "priceNet": 10.5,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "CBH01",
+      "name": "RAW BEEF BURGER 113GR X 48PZ 5.4KG",
+      "priceNet": 55.5,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "CBH03",
+      "name": "BEEF BURGER HALAL 56GR X 48PZ 2.7KG",
+      "priceNet": 28.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "-",
+      "name": "TIRAMISU' NUBI CHOCO 12PZX100GR",
+      "priceNet": 16.55,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "CMD100",
+      "name": "HEINZ CURRY MANGO DIP POT 25GR 100PZ",
+      "priceNet": 16.5,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "HMD100",
+      "name": "HEINZ HONEY MUSTARD DIPPOT 25GR 100PZ",
+      "priceNet": 18.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "SSD100",
+      "name": "HEINZ SWEET & SOUR DIPPOT 25GR 100PZ",
+      "priceNet": 18.99,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "ALG5",
+      "name": "ALGERINA 5LT",
+      "priceNet": 18.5,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "BIGGY5",
+      "name": "BIGGY BURGER 5LT",
+      "priceNet": 18.5,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "LIMONE",
+      "name": "SUCCO DI LIMONE 1L X 12",
+      "priceNet": 25.56,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "EPE08",
+      "name": "SAC MANICI LARGE CNC 250PZ",
+      "priceNet": 36.3,
+      "priceCurrency": "EUR"
+    },
+    {
+      "code": "-",
+      "name": "TRASPORTO / TRANSPORT 1 PALLET",
+      "priceNet": 250.0,
+      "priceCurrency": "EUR"
+    }
+  ],
+  "dkk": [
+    {
+      "code": "661119",
+      "name": "Sour cream dressing 900g",
+      "priceNet": 23.64,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "634234",
+      "name": "Tortilla wheat 30cm 18pcs",
+      "priceNet": 29.31,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "639675",
+      "name": "Multivitamin 10x200ml (Fruit juice with 12% fruit content)",
+      "priceNet": 21.39,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "311555",
+      "name": "Chicken nuggets Tempura 1kg (Price Variant A)",
+      "priceNet": 48.79,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "311555",
+      "name": "Chicken nuggets Tempura 1kg (Price Variant B)",
+      "priceNet": 48.49,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "634131",
+      "name": "Chili cheddar cheese nuggets 1kg",
+      "priceNet": 63.99,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "634099",
+      "name": "French fries 7mm 2.5kg Super crunch",
+      "priceNet": 44.81,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "211417",
+      "name": "Arugula salad washed 500g (Italy - Price Variant A)",
+      "priceNet": 27.31,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "211417",
+      "name": "Arugula salad washed 500g (Italy - Price Variant B)",
+      "priceNet": 32.17,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "297188",
+      "name": "Iceberg lettuce (10) (Sweden/Germany/Netherlands)",
+      "priceNet": 5.61,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "220176",
+      "name": "Iceberg lettuce (10) (Spain - Price Variant A)",
+      "priceNet": 9.34,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "220176",
+      "name": "Iceberg lettuce (10) (Spain - Price Variant B)",
+      "priceNet": 9.36,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "214039",
+      "name": "Carrots 2 kg (7) (Denmark Finest)",
+      "priceNet": 12.06,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "208189",
+      "name": "Tomatoes on vine 5 kg (Netherlands - Price Variant A)",
+      "priceNet": 65.71,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "208189",
+      "name": "Tomatoes on vine 5 kg (Netherlands - Price Variant B)",
+      "priceNet": 75.98,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "326839",
+      "name": "Tomatoes on vine 5/67mm 6kg (Spain/Morocco)",
+      "priceNet": 99.29,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "-",
+      "name": "Tomatoes on vine 6 kg (Netherlands)",
+      "priceNet": 63.66,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "256528",
+      "name": "Salad cheese / Salad cheese in cubes mini 45+ 1kg",
+      "priceNet": 65.82,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "666365",
+      "name": "Frying oil 10L",
+      "priceNet": 137.69,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "687305",
+      "name": "Spring water Denice 50cl",
+      "priceNet": 2.02,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "141741",
+      "name": "Deposit B 1pc",
+      "priceNet": 1.2,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "668135",
+      "name": "Sunflower oil 10L",
+      "priceNet": 129.41,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "270474",
+      "name": "Faxe Kondi 6x1.5L",
+      "priceNet": 69.5,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "99855",
+      "name": "Deposit C 6pcs",
+      "priceNet": 14.4,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "312526",
+      "name": "Garlic dip pots 100x25g",
+      "priceNet": 222.14,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "298407",
+      "name": "Chili Mayonnaise 25g 126pcs",
+      "priceNet": 170.28,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "261153",
+      "name": "Pepsi Max 6x1.5L V PET",
+      "priceNet": 71.62,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "284847",
+      "name": "Tomato ketchup dip pots 400x25g",
+      "priceNet": 613.7,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "292032",
+      "name": "Mayonnaise dip pots 100x25g",
+      "priceNet": 223.55,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "299475",
+      "name": "Burger buns with sesame 100mm 48x53g Sliced (Price Variant A)",
+      "priceNet": 76.36,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "299475",
+      "name": "Burger buns with sesame 100mm 48x53g Sliced (Price Variant B)",
+      "priceNet": 73.66,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "303363",
+      "name": "Chicken kebab pre-cooked 1kg Halal (Price Variant A)",
+      "priceNet": 74.53,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "303363",
+      "name": "Chicken kebab pre-cooked 1kg Halal (Price Variant B)",
+      "priceNet": 71.8,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "689123",
+      "name": "Veggie burger approx. 10pcs 1125g",
+      "priceNet": 35.4,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "634499",
+      "name": "Cream cheese bites 1000g",
+      "priceNet": 66.13,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "649497",
+      "name": "Burger buns with sesame 125mm 48x82g",
+      "priceNet": 100.22,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "17174",
+      "name": "Corn on the cob halves 100-110g 2.5kg",
+      "priceNet": 56.04,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "643090",
+      "name": "Baguette white/light 57x135g",
+      "priceNet": 300.88,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "277262",
+      "name": "Whole milk UHT 3.5% 1L - Milk Manik",
+      "priceNet": 12.87,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "311417",
+      "name": "Fries Sauce Dip pots 100x25g",
+      "priceNet": 251.9,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "633723",
+      "name": "Nacho cheese triangles 1kg",
+      "priceNet": 76.5,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "298242",
+      "name": "Eggs fresh white size M/L 30pcs Buraig",
+      "priceNet": 46.47,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "305277",
+      "name": "Breaded mozzarella sticks approx. 30x33g",
+      "priceNet": 66.67,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "17426",
+      "name": "Euro mix 2.5kg (romano beans, carrots, broccoli)",
+      "priceNet": 45.76,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "296782",
+      "name": "Emmental shredded 1kg (Firm shredded cheese, France)",
+      "priceNet": 85.81,
+      "priceCurrency": "DKK"
+    },
+    {
+      "code": "-",
+      "name": "Environmental Fee",
+      "priceNet": 24.83,
+      "priceCurrency": "DKK"
+    }
+  ],
+  "fx_eur_to_dkk": 7.4604
+}
