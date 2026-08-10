@@ -4,6 +4,7 @@ if (!function_exists('cnc_tt')) {
     static $map = array(
       "Find os her" => "Find us here",
       "Åbningstider" => "Opening hours",
+      "Alle dage" => "Every day",
       "Få rutevejledning" => "Get directions",
       "Privacy policy" => "Privacy policy",
       "Terms and conditions" => "Terms and conditions",
@@ -36,9 +37,7 @@ if (!function_exists('cnc_tt')) {
       <div class="cnc-find-info" style="color:#f3e6d8; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;">
         <p style="margin:0 0 8px; font-weight:900; color:#fff; font-size:18px; letter-spacing:-.01em;"><?php echo cnc_tt("Åbningstider")?></p>
         <p style="margin:0 0 18px; font-size:15px; font-weight:400; line-height:1.7; color:#d9c7b3;">
-          Man&ndash;Tor 11:00&ndash;22:00<br>
-          Fre&ndash;L&oslash;r 11:00&ndash;22:00<br>
-          S&oslash;n 11:00&ndash;22:00
+          <?php echo cnc_tt("Alle dage")?> 11:00&ndash;22:00
         </p>
         <a href="https://www.google.com/maps/dir/?api=1&destination=Over+B%C3%B8lgen+3%2C+2670+Greve"
            target="_blank" rel="noopener"
