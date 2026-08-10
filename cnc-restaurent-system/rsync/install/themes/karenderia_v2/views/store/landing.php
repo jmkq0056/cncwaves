@@ -360,7 +360,9 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
 @media (min-width: 900px) { .cnc-lp .split { grid-template-columns: 1.15fr 1fr; } }
 .cnc-lp .split-left {
   background: var(--maroon); color: #fff;
-  padding: 60px 40px 70px;
+  /* Left padding tracks the 1280px container's inner edge so content aligns
+     with .cats + .find-us; right padding stays a fixed inner gutter. */
+  padding: 60px 40px 70px max(24px, calc((100vw - 1280px) / 2 + 24px));
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
   text-align: center;
@@ -395,8 +397,10 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
 .cnc-lp .finder-field input {
   border: 0; outline: 0; font-size: 15px; padding: 3px 0;
   background: transparent; color: var(--ink); width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 500;
 }
-.cnc-lp .finder-field input::placeholder { color: #b6a99b; }
+.cnc-lp .finder-field input::placeholder { color: #b6a99b; font-weight: 400; }
 .cnc-lp .finder-loc {
   width: 42px; height: 42px; border: 0;
   background: #fff; color: var(--maroon);
@@ -465,7 +469,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
 
 .cnc-lp .split-right {
   background: var(--brand); color: #fff;
-  padding: 70px 40px;
+  padding: 70px max(24px, calc((100vw - 1280px) / 2 + 24px)) 70px 40px;
   display: flex; flex-direction: column;
   justify-content: center; align-items: center;
   text-align: center; position: relative; overflow: hidden;
