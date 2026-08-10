@@ -193,6 +193,8 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   .cnc-lp .hero-inner { gap: 12px; }
   .cnc-lp .hero-copy { padding: 0 10px; text-align: center; align-items: center; display: flex; flex-direction: column; min-height: 0; }
   .cnc-lp .hero-copy p { margin-left: auto; margin-right: auto; }
+  .cnc-lp .hero-ctas { justify-content: center; width: 100%; }
+  .cnc-lp .hero-cta { width: 100%; max-width: 320px; min-width: 0; }
   /* Kill transparent PNG padding: fixed-height container + object-fit:cover crops the empty border */
   .cnc-lp .hero-photo { padding: 0; min-height: 0; height: 46vh; max-height: 360px; }
   .cnc-lp .hero-photo .cnc-pic { max-width: 100%; width: 100%; height: 100%; aspect-ratio: auto; }
@@ -273,12 +275,14 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
 }
 .cnc-lp .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .cnc-lp .hero-cta {
-  display: inline-block;
-  padding: 15px 32px;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 15px 28px;
+  min-width: 230px;
   border: 2px solid #fff; color: #fff;
   font-weight: 800; font-size: 15px;
   letter-spacing: .02em;
   background: transparent; cursor: pointer;
+  text-align: center;
   transition: background .18s, color .18s;
 }
 .cnc-lp .hero-cta:hover { background: #fff; color: var(--maroon); text-decoration: none; }
