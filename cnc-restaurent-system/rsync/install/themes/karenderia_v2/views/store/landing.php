@@ -214,7 +214,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '', $
      so the FULL image shows: flush left/top/bottom, zero crop. */
   .cnc-lp .hero-photo {
     padding: 0; height: 100%; min-height: 560px; overflow: hidden;
-    aspect-ratio: 1980 / 1875;
+    aspect-ratio: 1980 / 1780;
   }
   .cnc-lp .hero-photo .cnc-pic {
     max-width: none; width: 100%; height: 100%;
@@ -258,7 +258,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '', $
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   transform-origin: 50% 100%;
   will-change: transform, opacity;
 }
@@ -603,7 +603,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '', $
     height: auto;
     max-height: none;
     width: 100%;
-    aspect-ratio: 1980 / 1875;
+    aspect-ratio: 1980 / 1780;
   }
   .cnc-lp .hero-copy {
     padding: 0 22px;
@@ -653,6 +653,23 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '', $
   .cnc-lp .hero-inner { min-height: 480px; }
   .cnc-lp .hero-photo { min-height: 480px; }
 }
+/* ── Landing-only header inversion: white bar, dark text/icons ── */
+body.action-landing #top-navigation {
+  background: #fff !important;
+  border-bottom: 1px solid #efe4d0;
+}
+body.action-landing #top-navigation a { color: #1a0f0a !important; }
+body.action-landing #top-navigation .top-logo img,
+body.action-landing #top-navigation .cart-handle > img { filter: brightness(0); }
+body.action-landing #top-navigation .badge {
+  background: #f17d00 !important; color: #fff !important;
+}
+body.action-landing #top-navigation .hamburger-inner,
+body.action-landing #top-navigation .hamburger-inner::before,
+body.action-landing #top-navigation .hamburger-inner::after {
+  background-color: #1a0f0a !important;
+}
+body.action-landing #top-navigation .line-left { border-color: rgba(0,0,0,.18) !important; }
 </style>
 <noscript><style>.cnc-lp .real{opacity:1 !important}.cnc-lp .sk-fade{display:none !important}</style></noscript>
 
@@ -679,7 +696,6 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '', $
           <h1><?php echo cnc_tt("Sprød kylling")?></h1>
           <p><?php echo cnc_tt("Sprød udenpå, saftig indeni. Sådan har vi altid gjort det.")?></p>
           <div class="hero-ctas">
-          <a href="<?php echo $orderUrl ?>" class="hero-cta"><?php echo cnc_tt("Prøv nu")?></a>
           <a href="<?php echo $orderUrl ?>" class="hero-cta primary">
             <?php echo cnc_tt("Bestil online")?>
             <span class="savings"><?php echo cnc_tt("−10%")?></span>
