@@ -74,7 +74,7 @@ $cs->registerLinkTag('dns-prefetch', null, 'https://maps.googleapis.com');
 
 // ── LQIP (24px blurred base64 WebP; instant paint) ──────
 $lqip = array(
-  'hero-crispy-chicken' => 'data:image/webp;base64,UklGRgwBAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSEQAAAARDzD/ERGCcWxbTR5gWNqBNGraWZaWYgku05tPpoaI/k8AKnvD3TlzODM6Iw5c8VjcA64ep8KGCaB6nKVbxa0uI84xA1ZQOCCiAAAAsAUAnQEqGAAYAD7taKRNqaajIjAYDAEwHYlsO4AYx5Czu68y4AEwmWaxpERpTGFz+0luL4F0AP5RT3gEM7EkMh82Y6OPcQs3gMsf0H3Kh7izIGEf03Jf0dXq57ZAfIb2kofQDXqaR93jp8oKaknL4lDCU4eHoIvYW8KfLsMXw+Q/GWQBR0l41CFeWyj3cig9tDyUDSQ/WKgkd+s+e6tevDAA',
+  'hero-crispy-chicken' => 'data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAAAQBgCdASoYABYAPt1eqE2opSOiKA1REBuJbACdMoR0h3+B4w7ohQZeA8AWeWw+BN2i2BkjwZEKY2wA/Z1ye7qfwkCBJLssgBQjwuTWcaln06aS+96mg9rT620ygSRuoHx8A2MFOr0HewIzGpEjJRsIPEegdLRdX1oheNckLGVg5uBpgM1cZVs1uWfCk2th8QRB8d7M5qINXc+5K03NcZJW8RVgrfh+AMFFtTa/1L4AAA==',
   'cat-burger' => 'data:image/webp;base64,UklGRlABAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSKcAAAARb6CmbQMWF8K+GhGBpVFfziMc1NaeNomDwpmAkgEUMDLABkoChgpIACkoKSADW+Ogv5rAQEFE/ycA/amk6bquyDJCSLaDMAyXY0dB2myb5Xn+PO09PLxVHbNO1M2rBya5WmkPAm/glrEKXHL0sEBiiBwnCg/Kgy9AmlgAyEGkXYuUPot0XXcdMEiZ589YZTSHZbhwMdVcfF1XZAQA5DJVEA0A5UrFDABWUDggggAAANAEAJ0BKhgAGAA+7WalTamloyIwGAwBMB2JZgCdM47BLGXDJ4j6XSyTls8V9oUAAP6M6qLqiKWZdkRvzTUVidVYnY3+qpv4N+8cjmixk7+N/FB9HU1lJ/gsclKzAGChsXxBNSTZGltJFIuo94nGZeM662KelZIetQUyYVNPjWO8AAA=',
   'cat-taco' => 'data:image/webp;base64,UklGRjwBAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSIUAAAARb6CgbRs2VAT7fxERoPLn0IrwETjLtj2poMFGhDXAEhDBGkADC+ABjv/3EwBLMGnAl4ZrWIKI/k+AsivCMoSJSbA6Q4YTpoFFCFaQEV/74Z5FgaXpccc48OH7zWy35TDn/N/kDKRiPE8ygOcScV4ynhaIx6LfcwGMryXQLuoWUVg6LTo+AFZQOCCQAAAAsAUAnQEqGAAYAD7taKlPqaYjoigNUTAdiWwAnTLjdQeugDDLSSPqRthHLDqnPZQWWOaKqH4AAP6uqOLZHdqyJd7701p80JP8p+oHWLfE7VxlvJ9jL4BEgMPrFpFpY/4JFM4L19cgzo+P2sIHQ7wWELyTukrG1SUbmds7d6zmKaEKc+dtewbMuIsfLDxckQAA',
   'cat-chicken' => 'data:image/webp;base64,UklGRlwBAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSLUAAAARb6CgbRsWl8HdiYhAJ9f+nzaEm2rbluX9SfD9UsB3dHeYtYGvDrsWcHYt8BsF4P0SwNsGp0BE/ycA/pRp0jOWqGQCD5ga6hwGCgCImlbs7nFrCcCS1erCvdI5J0BwfFy7SMSbMsRtRCQi2sTE1oUe+wNjfHvCT/Xd/QnxzSvkz18a3Z7xTevyDId5+05EHH1vnQ2OXETvtJ71qwZLjFezfq2cCmsisGQpHdE1UQQAEDVRFOB9AFZQOCCAAAAAMAUAnQEqGAAYAD7tcLBSqaYko6gIATAdiWYAnTKDK2QkbMCrfGPZoWzBLlix0cjp8wAA/cxdrNCS4OGMtbepoFfeDcMWR0Kvqqj8qS/sInQl7RS4Wb5jjgAOlECmyBpXi2w6Lg3cbnxB7qovuZ4g3RPL7qy8AT8KPkEn72SQAAA=',
@@ -365,7 +365,27 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   font-size: clamp(28px, 3.8vw, 44px);
   font-weight: 900; letter-spacing: -.02em; color: var(--ink);
 }
-.cnc-lp .cats-head a { color: var(--brand); font-weight: 500; font-size: 15px; }
+.cnc-lp .cats-head a,
+.cnc-lp .cats-head a:link,
+.cnc-lp .cats-head a:visited {
+  display: inline-block;
+  background: var(--maroon);
+  color: #fff !important;
+  padding: 12px 22px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .06em;
+  text-decoration: none !important;
+  border: 0;
+  transition: background .18s;
+}
+.cnc-lp .cats-head a:hover,
+.cnc-lp .cats-head a:focus,
+.cnc-lp .cats-head a:active {
+  background: var(--brand);
+  color: #fff !important;
+  text-decoration: none !important;
+}
 .cnc-lp .cats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
 @media (min-width: 780px) { .cnc-lp .cats-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
 .cnc-lp .cat {
@@ -606,7 +626,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
     <div class="cats">
       <div class="cats-head">
         <h2><?php echo cnc_tt("Vores favoritter")?></h2>
-        <a href="<?php echo $orderUrl ?>"><?php echo cnc_tt("Se hele menuen")?> →</a>
+        <a href="<?php echo $orderUrl ?>" style="text-transform:uppercase;"><?php echo cnc_tt("Se hele menuen")?> →</a>
       </div>
       <div class="cats-grid">
         <?php
