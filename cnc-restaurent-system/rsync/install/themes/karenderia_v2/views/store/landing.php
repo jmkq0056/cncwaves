@@ -653,23 +653,22 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '', $
   .cnc-lp .hero-inner { min-height: 480px; }
   .cnc-lp .hero-photo { min-height: 480px; }
 }
-/* ── Landing-only header inversion: white bar, dark text/icons ── */
+/* ── Landing-only header: signature orange, white text/icons ── */
 body.action-landing #top-navigation {
-  background: #fff !important;
-  border-bottom: 1px solid #efe4d0;
+  background: #f17d00 !important;
+  border-bottom: 0;
 }
-body.action-landing #top-navigation a { color: #1a0f0a !important; }
-body.action-landing #top-navigation .top-logo img,
-body.action-landing #top-navigation .cart-handle > img { filter: brightness(0); }
+body.action-landing #top-navigation a { color: #fff !important; }
+body.action-landing #top-navigation a:hover { color: #3d0d0f !important; }
 body.action-landing #top-navigation .badge {
-  background: #f17d00 !important; color: #fff !important;
+  background: #3d0d0f !important; color: #fff !important;
 }
 body.action-landing #top-navigation .hamburger-inner,
 body.action-landing #top-navigation .hamburger-inner::before,
 body.action-landing #top-navigation .hamburger-inner::after {
-  background-color: #1a0f0a !important;
+  background-color: #fff !important;
 }
-body.action-landing #top-navigation .line-left { border-color: rgba(0,0,0,.18) !important; }
+body.action-landing #top-navigation .line-left { border-color: rgba(255,255,255,.35) !important; }
 </style>
 <noscript><style>.cnc-lp .real{opacity:1 !important}.cnc-lp .sk-fade{display:none !important}</style></noscript>
 
