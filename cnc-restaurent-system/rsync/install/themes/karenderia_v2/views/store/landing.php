@@ -227,23 +227,29 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
     margin: 0;
     padding: 0;
     grid-template-columns: 1.15fr 1fr;
-    gap: 40px;
-    min-height: 540px;
-    align-items: center;
+    gap: 0;
+    min-height: 560px;
+    align-items: stretch;
   }
-  .cnc-lp .hero-photo { padding: 0; height: 100%; min-height: 540px; }
+  .cnc-lp .hero-photo { padding: 0; height: 100%; min-height: 560px; overflow: hidden; }
   .cnc-lp .hero-photo .cnc-pic {
     max-width: none; width: 100%; height: 100%;
     aspect-ratio: auto;
   }
   .cnc-lp .hero-photo .cnc-img {
     width: 100%; height: 100%;
-    object-fit: contain;
-    object-position: left center;
+    object-fit: cover;
+    object-position: center;
   }
   .cnc-lp .hero-copy {
-    padding: 40px max(24px, calc((100vw - 1280px) / 2)) 40px 0;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-end;
+    text-align: right;
+    padding: 40px max(24px, calc((100vw - 1280px) / 2)) 40px 40px;
   }
+  .cnc-lp .hero-copy h1 { text-align: right; margin-left: auto; }
+  .cnc-lp .hero-copy p { text-align: right; margin-left: auto; margin-right: 0; }
+  .cnc-lp .hero-ctas { justify-content: flex-end; }
 }
 .cnc-lp .hero-photo {
   position: relative;
