@@ -215,8 +215,34 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   display: grid; grid-template-columns: 1fr;
   gap: 24px; align-items: center;
 }
+/* Transparent PNG regions on the hero must show maroon — kill any LQIP
+   background that shows through the transparency. Preload handles LCP. */
+.cnc-lp .hero-photo .cnc-img { background: none !important; }
+.cnc-lp .hero-photo .cnc-pic { background: none !important; }
 @media (min-width: 900px) {
-  .cnc-lp .hero-inner { grid-template-columns: 1.15fr 1fr; gap: 40px; }
+  .cnc-lp .hero { padding: 0; }
+  .cnc-lp .hero-inner {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 40px;
+    min-height: 540px;
+    align-items: center;
+  }
+  .cnc-lp .hero-photo { padding: 0; height: 100%; min-height: 540px; }
+  .cnc-lp .hero-photo .cnc-pic {
+    max-width: none; width: 100%; height: 100%;
+    aspect-ratio: auto;
+  }
+  .cnc-lp .hero-photo .cnc-img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    object-position: left center;
+  }
+  .cnc-lp .hero-copy {
+    padding: 40px max(24px, calc((100vw - 1280px) / 2)) 40px 0;
+  }
 }
 .cnc-lp .hero-photo {
   position: relative;
