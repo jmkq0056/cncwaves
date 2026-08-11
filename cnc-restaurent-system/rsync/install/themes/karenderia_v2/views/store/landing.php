@@ -196,14 +196,13 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   .cnc-lp .hero-copy p { margin-left: auto; margin-right: auto; }
   .cnc-lp .hero-ctas { justify-content: center; width: 100%; }
   .cnc-lp .hero-cta { width: 100%; max-width: 320px; min-width: 0; }
-  /* Mobile: white photo tile, fills full width, food centered with breathing room */
-  .cnc-lp .hero-photo { padding: 0; min-height: 0; height: 52vh; max-height: 420px; background: #fff; }
+  /* Kill transparent PNG padding: fixed-height container + object-fit:cover crops the empty border */
+  .cnc-lp .hero-photo { padding: 0; min-height: 0; height: 46vh; max-height: 360px; }
   .cnc-lp .hero-photo .cnc-pic { max-width: 100%; width: 100%; height: 100%; aspect-ratio: auto; }
   .cnc-lp .hero-photo .cnc-img {
     width: 100%; height: 100%;
-    object-fit: contain;
-    object-position: center;
-    padding: 12px;
+    object-fit: cover;
+    object-position: center 42%;
     transform: none;
   }
   .cnc-lp.is-ready .hero-photo .cnc-img.is-loaded { animation: none !important; }
@@ -217,10 +216,8 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   display: grid; grid-template-columns: 1fr;
   gap: 24px; align-items: center;
 }
-/* Hero photo cell is WHITE (matches the boxy cats/tiles system).
-   The transparent PNG regions show white, not maroon or LQIP noise.
-   Preload handles LCP so no placeholder is needed. */
-.cnc-lp .hero-photo { background: #fff; }
+/* Transparent PNG regions on the hero must show maroon — kill any LQIP
+   background that shows through the transparency. Preload handles LCP. */
 .cnc-lp .hero-photo .cnc-img { background: none !important; }
 .cnc-lp .hero-photo .cnc-pic { background: none !important; }
 @media (min-width: 900px) {
@@ -234,17 +231,15 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
     min-height: 560px;
     align-items: stretch;
   }
-  .cnc-lp .hero-photo { padding: 0; height: 100%; min-height: 560px; overflow: hidden; background: #fff; }
+  .cnc-lp .hero-photo { padding: 0; height: 100%; min-height: 560px; overflow: hidden; }
   .cnc-lp .hero-photo .cnc-pic {
     max-width: none; width: 100%; height: 100%;
     aspect-ratio: auto;
-    display: block;
   }
   .cnc-lp .hero-photo .cnc-img {
     width: 100%; height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
-    padding: 20px;
   }
   .cnc-lp .hero-copy {
     display: flex; flex-direction: column;
