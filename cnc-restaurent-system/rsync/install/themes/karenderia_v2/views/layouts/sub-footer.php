@@ -117,13 +117,14 @@ if (!function_exists('cnc_tt')) {
   margin: 0 0 10px;
   color: #fff;
   font-weight: 900;
-  font-size: clamp(20px, 2vw, 26px);
+  /* !important beats the theme's global p{font-size:12px !important} (style.css:40) */
+  font-size: clamp(20px, 2vw, 26px) !important;
   letter-spacing: -.01em;
   line-height: 1.1;
 }
 .cnc-find-hours {
   margin: 0 0 22px;
-  font-size: 17px;
+  font-size: 17px !important;
   font-weight: 500;
   line-height: 1.55;
   color: #e6d7c6;
