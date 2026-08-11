@@ -48,6 +48,7 @@ if (!function_exists('cnc_tt')) {
       "Åbningstider" => "Opening hours",
       "Alle dage" => "Every day",
       "Mere" => "More",
+      "Følg os" => "Follow us",
       "Privacy policy" => "Privacy policy",
       "Terms and conditions" => "Terms and conditions",
       "Cookiepolitik" => "Cookie policy",
