@@ -19,14 +19,14 @@ $orderUrl = 'https://chickenwaves.dk/chicken-n-chicken';
 if (!function_exists('cnc_tt')) {
   function cnc_tt($da) {
     static $map = array(
-      "NYHED" => "NEW",
+      "SIGNATUR" => "SIGNATURE",
+      "Sprød kylling" => "Crispy chicken",
+      "Sprød udenpå, saftig indeni. Sådan har vi altid gjort det." => "Crispy outside, juicy inside. The way we've always done it.",
       "Prøv nu" => "Try it now",
-      "Chicken tikka i varmt naanbrød med salat og sauce. Serveres frisk." => "Chicken tikka in warm naan bread with salad and sauce. Served fresh.",
       "Vores favoritter" => "Our favorites",
       "Se hele menuen" => "See full menu",
       "Sprøde kyllingefileter, frisklavet" => "Crispy chicken fillets, freshly made",
       "M, L, XL. Vælg dit fyld" => "M, L, XL. Choose your fillings",
-      "Sprød kylling" => "Crispy chicken",
       "Vinger, drumsticks og bites" => "Wings, drumsticks and bites",
       "Syv smage. Altid iskold" => "Seven flavors. Always ice-cold",
       "Find din nærmeste" => "Find your nearest",
@@ -46,6 +46,8 @@ if (!function_exists('cnc_tt')) {
       "Vælg din restaurant" => "Choose your restaurant",
       "Find os her" => "Find us here",
       "Åbningstider" => "Opening hours",
+      "Alle dage" => "Every day",
+      "Mere" => "More",
       "Privacy policy" => "Privacy policy",
       "Terms and conditions" => "Terms and conditions",
       "Cookiepolitik" => "Cookie policy",
@@ -60,10 +62,10 @@ if (!function_exists('cnc_tt')) {
 
 // ── LCP preload — hero image ─────────────────────────────
 $cs = Yii::app()->clientScript;
-$cs->registerLinkTag('preload', 'image/avif', "$assets/hero-naan-tikka-800.avif", null, array(
+$cs->registerLinkTag('preload', 'image/avif', "$assets/hero-crispy-chicken-800.avif", null, array(
   'as' => 'image',
   'fetchpriority' => 'high',
-  'imagesrcset' => "$assets/hero-naan-tikka-400.avif 400w, $assets/hero-naan-tikka-800.avif 800w, $assets/hero-naan-tikka-1200.avif 1200w",
+  'imagesrcset' => "$assets/hero-crispy-chicken-400.avif 400w, $assets/hero-crispy-chicken-800.avif 800w, $assets/hero-crispy-chicken-1200.avif 1200w",
   'imagesizes' => '(min-width: 900px) 720px, 100vw',
 ));
 $cs->registerLinkTag('preconnect', null, 'https://www.google.com');
@@ -71,7 +73,7 @@ $cs->registerLinkTag('dns-prefetch', null, 'https://maps.googleapis.com');
 
 // ── LQIP (24px blurred base64 WebP; instant paint) ──────
 $lqip = array(
-  'hero-naan-tikka' => 'data:image/webp;base64,UklGRrAAAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSCIAAAARDzD/ERFCQQCQjQYiiaayAJ/dBhH9nwD4KYEaFCe8IHgLVlA4IGgAAACwAwCdASoYABgAPuVep02pJSOiMAwBIByJbADE2Cm7cuyTOhHUAAD+7hxv/umNKT8IB2HFu7nvr1zO/rkvR9qwpemIdlO0ZJ8cdSird6Ii6Mk7JKGN6t/uWgTMHt+BCjx4/+TkyfAAAA==',
+  'hero-crispy-chicken' => 'data:image/webp;base64,UklGRgwBAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSEQAAAARDzD/ERGCcWxbTR5gWNqBNGraWZaWYgku05tPpoaI/k8AKnvD3TlzODM6Iw5c8VjcA64ep8KGCaB6nKVbxa0uI84xA1ZQOCCiAAAAsAUAnQEqGAAYAD7taKRNqaajIjAYDAEwHYlsO4AYx5Czu68y4AEwmWaxpERpTGFz+0luL4F0AP5RT3gEM7EkMh82Y6OPcQs3gMsf0H3Kh7izIGEf03Jf0dXq57ZAfIb2kofQDXqaR93jp8oKaknL4lDCU4eHoIvYW8KfLsMXw+Q/GWQBR0l41CFeWyj3cig9tDyUDSQ/WKgkd+s+e6tevDAA',
   'cat-burger' => 'data:image/webp;base64,UklGRlABAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSKcAAAARb6CmbQMWF8K+GhGBpVFfziMc1NaeNomDwpmAkgEUMDLABkoChgpIACkoKSADW+Ogv5rAQEFE/ycA/amk6bquyDJCSLaDMAyXY0dB2myb5Xn+PO09PLxVHbNO1M2rBya5WmkPAm/glrEKXHL0sEBiiBwnCg/Kgy9AmlgAyEGkXYuUPot0XXcdMEiZ589YZTSHZbhwMdVcfF1XZAQA5DJVEA0A5UrFDABWUDggggAAANAEAJ0BKhgAGAA+7WalTamloyIwGAwBMB2JZgCdM47BLGXDJ4j6XSyTls8V9oUAAP6M6qLqiKWZdkRvzTUVidVYnY3+qpv4N+8cjmixk7+N/FB9HU1lJ/gsclKzAGChsXxBNSTZGltJFIuo94nGZeM662KelZIetQUyYVNPjWO8AAA=',
   'cat-taco' => 'data:image/webp;base64,UklGRjwBAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSIUAAAARb6CgbRs2VAT7fxERoPLn0IrwETjLtj2poMFGhDXAEhDBGkADC+ABjv/3EwBLMGnAl4ZrWIKI/k+AsivCMoSJSbA6Q4YTpoFFCFaQEV/74Z5FgaXpccc48OH7zWy35TDn/N/kDKRiPE8ygOcScV4ynhaIx6LfcwGMryXQLuoWUVg6LTo+AFZQOCCQAAAAsAUAnQEqGAAYAD7taKlPqaYjoigNUTAdiWwAnTLjdQeugDDLSSPqRthHLDqnPZQWWOaKqH4AAP6uqOLZHdqyJd7701p80JP8p+oHWLfE7VxlvJ9jL4BEgMPrFpFpY/4JFM4L19cgzo+P2sIHQ7wWELyTukrG1SUbmds7d6zmKaEKc+dtewbMuIsfLDxckQAA',
   'cat-chicken' => 'data:image/webp;base64,UklGRlwBAABXRUJQVlA4WAoAAAAQAAAAFwAAFwAAQUxQSLUAAAARb6CgbRsWl8HdiYhAJ9f+nzaEm2rbluX9SfD9UsB3dHeYtYGvDrsWcHYt8BsF4P0SwNsGp0BE/ycA/pRp0jOWqGQCD5ga6hwGCgCImlbs7nFrCcCS1erCvdI5J0BwfFy7SMSbMsRtRCQi2sTE1oUe+wNjfHvCT/Xd/QnxzSvkz18a3Z7xTevyDId5+05EHH1vnQ2OXETvtJ71qwZLjFezfq2cCmsisGQpHdE1UQQAEDVRFOB9AFZQOCCAAAAAMAUAnQEqGAAYAD7tcLBSqaYko6gIATAdiWYAnTKDK2QkbMCrfGPZoWzBLlix0cjp8wAA/cxdrNCS4OGMtbepoFfeDcMWR0Kvqqj8qS/sInQl7RS4Wb5jjgAOlECmyBpXi2w6Lg3cbnxB7qovuZ4g3RPL7qy8AT8KPkEn72SQAAA=',
@@ -538,7 +540,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-photo">
-        <?php echo cnc_picture($assets, 'hero-naan-tikka', 'Chicken Tikka Naan', '(min-width: 900px) 720px, 100vw', true, $lqip['hero-naan-tikka']); ?>
+        <?php echo cnc_picture($assets, 'hero-crispy-chicken', cnc_tt("Sprød kylling"), '(min-width: 900px) 720px, 100vw', true, $lqip['hero-crispy-chicken']); ?>
       </div>
       <div class="hero-copy">
         <!-- Skeleton (fades out when ready) -->
@@ -551,9 +553,9 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
         <div class="sk sk-fade sk-block sk-btn"></div>
         <!-- Real content -->
         <div class="real">
-          <div class="eyebrow"><?php echo cnc_tt("NYHED")?></div>
-          <h1>Chicken Tikka Naan</h1>
-          <p><?php echo cnc_tt("Chicken tikka i varmt naanbrød med salat og sauce. Serveres frisk.")?></p>
+          <div class="eyebrow"><?php echo cnc_tt("SIGNATUR")?></div>
+          <h1><?php echo cnc_tt("Sprød kylling")?></h1>
+          <p><?php echo cnc_tt("Sprød udenpå, saftig indeni. Sådan har vi altid gjort det.")?></p>
           <div class="hero-ctas">
           <a href="<?php echo $orderUrl ?>" class="hero-cta"><?php echo cnc_tt("Prøv nu")?></a>
           <a href="<?php echo $orderUrl ?>" class="hero-cta primary">
