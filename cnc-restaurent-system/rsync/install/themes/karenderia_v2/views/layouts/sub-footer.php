@@ -207,4 +207,21 @@ if (!function_exists('cnc_tt')) {
 @media (max-width: 559px) {
   .cnc-footer-bottom { justify-content: center; text-align: center; }
 }
+
+/* ── Mobile: center every element in the footer ────────── */
+@media (max-width: 899px) {
+  .cnc-footer-title { text-align: center; }
+  .cnc-find-body { text-align: center; }
+  .cnc-find-meta { text-align: center; }
+  .cnc-find-info { text-align: center; }
+  .cnc-find-meta > *,
+  .cnc-find-info > * { text-align: center; margin-left: auto; margin-right: auto; }
+  .cnc-dir-btn { display: inline-block; margin: 0 auto; }
+  .cnc-socials { justify-content: center; }
+  .cnc-more-links { text-align: center; }
+  .cnc-more-links li { text-align: center; }
+  .cnc-smiley { display: block; margin: 0 auto; text-align: center; }
+  .cnc-smiley img { margin: 0 auto; }
+  .cnc-footer-col { text-align: center; }
+}
 </style>

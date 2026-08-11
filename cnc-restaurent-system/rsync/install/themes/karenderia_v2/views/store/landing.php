@@ -219,10 +219,19 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
     transform: none;
   }
   .cnc-lp.is-ready .hero-photo .cnc-img.is-loaded { animation: none !important; }
-  /* Split: tighten panels to content, add mobile side padding */
+  /* Split: tighten panels to content, add mobile side padding, center everything */
   .cnc-lp .split { min-height: 0; }
-  .cnc-lp .split-left  { padding: 40px 24px 44px; }
+  .cnc-lp .split-left  { padding: 40px 24px 44px; align-items: center; text-align: center; }
   .cnc-lp .split-right { padding: 40px 24px 44px; }
+  .cnc-lp .split-left h2 { text-align: center; margin-left: auto; margin-right: auto; }
+  .cnc-lp .split-left .sub { text-align: center; margin-left: auto; margin-right: auto; }
+  .cnc-lp .split-left .real { align-items: center; }
+  .cnc-lp .split-left .finder { margin-left: auto; margin-right: auto; }
+  .cnc-lp .split-left .results { margin-left: auto; margin-right: auto; }
+  .cnc-lp .split-left .results-lead { text-align: center; }
+  /* Cats header centered on mobile */
+  .cnc-lp .cats-head { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
+  .cnc-lp .cats-head h2 { text-align: center; }
 }
 .cnc-lp .hero-inner {
   max-width: 1280px; margin: 0 auto;
