@@ -67,7 +67,7 @@ $cs->registerLinkTag('preload', 'image/avif', "$assets/hero-crispy-chicken-800.a
   'as' => 'image',
   'fetchpriority' => 'high',
   'imagesrcset' => "$assets/hero-crispy-chicken-400.avif 400w, $assets/hero-crispy-chicken-800.avif 800w, $assets/hero-crispy-chicken-1200.avif 1200w",
-  'imagesizes' => '(min-width: 900px) 720px, 100vw',
+  'imagesizes' => '(min-width: 900px) 54vw, 100vw',
 ));
 $cs->registerLinkTag('preconnect', null, 'https://www.google.com');
 $cs->registerLinkTag('dns-prefetch', null, 'https://maps.googleapis.com');
@@ -86,7 +86,7 @@ $lqip = array(
  * width/height for CLS, LQIP background for instant paint, and hooks
  * for the skeleton fade-out.
  */
-function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
+function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '', $w = 1200, $h = 1200) {
   $srcAvif = "{$assets}/{$slug}-400.avif 400w, {$assets}/{$slug}-800.avif 800w, {$assets}/{$slug}-1200.avif 1200w";
   $srcWebp = "{$assets}/{$slug}-400.webp 400w, {$assets}/{$slug}-800.webp 800w, {$assets}/{$slug}-1200.webp 1200w";
   $srcPng  = "{$assets}/{$slug}-400.png 400w, {$assets}/{$slug}-800.png 800w, {$assets}/{$slug}-1200.png 1200w";
@@ -99,7 +99,7 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
     . '<source type="image/avif" srcset="' . $srcAvif . '" sizes="' . $sizes . '">'
     . '<source type="image/webp" srcset="' . $srcWebp . '" sizes="' . $sizes . '">'
     . '<img class="cnc-img" src="' . $fallback . '" srcset="' . $srcPng . '" sizes="' . $sizes . '"'
-    . ' alt="' . $altEsc . '" width="1200" height="1200"'
+    . ' alt="' . $altEsc . '" width="' . $w . '" height="' . $h . '"'
     . ' loading="' . $loading . '" decoding="async" fetchpriority="' . $priority . '"'
     . ' style="' . $style . '" onload="this.classList.add(\'is-loaded\');this.parentNode.classList.add(\'is-loaded\')">'
     . '</picture>';
@@ -124,22 +124,6 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
 .cnc-lp img { display: block; max-width: 100%; }
 .cnc-lp a { color: inherit; text-decoration: none; }
 
-/* Karenderia wraps views inside .page-content which may sit in a
-   Bootstrap container. Break out so sections always bleed to viewport
-   edges regardless of parent max-width/padding. */
-html, body { overflow-x: hidden; }
-.cnc-lp { width: 100%; }
-.cnc-lp .hero,
-.cnc-lp .cats-wrap,
-.cnc-lp .split {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  margin-left: calc(50% - 50vw) !important;
-  margin-right: calc(50% - 50vw) !important;
-  position: relative;
-  left: 0; right: 0;
-  box-sizing: border-box;
-}
 
 /* ── Skeleton system ───────────────────────────────────── */
 .cnc-lp .sk {
@@ -206,37 +190,6 @@ html, body { overflow-x: hidden; }
   padding: 50px 24px 60px;
   overflow: hidden;
 }
-@media (max-width: 899px) {
-  .cnc-lp .hero { padding: 16px 12px 22px; }
-  .cnc-lp .hero-inner { gap: 12px; }
-  .cnc-lp .hero-copy { padding: 0 10px; text-align: center; align-items: center; display: flex; flex-direction: column; min-height: 0; }
-  .cnc-lp .hero-copy p { margin-left: auto; margin-right: auto; }
-  .cnc-lp .hero-ctas { justify-content: center; width: 100%; }
-  .cnc-lp .hero-cta { width: 100%; max-width: 320px; min-width: 0; }
-  /* Kill transparent PNG padding: fixed-height container + object-fit:cover crops the empty border */
-  .cnc-lp .hero-photo { padding: 0; min-height: 0; height: 46vh; max-height: 360px; }
-  .cnc-lp .hero-photo .cnc-pic { max-width: 100%; width: 100%; height: 100%; aspect-ratio: auto; }
-  .cnc-lp .hero-photo .cnc-img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: center 42%;
-    transform: none;
-  }
-  .cnc-lp.is-ready .hero-photo .cnc-img.is-loaded { animation: none !important; }
-  /* Split: tighten panels to content, add mobile side padding, center everything */
-  .cnc-lp .split { min-height: 0; }
-  .cnc-lp .split-left  { padding: 40px 24px 44px; align-items: center; text-align: center; }
-  .cnc-lp .split-right { padding: 40px 24px 44px; }
-  .cnc-lp .split-left h2 { text-align: center; margin-left: auto; margin-right: auto; }
-  .cnc-lp .split-left .sub { text-align: center; margin-left: auto; margin-right: auto; }
-  .cnc-lp .split-left .real { align-items: center; }
-  .cnc-lp .split-left .finder { margin-left: auto; margin-right: auto; }
-  .cnc-lp .split-left .results { margin-left: auto; margin-right: auto; }
-  .cnc-lp .split-left .results-lead { text-align: center; }
-  /* Cats header centered on mobile */
-  .cnc-lp .cats-head { justify-content: center; text-align: center; flex-direction: column; align-items: center; }
-  .cnc-lp .cats-head h2 { text-align: center; }
-}
 .cnc-lp .hero-inner {
   max-width: 1280px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr;
@@ -252,12 +205,17 @@ html, body { overflow-x: hidden; }
     max-width: none;
     margin: 0;
     padding: 0;
-    grid-template-columns: 1.15fr 1fr;
+    grid-template-columns: auto 1fr;
     gap: 0;
     min-height: 560px;
     align-items: stretch;
   }
-  .cnc-lp .hero-photo { padding: 0; height: 100%; min-height: 560px; overflow: hidden; }
+  /* Photo column width derives from hero height x image aspect (1980x1875)
+     so the FULL image shows: flush left/top/bottom, zero crop. */
+  .cnc-lp .hero-photo {
+    padding: 0; height: 100%; min-height: 560px; overflow: hidden;
+    aspect-ratio: 1980 / 1875;
+  }
   .cnc-lp .hero-photo .cnc-pic {
     max-width: none; width: 100%; height: 100%;
     aspect-ratio: auto;
@@ -277,22 +235,30 @@ html, body { overflow-x: hidden; }
   .cnc-lp .hero-copy p { text-align: right; margin-left: auto; margin-right: 0; }
   .cnc-lp .hero-ctas { justify-content: flex-end; }
 }
+/* Bulletproof fill: the photo cell gets an explicit height (media queries
+   below), and picture+img are absolutely pinned to all four edges.
+   No inline-<picture> sizing quirks, no aspect-ratio traps, no max-width
+   caps. object-fit:cover guarantees edge-to-edge at ANY aspect ratio. */
 .cnc-lp .hero-photo {
   position: relative;
-  display: grid; place-items: center;
+  overflow: hidden;
   min-height: 380px;
 }
 .cnc-lp .hero-photo .cnc-pic {
+  position: absolute;
+  inset: 0;
+  display: block;
   width: 100%;
-  max-width: 620px;
-  aspect-ratio: 1 / 1;
-}
-@media (min-width: 900px) {
-  .cnc-lp .hero-photo .cnc-pic { max-width: 720px; }
+  height: 100%;
+  max-width: none;
 }
 .cnc-lp .hero-photo .cnc-img {
-  width: 100%; height: 100%;
-  object-fit: contain;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transform-origin: 50% 100%;
   will-change: transform, opacity;
 }
@@ -328,7 +294,7 @@ html, body { overflow-x: hidden; }
   font-weight: 900; margin: 0 0 22px; color: #fff;
 }
 .cnc-lp .hero-copy p {
-  font-size: clamp(18px, 1.9vw, 26px);
+  font-size: clamp(18px, 1.9vw, 26px) !important;
   color: #f3e6d8; max-width: 620px;
   margin: 0 0 34px; line-height: 1.55;
 }
@@ -344,7 +310,7 @@ html, body { overflow-x: hidden; }
   text-align: center;
   transition: background .18s, color .18s;
 }
-.cnc-lp .hero-cta:hover { background: #fff; color: var(--maroon); text-decoration: none; }
+.cnc-lp .hero-cta:hover { background: #fff; color: var(--maroon) !important; text-decoration: none; }
 .cnc-lp .hero-cta.primary,
 .cnc-lp .hero-cta.primary:link,
 .cnc-lp .hero-cta.primary:visited {
@@ -383,7 +349,7 @@ html, body { overflow-x: hidden; }
   content-visibility: auto; contain-intrinsic-size: 1px 600px; }
 .cnc-lp .cats { max-width: 1280px; margin: 0 auto; }
 .cnc-lp .cats-head {
-  display: flex; align-items: baseline; justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
   margin-bottom: 32px; gap: 12px; flex-wrap: wrap;
 }
 .cnc-lp .cats h2 {
@@ -413,7 +379,7 @@ html, body { overflow-x: hidden; }
   text-decoration: none !important;
 }
 .cnc-lp .cats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-@media (min-width: 780px) { .cnc-lp .cats-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+@media (min-width: 900px) { .cnc-lp .cats-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
 .cnc-lp .cat {
   background: var(--cream);
   text-align: center;
@@ -454,7 +420,7 @@ html, body { overflow-x: hidden; }
 }
 .cnc-lp .cat p {
   margin: 0; color: var(--warm-brown);
-  font-size: 13px; font-weight: 400; line-height: 1.4;
+  font-size: 13px !important; font-weight: 400; line-height: 1.4;
 }
 /* Skeleton bars for cat text (overlay the .real) */
 .cnc-lp .cat-text { position: relative; }
@@ -475,7 +441,6 @@ html, body { overflow-x: hidden; }
   text-align: left;
   position: relative;
 }
-@media (max-width: 560px) { .cnc-lp .split-left { padding: 48px 22px 60px; } }
 .cnc-lp .split-left h2 {
   font-size: clamp(30px, 4.4vw, 52px);
   font-weight: 900; line-height: 1.02;
@@ -483,7 +448,7 @@ html, body { overflow-x: hidden; }
   max-width: 520px; color: #fff;
 }
 .cnc-lp .split-left .sub {
-  margin: 0 0 22px; font-size: 15px;
+  margin: 0 0 22px; font-size: 15px !important;
   color: #f3e6d8; opacity: .85; max-width: 460px;
 }
 .cnc-lp .split-left .real { width: 100%; display: flex; flex-direction: column; align-items: flex-start; }
@@ -560,7 +525,7 @@ html, body { overflow-x: hidden; }
   cursor: pointer; white-space: nowrap;
   transition: background .15s;
 }
-.cnc-lp .row-item .act:hover { background: var(--brand-dark); text-decoration: none; color: #fff; }
+.cnc-lp .row-item .act:hover { background: var(--brand-dark); text-decoration: none; color: #fff !important; }
 .cnc-lp .row-item .act.ghost {
   background: transparent; color: #fff;
   padding: 14px 4px;
@@ -581,7 +546,6 @@ html, body { overflow-x: hidden; }
   justify-content: center; align-items: center;
   text-align: center; position: relative; overflow: hidden;
 }
-@media (max-width: 560px) { .cnc-lp .split-right { padding: 52px 22px; } }
 .cnc-lp .split-right::before {
   content: ""; position: absolute; inset: 0;
   background:
@@ -596,7 +560,7 @@ html, body { overflow-x: hidden; }
   margin: 0 0 18px; color: #fff;
 }
 .cnc-lp .split-right p {
-  margin: 0 0 26px; font-size: 15px;
+  margin: 0 0 26px; font-size: 15px !important;
   color: #fff; max-width: 400px;
   opacity: .95; line-height: 1.55;
 }
@@ -606,12 +570,91 @@ html, body { overflow-x: hidden; }
   letter-spacing: .04em; border: 0; cursor: pointer;
   transition: background .18s;
 }
-.cnc-lp .split-right .cta:hover { background: var(--maroon-ink); text-decoration: none; color: #fff; }
+.cnc-lp .split-right .cta:hover { background: var(--maroon-ink); text-decoration: none; color: #fff !important; }
 .cnc-lp .sk-split-r-h2  { width: 220px; height: clamp(38px, 4.4vw, 56px); margin: 0 auto 18px; }
 .cnc-lp .sk-split-r-p-1 { width: 85%; height: 14px; max-width: 400px; margin: 0 auto 8px; }
 .cnc-lp .sk-split-r-p-2 { width: 60%; height: 14px; max-width: 280px; margin: 0 auto 26px; }
 .cnc-lp .sk-split-r-cta { width: 180px; height: 52px; margin: 0 auto; }
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVE OVERRIDES — MUST STAY LAST IN THIS STYLE BLOCK.
+   Base rules above share specificity with these; source order is
+   what makes them win. Anything appended after this block will
+   silently break mobile again.
+   ═══════════════════════════════════════════════════════════ */
+
+/* Mobile / tablet */
+@media (max-width: 899px) {
+  /* Vores favoritter: heading + button stacked AND centered */
+  .cnc-lp .cats-head {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
+  }
+  .cnc-lp .cats-head h2 { text-align: center; }
+
+  /* Hero: photo corner-to-corner, copy centered below */
+  .cnc-lp .hero { padding: 0 0 26px; }
+  .cnc-lp .hero-inner { gap: 18px; }
+  .cnc-lp .hero-photo {
+    min-height: 0;
+    height: auto;
+    max-height: none;
+    width: 100%;
+    aspect-ratio: 1980 / 1875;
+  }
+  .cnc-lp .hero-copy {
+    padding: 0 22px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  .cnc-lp .hero-copy h1 { text-align: center; }
+  .cnc-lp .hero-copy p { text-align: center; margin-left: auto; margin-right: auto; }
+  .cnc-lp .hero-ctas { justify-content: center; width: 100%; }
+  .cnc-lp .hero-cta { width: 100%; max-width: 320px; min-width: 0; }
+  .cnc-lp.is-ready .hero-photo .cnc-img.is-loaded { animation: none !important; }
+
+  /* Split: centered title + subtext (finder input stays full-width) */
+  .cnc-lp .split { min-height: 0; }
+  .cnc-lp .split-left {
+    padding: 40px 24px 44px;
+    align-items: center;
+    text-align: center;
+  }
+  .cnc-lp .split-right { padding: 40px 24px 44px; }
+  .cnc-lp .split-left h2 { text-align: center; margin-left: auto; margin-right: auto; }
+  .cnc-lp .split-left .sub { text-align: center; margin-left: auto; margin-right: auto; }
+  .cnc-lp .split-left .real { align-items: center; }
+  .cnc-lp .split-left .finder { margin-left: auto; margin-right: auto; }
+  .cnc-lp .split-left .results { margin-left: auto; margin-right: auto; }
+  .cnc-lp .split-left .results-lead { text-align: center; }
+}
+/* Phone padding — after the 899 block so it still wins */
+@media (max-width: 560px) {
+  .cnc-lp .split-left  { padding: 44px 22px 52px; }
+  .cnc-lp .split-right { padding: 48px 22px; }
+}
+
+/* Desktop: 4% overscan on the hero img so the slam animation's
+   scaleY(.94) squash frame never exposes the background */
+@media (min-width: 900px) {
+  .cnc-lp .hero-photo .cnc-img { inset: -4%; width: auto; height: auto; }
+}
+
+/* Narrow desktop cushion: 900-1199 the max() gutters sit at their 24px
+   floor and 1.55fr squeezes the right columns — soften the ratios */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .cnc-lp .split { grid-template-columns: 1.35fr 1fr; }
+  .cnc-lp .hero-inner { min-height: 480px; }
+  .cnc-lp .hero-photo { min-height: 480px; }
+}
 </style>
+<noscript><style>.cnc-lp .real{opacity:1 !important}.cnc-lp .sk-fade{display:none !important}</style></noscript>
 
 <div class="cnc-lp">
 
@@ -619,7 +662,7 @@ html, body { overflow-x: hidden; }
   <section class="hero">
     <div class="hero-inner">
       <div class="hero-photo">
-        <?php echo cnc_picture($assets, 'hero-crispy-chicken', cnc_tt("Sprød kylling"), '(min-width: 900px) 720px, 100vw', true, $lqip['hero-crispy-chicken']); ?>
+        <?php echo cnc_picture($assets, 'hero-crispy-chicken', cnc_tt("Sprød kylling"), '(min-width: 900px) 54vw, 100vw', true, $lqip['hero-crispy-chicken'], 1200, 1136); ?>
       </div>
       <div class="hero-copy">
         <!-- Skeleton (fades out when ready) -->
@@ -666,7 +709,7 @@ html, body { overflow-x: hidden; }
         ?>
         <div class="cat">
           <div class="cat-img">
-            <?php echo cnc_picture($assets, $c['slug'], $c['title'], '(min-width: 780px) 25vw, 50vw', false, $lqip[$c['slug']]); ?>
+            <?php echo cnc_picture($assets, $c['slug'], $c['title'], '(min-width: 900px) 25vw, 50vw', false, $lqip[$c['slug']]); ?>
           </div>
           <div class="cat-text">
             <div class="sk sk-fade sk-light sk-cat-title"></div>
