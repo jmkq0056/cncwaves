@@ -124,17 +124,21 @@ function cnc_picture($assets, $slug, $alt, $sizes, $eager = false, $lqip = '') {
 .cnc-lp img { display: block; max-width: 100%; }
 .cnc-lp a { color: inherit; text-decoration: none; }
 
-/* Karenderia wraps views in a Bootstrap .container (max-width ~1140).
-   Break out of that so sections always bleed to viewport edges. */
+/* Karenderia wraps views inside .page-content which may sit in a
+   Bootstrap container. Break out so sections always bleed to viewport
+   edges regardless of parent max-width/padding. */
+html, body { overflow-x: hidden; }
+.cnc-lp { width: 100%; }
 .cnc-lp .hero,
 .cnc-lp .cats-wrap,
 .cnc-lp .split {
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  max-width: none;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
   position: relative;
   left: 0; right: 0;
+  box-sizing: border-box;
 }
 
 /* ── Skeleton system ───────────────────────────────────── */
