@@ -163,13 +163,15 @@ if (!function_exists('cnc_tt')) {
 }
 .cnc-socials a:hover,
 .cnc-socials a:focus {
-  color: #fff;
+  color: #fff !important;
   background: #f17d00;
   border-color: #f17d00;
   transform: translateY(-2px);
   text-decoration: none;
 }
-.cnc-socials svg { width: 20px; height: 20px; display: block; }
+.cnc-socials svg { width: 20px; height: 20px; display: block; fill: currentColor; }
+.cnc-socials a:hover svg,
+.cnc-socials a:focus svg { fill: #fff !important; }
 
 .cnc-more-links {
   list-style: none;
